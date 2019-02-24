@@ -338,6 +338,8 @@ export default class App extends React.PureComponent {
             </a>
             <span style={{ marginLeft: 10, marginRight: 10 }}>&middot;</span>
             <a href="https://twitter.com/intent/tweet?text=https://wa.vg/katowice/ by @CyberHono">tweet</a>
+            <span style={{ marginLeft: 10, marginRight: 10 }}>&middot;</span>
+            <a href="https://github.com/iebb/Kato19EloCalc">Github</a>
           </p>
         </div>
         <Divider />
