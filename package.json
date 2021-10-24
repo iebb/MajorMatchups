@@ -72,7 +72,6 @@
     "@types/shelljs": "0.8.8",
     "@types/styled-components": "5.1.11",
     "@types/testing-library__jest-dom": "5.14.0",
-    "@types/webpack": "4.44.2",
     "@types/webpack-env": "1.16.2",
     "chalk": "4.1.1",
     "cross-env": "7.0.3",
