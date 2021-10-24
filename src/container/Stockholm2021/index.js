@@ -11,7 +11,7 @@ const TournamentLegends = 2;
 
 const teams = [];
 
-const HOST = process.env.NODE_ENV === 'development' ? 'https://berlin.wa.vg/' : ''; //https://major.ieb.im/' : '';
+const HOST = process.env.NODE_ENV === 'devbuchholzpment' ? 'https://berlin.wa.vg/' : ''; //https://major.ieb.im/' : '';
 
 let results = {};
 let gamescores = {};
@@ -95,10 +95,6 @@ export default class Stockholm2021 extends React.PureComponent {
     return false;
   }
 
-  calculateDeltaElo = (team1, team2) => {
-    return 0;
-  };
-
   getMatchUps(stage) {
     const stateMatches = JSON.parse(JSON.stringify(this.state.matches));
     const stateTeams = JSON.parse(JSON.stringify(this.state.teams));
@@ -112,21 +108,35 @@ export default class Stockholm2021 extends React.PureComponent {
 
         const teamsT = stateTeams[stage - 1].filter((team) => team.w === 3 || team.l === 3);
 
+
         for (const match of stateMatches[stage - 1]) {
-          const exchange = 0;
+          const opponents1 = [...match.team1.opponents, match.team2.code];
+          const opponents2 = [...match.team2.opponents, match.team1.code];
+
           if (match.picked === 1) {
-            teamsT.push({ ...match.team1, elo: match.team1.elo - exchange, w: match.team1.w + 1 });
-            teamsT.push({ ...match.team2, elo: match.team2.elo + exchange, l: match.team2.l + 1 });
+            teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1 });
+            teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1 });
           } else if (match.picked === -1) {
-            teamsT.push({ ...match.team1, elo: match.team1.elo + exchange, l: match.team1.l + 1 });
-            teamsT.push({ ...match.team2, elo: match.team2.elo - exchange, w: match.team1.w + 1 });
+            teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1 });
+            teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1 });
           }
+        }
+
+        const buchholzScore = {};
+        for (const team of teamsT) {
+          buchholzScore[team.code] = team.w - team.l;
+        }
+        for (const team of teamsT) {
+          team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
         }
         stateTeams[stage] = teamsT;
       }
-
-
-      teams = stateTeams[stage].sort((x, y) => x.elo - y.elo);
+      teams = stateTeams[stage].sort((x, y) => {
+        if (x.buchholz !== y.buchholz) {
+          return x.buchholz - y.buchholz;
+        }
+        return x.seed - y.seed;
+      });
       remaining = teams.filter((x) => x.w < 3 && x.l < 3);
       const remainingTeams = copy(remaining);
       const matchups = [];
@@ -159,8 +169,7 @@ export default class Stockholm2021 extends React.PureComponent {
           for (let c = team2cands.length - 1; c >= 0; c -= 1) {
             const team2 = team2cands[c];
             const mat = copy(m);
-            // let picked = (Math.random() * (1.2**(team1.elo - team2.elo)) <= 0.5) ? 1 : -1; // 1 for A win and -1 for B win
-            let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
+            let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
             let result = 0;
 
             let score = ['TBA', 'TBA'];
@@ -185,14 +194,8 @@ export default class Stockholm2021 extends React.PureComponent {
               }
             }
 
-            const deltaElo =
-              picked === 1
-                ? this.calculateDeltaElo(team1, team2)
-                : picked === -1
-                ? -this.calculateDeltaElo(team2, team1)
-                : 0;
 
-            mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
+            mat.push({ pool, match: m.length, team1, team2, picked, result, score });
             const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
             if (dfs(nPoolTeams, mat, mref)) {
               return true;
@@ -204,28 +207,24 @@ export default class Stockholm2021 extends React.PureComponent {
       }
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;
-      console.log("stateMatches", stateMatches);
       this.setState({ teams: stateTeams, matches: stateMatches, refresh: false });
     } else {
       stageMatches = stateMatches[stage];
-      teams = stateTeams[stage].sort((x, y) => x.elo - y.elo);
+      teams = stateTeams[stage].sort((x, y) => x.buchholz - y.buchholz);
     }
+
+
     const elim = teams.filter((x) => x.l === 3).sort((x, y) => y.w - x.w);
     const adv = teams.filter((x) => x.w === 3).sort((x, y) => -y.l + x.l);
+
+
 
     const setWinner = (match, picked) => {
       if (match.picked === picked) return;
       // if (match.result) return;
 
-      const deltaElo =
-        picked === 1
-          ? this.calculateDeltaElo(match.team1, match.team2)
-          : picked === -1
-          ? -this.calculateDeltaElo(match.team2, match.team1)
-          : 0;
-
       stageMatches = stageMatches.map((y) =>
-        y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked, deltaElo },
+        y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked },
       );
       stateMatches[stage] = stageMatches;
       for (let p = stage + 1; p < 6; p += 1) {
@@ -234,6 +233,7 @@ export default class Stockholm2021 extends React.PureComponent {
       }
       this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
     };
+
 
     return (
       <div>
@@ -253,12 +253,28 @@ export default class Stockholm2021 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.elo}</span>
+                <span className="team-box-text">#{team.buchholz}</span>
               </div>
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
                 <span className="team-box-text">ADV</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">{team.buchholz}</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">
+                  {
+                    team.opponents.map(opp =>
+                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} />
+                    )
+                  }
+                </span>
               </div>
             </div>
           </div>
@@ -294,12 +310,12 @@ export default class Stockholm2021 extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo < 0 ? 'lose' : x.deltaElo > 0 ? 'win' : ''}`}>
+                      <span className={`team-box-text ${x.result < 0 ? 'lose' : x.result > 0 ? 'win' : ''}`}>
                         {x.score[0]}
                       </span>
                     </div>
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo > 0 ? 'lose' : x.deltaElo < 0 ? 'win' : ''}`}>
+                      <span className={`team-box-text ${x.result > 0 ? 'lose' : x.result < 0 ? 'win' : ''}`}>
                         {x.score[1]}
                       </span>
                     </div>
@@ -316,10 +332,38 @@ export default class Stockholm2021 extends React.PureComponent {
               </div>
               <div className="team-box down">
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team1.elo}</span>
+                  <span className="team-box-text">#{x.team1.seed}</span>
                 </div>
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team2.elo}</span>
+                  <span className="team-box-text">#{x.team2.seed}</span>
+                </div>
+              </div>
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text">{x.team1.buchholz}</span>
+                </div>
+                <div className="team-box-split b">
+                  <span className="team-box-text">{x.team2.buchholz}</span>
+                </div>
+              </div>
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text">
+                    {
+                      x.team1.opponents.map(opp =>
+                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp}  />
+                      )
+                    }
+                  </span>
+                </div>
+                <div className="team-box-split b">
+                  <span className="team-box-text">
+                    {
+                      x.team2.opponents.map(opp =>
+                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} />
+                      )
+                    }
+                  </span>
                 </div>
               </div>
             </div>
@@ -342,12 +386,28 @@ export default class Stockholm2021 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.elo}</span>
+                <span className="team-box-text">#{team.buchholz}</span>
               </div>
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
                 <span className="team-box-text">ELIM</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">{team.buchholz}</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">
+                  {
+                    team.opponents.map(opp =>
+                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} />
+                    )
+                  }
+                </span>
               </div>
             </div>
           </div>
@@ -363,8 +423,19 @@ export default class Stockholm2021 extends React.PureComponent {
           <div className="title-container">
             <h1 className="title">PGL Major Stockholm 2021 Matchup Simulator</h1>
           </div>
-          <p>Disclaimer: The matchup format hasn't been announced yet, and this website is only a seed-based one.</p>
-          <p style={{ fontSize: "200%" }}>Correctness not guaranteed!</p>
+          <p style={{ fontSize: "150%" }}>
+            <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
+              The Buchholtz System</a>
+          </p>
+          <p>
+            <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
+              reddit thread
+            </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://twitter.com/intent/tweet?text=StarLadder Berlin Major ELO Calculator @ https://berlin.wa.vg/ by @CyberHono">
+              tweet
+            </a>
+          </p>
           {
             /*
 

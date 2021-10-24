@@ -200,3 +200,10 @@ img.ui.image.team-logo {
   display: inline-block;
   height: 64px;
 }
+
+img.ui.image.team-logo-small {
+  vertical-align: middle;
+  display: inline-block;
+  height: 24px;
+  margin: -8px -4px;
+}
