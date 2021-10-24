@@ -428,7 +428,7 @@ export default class Stockholm2021 extends React.PureComponent {
               reddit thread
             </a>
             <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/intent/tweet?text=StarLadder Berlin Major ELO Calculator @ https://berlin.wa.vg/ by @CyberHono">
+            <a href="https://twitter.com/intent/tweet?text=Major Matchup Calculator @ https://major.ieb.im/ by @CyberHono">
               tweet
             </a>
           </p>
