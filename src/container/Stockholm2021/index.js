@@ -12,7 +12,7 @@ const TournamentChallenger = 1;
 let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
+const teamLogo = (code) => `/images/stockh2021/${code}.png`;
 
 export default class Stockholm2021 extends React.PureComponent {
   state = {
