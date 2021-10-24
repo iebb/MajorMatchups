@@ -390,11 +390,7 @@ export default class Berlin2019 extends React.PureComponent {
           <div className="title-container">
             <h1 className="title">StarLadder Berlin Major 2019 Matchups</h1>
             <h2>
-              {window.c === 'CN' ? (
-                <a href="https://www.douyu.com/6657">6657upup</a>
-              ) : (
-                <a href="https://www.twitch.tv/starladder_cs_en/squad">Twitch Stream</a>
-              )}
+              <a href="https://www.twitch.tv/starladder_cs_en/squad">Twitch Stream</a>
             </h2>
             <p>
               <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">

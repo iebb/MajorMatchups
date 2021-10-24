@@ -21,6 +21,7 @@ const { MediaContextProvider, Media } = createMedia({
 const Editions = [
   ['2021 Stockholm', '/21stockholm'],
   ['2019 Berlin', '/19berlin'],
+  ['2019 Katowice', '/19katowice'],
 ];
 
 class DesktopContainer extends Component {

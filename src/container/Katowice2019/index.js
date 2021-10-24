@@ -1,99 +1,71 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Button, Image } from 'semantic-ui-react';
-import { getRelativeSeed, rankingSeed } from './initial_seed';
-
-const copy = (x) => JSON.parse(JSON.stringify(x));
-
-const qs = [0.7333, 0.1365, 1.065e-2, 2.69e-4, -2.078e-5, -1.549e-6, 4.29e-9, 1.831e-9];
-
-const teams = [];
-
-const HOST = process.env.NODE_ENV === 'development' ? 'https://berlin.wa.vg/' : '';
-
+import { Image, Menu } from 'semantic-ui-react';
 let results = {};
-let gamescores = {};
 
-const teamLogo = (code) => HOST + `/images/svg/${code}.svg`;
+const teamLogo = (code) => `/images/katowice2019/${code}.png`;
 
-export default class Berlin2019 extends React.PureComponent {
+
+const copy = x => JSON.parse(JSON.stringify(x));
+
+const qa = 0.684356436340377;
+const qb = 0.13764045664874308;
+const qc = 0.011391235484420453;
+const qd = 0.0002490984538751953;
+const qe = -0.000024713775867179225;
+const qf = -0.000001256769333477871;
+
+const challengers = [
+  { type: 'graffiti', seed: 1, name: 'Fnatic', code: 'fntc', elo: 1.79, w: 0, l: 0 },
+  { type: 'graffiti', seed: 2, name: 'NRG Esports', code: 'nrg', elo: 2.46, w: 0, l: 0 },
+  { type: 'graffiti', seed: 3, name: 'Cloud9', code: 'c9', elo: 3.29, w: 0, l: 0 },
+  { type: 'graffiti', seed: 4, name: 'Ninjas in Pyjamas', code: 'nip', elo: 3.33, w: 0, l: 0 },
+  { type: 'graffiti', seed: 5, name: 'ENCE', code: 'ence', elo: 3.91, w: 0, l: 0 },
+  { type: 'graffiti', seed: 6, name: 'Vitality', code: 'vita', elo: 6.0, w: 0, l: 0 },
+  { type: 'graffiti', seed: 7, name: 'G2 Esports', code: 'g2', elo: 6.79, w: 0, l: 0 },
+  { type: 'graffiti', seed: 8, name: 'AVANGAR', code: 'avg', elo: 8.15, w: 0, l: 0 },
+  { type: 'graffiti', seed: 9, name: 'Renegades', code: 'ren', elo: 8.36, w: 0, l: 0 },
+  { type: 'graffiti', seed: 10, name: 'Vega Squadron', code: 'vega', elo: 9.75, w: 0, l: 0 },
+  { type: 'graffiti', seed: 11, name: 'TYLOO', code: 'tyl', elo: 9.85, w: 0, l: 0 },
+  { type: 'graffiti', seed: 12, name: 'Team Spirit', code: 'spir', elo: 10.69, w: 0, l: 0 },
+  { type: 'graffiti', seed: 13, name: 'FURIA Esports', code: 'furi', elo: 12.0, w: 0, l: 0 },
+  { type: 'graffiti', seed: 14, name: 'Grayhound', code: 'gray', elo: 13.57, w: 0, l: 0 },
+  { type: 'graffiti', seed: 15, name: 'Winstrike Team', code: 'wins', elo: 13.62, w: 0, l: 0 },
+  { type: 'graffiti', seed: 16, name: 'ViCi Gaming', code: 'vici', elo: 14.07, w: 0, l: 0 },
+];
+
+const legends = [
+  { type: 'foil', seed: 1, name: 'Astralis', code: 'astr', elo: 1, w: 0, l: 0 },
+  { type: 'foil', seed: 2, name: 'Team Liquid', code: 'liq', elo: 2, w: 0, l: 0 },
+  { type: 'foil', seed: 3, name: 'Natus Vincere', code: 'navi', elo: 3.5, w: 0, l: 0 },
+  { type: 'foil', seed: 4, name: 'MIBR', code: 'mibr', elo: 3.67, w: 0, l: 0 },
+  { type: 'foil', seed: 5, name: 'FaZe Clan', code: 'faze', elo: 3.79, w: 0, l: 0 },
+  { type: 'foil', seed: 6, name: 'NRG Esports', code: 'nrg', elo: 5.31, w: 0, l: 0 },
+  { type: 'foil', seed: 7, name: 'BIG', code: 'big', elo: 7.5, w: 0, l: 0 },
+  { type: 'foil', seed: 8, name: 'ENCE eSports', code: 'ence', elo: 7.64, w: 0, l: 0 },
+  { type: 'foil', seed: 9, name: 'Renegades', code: 'ren', elo: 9.62, w: 0, l: 0 },
+  { type: 'foil', seed: 10, name: 'Team Vitality', code: 'vita', elo: 10, w: 0, l: 0 },
+  { type: 'foil', seed: 11, name: 'Ninjas in Pyjamas', code: 'nip', elo: 10.67, w: 0, l: 0 },
+  { type: 'foil', seed: 12, name: 'HellRaisers', code: 'hlr', elo: 11.62, w: 0, l: 0 },
+  { type: 'foil', seed: 13, name: 'Cloud9', code: 'c9', elo: 11.71, w: 0, l: 0 },
+  { type: 'foil', seed: 14, name: 'G2 Esports', code: 'g2', elo: 12.36, w: 0, l: 0 },
+  { type: 'foil', seed: 15, name: 'AVANGAR', code: 'avg', elo: 13.15, w: 0, l: 0 },
+  { type: 'foil', seed: 16, name: 'compLexity Gaming', code: 'col', elo: 15, w: 0, l: 0 },
+];
+
+
+export default class Katowice2019 extends React.PureComponent {
   state = {
-    teams: [copy(teams), false, false, false, false, false],
+    teams: [copy(legends), false, false, false, false, false],
     matches: [false, false, false, false, false, false],
     elo: true,
     legends: false,
     scores: false,
-  };
-
-  init = (tournament) => {
-    results = {};
-    gamescores = {};
-
-    fetch('https://major-api.ieb.im/?tournament=' + tournament)
-      .then((resp) => resp.json())
-      .then((resp) => {
-        const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
-        let scores = false;
-        if (resp.data) {
-          for (const round of resp.data.matches) {
-            if (round.length) {
-              for (const match of round) {
-                results[match.team1.code + '-' + match.team2.code] = match.result;
-              }
-            }
-          }
-        }
-        if (resp.scores) {
-          for (const key of Object.keys(resp.scores)) {
-            const val = resp.scores[key];
-            gamescores[key] = val;
-            let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
-          }
-          scores = true;
-        }
-        this.setState({
-          teams: [teams, false, false, false, false, false],
-          matches: [false, false, false, false, false, false],
-          tournament: resp.tournament,
-          legends: false,
-          modified: false,
-          scores,
-        });
-      });
-  };
-
-  restore = () => {
-    if (this.savedData) {
-      this.setState(JSON.parse(this.savedData));
-    }
-  };
-
-  advance = () => {
-    this.savedData = JSON.stringify(this.state);
-    const advancedTeams = this.state.teams[5].filter((x) => x.w === 3).map((x) => x.code);
-    const filtered = rankingSeed.filter((x) => x.length === 3 || advancedTeams.indexOf(x[0]) !== -1);
-    const elos = getRelativeSeed(filtered);
-    const teams = Object.keys(elos).map((team, idx) => ({
-      seed: idx,
-      name: team,
-      code: team,
-      elo: elos[team],
-      w: 0,
-      l: 0,
-    }));
-    results = {};
-    this.setState({
-      teams: [teams, false, false, false, false, false],
-      matches: [false, false, false, false, false, false],
-      refresh: true,
-      legends: true,
-    });
+    tournament: 2,
   };
 
   componentDidMount() {
-    this.init(2);
   }
 
   previouslyMatchedUp(stage, tA, tB) {
@@ -107,8 +79,12 @@ export default class Berlin2019 extends React.PureComponent {
   }
 
   calculateDeltaElo = (team1, team2) => {
-    const dElo = team1.elo - team2.elo;
-    return qs.map((v, idx) => v * dElo ** idx).reduce((a, b) => a + b);
+    const x = team1.elo - team2.elo;
+    return ((((qf * x + qe) * x + qd) * x + qc) * x + qb) * x + qa;
+  };
+
+  calculateDeltaEloX = (x) => {
+    return ((((qf * x + qe) * x + qd) * x + qc) * x + qb) * x + qa;
   };
 
   formatSign = (val) => (
@@ -133,7 +109,7 @@ export default class Berlin2019 extends React.PureComponent {
 
         for (const match of stateMatches[stage - 1]) {
           const x = (match.team1.elo - match.team2.elo) * match.picked;
-          const exchange = qs.map((v, idx) => v * x ** idx).reduce((a, b) => a + b);
+          const exchange = this.calculateDeltaEloX(x);
           if (match.picked === 1) {
             teamsT.push({ ...match.team1, elo: match.team1.elo - exchange, w: match.team1.w + 1 });
             teamsT.push({ ...match.team2, elo: match.team2.elo + exchange, l: match.team2.l + 1 });
@@ -196,6 +172,7 @@ export default class Berlin2019 extends React.PureComponent {
               }
             }
 
+            /*
             if (`${team1.code}-${team2.code}` in gamescores) {
               score = gamescores[`${team1.code}-${team2.code}`];
               if (score[0] !== score[1]) {
@@ -203,12 +180,14 @@ export default class Berlin2019 extends React.PureComponent {
               }
             }
 
+             */
+
             const deltaElo =
               picked === 1
                 ? this.calculateDeltaElo(team1, team2)
                 : picked === -1
-                ? -this.calculateDeltaElo(team2, team1)
-                : 0;
+                  ? -this.calculateDeltaElo(team2, team1)
+                  : 0;
 
             mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
             const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
@@ -238,8 +217,8 @@ export default class Berlin2019 extends React.PureComponent {
         picked === 1
           ? this.calculateDeltaElo(match.team1, match.team2)
           : picked === -1
-          ? -this.calculateDeltaElo(match.team2, match.team1)
-          : 0;
+            ? -this.calculateDeltaElo(match.team2, match.team1)
+            : 0;
 
       stageMatches = stageMatches.map((y) =>
         y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked, deltaElo },
@@ -385,55 +364,44 @@ export default class Berlin2019 extends React.PureComponent {
     );
   }
 
+
   render() {
     return (
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">StarLadder Berlin Major 2019 Matchups</h1>
-            <h2>
-              {window.c === 'CN' ? (
-                <a href="https://www.douyu.com/6657">6657upup</a>
-              ) : (
-                <a href="https://www.twitch.tv/starladder_cs_en/squad">Twitch Stream</a>
-              )}
-            </h2>
+            <h1 className="title">IEM Katowice Major 2019 Matchups</h1>
             <p>
               <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">
                 reddit thread
-              </a>
-              <span style={{ margin: 10 }}>·</span>
-              <a href="https://twitter.com/intent/tweet?text=StarLadder Berlin Major ELO Calculator @ https://berlin.wa.vg/ by @CyberHono">
-                tweet
               </a>
             </p>
             <p>Tip: Match outcomes can be changed by clicking on the Losing Team</p>
           </div>
           <div style={{ marginTop: 50 }}>
-            {this.state.tournament === 2 && (
-              <Button size="big" color="purple" style={{ background: '#6d72ac' }} onClick={() => this.init(1)}>
-                Challengers Stage
-              </Button>
-            )}
-            {this.state.tournament === 1 &&
-              (!this.state.modified ? (
-                <Button size="big" color="purple" style={{ background: '#6d72ac' }} onClick={() => this.init(2)}>
-                  Legends Stage
-                </Button>
-              ) : this.state.legends ? (
-                <Button size="big" color="purple" style={{ background: '#c24354' }} onClick={() => this.restore()}>
-                  Back to Challengers
-                </Button>
-              ) : (
-                <>
-                  <Button size="big" color="purple" style={{ background: '#6d72ac' }} onClick={() => this.init(2)}>
-                    Legends Stage
-                  </Button>
-                  <Button size="big" color="purple" style={{ background: '#c24354' }} onClick={() => this.advance()}>
-                    Legends with your Picks
-                  </Button>
-                </>
-              ))}
+            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+              <Menu.Item
+                name="Challengers Stage"
+               active={this.state.tournament === 1}
+               onClick={() =>
+                 this.setState({
+                   teams: [copy(challengers), false, false, false, false, false],
+                   matches: [false, false, false, false, false, false],
+                   tournament: 1,
+                 })
+               } />
+              <Menu.Item
+                name="Legends Stage"
+                active={this.state.tournament === 2}
+                onClick={() =>
+                  this.setState({
+                    teams: [copy(legends), false, false, false, false, false],
+                    matches: [false, false, false, false, false, false],
+                    tournament: 2,
+                  })
+                }
+              />
+            </Menu>
           </div>
           <div className="main-container">
             {[0, 1, 2, 3, 4, 5].map((round) => (
