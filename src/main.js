@@ -18,6 +18,17 @@ const { MediaContextProvider, Media } = createMedia({
   },
 });
 
+const Footer = () => (
+  <div style={{ margin: 50, userSelect: 'text' }}>
+    <p>
+      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
+    </p>
+    <p>
+      Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368 | Advertisements Available | 广告位出租（
+    </p>
+  </div>
+)
+
 const Editions = [
   ['2021 Stockholm', '/21stockholm'],
   ['2019 Berlin', '/19berlin'],
@@ -54,11 +65,7 @@ class DesktopContainer extends Component {
         </Visibility>
 
         {children}
-        <div style={{ marginTop: 50, userSelect: 'text' }}>
-          <p>
-            by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | Email: ieb &lt;at&gt; outlook.my | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
-          </p>
-        </div>
+        <Footer />
       </Media>
     );
   }
@@ -110,11 +117,7 @@ class MobileContainer extends Component {
             </Segment>
 
             {children}
-            <div style={{ marginTop: 50, userSelect: 'text' }}>
-              <p>
-                by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | Email: ieb &lt;at&gt; outlook.my | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
-              </p>
-            </div>
+            <Footer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Media>
