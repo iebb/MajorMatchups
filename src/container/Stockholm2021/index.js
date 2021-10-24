@@ -421,11 +421,15 @@ export default class Stockholm2021 extends React.PureComponent {
           </div>
           <p style={{ fontSize: "150%" }}>
             <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
-              The Buchholtz System</a>
+              UPDATED - The Buchholtz System</a>
           </p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
+            </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://discord.gg/KYNbRYrZGe">
+              discord server
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/intent/tweet?text=Major Matchup Calculator @ https://major.ieb.im/ by @CyberHono">
