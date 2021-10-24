@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp -rf src/images build/",
     "test": "react-scripts test",
     "start:prod": "yarn run build && serve -s build",
     "checkTs": "tsc --noEmit",
@@ -46,11 +46,11 @@
     "@artsy/fresnel": "^3.0.2",
     "compression": "1.7.4",
     "connect-history-api-fallback": "1.6.0",
-    "cors": "2.8.5",
-    "express": "4.17.1",
-    "helmet": "4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
     "mathjs": "^9.5.1",
-    "node-fetch": "3.0.0",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
@@ -60,7 +60,7 @@
     "sanitize.css": "^13.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
-    "serverless-http": "2.7.0"
+    "serverless-http": "^2.7.0"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
