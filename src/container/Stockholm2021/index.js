@@ -297,7 +297,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
           return (
             <div key={`match-${x.pool}-${x.match}`} className="team two">
-              <div className="team-box up">
+              <div className="team-box up" style={{ background: `hsla(${100.0 * x.team1.w / (x.team1.w + x.team1.l)}, 100%, 50%, 0.5)` }}>
                 <div className="team-box-split b">
                   <span className="team-box-text">{x.pool}</span>
                 </div>
