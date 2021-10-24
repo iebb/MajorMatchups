@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && cp -rf src/images build/",
+    "build": "react-scripts build && cp -rf src/images build/ && cp _redirects build/",
     "test": "react-scripts test",
     "start:prod": "yarn run build && serve -s build",
     "checkTs": "tsc --noEmit",
