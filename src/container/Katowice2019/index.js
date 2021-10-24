@@ -372,7 +372,7 @@ export default class Katowice2019 extends React.PureComponent {
           <div className="title-container">
             <h1 className="title">IEM Katowice Major 2019 Matchups</h1>
             <p>
-              <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">
+              <a href="https://www.reddit.com/r/GlobalOffensive/comments/asf1sc/made_a_katowice_matchup_simulator_based_on_my/">
                 reddit thread
               </a>
             </p>
