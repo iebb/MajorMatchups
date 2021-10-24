@@ -4,7 +4,7 @@
 import { createMedia } from '@artsy/fresnel';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Button, Container, Icon, Menu, Segment, Sidebar, Visibility } from 'semantic-ui-react';
+import { Container, Icon, Menu, Segment, Sidebar, Visibility } from 'semantic-ui-react';
 import Routes from './router';
 
 import './main.css';
@@ -40,6 +40,9 @@ class DesktopContainer extends Component {
           <Segment inverted textAlign="center" vertical>
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
+                <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Avenir, Lato', fontWeight: 700 }}>
+                  Major@ieb
+                </Menu.Item>
                 {Editions.map((edition) => (
                   <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
                     {edition[0]}
@@ -51,6 +54,11 @@ class DesktopContainer extends Component {
         </Visibility>
 
         {children}
+        <div style={{ marginTop: 50, userSelect: 'text' }}>
+          <p>
+            by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | Email: ieb &lt;at&gt; outlook.my | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
+          </p>
+        </div>
       </Media>
     );
   }
@@ -97,19 +105,16 @@ class MobileContainer extends Component {
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name="sidebar" />
                   </Menu.Item>
-                  <Menu.Item position="right">
-                    <Button as="a" inverted>
-                      Log in
-                    </Button>
-                    <Button as="a" inverted style={{ marginLeft: '0.5em' }}>
-                      Sign Up
-                    </Button>
-                  </Menu.Item>
                 </Menu>
               </Container>
             </Segment>
 
             {children}
+            <div style={{ marginTop: 50, userSelect: 'text' }}>
+              <p>
+                by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | Email: ieb &lt;at&gt; outlook.my | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
+              </p>
+            </div>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Media>

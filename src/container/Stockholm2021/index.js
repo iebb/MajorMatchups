@@ -461,12 +461,6 @@ export default class Stockholm2021 extends React.PureComponent {
               </>
             ))}
           </div>
-          <div style={{ marginTop: 50, userSelect: 'text' }}>
-            <p>
-              by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | Email: ieb &lt;at&gt; outlook.my
-              | 微博 <a href="https://www.weibo.com/jebwizoscar/">@电玩果</a>
-            </p>
-          </div>
         </div>
       </div>
     );

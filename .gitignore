@@ -24,3 +24,4 @@ template
 
 .idea/
 /yarn.lock
+/package-lock.json
