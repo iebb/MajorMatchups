@@ -7,11 +7,7 @@ import { initialData } from './initial_data';
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
 const TournamentChallenger = 1;
-const TournamentLegends = 2;
-
-const teams = [];
-
-const HOST = process.env.NODE_ENV === 'devbuchholzpment' ? 'https://berlin.wa.vg/' : ''; //https://major.ieb.im/' : '';
+// const TournamentLegends = 2;
 
 let results = {};
 let gamescores = {};
@@ -28,7 +24,7 @@ export default class Stockholm2021 extends React.PureComponent {
     scores: [],
   };
 
-  init = (tournament) => {
+  init = (_) => {
     results = {};
     gamescores = {};
 
@@ -133,7 +129,7 @@ export default class Stockholm2021 extends React.PureComponent {
       }
       teams = stateTeams[stage].sort((x, y) => {
         if (x.buchholz !== y.buchholz) {
-          return x.buchholz - y.buchholz;
+          return y.buchholz - x.buchholz;
         }
         return x.seed - y.seed;
       });
@@ -237,7 +233,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
     return (
       <div>
-        {adv.map((team, idx) => (
+        {adv.map((team, _) => (
           <div key={team.code} className="team one advanced">
             <div className="team-box up">
               <div className="team-box-split b">
@@ -253,7 +249,7 @@ export default class Stockholm2021 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.buchholz}</span>
+                <span className="team-box-text">#{team.seed}</span>
               </div>
             </div>
             <div className="team-box down">
@@ -370,7 +366,7 @@ export default class Stockholm2021 extends React.PureComponent {
           );
         })}
 
-        {elim.map((team, idx) => (
+        {elim.map((team, _) => (
           <div key={team.code} className="team one eliminated">
             <div className="team-box up">
               <div className="team-box-split b">
@@ -386,7 +382,7 @@ export default class Stockholm2021 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.buchholz}</span>
+                <span className="team-box-text">#{team.seed}</span>
               </div>
             </div>
             <div className="team-box down">

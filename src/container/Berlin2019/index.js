@@ -10,8 +10,6 @@ const qs = [0.7333, 0.1365, 1.065e-2, 2.69e-4, -2.078e-5, -1.549e-6, 4.29e-9, 1.
 
 const teams = [];
 
-const HOST = process.env.NODE_ENV === 'development' ? 'https://berlin.wa.vg/' : '';
-
 let results = {};
 let gamescores = {};
 
@@ -30,13 +28,12 @@ export default class Berlin2019 extends React.PureComponent {
     results = {};
     gamescores = {};
 
-    fetch(HOST + '/api/teams.php?tournament=' + tournament)
+    fetch('https://major-api.ieb.im/?tournament=' + tournament)
       .then((resp) => resp.json())
       .then((resp) => {
         const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
         let scores = false;
         if (resp.data) {
-          let beforeRound = 0;
           for (const round of resp.data.matches) {
             if (round.length) {
               for (const match of round) {
@@ -255,7 +252,7 @@ export default class Berlin2019 extends React.PureComponent {
 
     return (
       <div>
-        {adv.map((team, idx) => (
+        {adv.map((team, _) => (
           <div key={team.code} className="team one advanced">
             <div className="team-box up">
               <div className="team-box-split b">
@@ -356,7 +353,7 @@ export default class Berlin2019 extends React.PureComponent {
           );
         })}
 
-        {elim.map((team, idx) => (
+        {elim.map((team, _) => (
           <div key={team.code} className="team one eliminated">
             <div className="team-box up">
               <div className="team-box-split b">
