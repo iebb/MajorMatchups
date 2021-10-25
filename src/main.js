@@ -21,7 +21,10 @@ const { MediaContextProvider, Media } = createMedia({
 const Footer = () => (
   <div style={{ margin: 50, userSelect: 'text' }}>
     <p>
-      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21 | BTC: 31yFyuKKJBWV8pw5DvoYy8M3dK3uMjBzSF
+      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21
+    </p>
+    <p>
+      Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
     </p>
     <p>
       Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368 | Advertisements Available | 广告位出租（
