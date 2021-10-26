@@ -37,7 +37,7 @@ export default class Stockholm2021 extends React.PureComponent {
       scores: [],
     });
 
-    fetch('/api/result_18.json')
+    fetch('https://major-api.ieb.im/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp["1"]) {
