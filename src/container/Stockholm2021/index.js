@@ -442,6 +442,9 @@ export default class Stockholm2021 extends React.PureComponent {
             <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
               UPDATED - The Buchholtz System</a>
           </p>
+          <p style={{ fontSize: "150%" }}>
+            Buchholtz score is displayed below the seed.
+          </p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
