@@ -37,6 +37,21 @@ export default class Stockholm2021 extends React.PureComponent {
       scores: [],
     });
 
+    fetch('/api/result_18.json')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp["1"]) {
+          for (const key of Object.keys(resp["1"])) {
+            const val = resp.scores[key];
+            gamescores[key] = val;
+            let key2 = key.split('-');
+            gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
+          }
+          this.setState({
+            scores: true,
+          });
+        }
+      });
     /*
     fetch(HOST + '/api/teams.php?tournament=' + tournament)
       .then((resp) => resp.json())
