@@ -67,6 +67,11 @@ a:hover {
   font-size: 42px;
 }
 
+h3.title {
+  font-weight: 600;
+  font-size: 28px;
+}
+
 .round-title {
   margin-top: 15px;
   border-bottom: 1px solid #6d72ac;

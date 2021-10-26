@@ -27,7 +27,7 @@ export default class Stockholm2021 extends React.PureComponent {
   init = (_) => {
     results = {};
     gamescores = {};
-    fetch('https://major-api.ieb.im/?scores=18')
+    fetch('/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp["1"]) {
@@ -276,13 +276,16 @@ export default class Stockholm2021 extends React.PureComponent {
                 <span className="team-box-text">ADV</span>
               </div>
             </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">{team.buchholz}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
+            {
+              stage >= 1 && (
+                <>
+                  <div className="team-box down">
+                    <div className="team-box-split b">
+                      <span className="team-box-text">{team.buchholz} B</span>
+                    </div>
+                  </div>
+                  <div className="team-box down">
+                    <div className="team-box-split b">
                 <span className="team-box-text">
                   {
                     team.opponents.map(opp =>
@@ -290,8 +293,11 @@ export default class Stockholm2021 extends React.PureComponent {
                     )
                   }
                 </span>
-              </div>
-            </div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
           </div>
         ))}
         {stageMatches.map((x) => {
@@ -353,16 +359,19 @@ export default class Stockholm2021 extends React.PureComponent {
                   <span className="team-box-text">#{x.team2.seed}</span>
                 </div>
               </div>
-              <div className="team-box down">
-                <div className="team-box-split b">
-                  <span className="team-box-text">{x.team1.buchholz}</span>
-                </div>
-                <div className="team-box-split b">
-                  <span className="team-box-text">{x.team2.buchholz}</span>
-                </div>
-              </div>
-              <div className="team-box down">
-                <div className="team-box-split b">
+              {
+                stage >= 1 && (
+                  <>
+                    <div className="team-box down">
+                      <div className="team-box-split b">
+                        <span className="team-box-text">{x.team1.buchholz} B</span>
+                      </div>
+                      <div className="team-box-split b">
+                        <span className="team-box-text">{x.team2.buchholz} B</span>
+                      </div>
+                    </div>
+                    <div className="team-box down">
+                      <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team1.opponents.map(opp =>
@@ -370,8 +379,8 @@ export default class Stockholm2021 extends React.PureComponent {
                       )
                     }
                   </span>
-                </div>
-                <div className="team-box-split b">
+                      </div>
+                      <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team2.opponents.map(opp =>
@@ -379,8 +388,11 @@ export default class Stockholm2021 extends React.PureComponent {
                       )
                     }
                   </span>
-                </div>
-              </div>
+                      </div>
+                    </div>
+                  </>
+                )
+              }
             </div>
           );
         })}
@@ -409,13 +421,16 @@ export default class Stockholm2021 extends React.PureComponent {
                 <span className="team-box-text">ELIM</span>
               </div>
             </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">{team.buchholz}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
+            {
+              stage >= 1 && (
+                <>
+                  <div className="team-box down">
+                    <div className="team-box-split b">
+                      <span className="team-box-text">{team.buchholz} B</span>
+                    </div>
+                  </div>
+                  <div className="team-box down">
+                    <div className="team-box-split b">
                 <span className="team-box-text">
                   {
                     team.opponents.map(opp =>
@@ -423,8 +438,11 @@ export default class Stockholm2021 extends React.PureComponent {
                     )
                   }
                 </span>
-              </div>
-            </div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
           </div>
         ))}
       </div>

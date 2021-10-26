@@ -28,7 +28,7 @@ export default class Berlin2019 extends React.PureComponent {
     results = {};
     gamescores = {};
 
-    fetch('https://major-api.ieb.im/?tournament=' + tournament)
+    fetch('/api/?tournament=' + tournament)
       .then((resp) => resp.json())
       .then((resp) => {
         const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
