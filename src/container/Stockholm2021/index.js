@@ -179,6 +179,9 @@ export default class Stockholm2021 extends React.PureComponent {
             const team2 = team2cands[c];
             const mat = copy(m);
             let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
+            if (Math.random() < 0.2) {
+              picked *= -1;
+            }
             let result = 0;
 
             let score = ['TBA', 'TBA'];
