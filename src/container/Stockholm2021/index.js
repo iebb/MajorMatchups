@@ -200,6 +200,9 @@ export default class Stockholm2021 extends React.PureComponent {
               score = gamescores[`${team1.code}-${team2.code}`];
               if (score[0] !== score[1]) {
                 picked = score[0] > score[1] ? 1 : -1;
+                if (score[0] > 15 || score[1] > 15) {
+                  result = picked
+                }
               }
             }
 
