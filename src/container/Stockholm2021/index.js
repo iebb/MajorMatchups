@@ -144,7 +144,7 @@ export default class Stockholm2021 extends React.PureComponent {
         if (x.buchholz !== y.buchholz) {
           return y.buchholz - x.buchholz;
         }
-        return x.seed - y.seed;
+        return y.seed - x.seed;
       });
       remaining = teams.filter((x) => x.w < 3 && x.l < 3);
       const remainingTeams = copy(remaining);
