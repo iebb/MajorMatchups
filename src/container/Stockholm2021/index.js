@@ -27,31 +27,29 @@ export default class Stockholm2021 extends React.PureComponent {
   init = (_) => {
     results = {};
     gamescores = {};
-
-    this.setState({
-      teams: initialData.teams,
-      matches: [false, false, false, false, false, false],
-      tournament: 3,
-      legends: false,
-      modified: true,
-      scores: [],
-    });
-
     fetch('https://major-api.ieb.im/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp["1"]) {
-          for (const key of Object.keys(resp["1"])) {
-            const val = resp.scores[key];
+          const scores = resp["1"];
+          for (const key of Object.keys(scores)) {
+            const val = scores[key];
             gamescores[key] = val;
             let key2 = key.split('-');
             gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
           }
           this.setState({
+            teams: initialData.teams,
+            matches: [false, false, false, false, false, false],
+            tournament: 3,
+            legends: false,
+            modified: true,
             scores: true,
           });
         }
       });
+
+
     /*
     fetch(HOST + '/api/teams.php?tournament=' + tournament)
       .then((resp) => resp.json())
@@ -476,7 +474,7 @@ export default class Stockholm2021 extends React.PureComponent {
                 <h1 className="round-title" key={round}>
                   {round === 5 ? `Final Results` : `Round ${round + 1}`}
                 </h1>
-                <div>{this.getMatchUps(round)}</div>
+                <div key={"_" + round}>{this.getMatchUps(round)}</div>
               </>
             ))}
           </div>
