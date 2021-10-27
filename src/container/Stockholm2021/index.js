@@ -346,12 +346,14 @@ export default class Stockholm2021 extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.result < 0 ? 'lose' : x.result > 0 ? 'win' : ''}`}>
+                      <span className={`team-box-text ${x.score[0][idx] < x.score[1][idx] ? 'lose' :
+                        x.score[1][idx] < x.score[0][idx] ? 'win' : ''}`}>
                         {x.score[0][idx]}
                       </span>
                     </div>
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.result > 0 ? 'lose' : x.result < 0 ? 'win' : ''}`}>
+                      <span className={`team-box-text ${x.score[1][idx] < x.score[0][idx] ? 'lose' :
+                        x.score[0][idx] < x.score[1][idx] ? 'win' : ''}`}>
                         {x.score[1][idx]}
                       </span>
                     </div>
