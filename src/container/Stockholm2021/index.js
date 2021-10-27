@@ -184,7 +184,7 @@ export default class Stockholm2021 extends React.PureComponent {
             }
             let result = 0;
 
-            let score = ['TBA', 'TBA'];
+            let score = [['TBA'], ['TBA']];
             /* played match */
 
             if (`${team1.code}-${team2.code}` in results) {
@@ -203,7 +203,6 @@ export default class Stockholm2021 extends React.PureComponent {
               let teamA = 0;
               let teamB = 0;
               const gs = gamescores[`${team1.code}-${team2.code}`];
-              console.log(`${team1.code}-${team2.code}`, gs);
               for(const sco of gs) {
                 if (sco[0] !== sco[1]) {
                   if (sco[0] > 15 || sco[1] > 15) {
@@ -215,11 +214,13 @@ export default class Stockholm2021 extends React.PureComponent {
                   }
                 }
               }
-              score[0] = gs.map(x => `${x[0]}`).join(" / ")
-              score[1] = gs.map(x => `${x[1]}`).join(" / ")
+              score[0] = gs.map(x => x[0])
+              score[1] = gs.map(x => x[1])
               if (teamA !== teamB) {
                 picked = teamA > teamB ? 1 : -1;
-                result = picked
+                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                  result = picked
+                }
               }
             }
 
@@ -341,22 +342,22 @@ export default class Stockholm2021 extends React.PureComponent {
                   <span className="team-box-text">{x.pool}</span>
                 </div>
               </div>
-              {this.state.scores && (
+              {this.state.scores && x.score[0].map((p, idx) => (
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
                       <span className={`team-box-text ${x.result < 0 ? 'lose' : x.result > 0 ? 'win' : ''}`}>
-                        {x.score[0]}
+                        {x.score[0][idx]}
                       </span>
                     </div>
                     <div className="team-box-split b">
                       <span className={`team-box-text ${x.result > 0 ? 'lose' : x.result < 0 ? 'win' : ''}`}>
-                        {x.score[1]}
+                        {x.score[1][idx]}
                       </span>
                     </div>
                   </div>
                 </>
-              )}
+              ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
                   <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
