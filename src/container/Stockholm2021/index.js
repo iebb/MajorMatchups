@@ -27,7 +27,7 @@ export default class Stockholm2021 extends React.PureComponent {
   init = (_) => {
     results = {};
     gamescores = {};
-    fetch('/api/?scores=18')
+    fetch('https://major.ieb.im/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp["1"]) {
@@ -36,7 +36,7 @@ export default class Stockholm2021 extends React.PureComponent {
             const val = scores[key];
             gamescores[key] = val;
             let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
+            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
           }
           this.setState({
             teams: initialData.teams,
@@ -200,12 +200,26 @@ export default class Stockholm2021 extends React.PureComponent {
             }
 
             if (`${team1.code}-${team2.code}` in gamescores) {
-              score = gamescores[`${team1.code}-${team2.code}`];
-              if (score[0] !== score[1]) {
-                picked = score[0] > score[1] ? 1 : -1;
-                if (score[0] > 15 || score[1] > 15) {
-                  result = picked
+              let teamA = 0;
+              let teamB = 0;
+              const gs = gamescores[`${team1.code}-${team2.code}`];
+              console.log(`${team1.code}-${team2.code}`, gs);
+              for(const sco of gs) {
+                if (sco[0] !== sco[1]) {
+                  if (sco[0] > 15 || sco[1] > 15) {
+                    if (sco[0] > sco[1]) {
+                      teamA ++;
+                    } else if (sco[1] > sco[0]) {
+                      teamB ++;
+                    }
+                  }
                 }
+              }
+              score[0] = gs.map(x => `${x[0]}`).join(" / ")
+              score[1] = gs.map(x => `${x[1]}`).join(" / ")
+              if (teamA !== teamB) {
+                picked = teamA > teamB ? 1 : -1;
+                result = picked
               }
             }
 
