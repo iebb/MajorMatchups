@@ -464,6 +464,7 @@ export default class Stockholm2021 extends React.PureComponent {
           <p style={{ fontSize: "150%" }}>
             Buchholtz score is displayed below the seed.
           </p>
+          <p>match results might be messed up due to the GOTV bug, live scores should work after Valve fixes the in-game GOTV</p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
