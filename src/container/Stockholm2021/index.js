@@ -494,6 +494,10 @@ export default class Stockholm2021 extends React.PureComponent {
             <a href="https://twitter.com/intent/tweet?text=Major Matchup Calculator @ https://major.ieb.im/ by @CyberHono">
               tweet
             </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://steamcommunity.com/id/iebbbb">
+              steam profile
+            </a>
           </p>
           {
             /*
