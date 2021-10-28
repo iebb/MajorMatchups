@@ -104,8 +104,8 @@ export default class Stockholm2021 extends React.PureComponent {
   advance = (_) => {
     if (this.state.savedS2) {
       this.setState({
-        teams: this.state.savedS1[0],
-        matches: this.state.savedS1[1],
+        teams: this.state.savedS2[0],
+        matches: this.state.savedS2[1],
         tournament: TournamentLegends,
         advanceMode: 1,
         modified: true,
