@@ -474,14 +474,13 @@ export default class Stockholm2021 extends React.PureComponent {
             <h1 className="title">PGL Stockholm Major 2021 Matchup Calculator</h1>
             <h3 className="title">Pick your Winner and get the Matchups!</h3>
           </div>
-          <p style={{ fontSize: "150%" }}>
+          <p style={{ fontSize: "120%" }}>
             <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
               UPDATED - The Buchholtz System</a>
           </p>
-          <p style={{ fontSize: "150%" }}>
+          <p style={{ fontSize: "100%" }}>
             Buchholtz score is displayed below the seed.
           </p>
-          <p>match results might be messed up due to the GOTV bug, live scores should work after Valve fixes the in-game GOTV</p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
@@ -497,6 +496,11 @@ export default class Stockholm2021 extends React.PureComponent {
             <span style={{ margin: 10 }}>·</span>
             <a href="https://steamcommunity.com/id/iebbbb">
               steam profile
+            </a>
+          </p>
+          <p>
+            <a href="https://dathost.net/r/ieb">
+              <img src="/images/ads.png" alt="ads" style={{ borderRadius: 3, margin: "20px 0", maxWidth: "100%", width: 800 }} />
             </a>
           </p>
           {
