@@ -154,69 +154,69 @@ export default class Berlin2019 extends React.PureComponent {
         return vy - vx;
       });
 
-      for (const pool of pools) {
-        const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
+      const dfs = (p, m, mref, pool) => {
+        if (!p.length) {
+          for (const match of m) {
+            mref.push(match);
+          }
+          return true;
+        }
 
-        const dfs = (p, m, mref) => {
-          if (!p.length) {
-            for (const match of m) {
-              mref.push(match);
+        const team1 = p[0];
+        const team2cands = p.filter((team) => {
+          if (team.seed === team1.seed) return false;
+          return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
+        });
+
+        if (!team2cands.length) return false;
+        for (let c = team2cands.length - 1; c >= 0; c -= 1) {
+          const team2 = team2cands[c];
+          const mat = copy(m);
+          // let picked = (Math.random() * (1.2**(team1.elo - team2.elo)) <= 0.5) ? 1 : -1; // 1 for A win and -1 for B win
+          let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
+          let result = 0;
+
+          let score = ['TBA', 'TBA'];
+          /* played match */
+
+          if (`${team1.code}-${team2.code}` in results) {
+            result = results[`${team1.code}-${team2.code}`];
+            if (result !== 0) {
+              picked = result;
             }
-            return true;
+          } else if (`${team2.code}-${team1.code}` in results) {
+            result = -results[`${team2.code}-${team1.code}`];
+            if (result !== 0) {
+              picked = result;
+            }
           }
 
-          const team1 = p[0];
-          const team2cands = p.filter((team) => {
-            if (team.seed === team1.seed) return false;
-            return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
-          });
-
-          if (!team2cands.length) return false;
-          for (let c = team2cands.length - 1; c >= 0; c -= 1) {
-            const team2 = team2cands[c];
-            const mat = copy(m);
-            // let picked = (Math.random() * (1.2**(team1.elo - team2.elo)) <= 0.5) ? 1 : -1; // 1 for A win and -1 for B win
-            let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
-            let result = 0;
-
-            let score = ['TBA', 'TBA'];
-            /* played match */
-
-            if (`${team1.code}-${team2.code}` in results) {
-              result = results[`${team1.code}-${team2.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
-            } else if (`${team2.code}-${team1.code}` in results) {
-              result = -results[`${team2.code}-${team1.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
+          if (`${team1.code}-${team2.code}` in gamescores) {
+            score = gamescores[`${team1.code}-${team2.code}`];
+            if (score[0] !== score[1]) {
+              picked = score[0] > score[1] ? 1 : -1;
             }
+          }
 
-            if (`${team1.code}-${team2.code}` in gamescores) {
-              score = gamescores[`${team1.code}-${team2.code}`];
-              if (score[0] !== score[1]) {
-                picked = score[0] > score[1] ? 1 : -1;
-              }
-            }
-
-            const deltaElo =
-              picked === 1
-                ? this.calculateDeltaElo(team1, team2)
-                : picked === -1
+          const deltaElo =
+            picked === 1
+              ? this.calculateDeltaElo(team1, team2)
+              : picked === -1
                 ? -this.calculateDeltaElo(team2, team1)
                 : 0;
 
-            mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
-            const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
-            if (dfs(nPoolTeams, mat, mref)) {
-              return true;
-            }
+          mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
+          const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
+          if (dfs(nPoolTeams, mat, mref, pool)) {
+            return true;
           }
-          return false;
-        };
-        dfs(poolTeams, [], matchups);
+        }
+        return false;
+      };
+
+      for (const pool of pools) {
+        const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
+        dfs(poolTeams, [], matchups, pool);
       }
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;

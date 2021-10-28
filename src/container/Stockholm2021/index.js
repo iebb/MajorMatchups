@@ -1,32 +1,80 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image } from 'semantic-ui-react';
-import { initialData } from './initial_data';
+import { Image, Menu } from 'semantic-ui-react';
+import { initialDataChallenger, initialDataLegends } from './initial_data';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
 const TournamentChallenger = 1;
-// const TournamentLegends = 2;
+const TournamentLegends = 2;
+const TournamentChampions = 3;
 
 let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `/images/stockh2021/${code}.png`;
+const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
 
 export default class Stockholm2021 extends React.PureComponent {
   state = {
-    teams: initialData.teams,
-    matches: initialData.matches,
-    tournament: 3,
+    teams: [[], false, false, false, false, false],
+    matches: [false, false, false, false, false, false],
+    tournament: TournamentChallenger,
+    advanceMode: 1,
     legends: false,
     modified: true,
     scores: [],
+    savedS1: null,
+    savedS2: null,
   };
+
+  pack = (teams) => {
+    return {
+      teams: [
+        teams.map(t => ({
+          l: 0,
+          w: 0,
+          opponents: [],
+          buchholz: 0,
+          code: t.code,
+          name: t.name,
+          seed: t.seed,
+          description: t.description,
+        })),
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      matches: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ]
+    }
+  }
 
   init = (_) => {
     results = {};
     gamescores = {};
+    if (this.state.savedS1) {
+      this.setState({
+        teams: this.state.savedS1[0],
+        matches: this.state.savedS1[1],
+        tournament: TournamentChallenger,
+        advanceMode: 1,
+        modified: true,
+        scores: true,
+        savedS1: null,
+        savedS2: null,
+      })
+      return;
+    }
     fetch('https://major.ieb.im/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
@@ -39,53 +87,98 @@ export default class Stockholm2021 extends React.PureComponent {
             gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
           }
           this.setState({
-            teams: initialData.teams,
-            matches: [false, false, false, false, false, false],
-            tournament: 3,
-            legends: false,
+            ...this.pack(initialDataChallenger),
+            tournament: TournamentChallenger,
+            advanceMode: 1,
             modified: true,
             scores: true,
+            savedS1: null,
+            savedS2: null,
           });
         }
       });
 
+  };
 
-    /*
-    fetch(HOST + '/api/teams.php?tournament=' + tournament)
-      .then((resp) => resp.json())
-      .then((resp) => {
-        const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
-        let scores = false;
-        if (resp.data) {
-          let beforeRound = 0;
-          for (const round of resp.data.matches) {
-            if (round.length) {
-              for (const match of round) {
-                results[match.team1.code + '-' + match.team2.code] = match.result;
-              }
-            }
-          }
+
+  advance = (_) => {
+    if (this.state.savedS2) {
+      this.setState({
+        teams: this.state.savedS1[0],
+        matches: this.state.savedS1[1],
+        tournament: TournamentLegends,
+        advanceMode: 1,
+        modified: true,
+        scores: true,
+      })
+    } else if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
+      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
+        (a, b) => {
+          if (a.l !== b.l) return a.l - b.l;
+          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
+          return a.seed - b.seed;
         }
-        if (resp.scores) {
-          for (const key of Object.keys(resp.scores)) {
-            const val = resp.scores[key];
-            gamescores[key] = val;
-            let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
-          }
-          scores = true;
-        }
-        this.setState({
-          teams: [teams, false, false, false, false, false],
-          matches: [false, false, false, false, false, false],
-          tournament: resp.tournament,
-          legends: false,
-          modified: false,
-          scores,
-        });
+      ).map((x, _idx) => ({
+        ...x,
+        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
+        l: 0,
+        w: 0,
+        opponents: [],
+        buchholz: 0,
+        seed: _idx + 9,
+      }))
+
+
+      results = {};
+      gamescores = {};
+      const finalTeams = [...initialDataLegends, ...teamsAdvanced];
+      this.setState({
+        savedS1: [this.state.teams, this.state.matches],
+        savedS2: null,
+        ...this.pack(finalTeams),
+        matches: [false, false, false, false, false, false],
+        tournament: TournamentLegends,
+        advanceMode: 1,
+        legends: false,
+        modified: true,
+        scores: true,
       });
+    }
 
-    */
+  };
+
+  advance2 = (_) => {
+    if (this.state.tournament === TournamentLegends && this.state.teams[5]) {
+      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
+        (a, b) => {
+          if (a.l !== b.l) return a.l - b.l;
+          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
+          return a.seed - b.seed;
+        }
+      ).map((x, _idx) => ({
+        ...x,
+        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
+        l: 0,
+        w: 0,
+        opponents: [],
+        buchholz: 0,
+        seed: _idx,
+      }))
+
+      results = {};
+      gamescores = {};
+      this.setState({
+        ...this.pack(teamsAdvanced),
+        matches: [false, false, false, false, false, false],
+        savedS2: [this.state.teams, this.state.matches],
+        tournament: TournamentChampions,
+        advanceMode: 2,
+        legends: false,
+        modified: true,
+        scores: true,
+      });
+    }
+
   };
 
   componentDidMount() {
@@ -146,7 +239,9 @@ export default class Stockholm2021 extends React.PureComponent {
         }
         return x.seed - y.seed;
       });
-      remaining = teams.filter((x) => x.w < 3 && x.l < 3);
+      remaining = this.state.advanceMode === 1 ?
+        teams.filter((x) => x.w < 3 && x.l < 3): teams.filter((x) => x.l === 0);
+
       const remainingTeams = copy(remaining);
       const matchups = [];
       const pools = Array.from(new Set(remainingTeams.map((t) => `${t.w}-${t.l}`))).sort((x, y) => {
@@ -157,84 +252,85 @@ export default class Stockholm2021 extends React.PureComponent {
         return vy - vx;
       });
 
-      for (const pool of pools) {
-        const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
+      const dfs = (p, m, mref, pool) => {
+        if (!p.length) {
+          for (const match of m) {
+            mref.push(match);
+          }
+          return true;
+        }
 
-        const dfs = (p, m, mref) => {
-          if (!p.length) {
-            for (const match of m) {
-              mref.push(match);
+        const team1 = p[0];
+        const team2cands = p.filter((team) => {
+          if (team.seed === team1.seed) return false;
+          return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
+        });
+
+        if (!team2cands.length) return false;
+        for (let c = team2cands.length - 1; c >= 0; c -= 1) {
+          const team2 = team2cands[c];
+          const mat = copy(m);
+          let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
+          if (Math.random() < 0.2) {
+            picked *= -1;
+          }
+          let result = 0;
+
+          let score = [['TBA'], ['TBA']];
+          /* played match */
+
+          if (`${team1.code}-${team2.code}` in results) {
+            result = results[`${team1.code}-${team2.code}`];
+            if (result !== 0) {
+              picked = result;
             }
-            return true;
+          } else if (`${team2.code}-${team1.code}` in results) {
+            result = -results[`${team2.code}-${team1.code}`];
+            if (result !== 0) {
+              picked = result;
+            }
           }
 
-          const team1 = p[0];
-          const team2cands = p.filter((team) => {
-            if (team.seed === team1.seed) return false;
-            return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
-          });
-
-          if (!team2cands.length) return false;
-          for (let c = team2cands.length - 1; c >= 0; c -= 1) {
-            const team2 = team2cands[c];
-            const mat = copy(m);
-            let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
-            if (Math.random() < 0.2) {
-              picked *= -1;
-            }
-            let result = 0;
-
-            let score = [['TBA'], ['TBA']];
-            /* played match */
-
-            if (`${team1.code}-${team2.code}` in results) {
-              result = results[`${team1.code}-${team2.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
-            } else if (`${team2.code}-${team1.code}` in results) {
-              result = -results[`${team2.code}-${team1.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
-            }
-
-            if (`${team1.code}-${team2.code}` in gamescores) {
-              let teamA = 0;
-              let teamB = 0;
-              const gs = gamescores[`${team1.code}-${team2.code}`];
-              for(const sco of gs) {
-                if (sco[0] !== sco[1]) {
-                  if (sco[0] > 15 || sco[1] > 15) {
-                    if (sco[0] > sco[1]) {
-                      teamA ++;
-                    } else if (sco[1] > sco[0]) {
-                      teamB ++;
-                    }
+          if (`${team1.code}-${team2.code}` in gamescores) {
+            let teamA = 0;
+            let teamB = 0;
+            const gs = gamescores[`${team1.code}-${team2.code}`];
+            for(const sco of gs) {
+              if (sco[0] !== sco[1]) {
+                if (sco[0] > 15 || sco[1] > 15) {
+                  if (sco[0] > sco[1]) {
+                    teamA ++;
+                  } else if (sco[1] > sco[0]) {
+                    teamB ++;
                   }
                 }
               }
-              score[0] = gs.map(x => x[0])
-              score[1] = gs.map(x => x[1])
-              if (teamA !== teamB) {
-                picked = teamA > teamB ? 1 : -1;
-                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
-                  result = picked
-                }
+            }
+            score[0] = gs.map(x => x[0])
+            score[1] = gs.map(x => x[1])
+            if (teamA !== teamB) {
+              picked = teamA > teamB ? 1 : -1;
+              if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                result = picked
               }
             }
-
-
-            mat.push({ pool, match: m.length, team1, team2, picked, result, score });
-            const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
-            if (dfs(nPoolTeams, mat, mref)) {
-              return true;
-            }
           }
-          return false;
-        };
-        dfs(poolTeams, [], matchups);
+
+
+          mat.push({ pool, match: m.length, team1, team2, picked, result, score });
+          const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
+          if (dfs(nPoolTeams, mat, mref, pool)) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      for (const pool of pools) {
+        const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
+        dfs(poolTeams, [], matchups, pool);
       }
+
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;
       this.setState({ teams: stateTeams, matches: stateMatches, refresh: false });
@@ -266,7 +362,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
 
     return (
-      <div>
+      <div key={stage}>
         {adv.map((team, _) => (
           <div key={team.code} className="team one advanced">
             <div className="team-box up">
@@ -292,7 +388,7 @@ export default class Stockholm2021 extends React.PureComponent {
               </div>
             </div>
             {
-              stage >= 1 && (
+              (stage >= 1 && this.state.advanceMode === 1) && (
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
@@ -304,7 +400,7 @@ export default class Stockholm2021 extends React.PureComponent {
                 <span className="team-box-text">
                   {
                     team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} />
+                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
                     )
                   }
                 </span>
@@ -377,7 +473,7 @@ export default class Stockholm2021 extends React.PureComponent {
                 </div>
               </div>
               {
-                stage >= 1 && (
+                stage >= 1 ? (this.state.advanceMode === 1) && (
                   <>
                     <div className="team-box down">
                       <div className="team-box-split b">
@@ -392,7 +488,7 @@ export default class Stockholm2021 extends React.PureComponent {
                   <span className="team-box-text">
                     {
                       x.team1.opponents.map(opp =>
-                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp}  />
+                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} key={opp}  />
                       )
                     }
                   </span>
@@ -401,13 +497,23 @@ export default class Stockholm2021 extends React.PureComponent {
                   <span className="team-box-text">
                     {
                       x.team2.opponents.map(opp =>
-                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} />
+                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} key={opp} />
                       )
                     }
                   </span>
                       </div>
                     </div>
                   </>
+                ) : (
+
+                  <div className="team-box down">
+                    <div className="team-box-split b">
+                      <span className="team-box-text descr">{x.team1.description}</span>
+                    </div>
+                    <div className="team-box-split b">
+                      <span className="team-box-text descr">{x.team2.description}</span>
+                    </div>
+                  </div>
                 )
               }
             </div>
@@ -439,7 +545,7 @@ export default class Stockholm2021 extends React.PureComponent {
               </div>
             </div>
             {
-              stage >= 1 && (
+              (this.state.advanceMode === 1) && stage >= 1 && (
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
@@ -451,7 +557,7 @@ export default class Stockholm2021 extends React.PureComponent {
                 <span className="team-box-text">
                   {
                     team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} />
+                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
                     )
                   }
                 </span>
@@ -503,9 +609,6 @@ export default class Stockholm2021 extends React.PureComponent {
               <img src="/images/ads.png" alt="ads" style={{ borderRadius: 3, margin: "20px 0", maxWidth: "100%", width: 800 }} />
             </a>
           </p>
-          {
-            /*
-
           <div style={{ marginTop: 50 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
@@ -514,19 +617,26 @@ export default class Stockholm2021 extends React.PureComponent {
                 onClick={() => this.init(TournamentChallenger)}
               />
               <Menu.Item
-                name="Legends Stage with Your Pick"
+                name="Your Legends Stage"
                 active={this.state.tournament === TournamentLegends}
                 onClick={() => this.advance()}
               />
+              {
+                this.state.tournament > TournamentChallenger && (
+                  <Menu.Item
+                    name="Your Champion Stage"
+                    active={this.state.tournament === TournamentChampions}
+                    onClick={() => this.advance2()}
+                  />
+                )
+              }
             </Menu>
           </div>
-             */
-          }
           <div className="main-container">
-            {[0, 1, 2, 3, 4, 5].map((round) => (
+            {(this.state.advanceMode === 1 ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3]).map((round) => (
               <>
                 <h1 className="round-title" key={round}>
-                  {round === 5 ? `Final Results` : `Round ${round + 1}`}
+                  {round === (this.state.advanceMode === 1 ? 5 : 3) ? `Final Results` : `Round ${round + 1}`}
                 </h1>
                 <div key={"_" + round}>{this.getMatchUps(round)}</div>
               </>
