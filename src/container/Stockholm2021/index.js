@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
-import { initialDataChallenger, initialDataLegends } from './initial_data';
+import { finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
@@ -26,6 +26,7 @@ export default class Stockholm2021 extends React.PureComponent {
     scores: [],
     savedS1: null,
     savedS2: null,
+    overrideResult: false,
   };
 
   pack = (teams) => {
@@ -94,6 +95,48 @@ export default class Stockholm2021 extends React.PureComponent {
             scores: true,
             savedS1: null,
             savedS2: null,
+          });
+        }
+      });
+
+  };
+
+  initLegends = (_) => {
+    results = {};
+    gamescores = {};
+    if (this.state.savedS2) {
+      this.setState({
+        teams: this.state.savedS2[0],
+        matches: this.state.savedS2[1],
+        tournament: TournamentLegends,
+        advanceMode: 1,
+        modified: true,
+        scores: true,
+        savedS1: null,
+        savedS2: null,
+      })
+      return;
+    }
+    fetch('https://major.ieb.im/api/?scores=18')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp["1"]) {
+          const scores = resp["1"];
+          for (const key of Object.keys(scores)) {
+            const val = scores[key];
+            gamescores[key] = val;
+            let key2 = key.split('-');
+            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
+          }
+          this.setState({
+            ...this.pack(finalDataLegends),
+            tournament: TournamentLegends,
+            advanceMode: 1,
+            modified: true,
+            scores: true,
+            savedS1: null,
+            savedS2: null,
+            overrideResult: false,
           });
         }
       });
@@ -333,7 +376,23 @@ export default class Stockholm2021 extends React.PureComponent {
 
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;
-      this.setState({ teams: stateTeams, matches: stateMatches, refresh: false });
+      let override = false;
+      for (const matches of stateMatches) {
+        if (matches) {
+          for (const match of matches) {
+            if (match.picked !== match.result && match.result) {
+              override = true;
+            }
+          }
+        }
+      }
+      const or = {
+        overrideResult: override && this.state.tournament === TournamentChallenger,
+        overrideResult2: override && this.state.tournament === TournamentLegends,
+      }
+      this.setState({
+        teams: stateTeams, matches: stateMatches, refresh: false, ...or
+      });
     } else {
       stageMatches = stateMatches[stage];
       teams = stateTeams[stage].sort((x, y) => x.buchholz - y.buchholz);
@@ -347,7 +406,6 @@ export default class Stockholm2021 extends React.PureComponent {
 
     const setWinner = (match, picked) => {
       if (match.picked === picked) return;
-      // if (match.result) return;
 
       stageMatches = stageMatches.map((y) =>
         y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked },
@@ -359,7 +417,6 @@ export default class Stockholm2021 extends React.PureComponent {
       }
       this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
     };
-
 
     return (
       <div key={stage}>
@@ -411,6 +468,9 @@ export default class Stockholm2021 extends React.PureComponent {
             }
           </div>
         ))}
+
+
+
         {stageMatches.map((x) => {
           let pickA, pickB, resultA, resultB;
           if (x.picked === 1) {
@@ -617,9 +677,9 @@ export default class Stockholm2021 extends React.PureComponent {
                 onClick={() => this.init(TournamentChallenger)}
               />
               <Menu.Item
-                name="Your Legends Stage"
+                name={this.state.overrideResult ? "Your Legends Stage": "Legends Stage"}
                 active={this.state.tournament === TournamentLegends}
-                onClick={() => this.advance()}
+                onClick={() => this.state.overrideResult ? this.initLegends() : this.advance()}
               />
               {
                 this.state.tournament > TournamentChallenger && (
