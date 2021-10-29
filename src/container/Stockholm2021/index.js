@@ -204,7 +204,7 @@ export default class Stockholm2021 extends React.PureComponent {
         w: 0,
         opponents: [],
         buchholz: 0,
-        seed: _idx,
+        seed: _idx + 1,
       }))
 
       results = {};
@@ -275,12 +275,19 @@ export default class Stockholm2021 extends React.PureComponent {
         }
         stateTeams[stage] = teamsT;
       }
-      teams = stateTeams[stage].sort((x, y) => {
-        if (x.buchholz !== y.buchholz) {
-          return y.buchholz - x.buchholz;
-        }
-        return x.seed - y.seed;
-      });
+
+
+      if (this.state.advanceMode === 1) {
+        teams = stateTeams[stage].sort((x, y) => {
+          if (x.buchholz !== y.buchholz) {
+            return y.buchholz - x.buchholz;
+          }
+          return x.seed - y.seed;
+        });
+      } else {
+        teams = stateTeams[stage]
+      }
+
       remaining = this.state.advanceMode === 1 ?
         teams.filter((x) => x.w < 3 && x.l < 3): teams.filter((x) => x.l === 0);
 
