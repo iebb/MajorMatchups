@@ -120,8 +120,9 @@ export default class Stockholm2021 extends React.PureComponent {
     fetch('https://major.ieb.im/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
-        if (resp["1"]) {
-          const scores = resp["1"];
+        if (resp["2"]) {
+          const scores = resp["2"];
+          gamescores = {};
           for (const key of Object.keys(scores)) {
             const val = scores[key];
             gamescores[key] = val;
@@ -672,7 +673,7 @@ export default class Stockholm2021 extends React.PureComponent {
           </p>
           <p>
             <a href="https://dathost.net/r/ieb">
-              <img src="/images/ads.png" alt="ads" style={{ borderRadius: 3, margin: "20px 0", maxWidth: "100%", width: 800 }} />
+              <img src="https://major.ieb.im/images/ads.png" alt="ads" style={{ borderRadius: 3, margin: "20px 0", maxWidth: "100%", width: 800 }} />
             </a>
           </p>
           <div style={{ marginTop: 50 }}>
