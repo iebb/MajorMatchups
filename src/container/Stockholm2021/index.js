@@ -143,7 +143,6 @@ export default class Stockholm2021 extends React.PureComponent {
 
   };
 
-
   advance = (_) => {
     if (this.state.savedS2) {
       this.setState({
@@ -225,7 +224,7 @@ export default class Stockholm2021 extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.init(TournamentChallenger);
+    this.initLegends();
   }
 
   previouslyMatchedUp(stage, tA, tB) {
