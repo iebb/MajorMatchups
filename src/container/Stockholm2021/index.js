@@ -676,6 +676,7 @@ export default class Stockholm2021 extends React.PureComponent {
               <img src="https://major.ieb.im/images/ads.png" alt="ads" style={{ borderRadius: 3, margin: "20px 0", maxWidth: "100%", width: 800 }} />
             </a>
           </p>
+          <p>↑ checkout this special offer ↑</p>
           <div style={{ marginTop: 50 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
