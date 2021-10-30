@@ -652,7 +652,7 @@ export default class Stockholm2021 extends React.PureComponent {
               UPDATED - The Buchholtz System</a>
           </p>
           <p style={{ fontSize: "100%" }}>
-            Buchholtz score is displayed below the seed.
+            Share this website to your friends :D
           </p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
@@ -684,10 +684,22 @@ export default class Stockholm2021 extends React.PureComponent {
                 onClick={() => this.init(TournamentChallenger)}
               />
               <Menu.Item
-                name={this.state.overrideResult ? "Your Legends Stage": "Legends Stage"}
+                name={"Legends Stage"}
                 active={this.state.tournament === TournamentLegends}
-                onClick={() => this.state.overrideResult ? this.initLegends() : this.advance()}
+                onClick={() => this.initLegends()}
               />
+              {
+                /*
+                doesn't need it
+                this.state.tournament === TournamentChallenger && (
+                  <Menu.Item
+                    name="Your Legends Stage"
+                    active={this.state.tournament === TournamentLegends}
+                    onClick={() => this.advance()}
+                  />
+                )
+                 */
+              }
               {
                 this.state.tournament > TournamentChallenger && (
                   <Menu.Item
