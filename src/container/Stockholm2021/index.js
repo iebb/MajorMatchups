@@ -406,8 +406,8 @@ export default class Stockholm2021 extends React.PureComponent {
     }
 
 
-    const elim = teams.filter((x) => x.l === 3).sort((x, y) => y.w - x.w);
-    const adv = teams.filter((x) => x.w === 3).sort((x, y) => -y.l + x.l);
+    const elim = teams.filter((x) => x.l === 3).sort((x, y) => {if (y.w - x.w) return y.w - x.w; return y.buchholz - x.buchholz});
+    const adv = teams.filter((x) => x.w === 3).sort((x, y) => {if (y.l - x.l) return x.l - y.l; return y.buchholz - x.buchholz});
 
 
 
