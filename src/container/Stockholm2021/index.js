@@ -3,15 +3,13 @@
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { FinalResultsChallenger, FinalResultsLegends } from './final_results';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
 const TournamentChallenger = 1;
 const TournamentLegends = 2;
 const TournamentChampions = 3;
-
-let results = {};
-let gamescores = {};
 
 const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
 
@@ -23,9 +21,7 @@ export default class Stockholm2021 extends React.PureComponent {
     advanceMode: 1,
     legends: false,
     modified: true,
-    scores: [],
-    savedS1: null,
-    savedS2: null,
+    scores: {},
     overrideResult: false,
   };
 
@@ -60,101 +56,61 @@ export default class Stockholm2021 extends React.PureComponent {
     }
   }
 
-  init = (_) => {
-    results = {};
-    gamescores = {};
-    if (this.state.savedS1) {
-      this.setState({
-        teams: this.state.savedS1[0],
-        matches: this.state.savedS1[1],
-        tournament: TournamentChallenger,
-        advanceMode: 1,
-        modified: true,
-        scores: true,
-        savedS1: null,
-        savedS2: null,
-      })
-      return;
+  setScores = (scores) => {
+    const gamescores = {};
+    for(const stage of Object.keys(scores)) {
+      gamescores[stage] = {};
+      for (const key of Object.keys(scores[stage])) {
+        const val = scores[stage][key];
+        gamescores[stage][key] = val;
+        let key2 = key.split('-');
+        gamescores[stage][key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
+      }
     }
+    this.setState({ scores: gamescores })
+  }
+
+  loadScores = (cb) => {
     fetch('https://major.ieb.im/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
-        if (resp["1"]) {
-          const scores = resp["1"];
-          for (const key of Object.keys(scores)) {
-            const val = scores[key];
-            gamescores[key] = val;
-            let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
-          }
-          this.setState({
-            ...this.pack(initialDataChallenger),
-            tournament: TournamentChallenger,
-            advanceMode: 1,
-            modified: true,
-            scores: true,
-            savedS1: null,
-            savedS2: null,
-          });
-        }
-      });
+        this.setScores(resp)
+      }).then(cb);
+  }
 
+
+
+
+
+  componentDidMount() {
+    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
+    this.initLegends();
+    this.loadScores();
+
+  }
+
+
+  init = (_) => {
+    this.setState({
+      ...this.pack(initialDataChallenger),
+      tournament: TournamentChallenger,
+      advanceMode: 1,
+      modified: true,
+    });
   };
 
   initLegends = (_) => {
-    results = {};
-    gamescores = {};
-    if (this.state.savedS2) {
-      this.setState({
-        teams: this.state.savedS2[0],
-        matches: this.state.savedS2[1],
-        tournament: TournamentLegends,
-        advanceMode: 1,
-        modified: true,
-        scores: true,
-        savedS1: null,
-        savedS2: null,
-      })
-      return;
-    }
-    fetch('https://major.ieb.im/api/?scores=18')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        if (resp["2"]) {
-          const scores = resp["2"];
-          gamescores = {};
-          for (const key of Object.keys(scores)) {
-            const val = scores[key];
-            gamescores[key] = val;
-            let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
-          }
-          this.setState({
-            ...this.pack(finalDataLegends),
-            tournament: TournamentLegends,
-            advanceMode: 1,
-            modified: true,
-            scores: true,
-            savedS1: null,
-            savedS2: null,
-            overrideResult: false,
-          });
-        }
-      });
+    this.setState({
+      ...this.pack(finalDataLegends),
+      tournament: TournamentLegends,
+      advanceMode: 1,
+      modified: true,
+    });
 
   };
 
   advance = (_) => {
-    if (this.state.savedS2) {
-      this.setState({
-        teams: this.state.savedS2[0],
-        matches: this.state.savedS2[1],
-        tournament: TournamentLegends,
-        advanceMode: 1,
-        modified: true,
-        scores: true,
-      })
-    } else if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
+    if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
       const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
         (a, b) => {
           if (a.l !== b.l) return a.l - b.l;
@@ -171,9 +127,6 @@ export default class Stockholm2021 extends React.PureComponent {
         seed: _idx + 9,
       }))
 
-
-      results = {};
-      gamescores = {};
       const finalTeams = [...initialDataLegends, ...teamsAdvanced];
       this.setState({
         savedS1: [this.state.teams, this.state.matches],
@@ -184,7 +137,6 @@ export default class Stockholm2021 extends React.PureComponent {
         advanceMode: 1,
         legends: false,
         modified: true,
-        scores: true,
       });
     }
 
@@ -208,8 +160,6 @@ export default class Stockholm2021 extends React.PureComponent {
         seed: _idx + 1,
       }))
 
-      results = {};
-      gamescores = {};
       this.setState({
         ...this.pack(teamsAdvanced),
         matches: [false, false, false, false, false, false],
@@ -218,15 +168,10 @@ export default class Stockholm2021 extends React.PureComponent {
         advanceMode: 2,
         legends: false,
         modified: true,
-        scores: true,
       });
     }
 
   };
-
-  componentDidMount() {
-    this.initLegends();
-  }
 
   previouslyMatchedUp(stage, tA, tB) {
     for (let i = 0; i < stage; i += 1) {
@@ -317,6 +262,8 @@ export default class Stockholm2021 extends React.PureComponent {
         });
 
         if (!team2cands.length) return false;
+        const gamescores = this.state.scores[this.state.tournament] || {};
+
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];
           const mat = copy(m);
@@ -327,19 +274,6 @@ export default class Stockholm2021 extends React.PureComponent {
           let result = 0;
 
           let score = [['TBA'], ['TBA']];
-          /* played match */
-
-          if (`${team1.code}-${team2.code}` in results) {
-            result = results[`${team1.code}-${team2.code}`];
-            if (result !== 0) {
-              picked = result;
-            }
-          } else if (`${team2.code}-${team1.code}` in results) {
-            result = -results[`${team2.code}-${team1.code}`];
-            if (result !== 0) {
-              picked = result;
-            }
-          }
 
           if (`${team1.code}-${team2.code}` in gamescores) {
             let teamA = 0;
