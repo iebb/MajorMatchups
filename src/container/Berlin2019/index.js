@@ -3,7 +3,7 @@
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { getRelativeSeed, rankingSeed } from './initial_seed';
-import { FinalResults } from './final_results';
+import { FinalChallengers, FinalLegends, FinalResults } from './final_results';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
@@ -28,39 +28,34 @@ export default class Berlin2019 extends React.PureComponent {
   init = (tournament) => {
     results = {};
     gamescores = {};
+    const resp = tournament === 1 ? FinalChallengers : FinalLegends;
 
-    fetch('https://major.ieb.im/api/?tournament=' + tournament)
-      .then((resp) => resp.json())
-      .then((resp) => {
-        const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
-        let scores = false;
-        if (resp.data) {
-          for (const round of resp.data.matches) {
-            if (round.length) {
-              for (const match of round) {
-                results[match.team1.code + '-' + match.team2.code] = match.result;
-              }
-            }
+    const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
+    let scores = false;
+    if (resp.data) {
+      for (const round of resp.data.matches) {
+        if (round.length) {
+          for (const match of round) {
+            results[match.team1.code + '-' + match.team2.code] = match.result;
           }
         }
-        if (resp.scores) {
-          for (const key of Object.keys(FinalResults[tournament])) {
-            const val = FinalResults[tournament][key];
-            gamescores[key] = val;
-            let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
-          }
-          scores = true;
-        }
-        this.setState({
-          teams: [teams, false, false, false, false, false],
-          matches: [false, false, false, false, false, false],
-          tournament: resp.tournament,
-          legends: false,
-          modified: false,
-          scores,
-        });
-      });
+      }
+    }
+    for (const key of Object.keys(FinalResults[tournament])) {
+      const val = FinalResults[tournament][key];
+      gamescores[key] = val;
+      let key2 = key.split('-');
+      gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
+    }
+    scores = true;
+    this.setState({
+      teams: [teams, false, false, false, false, false],
+      matches: [false, false, false, false, false, false],
+      tournament: resp.tournament,
+      legends: false,
+      modified: false,
+      scores,
+    });
   };
 
   restore = () => {
