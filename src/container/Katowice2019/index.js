@@ -16,6 +16,8 @@ const qd = 0.0002490984538751953;
 const qe = -0.000024713775867179225;
 const qf = -0.000001256769333477871;
 
+
+
 const challengers = [
   { type: 'graffiti', seed: 1, name: 'Fnatic', code: 'fntc', elo: 1.79, w: 0, l: 0 },
   { type: 'graffiti', seed: 2, name: 'NRG Esports', code: 'nrg', elo: 2.46, w: 0, l: 0 },

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { getRelativeSeed, rankingSeed } from './initial_seed';
+import { FinalResults } from './final_results';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
@@ -28,7 +29,7 @@ export default class Berlin2019 extends React.PureComponent {
     results = {};
     gamescores = {};
 
-    fetch('/api/?tournament=' + tournament)
+    fetch('https://major.ieb.im/api/?tournament=' + tournament)
       .then((resp) => resp.json())
       .then((resp) => {
         const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
@@ -43,11 +44,11 @@ export default class Berlin2019 extends React.PureComponent {
           }
         }
         if (resp.scores) {
-          for (const key of Object.keys(resp.scores)) {
-            const val = resp.scores[key];
+          for (const key of Object.keys(FinalResults[tournament])) {
+            const val = FinalResults[tournament][key];
             gamescores[key] = val;
             let key2 = key.split('-');
-            gamescores[key2[1] + '-' + key2[0]] = [val[1], val[0]];
+            gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
           }
           scores = true;
         }
@@ -176,7 +177,6 @@ export default class Berlin2019 extends React.PureComponent {
           let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
           let result = 0;
 
-          let score = ['TBA', 'TBA'];
           /* played match */
 
           if (`${team1.code}-${team2.code}` in results) {
@@ -191,10 +191,32 @@ export default class Berlin2019 extends React.PureComponent {
             }
           }
 
+
+          let score = [['TBA'], ['TBA']];
           if (`${team1.code}-${team2.code}` in gamescores) {
-            score = gamescores[`${team1.code}-${team2.code}`];
-            if (score[0] !== score[1]) {
-              picked = score[0] > score[1] ? 1 : -1;
+            let teamA = 0;
+            let teamB = 0;
+            const gs = gamescores[`${team1.code}-${team2.code}`];
+            console.log(gs);
+            for(const sco of gs) {
+              console.log("sco", sco);
+              if (sco[0] !== sco[1]) {
+                if (sco[0] > 15 || sco[1] > 15) {
+                  if (sco[0] > sco[1]) {
+                    teamA ++;
+                  } else if (sco[1] > sco[0]) {
+                    teamB ++;
+                  }
+                }
+              }
+            }
+            score[0] = gs.map(x => x[0])
+            score[1] = gs.map(x => x[1])
+            if (teamA !== teamB) {
+              picked = teamA > teamB ? 1 : -1;
+              if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                result = picked
+              }
             }
           }
 
@@ -305,22 +327,24 @@ export default class Berlin2019 extends React.PureComponent {
                   <span className="team-box-text">{x.pool}</span>
                 </div>
               </div>
-              {this.state.scores && (
+              {x.score[0].map((p, idx) => (
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo < 0 ? 'lose' : x.deltaElo > 0 ? 'win' : ''}`}>
-                        {x.score[0]}
+                      <span className={`team-box-text ${x.score[0][idx] < x.score[1][idx] ? 'lose' :
+                        x.score[1][idx] < x.score[0][idx] ? 'win' : ''}`}>
+                        {x.score[0][idx]}
                       </span>
                     </div>
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo > 0 ? 'lose' : x.deltaElo < 0 ? 'win' : ''}`}>
-                        {x.score[1]}
+                      <span className={`team-box-text ${x.score[1][idx] < x.score[0][idx] ? 'lose' :
+                        x.score[0][idx] < x.score[1][idx] ? 'win' : ''}`}>
+                        {x.score[1][idx]}
                       </span>
                     </div>
                   </div>
                 </>
-              )}
+              ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
                   <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
