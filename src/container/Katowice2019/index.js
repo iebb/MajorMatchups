@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
-let results = {};
+import { FinalResults } from './final_results';
 
 const teamLogo = (code) => `/images/katowice2019/${code}.png`;
 
@@ -56,19 +56,37 @@ const legends = [
   { type: 'foil', seed: 16, name: 'compLexity Gaming', code: 'col', elo: 15, w: 0, l: 0 },
 ];
 
+let gamescores = {};
 
 export default class Katowice2019 extends React.PureComponent {
   state = {
-    teams: [copy(legends), false, false, false, false, false],
+    teams: [false, false, false, false, false, false],
     matches: [false, false, false, false, false, false],
     elo: true,
     legends: false,
-    scores: false,
+    scores: true,
     tournament: 2,
   };
 
-  componentDidMount() {
+
+  init(tournament) {
+    for (const key of Object.keys(FinalResults[tournament])) {
+      const val = FinalResults[tournament][key];
+      gamescores[key] = val;
+      let key2 = key.split('-');
+      gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
+    }
+    this.setState({
+      teams: [copy(tournament === 1 ? challengers : legends), false, false, false, false, false],
+      matches: [false, false, false, false, false, false],
+      tournament: tournament,
+    })
   }
+
+  componentDidMount() {
+    this.init(1);
+  }
+
 
   previouslyMatchedUp(stage, tA, tB) {
     for (let i = 0; i < stage; i += 1) {
@@ -159,30 +177,32 @@ export default class Katowice2019 extends React.PureComponent {
             let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
             let result = 0;
 
-            let score = ['TBA', 'TBA'];
-            /* played match */
 
-            if (`${team1.code}-${team2.code}` in results) {
-              result = results[`${team1.code}-${team2.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
-            } else if (`${team2.code}-${team1.code}` in results) {
-              result = -results[`${team2.code}-${team1.code}`];
-              if (result !== 0) {
-                picked = result;
-              }
-            }
-
-            /*
+            let score = [['TBA'], ['TBA']];
             if (`${team1.code}-${team2.code}` in gamescores) {
-              score = gamescores[`${team1.code}-${team2.code}`];
-              if (score[0] !== score[1]) {
-                picked = score[0] > score[1] ? 1 : -1;
+              let teamA = 0;
+              let teamB = 0;
+              const gs = gamescores[`${team1.code}-${team2.code}`];
+              for (const sco of gs) {
+                if (sco[0] !== sco[1]) {
+                  if (sco[0] > 15 || sco[1] > 15) {
+                    if (sco[0] > sco[1]) {
+                      teamA++;
+                    } else if (sco[1] > sco[0]) {
+                      teamB++;
+                    }
+                  }
+                }
+              }
+              score[0] = gs.map(x => x[0])
+              score[1] = gs.map(x => x[1])
+              if (teamA !== teamB) {
+                picked = teamA > teamB ? 1 : -1;
+                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                  result = picked
+                }
               }
             }
-
-             */
 
             const deltaElo =
               picked === 1
@@ -288,22 +308,24 @@ export default class Katowice2019 extends React.PureComponent {
                   <span className="team-box-text">{x.pool}</span>
                 </div>
               </div>
-              {this.state.scores && (
+              {x.score[0].map((p, idx) => (
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo < 0 ? 'lose' : x.deltaElo > 0 ? 'win' : ''}`}>
-                        {x.score[0]}
+                      <span className={`team-box-text ${x.score[0][idx] < x.score[1][idx] ? 'lose' :
+                        x.score[1][idx] < x.score[0][idx] ? 'win' : ''}`}>
+                        {x.score[0][idx]}
                       </span>
                     </div>
                     <div className="team-box-split b">
-                      <span className={`team-box-text ${x.deltaElo > 0 ? 'lose' : x.deltaElo < 0 ? 'win' : ''}`}>
-                        {x.score[1]}
+                      <span className={`team-box-text ${x.score[1][idx] < x.score[0][idx] ? 'lose' :
+                        x.score[0][idx] < x.score[1][idx] ? 'win' : ''}`}>
+                        {x.score[1][idx]}
                       </span>
                     </div>
                   </div>
                 </>
-              )}
+              ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
                   <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
@@ -384,25 +406,12 @@ export default class Katowice2019 extends React.PureComponent {
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
                 name="Challengers Stage"
-               active={this.state.tournament === 1}
-               onClick={() =>
-                 this.setState({
-                   teams: [copy(challengers), false, false, false, false, false],
-                   matches: [false, false, false, false, false, false],
-                   tournament: 1,
-                 })
-               } />
+                active={this.state.tournament === 1}
+                onClick={() => this.init(1)} />
               <Menu.Item
                 name="Legends Stage"
                 active={this.state.tournament === 2}
-                onClick={() =>
-                  this.setState({
-                    teams: [copy(legends), false, false, false, false, false],
-                    matches: [false, false, false, false, false, false],
-                    tournament: 2,
-                  })
-                }
-              />
+                onClick={() => this.init(2)} />
             </Menu>
           </div>
           <div className="main-container">
@@ -411,7 +420,7 @@ export default class Katowice2019 extends React.PureComponent {
                 <h1 className="round-title" key={round}>
                   {round === 5 ? `Final Results` : `Round ${round + 1}`}
                 </h1>
-                <div>{this.getMatchUps(round)}</div>
+                <div key={`_${round}`}>{this.getMatchUps(round)}</div>
               </>
             ))}
           </div>

@@ -31,7 +31,6 @@ export default class Berlin2019 extends React.PureComponent {
     const resp = tournament === 1 ? FinalChallengers : FinalLegends;
 
     const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
-    let scores = false;
     if (resp.data) {
       for (const round of resp.data.matches) {
         if (round.length) {
@@ -47,14 +46,12 @@ export default class Berlin2019 extends React.PureComponent {
       let key2 = key.split('-');
       gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
     }
-    scores = true;
     this.setState({
       teams: [teams, false, false, false, false, false],
       matches: [false, false, false, false, false, false],
       tournament: resp.tournament,
       legends: false,
       modified: false,
-      scores,
     });
   };
 
@@ -192,9 +189,7 @@ export default class Berlin2019 extends React.PureComponent {
             let teamA = 0;
             let teamB = 0;
             const gs = gamescores[`${team1.code}-${team2.code}`];
-            console.log(gs);
             for(const sco of gs) {
-              console.log("sco", sco);
               if (sco[0] !== sco[1]) {
                 if (sco[0] > 15 || sco[1] > 15) {
                   if (sco[0] > sco[1]) {
