@@ -638,7 +638,7 @@ export default class Stockholm2021 extends React.PureComponent {
               {
                 this.state.tournament > TournamentChallenger && (
                   <Menu.Item
-                    name="Your Champion Stage"
+                    name="Champion Stage"
                     active={this.state.tournament === TournamentChampions}
                     onClick={() => this.advance2()}
                   />
