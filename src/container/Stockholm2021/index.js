@@ -71,7 +71,7 @@ export default class Stockholm2021 extends React.PureComponent {
   }
 
   loadScores = (cb) => {
-    fetch('https://major.ieb.im/api/?scores=18')
+    return fetch('https://major.ieb.im/api/?scores=18')
       .then((resp) => resp.json())
       .then((resp) => {
         this.setScores(resp)
@@ -83,9 +83,9 @@ export default class Stockholm2021 extends React.PureComponent {
 
 
   componentDidMount() {
-    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
     this.initChampions();
-    this.loadScores();
+    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
+    this.loadScores().then(() => this.initChampions())
 
   }
 
