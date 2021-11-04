@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
-import { finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { FinalResultsChallenger, FinalResultsLegends } from './final_results';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
@@ -104,6 +104,15 @@ export default class Stockholm2021 extends React.PureComponent {
       ...this.pack(finalDataLegends),
       tournament: TournamentLegends,
       advanceMode: 1,
+      modified: true,
+    });
+
+  };
+  initChampions = (_) => {
+    this.setState({
+      ...this.pack(finalDataChampions),
+      tournament: TournamentChampions,
+      advanceMode: 2,
       modified: true,
     });
 
@@ -623,27 +632,11 @@ export default class Stockholm2021 extends React.PureComponent {
                 active={this.state.tournament === TournamentLegends}
                 onClick={() => this.initLegends()}
               />
-              {
-                /*
-                doesn't need it
-                this.state.tournament === TournamentChallenger && (
-                  <Menu.Item
-                    name="Your Legends Stage"
-                    active={this.state.tournament === TournamentLegends}
-                    onClick={() => this.advance()}
-                  />
-                )
-                 */
-              }
-              {
-                this.state.tournament > TournamentChallenger && (
-                  <Menu.Item
-                    name="Champion Stage"
-                    active={this.state.tournament === TournamentChampions}
-                    onClick={() => this.advance2()}
-                  />
-                )
-              }
+              <Menu.Item
+                name="Champion Stage"
+                active={this.state.tournament === TournamentChampions}
+                onClick={() => this.initChampions()}
+              />
             </Menu>
           </div>
           <div className="main-container">
