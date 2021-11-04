@@ -303,8 +303,14 @@ export default class Stockholm2021 extends React.PureComponent {
             score[1] = gs.map(x => x[1])
             if (teamA !== teamB) {
               picked = teamA > teamB ? 1 : -1;
-              if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
-                result = picked
+              if (this.state.tournament === TournamentChampions) {
+                if (teamA === 2 || teamB === 2) {
+                  result = picked
+                }
+              } else {
+                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                  result = picked
+                }
               }
             }
           }
