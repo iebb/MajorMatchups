@@ -84,7 +84,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
   componentDidMount() {
     this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
-    this.initLegends();
+    this.initChampions();
     this.loadScores();
 
   }
