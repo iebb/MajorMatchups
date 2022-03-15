@@ -56,7 +56,7 @@ class DesktopContainer extends Component {
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
                 <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Avenir, Lato', fontWeight: 700 }}>
-                  Major@ieb
+                  SMC
                 </Menu.Item>
                 {Editions.map((edition) => (
                   <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
