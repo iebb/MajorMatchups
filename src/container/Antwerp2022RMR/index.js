@@ -530,7 +530,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">PGL Anterwerp RMR 2022 Matchup Calculator</h1>
+            <h1 className="title">PGL Antwerp RMR 2022 Matchup Calculator</h1>
             <h3 className="title">Pick your Winner and get the Matchups!</h3>
           </div>
           <p>
