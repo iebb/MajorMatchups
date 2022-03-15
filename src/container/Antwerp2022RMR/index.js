@@ -501,16 +501,9 @@ export default class Antwerp2022RMR extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">PGL Stockholm Major 2021 Matchup Calculator</h1>
+            <h1 className="title">PGL Anterwerp RMR 2022 Matchup Calculator</h1>
             <h3 className="title">Pick your Winner and get the Matchups!</h3>
           </div>
-          <p style={{ fontSize: "120%" }}>
-            <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
-              UPDATED - The Buchholtz System</a>
-          </p>
-          <p style={{ fontSize: "100%" }}>
-            Share this website to your friends :D
-          </p>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
