@@ -89,6 +89,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     this.setState({
       ...this.pack(Regions[region].seeds),
       advanceMode: 1,
+      regionId: region,
       modified: true,
     });
   };
