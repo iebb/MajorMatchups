@@ -152,6 +152,27 @@ h3.title {
   color: #ffc40a;
 }
 
+.team.legend .b  {
+  border: 1px solid #00ff00;
+}
+.team.legend .team-box-text {
+  color: #00ff00;
+}
+
+.team.challenger .b  {
+  border: 1px solid #abff00;
+}
+.team.challenger .team-box-text {
+  color: #abff00;
+}
+
+.team.contender .b  {
+  border: 1px solid #ffcd00;
+}
+.team.contender .team-box-text {
+  color: #ffcd00;
+}
+
 .team.eliminated .b {
   border: 1px solid #777777;
 }

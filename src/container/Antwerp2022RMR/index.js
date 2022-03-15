@@ -3,33 +3,46 @@
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
 import {AME, EUA, EUB} from './initial_data';
+import {ordinal} from "../../libs/plural";
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
+const abbrevs = {
+  "legend": "L",
+  "challenger": "C",
+  "contender": "O",
+  "eliminated": "E",
+}
 
 const Regions = [
   {
     id: 0,
     name: "American",
     seeds: AME,
-    legends: 1,
-    challengers: 2,
-    contenders: 3,
+    seats: {
+      legends: 1,
+      challengers: 3,
+      contenders: 6,
+    },
   },
   {
     id: 1,
     name: "Europe A",
     seeds: EUA,
-    legends: 4,
-    challengers: 2,
-    contenders: 2,
+    seats: {
+      legends: 4,
+      challengers: 6,
+      contenders: 8,
+    },
   },
   {
     id: 2,
     name: "Europe B",
     seeds: EUB,
-    legends: 3,
-    challengers: 4,
-    contenders: 1,
+    seats: {
+      legends: 3,
+      challengers: 7,
+      contenders: 8,
+    },
   },
 ];
 
@@ -44,6 +57,11 @@ export default class Antwerp2022RMR extends React.PureComponent {
     legends: false,
     modified: true,
     scores: {},
+    seats: {
+      legends: 0,
+      challengers: 0,
+      contenders: 0,
+    },
   };
 
   pack = (teams) => {
@@ -91,6 +109,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       advanceMode: 1,
       regionId: region,
       modified: true,
+      seats: Regions[region].seats,
     });
   };
 
@@ -262,9 +281,28 @@ export default class Antwerp2022RMR extends React.PureComponent {
       teams = stateTeams[stage].sort((x, y) => x.buchholz - y.buchholz);
     }
 
+    const getStatus = standing => {
+      if (standing <= this.state.seats.legends) return "legend";
+      if (standing <= this.state.seats.challengers) return "challenger";
+      if (standing <= this.state.seats.contenders) return "contender";
+      return "eliminated";
+    }
 
-    const elim = teams.filter((x) => x.l === 3).sort((x, y) => {if (y.w - x.w) return y.w - x.w; return y.buchholz - x.buchholz});
-    const adv = teams.filter((x) => x.w === 3).sort((x, y) => {if (y.l - x.l) return x.l - y.l; return y.buchholz - x.buchholz});
+    const adv = teams.filter((x) => x.w === 3).sort(
+      (x, y) => {if (y.l - x.l) return x.l - y.l; return y.buchholz - x.buchholz}
+    ).map((x, idx) => ({
+      ...x,
+      standing: idx + 1,
+      status: getStatus(idx+1),
+    }));
+
+    const elim = teams.filter((x) => x.l === 3).sort(
+      (x, y) => {if (y.w - x.w) return y.w - x.w; return y.buchholz - x.buchholz}
+    ).map((x, idx) => ({
+      ...x,
+      standing: 17 - adv.length + idx,
+      status: getStatus(17 - adv.length + idx),
+    }));
 
 
 
@@ -285,12 +323,17 @@ export default class Antwerp2022RMR extends React.PureComponent {
     return (
       <div key={stage}>
         {adv.map((team, _) => (
-          <div key={team.code} className="team one advanced">
+          <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
               <div className="team-box-split b">
                 <span className="team-box-text">
                   {team.w}-{team.l}
                 </span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">{ordinal(team.standing)} ({abbrevs[team.status]})</span>
               </div>
             </div>
             <div className="team-box med">
@@ -301,11 +344,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
             <div className="team-box down">
               <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">ADV</span>
               </div>
             </div>
             {
@@ -445,12 +483,17 @@ export default class Antwerp2022RMR extends React.PureComponent {
         })}
 
         {elim.map((team, _) => (
-          <div key={team.code} className="team one eliminated">
+          <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
               <div className="team-box-split b">
                 <span className="team-box-text">
                   {team.w}-{team.l}
                 </span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">{ordinal(team.standing)} ({abbrevs[team.status]})</span>
               </div>
             </div>
             <div className="team-box med">
@@ -461,11 +504,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
             <div className="team-box down">
               <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">ELIM</span>
               </div>
             </div>
             {
