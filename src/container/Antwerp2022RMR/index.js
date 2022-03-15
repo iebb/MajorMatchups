@@ -4,6 +4,7 @@ import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
 import {AME, EUA, EUB} from './initial_data';
 import {ordinal} from "../../libs/plural";
+import {plus_minus} from "../../libs/plus_minus";
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 const abbrevs = {
@@ -16,7 +17,7 @@ const abbrevs = {
 const Regions = [
   {
     id: 0,
-    name: "American",
+    name: "Americas",
     seeds: AME,
     seats: {
       legends: 1,
@@ -95,15 +96,11 @@ export default class Antwerp2022RMR extends React.PureComponent {
     }
   }
 
-
-
-
   componentDidMount() {
     this.init(0)
   }
 
-
-  init = (region=0) => {
+  init = (region) => {
     this.setState({
       ...this.pack(Regions[region].seeds),
       advanceMode: 1,
@@ -305,7 +302,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
     }));
 
 
-
     const setWinner = (match, picked) => {
       if (match.picked === picked) return;
 
@@ -351,7 +347,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className="team-box-text">{team.buchholz} B</span>
+                      <span className="team-box-text">{plus_minus(team.buchholz)}</span>
                     </div>
                   </div>
                   <div className="team-box down">
@@ -369,9 +365,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
               )
             }
           </div>
-        ))}
-
-
+          ))}
 
         {stageMatches.map((x) => {
           let pickA, pickB, resultA, resultB;
@@ -401,22 +395,20 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 </div>
               </div>
               {this.state.scores && x.score[0].map((p, idx) => (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
+                <div className="team-box down" key={idx}>
+                  <div className="team-box-split b">
                       <span className={`team-box-text ${x.score[0][idx] < x.score[1][idx] ? 'lose' :
                         x.score[1][idx] < x.score[0][idx] ? 'win' : ''}`}>
                         {x.score[0][idx]}
                       </span>
-                    </div>
-                    <div className="team-box-split b">
+                  </div>
+                  <div className="team-box-split b">
                       <span className={`team-box-text ${x.score[1][idx] < x.score[0][idx] ? 'lose' :
                         x.score[0][idx] < x.score[1][idx] ? 'win' : ''}`}>
                         {x.score[1][idx]}
                       </span>
-                    </div>
                   </div>
-                </>
+                </div>
               ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
@@ -439,10 +431,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
                   <>
                     <div className="team-box down">
                       <div className="team-box-split b">
-                        <span className="team-box-text">{x.team1.buchholz} B</span>
+                        <span className="team-box-text">{plus_minus(x.team1.buchholz)}</span>
                       </div>
                       <div className="team-box-split b">
-                        <span className="team-box-text">{x.team2.buchholz} B</span>
+                        <span className="team-box-text">{plus_minus(x.team2.buchholz)}</span>
                       </div>
                     </div>
                     <div className="team-box down">
@@ -481,7 +473,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </div>
           );
         })}
-
         {elim.map((team, _) => (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
@@ -511,7 +502,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className="team-box-text">{team.buchholz} B</span>
+                      <span className="team-box-text">{plus_minus(team.buchholz)}</span>
                     </div>
                   </div>
                   <div className="team-box down">
@@ -574,7 +565,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </Menu>
           </div>
           <div className="main-container">
-            {(this.state.advanceMode === 1 ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3]).map((round) => (
+            {[0, 1, 2, 3, 4, 5].map((round) => (
               <>
                 <h1 className="round-title" key={round}>
                   {round === (this.state.advanceMode === 1 ? 5 : 3) ? `Final Results` : `Round ${round + 1}`}
