@@ -27,12 +27,13 @@ const Footer = () => (
       Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
     </p>
     <p>
-      Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368 | Advertisements Available | 广告位出租（
+      Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
     </p>
   </div>
 )
 
 const Editions = [
+  ['2022 Anterwerp RMR', '/22rmr_antwerp'],
   ['2021 Stockholm', '/21stockholm'],
   ['2019 Berlin', '/19berlin'],
   ['2019 Katowice', '/19katowice'],

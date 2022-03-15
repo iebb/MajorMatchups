@@ -1,23 +1,45 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image, Menu } from 'semantic-ui-react';
-import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
-import { FinalResultsChallenger, FinalResultsLegends } from './final_results';
+import {Image, Menu} from 'semantic-ui-react';
+import {AME, EUA, EUB} from './initial_data';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
-const TournamentChallenger = 1;
-const TournamentLegends = 2;
-const TournamentChampions = 3;
+const Regions = [
+  {
+    id: 0,
+    name: "American",
+    seeds: AME,
+    legends: 1,
+    challengers: 2,
+    contenders: 3,
+  },
+  {
+    id: 1,
+    name: "Europe A",
+    seeds: EUA,
+    legends: 4,
+    challengers: 2,
+    contenders: 2,
+  },
+  {
+    id: 2,
+    name: "Europe B",
+    seeds: EUB,
+    legends: 3,
+    challengers: 4,
+    contenders: 1,
+  },
+];
 
-const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
+const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code}.png`;
 
-export default class Stockholm2021 extends React.PureComponent {
+export default class Antwerp2022RMR extends React.PureComponent {
   state = {
     teams: [[], false, false, false, false, false],
     matches: [false, false, false, false, false, false],
-    tournament: TournamentChallenger,
+    regionId: 0,
     advanceMode: 1,
     legends: false,
     modified: true,
@@ -55,130 +77,20 @@ export default class Stockholm2021 extends React.PureComponent {
     }
   }
 
-  setScores = (scores) => {
-    const gamescores = {};
-    for(const stage of Object.keys(scores)) {
-      gamescores[stage] = {};
-      for (const key of Object.keys(scores[stage])) {
-        const val = scores[stage][key];
-        gamescores[stage][key] = val;
-        let key2 = key.split('-');
-        gamescores[stage][key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
-      }
-    }
-    this.setState({ scores: gamescores })
-  }
-
-  loadScores = (cb) => {
-    return fetch('https://major.ieb.im/api/?scores=18')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setScores(resp)
-      }).then(cb);
-  }
-
-
 
 
 
   componentDidMount() {
-    this.initChampions();
-    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
-    this.loadScores().then(() => this.initChampions())
-
+    this.init(0)
   }
 
 
-  init = (_) => {
+  init = (region=0) => {
     this.setState({
-      ...this.pack(initialDataChallenger),
-      tournament: TournamentChallenger,
+      ...this.pack(Regions[region].seeds),
       advanceMode: 1,
       modified: true,
     });
-  };
-
-  initLegends = (_) => {
-    this.setState({
-      ...this.pack(finalDataLegends),
-      tournament: TournamentLegends,
-      advanceMode: 1,
-      modified: true,
-    });
-
-  };
-  initChampions = (_) => {
-    this.setState({
-      ...this.pack(finalDataChampions),
-      tournament: TournamentChampions,
-      advanceMode: 2,
-      modified: true,
-    });
-
-  };
-
-  advance = (_) => {
-    if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
-      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
-        (a, b) => {
-          if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
-          return a.seed - b.seed;
-        }
-      ).map((x, _idx) => ({
-        ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0,
-        w: 0,
-        opponents: [],
-        buchholz: 0,
-        seed: _idx + 9,
-      }))
-
-      const finalTeams = [...initialDataLegends, ...teamsAdvanced];
-      this.setState({
-        savedS1: [this.state.teams, this.state.matches],
-        savedS2: null,
-        ...this.pack(finalTeams),
-        matches: [false, false, false, false, false, false],
-        tournament: TournamentLegends,
-        advanceMode: 1,
-        legends: false,
-        modified: true,
-      });
-    }
-
-  };
-
-  advance2 = (_) => {
-    if (this.state.tournament === TournamentLegends && this.state.teams[5]) {
-      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
-        (a, b) => {
-          if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
-          return a.seed - b.seed;
-        }
-      ).map((x, _idx) => ({
-        ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0,
-        w: 0,
-        opponents: [],
-        buchholz: 0,
-        seed: _idx + 1,
-      }))
-
-      this.setState({
-        ...this.pack(teamsAdvanced),
-        matches: [false, false, false, false, false, false],
-        savedS2: [this.state.teams, this.state.matches],
-        tournament: TournamentChampions,
-        advanceMode: 2,
-        legends: false,
-        modified: true,
-      });
-    }
-
   };
 
   previouslyMatchedUp(stage, tA, tB) {
@@ -342,7 +254,7 @@ export default class Stockholm2021 extends React.PureComponent {
         }
       }
       this.setState({
-        teams: stateTeams, matches: stateMatches, refresh: false,
+        teams: stateTeams, matches: stateMatches, refresh: false
       });
     } else {
       stageMatches = stateMatches[stage];
@@ -617,21 +529,16 @@ export default class Stockholm2021 extends React.PureComponent {
           </p>
           <div style={{ marginTop: 50 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
-              <Menu.Item
-                name="Challengers Stage"
-                active={this.state.tournament === TournamentChallenger}
-                onClick={() => this.init(TournamentChallenger)}
-              />
-              <Menu.Item
-                name={"Legends Stage"}
-                active={this.state.tournament === TournamentLegends}
-                onClick={() => this.initLegends()}
-              />
-              <Menu.Item
-                name="Champion Stage"
-                active={this.state.tournament === TournamentChampions}
-                onClick={() => this.initChampions()}
-              />
+              {
+                Regions.map(region => (
+                  <Menu.Item
+                    key={region.id}
+                    name={region.name}
+                    active={this.state.regionId === region.id}
+                    onClick={() => this.init(region.id)}
+                  />
+                ))
+              }
             </Menu>
           </div>
           <div className="main-container">

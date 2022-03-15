@@ -203,13 +203,15 @@ h3.title {
 img.ui.image.team-logo {
   vertical-align: middle;
   display: inline-block;
-  height: 64px;
+  max-width: 64px;
+  max-height: 64px;
 }
 
 img.ui.image.team-logo-small {
   vertical-align: middle;
   display: inline-block;
-  height: 16px;
+  max-width: 16px;
+  max-height: 16px;
   margin: -8px -4px;
 }
 
