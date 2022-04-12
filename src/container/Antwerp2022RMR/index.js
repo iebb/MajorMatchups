@@ -157,6 +157,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
     const teamCompare = (x, y) => {
       if (y.l - x.l) return x.l - y.l;
+      if (y.w - x.w) return y.w - x.w;
 
       if (tbResult[y.code] && tbResult[x.code] &&
         tbResult[y.code] - tbResult[x.code])
