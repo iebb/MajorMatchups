@@ -5,6 +5,7 @@ import {Image, Menu} from 'semantic-ui-react';
 import {AME, EUA, EUB} from './initial_data';
 import {ordinal} from "../../libs/plural";
 import {plus_minus} from "../../libs/plus_minus";
+import {Scores} from "./scores";
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 const abbrevs = {
@@ -19,31 +20,31 @@ const Regions = [
     id: 0,
     name: "Americas",
     seeds: AME,
-    seats: {
-      legends: 1,
-      challengers: 3,
-      contenders: 6,
-    },
+    seats: [
+      ["legends", 1],
+      ["challengers", 3],
+      ["contenders", 6],
+    ],
   },
   {
     id: 1,
     name: "Europe A",
     seeds: EUA,
-    seats: {
-      legends: 4,
-      challengers: 6,
-      contenders: 8,
-    },
+    seats: [
+      ["legends", 4],
+      ["challengers", 6],
+      ["contenders", 8],
+    ],
   },
   {
     id: 2,
     name: "Europe B",
     seeds: EUB,
-    seats: {
-      legends: 3,
-      challengers: 7,
-      contenders: 8,
-    },
+    seats: [
+      ["legends", 3],
+      ["challengers", 7],
+      ["contenders", 8],
+    ],
   },
 ];
 
@@ -57,7 +58,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     advanceMode: 1,
     legends: false,
     modified: true,
-    scores: {},
+    scores: Scores,
     seats: {
       legends: 0,
       challengers: 0,
@@ -199,7 +200,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
         });
 
         if (!team2cands.length) return false;
-        const gamescores = this.state.scores[this.state.tournament] || {};
+        const gamescores = this.state.scores || {};
 
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];

@@ -1,0 +1,22 @@
+export const Scores = {
+  "am/furi-am/levi": [[16, 4]],
+  "am/part-am/isur": [[8, 16]],
+  "am/case-am/bnb": [[16, 10]],
+  "am/impe-am/caet": [[16, 12]],
+  "am/eg-am/pain": [[12, 16]],
+  "am/col-am/one": [[16, 8]],
+  "am/liqu-am/00": [[8, 16]],
+  "am/mibr-am/9z": [[16, 13]],
+  "am/furi-am/isur": [[16, 4]],
+  "am/case-am/impe": [[6, 16]],
+  "am/col-am/00": [[16, 5]],
+  "am/mibr-am/pain": [[25, 23]],
+  "am/part-am/levi": [[16, 11]],
+  "am/caet-am/bnb": [[16, 12]],
+  "am/liqu-am/one": [[16, 3]],
+  "am/eg-am/9z": [[16, 5]],
+  "am/00-am/eg": [[9, 16]],
+  "am/isur-am/caet": [[13, 16]],
+  "am/case-am/part": [[6, 16]],
+  "am/pain-am/liqu": [[1, 16]]
+}
