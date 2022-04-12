@@ -3,7 +3,7 @@
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
-import { FinalResultsChallenger, FinalResultsLegends } from './final_results';
+import {FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends} from './final_results';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
@@ -83,7 +83,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
   componentDidMount() {
     this.initChampions();
-    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends })
+    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends, 3: FinalResultsChampions })
     this.loadScores().then(() => this.initChampions())
 
   }

@@ -74,3 +74,13 @@ export const FinalResultsLegends = {
   "faze-evl": [[16,6]]
 }
 
+export const FinalResultsChampions = {
+  "navi-vita": [[16,11],[16,13]],
+  "navi-gamb": [[16,8],[16,3]],
+  "navi-g2": [[16,11],[22,19]],
+  "furi-gamb": [[17,19],[10,16]],
+  "hero-vp": [[16,10],[13,16],[16,12]],
+  "nip-g2": [[11,16],[11,16]],
+  "hero-g2": [[16,12],[10,16],[15,19]],
+}
+

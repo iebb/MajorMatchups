@@ -15,12 +15,8 @@ export const Scores = {
   "am/caet-am/bnb": [[16, 12]],
   "am/liqu-am/one": [[16, 3]],
   "am/eg-am/9z": [[16, 5]],
-  "am/impe-am/mibr": [[16, 12], [8, 16], [10, 16]],
-  "am/furi-am/col": [],
   "am/00-am/eg": [[9, 16]],
   "am/isur-am/caet": [[13, 16]],
   "am/case-am/part": [[6, 16]],
   "am/pain-am/liqu": [[1, 16]],
-  "am/9z-am/bnb": [[16, 11], [16, 13]],
-  "am/one-am/levi": []
 }
