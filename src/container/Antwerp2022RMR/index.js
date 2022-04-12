@@ -20,31 +20,31 @@ const Regions = [
     id: 0,
     name: "Americas",
     seeds: AME,
-    seats: [
-      ["legends", 1],
-      ["challengers", 3],
-      ["contenders", 6],
-    ],
+    seats: {
+      legends: 1,
+      challengers: 3,
+      contenders: 6,
+    },
   },
   {
     id: 1,
     name: "Europe A",
     seeds: EUA,
-    seats: [
-      ["legends", 4],
-      ["challengers", 6],
-      ["contenders", 8],
-    ],
+    seats: {
+      legends: 4,
+      challengers: 6,
+      contenders: 8,
+    },
   },
   {
     id: 2,
     name: "Europe B",
     seeds: EUB,
-    seats: [
-      ["legends", 3],
-      ["challengers", 7],
-      ["contenders", 8],
-    ],
+    seats: {
+      legends: 3,
+      challengers: 7,
+      contenders: 8,
+    },
   },
 ];
 
