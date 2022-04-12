@@ -180,6 +180,14 @@ h3.title {
   color: #777777;
 }
 
+.team-box-split.tb-win {
+  background: #11cfff;
+}
+
+.team-box-split.tb-lose {
+  background: #0b7b94;
+}
+
 .team-box-split.win {
   background: #6d72ac;
 }
