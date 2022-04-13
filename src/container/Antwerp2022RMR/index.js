@@ -115,15 +115,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
         false,
         false
       ],
-      roundTeams: [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
+      roundTeams: [],
       matches: [
         false,
         false,
