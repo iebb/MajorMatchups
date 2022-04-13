@@ -101,7 +101,7 @@ export default class GraphBuilder extends React.PureComponent {
           relPos += 2;
           return ({
             id: match.pool + " - match " + match['match'],
-            name: `${match.pool}`,
+            name: `${match.pool} Match`,
             name1: match.team1.name,
             name2: match.team2.name,
             parents: [match.team1.code, match.team2.code],
@@ -185,7 +185,11 @@ export default class GraphBuilder extends React.PureComponent {
         for(let i = 1; i < teamPaths[team].length; i++) {
           const source = paths[i];
           const target = paths[i-1];
-          const c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
+          let c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
+          if (c1 < 5) {
+            source.y = target.y;
+            c1 = 0;
+          }
           const rev = source.y < target.y ? -1 : 1;
           const u = source.pos;
           links.push({

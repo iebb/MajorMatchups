@@ -686,6 +686,9 @@ export default class Antwerp2022RMR extends React.PureComponent {
             ))}
           </div>
           <div className="main-container" style={{ overflowX: "scroll" }}>
+            <h1 className="round-title">
+              Diagram
+            </h1>
             <GraphBuilder data={this.state} />
           </div>
         </div>
