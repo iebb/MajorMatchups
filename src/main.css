@@ -174,10 +174,10 @@ h3.title {
 }
 
 .team.eliminated .b {
-  border: 1px solid #777777;
+  border: 1px solid #ababab;
 }
 .team.eliminated .team-box-text {
-  color: #777777;
+  color: #ababab;
 }
 
 .team-box-split.tb-win {
@@ -239,9 +239,9 @@ img.ui.image.team-logo {
 img.ui.image.team-logo-small {
   vertical-align: middle;
   display: inline-block;
-  max-width: 16px;
-  max-height: 16px;
-  margin: -8px -4px;
+  max-width: 9px;
+  max-height: 9px;
+  margin: 2px 2px;
 }
 
 .descr {

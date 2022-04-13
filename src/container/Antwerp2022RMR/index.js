@@ -6,6 +6,7 @@ import {AME, EUA, EUB} from './initial_data';
 import {ordinal} from "../../libs/plural";
 import {plus_minus} from "../../libs/plus_minus";
 import {Scores} from "./scores";
+import GraphBuilder from '../../graphics/GraphBuilder';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 const abbrevs = {
@@ -26,9 +27,9 @@ const Regions = [
       contenders: 6,
     },
     tiebreakers: {
-      "3": [1, 2], // after round 3, 1st place and 2nd place,
-      "5": [7, 8], // after round 5, 7th place and 8th place,
-      "6": [6, 7], // after round 6, 6th place and 7th place,
+      "3": [{teams: 1, id: "1/2"}], // after round 3, 1st place and 2nd place,
+      "5": [{teams: 7, id: "6/7/8"}], // after round 5, 7th place and 8th place,
+      "6": [{teams: 6, id: "6/7"}], // after round 6, 6th place and 7th place,
     },
     rounds: 7,
   },
@@ -42,7 +43,7 @@ const Regions = [
       contenders: 8,
     },
     tiebreakers: {
-      "4": [4, 5],
+      "4": [{teams: 4, id: "4/5"}],
     },
     rounds: 5,
   },
@@ -56,7 +57,7 @@ const Regions = [
       contenders: 8,
     },
     tiebreakers: {
-      "4": [3, 4],
+      "4": [{teams: 3, id: "3/4"}],
     },
     rounds: 5,
   },
@@ -67,6 +68,16 @@ const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code}.
 export default class Antwerp2022RMR extends React.PureComponent {
   state = {
     teams: [[], false, false, false, false, false],
+    roundTeams: [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ],
     matches: [false, false, false, false, false, false],
     regionId: 0,
     advanceMode: 1,
@@ -75,6 +86,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     scores: Scores,
     tiebreakers: {},
     tiebreakerResults: {},
+    pickResults: {},
     seats: {
       legends: 0,
       challengers: 0,
@@ -96,6 +108,15 @@ export default class Antwerp2022RMR extends React.PureComponent {
           seed: t.seed,
           description: t.description,
         })),
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      roundTeams: [
+        false,
         false,
         false,
         false,
@@ -130,49 +151,74 @@ export default class Antwerp2022RMR extends React.PureComponent {
           modified: true,
           ...Regions[region],
         });
-      });
+      }).then(
+        () => this.calculateMatchups(0, this.state.rounds + 1)
+      );
   };
 
-  previouslyMatchedUp(stage, tA, tB) {
-    for (let i = 0; i < stage; i += 1) {
-      if (this.state.matches[i]) {
-        for (const match of this.state.matches[i]) {
-          if (match.team1.seed === tA && match.team2.seed === tB) return true;
-          if (match.team2.seed === tA && match.team1.seed === tB) return true;
-        }
-      }
-    }
-    return false;
-  }
 
-  getMatchUps(stage) {
+  calculateMatchups(fromStage, toStage) {
+
     const stateMatches = JSON.parse(JSON.stringify(this.state.matches));
     const stateTeams = JSON.parse(JSON.stringify(this.state.teams));
+    const stateRoundTeams = JSON.parse(JSON.stringify(this.state.roundTeams));
+    const { pickResults } = this.state;
+
+    let tiebreakers = this.state.tiebreakers;
+    let tiebreakerResults = this.state.tiebreakerResults || {};
+
+    const getStatus = standing => {
+      if (standing <= this.state.seats.legends) return "legend";
+      if (standing <= this.state.seats.challengers) return "challenger";
+      if (standing <= this.state.seats.contenders) return "contender";
+      return "eliminated";
+    }
+
     let teams;
     let remaining;
     let stageMatches;
 
-    let tiebreakers = this.state.tiebreakers[stage] || [];
-    let tbResult = this.state.tiebreakerResults[stage] || {};
-
-    const teamCompare = (x, y) => {
-      if (y.l - x.l) return x.l - y.l;
-      if (y.w - x.w) return y.w - x.w;
-
-      if (tbResult[y.code] && tbResult[x.code] &&
-        tbResult[y.code] - tbResult[x.code])
-        return tbResult[y.code] - tbResult[x.code];
-
-      if (y.buchholz - x.buchholz) return y.buchholz - x.buchholz;
-      return x.seed - y.seed;
-    };
+    const previouslyMatchedUp = (stage, tA, tB) => {
+      for (let i = 0; i < stage; i += 1) {
+        if (stateMatches[i]) {
+          for (const match of stateMatches[i]) {
+            if (match.team1.seed === tA && match.team2.seed === tB) return true;
+            if (match.team2.seed === tA && match.team1.seed === tB) return true;
+          }
+        }
+      }
+      return false;
+    }
 
 
-    if (this.state.refresh || !stateMatches[stage]) {
+    for(let stage = fromStage; stage < toStage; stage++) {
+      const teamCompare = (x, y) => {
+        if (y.l - x.l) return x.l - y.l;
+        if (y.w - x.w) return y.w - x.w;
 
-      if (stage > 0 && !stateTeams[stage]) {
-        if (!stateMatches[stage - 1]) return false;
+        if (x.w === 3 || x.l === 3) { // normal race over, go for tbs
+          for(const s of Object.keys(tiebreakers)) {
+            if (parseInt(s, 10) < stage) {
+              for(const tb of tiebreakers[s]) {
+                const tbr = tiebreakerResults[tb.id];
+                if (tbr[0] === x.code && tbr[1] === y.code) {
+                  return -1;
+                }
+                if (tbr[0] === y.code && tbr[1] === x.code) {
+                  return 1;
+                }
+              }
+            }
+          }
 
+        }
+
+        if (y.buchholz - x.buchholz) return y.buchholz - x.buchholz;
+        return x.seed - y.seed;
+      };
+
+
+      if (stage > 0) {
         const teamsT = stateTeams[stage - 1].filter((team) => team.w === 3 || team.l === 3);
 
 
@@ -225,7 +271,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
         const team1 = p[0];
         const team2cands = p.filter((team) => {
           if (team.seed === team1.seed) return false;
-          return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
+          return !previouslyMatchedUp(stage, team.seed, team1.seed);
         });
 
         if (!team2cands.length) return false;
@@ -235,9 +281,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
           const team2 = team2cands[c];
           const mat = copy(m);
           let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
-          if (Math.random() < 0.2) {
-            picked *= -1;
-          }
           let result = 0;
 
           let score = [['TBA'], ['TBA']];
@@ -261,20 +304,21 @@ export default class Antwerp2022RMR extends React.PureComponent {
             score[1] = gs.map(x => x[1])
             if (teamA !== teamB) {
               picked = teamA > teamB ? 1 : -1;
-              if (this.state.advanceMode === 2) {
-                if (teamA === 2 || teamB === 2) {
-                  result = picked
-                }
-              } else {
-                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
-                  result = picked
-                }
+              if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                result = picked
               }
             }
           }
 
+          if (`${team1.code}-${team2.code}` in pickResults) {
+            console.log(picked, "picked!!!");
+            picked = pickResults[`${team1.code}-${team2.code}`]
+            console.log(picked, "changed to!!!");
+          }
 
-          mat.push({ pool, match: m.length, team1, team2, picked, result, score });
+
+
+          mat.push({ pool, match: m.length, team1, team2, picked, result, score, stage });
           const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
           if (dfs(nPoolTeams, mat, mref, pool)) {
             return true;
@@ -290,95 +334,105 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;
-      let override = false;
-      for (const matches of stateMatches) {
-        if (matches) {
-          for (const match of matches) {
-            if (match.picked !== match.result && match.result) {
-              override = true;
+
+      const teamsSorted = teams.sort(teamCompare).map((x, idx) => ({...x, standing: idx+1}));
+
+      stateRoundTeams[stage] = teamsSorted.map((x, idx) => {
+        if (tiebreakers[stage]) {
+          for (const tbs of tiebreakers[stage]) {
+            // tbs.teams is the 1-based index
+            const tb = tbs.teams === idx + 1 || tbs.teams === idx;
+            if (tb) {
+              let tbr = tiebreakerResults[tbs.id];
+              const t1 = teamsSorted[tbs.teams - 1];
+              const t2 = teamsSorted[tbs.teams];
+              if (
+                !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
+              ) {
+                tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code];
+              }
+
+              const otherTeam = tbs.teams === idx + 1 ? idx + 2 : idx;
+              return ({
+                ...x,
+                standing: idx + 1,
+                ordinalStanding: ordinal(idx+1),
+                status: getStatus(idx+1),
+                tiebreaker: true,
+                tiebreakerStats: tiebreakerResults[tbs.id][0] === x.code ? 1 : -1,
+                tiebreakerOtherTeam: otherTeam,
+                tiebreakerConfig: tbs,
+                elim: x.l === 3,
+                adv: x.w === 3,
+                currentRound: true
+              })
             }
           }
         }
-      }
-      this.setState({
-        teams: stateTeams, matches: stateMatches, refresh: false
+
+        return ({
+          ...x,
+          standing: idx + 1,
+          ordinalStanding: ordinal(idx+1),
+          status: getStatus(idx+1),
+          elim: x.l === 3,
+          adv: x.w === 3,
+          currentRound: x.w + x.l === stage,
+        })
       });
-    } else {
-      stageMatches = stateMatches[stage];
-      teams = stateTeams[stage].sort(teamCompare);
+
     }
 
-    const getStatus = standing => {
-      if (standing <= this.state.seats.legends) return "legend";
-      if (standing <= this.state.seats.challengers) return "challenger";
-      if (standing <= this.state.seats.contenders) return "contender";
-      return "eliminated";
-    }
-
-    const adv = teams.filter((x) => x.w === 3).sort(teamCompare).map((x, idx) => {
-      const tb = tiebreakers.indexOf(idx+1);
-      return ({
-        ...x,
-        standing: idx + 1,
-        status: getStatus(idx+1),
-        tiebreakerScore: tbResult[x.code] === stage ? tbResult[x.code] : (tb ^ 1) ? 1 : -1,
-        tiebreaker: tb + 1,
-        tiebreakerWith: (tb ^ 1) + 1,
-      })
+    this.setState({
+      teams: stateTeams,
+      tiebreakerResults,
+      roundTeams: stateRoundTeams,
+      matches: stateMatches,
     });
 
-    const elim = teams.filter((x) => x.l === 3).sort(teamCompare).map((x, idx) => {
-      const tb = tiebreakers.indexOf(idx+1);
-      return ({
-        ...x,
-        standing: 17 - adv.length + idx,
-        status: getStatus(17 - adv.length + idx),
-        tiebreakerScore: tbResult[x.code] === stage ? tbResult[x.code] : (tb ^ 1) ? 1 : -1,
-        tiebreaker: tb + 1,
-        tiebreakerWith: (tb ^ 1) + 1,
-      })
-    });
+  }
 
+  getMatchups(stage) {
 
-    const determined = adv.concat(elim);
+    const stateMatches = this.state.matches;
+    const stateRoundTeams = this.state.roundTeams;
+    let tiebreakerResults = this.state.tiebreakerResults || {};
+
 
 
     const setWinner = (match, picked) => {
       if (match.picked === picked) return;
-
-      stageMatches = stageMatches.map((y) =>
-        y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked },
-      );
-      stateMatches[stage] = stageMatches;
-      for (let p = stage + 1; p <= this.state.rounds; p += 1) {
-        stateTeams[p] = false;
-        stateMatches[p] = false;
-      }
-      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
+      const { pickResults } = this.state;
+      pickResults[`${match.team1.code}-${match.team2.code}`] = picked;
+      pickResults[`${match.team2.code}-${match.team1.code}`] = -picked;
+      this.setState({ pickResults }, () => {
+        this.calculateMatchups(0, this.state.rounds + 1)
+      })
     };
 
-    const setTiebreakerWinner = (tiebreaker, tiebreakerWith) => {
-      const t1 = determined.filter(x => x.tiebreaker === tiebreaker)[0]
-      const t2 = determined.filter(x => x.tiebreaker === tiebreakerWith)[0]
+    const setTiebreakerWinner = (team, losingTeam) => {
+      const tbc = team.tiebreakerConfig;
       const tbr = this.state.tiebreakerResults;
-      for (let j = stage; j <= this.state.rounds; j ++) {
-        if (!tbr[j]) tbr[j] = {};
-        tbr[j][t1.code] = stage;
-        tbr[j][t2.code] = -stage;
-      }
-      this.setState({ tiebreakerResults: tbr, refresh: true, modified: true });
+      tbr[tbc.id] = [team.code, losingTeam.code];
+      this.setState({ tiebreakerResults: tbr}, () => {
+        this.calculateMatchups(0, this.state.rounds + 1)
+      });
     };
 
+    const roundTeams = stateRoundTeams[stage];
+    const stageMatches = stateMatches[stage];
+    if (!roundTeams) return null;
+    if (!stageMatches) return null;
     return (
       <div key={stage}>
-        {adv.map((team, _) => (
+        {roundTeams.filter(x => x.adv).map((team, _) => (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
               <div className="team-box-split b" style={
                 team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
               }>
                 <span className="team-box-text">
-                  {team.tiebreaker ? "TB" + team.tiebreaker : `${team.w}-${team.l}`}
+                  {team.tiebreaker ? team.tiebreakerConfig.id : `${team.w}-${team.l}`}
                 </span>
               </div>
             </div>
@@ -391,8 +445,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
               {
                 (team.tiebreaker) ? (
                   <div className={
-                    `team-box-split b tb-${team.tiebreakerScore !== 0 ? team.tiebreakerScore > 0 ? "win" : "lose" : "neutral"}`
-                  } onClick={() => setTiebreakerWinner(team.tiebreaker, team.tiebreakerWith)}>
+                    `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
+                  } onClick={() => setTiebreakerWinner(team, roundTeams[team.tiebreakerOtherTeam - 1])}>
                     <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
                   </div>
                 ) : (
@@ -430,7 +484,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
               )
             }
           </div>
-          ))}
+        ))}
 
         {stageMatches.map((x) => {
           let pickA, pickB, resultA, resultB;
@@ -538,7 +592,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </div>
           );
         })}
-        {elim.map((team, _) => (
+        {roundTeams.filter(x => x.elim).map((team, _) => (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
               <div className="team-box-split b">
@@ -635,9 +689,12 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 <h1 className="round-title" key={round}>
                   {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
                 </h1>
-                <div key={"_" + round}>{this.getMatchUps(round)}</div>
+                <div key={"_" + round}>{this.getMatchups(round)}</div>
               </>
             ))}
+          </div>
+          <div className="main-container" style={{ overflowX: "scroll" }}>
+            <GraphBuilder data={this.state} />
           </div>
         </div>
       </div>
