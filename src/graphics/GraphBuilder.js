@@ -11,6 +11,7 @@ export default class GraphBuilder extends React.PureComponent {
     const state = this.props.data;
     const padding = 8;
 
+    const node_point_height = 8;
     const node_single_height = 24;
     const node_height = 48;
 
@@ -20,7 +21,8 @@ export default class GraphBuilder extends React.PureComponent {
     const level_y_half_padding = 8;
     const metro_d = 10;
 
-    const round_width = 300;
+    const round_width = 200;
+    const tbo_round_width = 100;
     const level_padding_initial = 80;
     const level_padding_delta = 20;
 
@@ -34,12 +36,16 @@ export default class GraphBuilder extends React.PureComponent {
     if (!roundTeams[0]) return null;
 
     let nodeY = level_padding_initial;
-    const totalTeams = state.teams[0].length;
-    const teams = state.teams[0].map((t, _idx) => {
+
+    const _teams = matches[0].map(x => [x.team1, x.team2]).flat();
+
+    const totalTeams = _teams.length;
+    const teams = _teams.map((t, _idx) => {
       nodeY += node_single_height + level_y_half_padding;
-      colorTeams[t['code']] = d3.interpolateWarm(_idx / (totalTeams - 1));
+      colorTeams[t['code']] = d3.interpolateWarm(1 - t.seed / (totalTeams));
       return ({
         id: t['code'], ...t,
+        name1: `Seed ${t.seed}`,
         is_single_node: true,
         height: node_single_height,
         padding: node_single_height,
@@ -56,34 +62,67 @@ export default class GraphBuilder extends React.PureComponent {
       teamPaths[team.code] = [{x: 0, y: team.y}]
     })
 
-    let x;
+    let x = 0;
     const roundMatches = matches.map((round, round_idx) => {
       if (!round) return [];
       const level_delta = level_padding_delta * Math.min(round_idx, 4) / 2;
       let nodeY = level_padding_initial - level_y_padding - level_delta;
       let relPos = 0;
       const pools = Math.max(new Set(round.map(match => match.pool)).size, 2)
-      const delta = level_delta * 2 / (pools - 1);
+      const delta = level_delta / (pools - 1);
       let lastPool = round[0] && round[0].pool;
 
       const teams = roundTeams[round_idx] || [];
-      x = (round_idx + 1) * round_width;
+      x += round_idx <= 5 ? round_width : tbo_round_width;
 
 
       const advanced = teams.filter(t => t.adv).map(t => {
         nodeY += node_single_height + level_y_half_padding;
         const y = nodeY;
-        teamPaths[t.code].push({x, y, pos: .5 + (relPos + 1) / 34})
+
         relPos += 1;
+        if (t.tiebreakerOtherTeam > t.standing) {
+          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+          const team2 = teams[t.tiebreakerOtherTeam - 1];
+          return ({
+            id: t.code,
+            ...t,
+            name: t.tiebreakerConfig.name,
+            name1: `${t.name}  / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won":"Lost":t.ordinalStanding}`,
+            name2: `${team2.name} / ${t.tiebreakerStats?t.tiebreakerStats<0?"Won":"Lost":t.ordinalStanding}`,
+            is_single_node: true,
+            height: node_height,
+            padding: node_height,
+            x,
+            y: y - node_point_height + node_single_height,
+          })
+        } else if (t.tiebreakerOtherTeam < t.standing) {
+          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+          return null;
+        }
+
+        teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+        if (t.currentRound || round_idx === roundTeams.length - 1) {
+          return ({
+            id: t.code,
+            ...t,
+            name1: `${t.w}-${t.l}`,
+            is_single_node: true,
+            height: node_point_height,
+            padding: node_point_height,
+            x,
+            y,
+          })
+        }
         return ({
           id: t.code,
           ...t,
-          name1: `${t.w}-${t.l} / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won Tiebreaker":"Lost Tiebreaker":t.ordinalStanding}`,
+          name: "",
           is_single_node: true,
-          height: node_single_height,
-          padding: node_single_height,
+          height: t.currentRound ? node_single_height : node_point_height,
+          padding: t.currentRound ? node_single_height : node_point_height,
           x,
-          y: y + 5,
+          y,
         })
       })
 
@@ -118,23 +157,55 @@ export default class GraphBuilder extends React.PureComponent {
 
       const eliminated = teams.filter(t => t.elim).map(t => {
         const y = nodeY;
-        teamPaths[t.code].push({x, y, pos: (relPos + 1) / 17})
-        relPos += 1;
         nodeY += node_single_height + level_y_half_padding;
+        relPos += 1;
+        if (t.tiebreakerOtherTeam > t.standing) {
+          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+          const team2 = teams[t.tiebreakerOtherTeam - 1];
+          return ({
+            id: t.code,
+            ...t,
+            name: t.tiebreakerConfig.name,
+            name1: `${t.name} / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won":"Lost":t.ordinalStanding}`,
+            name2: `${team2.name} / ${t.tiebreakerStats?t.tiebreakerStats<0?"Won":"Lost":t.ordinalStanding}`,
+            is_single_node: true,
+            height: node_height,
+            padding: node_height,
+            x,
+            y: y - node_point_height + node_single_height,
+          })
+        } else if (t.tiebreakerOtherTeam < t.standing) {
+          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+          return null;
+        }
+
+        teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+        if (t.currentRound || round_idx === roundTeams.length - 1) {
+          return ({
+            id: t.code,
+            ...t,
+            name1: `${t.w}-${t.l}`,
+            is_single_node: true,
+            height: node_point_height,
+            padding: node_point_height,
+            x,
+            y,
+          })
+        }
         return ({
           id: t.code,
           ...t,
-          name1: `${t.w}-${t.l} / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won Tiebreaker":"Lost Tiebreaker":t.ordinalStanding}`,
+          name: "",
           is_single_node: true,
-          height: node_single_height,
-          padding: node_single_height,
+          height: t.currentRound ? node_single_height : node_point_height,
+          padding: t.currentRound ? node_single_height : node_point_height,
           x,
-          y: y + 5,
+          y,
         })
       })
 
       return [...advanced, ...matches, ...eliminated]
-    }).flat()
+    }).flat().filter(x => x)
 
     const finalRound = roundTeams[roundTeams.length - 1];
     const finalStatus = new Set(finalRound.map(x => x.status));

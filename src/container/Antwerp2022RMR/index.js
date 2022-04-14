@@ -27,9 +27,9 @@ const Regions = [
       contenders: 6,
     },
     tiebreakers: {
-      "3": [{teams: 1, id: "1/2"}], // after round 3, 1st place and 2nd place,
-      "5": [{teams: 7, id: "6/7/8"}], // after round 5, 7th place and 8th place,
-      "6": [{teams: 6, id: "6/7"}], // after round 6, 6th place and 7th place,
+      "3": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}], // after round 3, 1st place and 2nd place,
+      "5": [{teams: 7, id: "6/7/8", name: "8th Decider"}], // after round 5, 7th place and 8th place,
+      "6": [{teams: 6, id: "6/7", name: "6th/7th Decider"}], // after round 6, 6th place and 7th place,
     },
     rounds: 7,
   },
@@ -43,7 +43,7 @@ const Regions = [
       contenders: 8,
     },
     tiebreakers: {
-      "4": [{teams: 4, id: "4/5"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
     },
     rounds: 5,
   },
@@ -57,7 +57,7 @@ const Regions = [
       contenders: 8,
     },
     tiebreakers: {
-      "4": [{teams: 3, id: "3/4"}],
+      "4": [{teams: 3, id: "3/4", name: "3/4th Decider"}],
     },
     rounds: 5,
   },
