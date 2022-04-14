@@ -700,7 +700,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
         <div className="page-container">
           <div className="title-container">
             <h1 className="title">PGL Antwerp RMR 2022 Matchup Calculator</h1>
-            <h3 className="title">Pick your Winner and get the Matchups!</h3>
           </div>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
@@ -719,7 +718,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
               steam profile
             </a>
           </p>
-          <div style={{ marginTop: 50 }}>
+          <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               {
                 Regions.map(region => (
@@ -780,7 +779,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
           }
           {
             !this.state.hideDiagramUI && (
-              <div className="main-container" style={{ overflowX: "scroll" }}>
+              <div className="main-container">
                 <h1 className="round-title">
                   Diagram
                 </h1>
@@ -799,10 +798,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
                       <Radio toggle onChange={
                         (e, {checked}) =>
                         {
-                          this.setState({ straightLine: checked })
-                          localStorage.straightLine = checked
+                          this.setState({ straightCorner: checked })
+                          localStorage.straightCorner = checked
                         }
-                      } label="Straight Line" checked={this.state.straightLine} />
+                      } label="Straight Corners" checked={this.state.straightCorner} />
                     </div>
                     <div style={{ margin: 10, display: "inline-block" }}>
                       <Radio toggle onChange={
@@ -815,12 +814,14 @@ export default class Antwerp2022RMR extends React.PureComponent {
                     </div>
                   </Form.Field>
                 </Form>
-                <GraphBuilder
-                  data={this.state}
-                  eliminatedOnDiagram={this.state.eliminatedOnDiagram}
-                  straightLine={this.state.straightLine}
-                  tight={this.state.tight}
-                />
+                <div className="main-container" style={{ overflowX: "scroll" }}>
+                  <GraphBuilder
+                    data={this.state}
+                    eliminatedOnDiagram={this.state.eliminatedOnDiagram}
+                    straightCorner={this.state.straightCorner}
+                    tight={this.state.tight}
+                  />
+                </div>
               </div>
             )
           }

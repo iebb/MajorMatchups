@@ -402,7 +402,7 @@ export default class Katowice2019 extends React.PureComponent {
             </p>
             <p>Tip: Match outcomes can be changed by clicking on the Losing Team</p>
           </div>
-          <div style={{ marginTop: 50 }}>
+          <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
                 name="Challengers Stage"

@@ -10,7 +10,7 @@ export default class GraphBuilder extends React.PureComponent {
 
     const state = this.props.data;
     const eliminatedOnDiagram = this.props.eliminatedOnDiagram;
-    const straightLine = this.props.straightLine;
+    const straightCorner = this.props.straightCorner;
     const tight = this.props.tight ? 0 : 0.015;
 
     const padding = 8;
@@ -341,7 +341,7 @@ export default class GraphBuilder extends React.PureComponent {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${layout.width} ${layout.height}`}
-        style={{ height: 720 }}
+        style={{ height: 720, maxHeight: "80vh" }}
       >
         <svg
           width={layout.width}
@@ -368,9 +368,9 @@ export default class GraphBuilder extends React.PureComponent {
           {bundles.map((b, _) => {
             let d = b.links
               .map(
-                l => straightLine ? `
+                l => straightCorner ? `
         M${l.xt} ${l.yt}
-        L${l.xb - l.c1} ${l.yt}
+        L${l.xb} ${l.yt}
         L${l.xb} ${l.ys}
         L${l.xs} ${l.ys}` : `
         M${l.xt} ${l.yt}

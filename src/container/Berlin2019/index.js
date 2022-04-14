@@ -63,7 +63,7 @@ export default class Berlin2019 extends React.PureComponent {
 
   advance = () => {
     this.savedData = JSON.stringify(this.state);
-    const advancedTeams = this.state.teams[5].filter((x) => x.w === 3).map((x) => x.code);
+    const advancedTeams = this.state.teams[5].filter(t => t.w === 3).map(t => t.code);
     const filtered = rankingSeed.filter((x) => x.length === 3 || advancedTeams.indexOf(x[0]) !== -1);
     const elos = getRelativeSeed(filtered);
     const teams = Object.keys(elos).map((team, idx) => ({
@@ -417,7 +417,7 @@ export default class Berlin2019 extends React.PureComponent {
             </p>
             <p>Tip: Match outcomes can be changed by clicking on the Losing Team</p>
           </div>
-          <div style={{ marginTop: 50 }}>
+          <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item name="Challengers Stage" active={this.state.tournament === 1} onClick={() => this.init(1)} />
               <Menu.Item
