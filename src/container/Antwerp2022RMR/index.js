@@ -31,6 +31,9 @@ const Regions = [
       "5": [{teams: 7, id: "6/7/8", name: "8th Decider"}], // after round 5, 7th place and 8th place,
       "6": [{teams: 6, id: "6/7", name: "6th/7th Decider"}], // after round 6, 6th place and 7th place,
     },
+    tiebreakerResults: {
+      "1/2": ["am/furi", "am/mibr"],
+    },
     rounds: 7,
   },
   {
