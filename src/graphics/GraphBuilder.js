@@ -9,8 +9,13 @@ export default class GraphBuilder extends React.PureComponent {
   render = () => {
 
     const state = this.props.data;
-    const padding = 8;
+    const eliminatedOnDiagram = this.props.eliminatedOnDiagram;
+    const straightLine = this.props.straightLine;
+    const tight = this.props.tight ? 0 : 0.015;
 
+    const padding = 8;
+    const posBase = 0.8;
+    const tightness = tight;
     const node_point_height = 10;
     const node_single_height = 24;
     const node_height = 48;
@@ -32,6 +37,8 @@ export default class GraphBuilder extends React.PureComponent {
     const roundTeams = state.roundTeams;
     const colorTeams = {};
 
+
+
     if (!matches[0]) return null;
     if (!roundTeams[0]) return null;
 
@@ -43,7 +50,9 @@ export default class GraphBuilder extends React.PureComponent {
     const teams = _teams.map((t, _idx) => {
       const y = nodeY;
       nodeY += node_single_height + level_y_half_padding;
-      colorTeams[t['code']] = d3.interpolateWarm(1 - t.seed / (totalTeams));
+      colorTeams[t['code']] = t.seed <= totalTeams / 2 ?
+        d3.interpolateCool(0.3 + 0.7 * (8 - t.seed) / (totalTeams / 2)) :
+        d3.interpolateWarm(0.3 + 0.7 * (16 - t.seed) / (totalTeams / 2));
       return ({
         id: t['code'], ...t,
         name1: `Seed ${t.seed}`,
@@ -69,7 +78,9 @@ export default class GraphBuilder extends React.PureComponent {
       if (!round) return [];
       const level_delta = level_padding_delta * Math.min(round_idx, 3) / 2;
       let nodeY = level_padding_initial - level_delta;
-      let relPos = 0;
+
+      let relPos = posBase - totalTeams * tightness * 0.5;
+
       const pools = Math.max(new Set(round.map(match => match.pool)).size, 1)
       let lastPool = round[0] && round[0].pool;
 
@@ -94,9 +105,9 @@ export default class GraphBuilder extends React.PureComponent {
         const y = nodeY;
         nodeY += node_single_height + padSpace;
 
-        relPos += 1;
+        relPos += tightness;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y: y + node_height / 4, pos: .5 + (relPos) / 40})
+          teamPaths[t.code].push({x, y: y + node_height / 4, pos: relPos})
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
@@ -111,11 +122,11 @@ export default class GraphBuilder extends React.PureComponent {
             y: y + node_single_height,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y: y - 0.4 * node_height, pos: .5 + (relPos) / 40})
+          teamPaths[t.code].push({x, y: y - 0.4 * node_height, pos: relPos})
           return null;
         }
 
-        teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
+        teamPaths[t.code].push({x, y, pos: relPos})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
@@ -152,9 +163,9 @@ export default class GraphBuilder extends React.PureComponent {
           const y = nodeY;
           nodeY += node_height + padSpace;
 
-          teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: .5 + (relPos + 1) / 40})
-          teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: .5 + (relPos + 2) / 40})
-          relPos += 2;
+          teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: relPos})
+          teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: relPos + tightness})
+          relPos += tightness * 2;
 
 
 
@@ -179,12 +190,12 @@ export default class GraphBuilder extends React.PureComponent {
       }
 
 
-      const eliminated = teams.filter(t => t.elim).map(t => {
+      const eliminated = eliminatedOnDiagram ? teams.filter(t => t.elim).map(t => {
         const y = nodeY;
         nodeY += node_single_height + padSpace;
-        relPos += 1;
+        relPos += tightness;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
+          teamPaths[t.code].push({x, y, pos: relPos})
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
@@ -199,11 +210,11 @@ export default class GraphBuilder extends React.PureComponent {
             y: y + node_single_height,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
+          teamPaths[t.code].push({x, y, pos: relPos})
           return null;
         }
 
-        teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
+        teamPaths[t.code].push({x, y, pos: relPos})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
@@ -226,7 +237,7 @@ export default class GraphBuilder extends React.PureComponent {
           x,
           y,
         })
-      })
+      }) : [];
 
       return [...advanced, ...matches, ...eliminated]
     }).flat().filter(x => x)
@@ -238,7 +249,9 @@ export default class GraphBuilder extends React.PureComponent {
     const level_delta = level_padding_delta * 2 / 2;
     nodeY = level_padding_initial - level_y_padding - level_delta;
 
-    const finalRounds = Array.from(finalStatus).map(status => {
+    const finalRounds = Array.from(finalStatus).filter(
+      x => eliminatedOnDiagram || x !== "eliminated"
+    ).map(status => {
       const nextX = x + round_width;
       const statusTeams = finalRound.filter(x => x.status === status);
       const cnt = statusTeams.length;
@@ -343,7 +356,7 @@ export default class GraphBuilder extends React.PureComponent {
           font-size: 10px;
         }
         .graph:hover .link:not(:hover) {
-          filter: invert(0.5)
+          opacity: 0.2
         }
         .node {
           stroke-linecap: round;
@@ -355,7 +368,11 @@ export default class GraphBuilder extends React.PureComponent {
           {bundles.map((b, _) => {
             let d = b.links
               .map(
-                l => `
+                l => straightLine ? `
+        M${l.xt} ${l.yt}
+        L${l.xb - l.c1} ${l.yt}
+        L${l.xb} ${l.ys}
+        L${l.xs} ${l.ys}` : `
         M${l.xt} ${l.yt}
         L${l.xb - l.c1} ${l.yt}
         A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
@@ -364,7 +381,7 @@ export default class GraphBuilder extends React.PureComponent {
         L${l.xs} ${l.ys}`
               )
               .join("");
-            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
+            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="2"/>;
           })}
 
           {nodes.map(

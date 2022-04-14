@@ -124,6 +124,7 @@ h3.title {
 }
 .team .team-box-text {
   color: #fff;
+  position: relative;
 }
 
 .team.advanced .b  {
@@ -227,4 +228,8 @@ img.ui.image.team-logo-small {
 
 .descr {
   font-size: 80%;
+}
+
+.ui.inverted.form .ui.toggle.checkbox input:checked~label {
+  color: rgba(255, 255, 255,.95)!important;
 }

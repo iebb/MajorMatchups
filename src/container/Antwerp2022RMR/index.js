@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Image, Menu} from 'semantic-ui-react';
+import {Form, Image, Menu, Radio} from 'semantic-ui-react';
 import {AME, EUA, EUB} from './initial_data';
 import {ordinal} from "../../libs/plural";
 import {plus_minus} from "../../libs/plus_minus";
@@ -31,9 +31,7 @@ const Regions = [
       "5": [{teams: 7, id: "6/7/8", name: "8th Decider"}], // after round 5, 7th place and 8th place,
       "6": [{teams: 6, id: "6/7", name: "6th/7th Decider"}], // after round 6, 6th place and 7th place,
     },
-    tiebreakerResults: {
-      "1/2": ["am/furi", "am/mibr"],
-    },
+    tiebreakerResults: {},
     rounds: 7,
   },
   {
@@ -68,8 +66,30 @@ const Regions = [
 
 const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code}.png`;
 
+const getWinnerFromScore = (scores) => {
+  let teamA = 0;
+  let teamB = 0;
+  for(const sco of scores) {
+    if (sco[0] !== sco[1]) {
+      if (sco[0] > 15 || sco[1] > 15) {
+        if (sco[0] > sco[1]) {
+          teamA ++;
+        } else if (sco[1] > sco[0]) {
+          teamB ++;
+        }
+      }
+    }
+  }
+  return [teamA - teamB, Math.max(teamA, teamB)]
+}
+
+
 export default class Antwerp2022RMR extends React.PureComponent {
   state = {
+    hideMatchUI: localStorage.hideMatchUI === "true" || false,
+    hideDiagramUI: localStorage.hideDiagramUI === "true" || false,
+    matchOnly: localStorage.matchOnly === "true" || false,
+    eliminatedOnDiagram: localStorage.eliminatedOnDiagram === "true" || true,
     teams: [[], false, false, false, false, false],
     roundTeams: [
       [],
@@ -158,6 +178,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const stateTeams = JSON.parse(JSON.stringify(this.state.teams));
     const stateRoundTeams = JSON.parse(JSON.stringify(this.state.roundTeams));
     const { pickResults } = this.state;
+    const gamescores = this.state.scores || {};
+
 
     let tiebreakers = this.state.tiebreakers;
     let tiebreakerResults = this.state.tiebreakerResults || {};
@@ -270,7 +292,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
         });
 
         if (!team2cands.length) return false;
-        const gamescores = this.state.scores || {};
 
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];
@@ -281,25 +302,16 @@ export default class Antwerp2022RMR extends React.PureComponent {
           let score = [['TBA'], ['TBA']];
 
           if (`${team1.code}-${team2.code}` in gamescores) {
-            let teamA = 0;
-            let teamB = 0;
             const gs = gamescores[`${team1.code}-${team2.code}`];
-            for(const sco of gs) {
-              if (sco[0] !== sco[1]) {
-                if (sco[0] > 15 || sco[1] > 15) {
-                  if (sco[0] > sco[1]) {
-                    teamA ++;
-                  } else if (sco[1] > sco[0]) {
-                    teamB ++;
-                  }
-                }
-              }
-            }
             score[0] = gs.map(x => x[0])
             score[1] = gs.map(x => x[1])
-            if (teamA !== teamB) {
-              picked = teamA > teamB ? 1 : -1;
-              if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+            const [winner, maxW] = getWinnerFromScore(gs);
+            if (winner) {
+              picked = winner > 0 ? 1 : -1;
+              if (
+                (team1.w < 2 && team1.l < 2) ||
+                ((team1.w === 2 || team1.l === 2) && maxW === 2)
+              ) {
                 result = picked
               }
             }
@@ -342,7 +354,23 @@ export default class Antwerp2022RMR extends React.PureComponent {
               if (
                 !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
               ) {
-                tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code];
+                console.log(`b-${t1.code}-${t2.code}`);
+                console.log(`b-${t2.code}-${t1.code}`);
+                if (`b-${t1.code}-${t2.code}` in gamescores) {
+                  const gs = gamescores[`b-${t1.code}-${t2.code}`];
+                  const [winner, ] = getWinnerFromScore(gs);
+                  tbr = tiebreakerResults[tbs.id] = winner > 0 ?
+                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])] :
+                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0])];
+                } else if (`b-${t2.code}-${t1.code}` in gamescores) {
+                  const gs = gamescores[`b-${t2.code}-${t1.code}`];
+                  const [winner, ] = getWinnerFromScore(gs);
+                  tbr = tiebreakerResults[tbs.id] = winner < 0 ?
+                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])] :
+                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0])];
+                } else {
+                  tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], []];
+                }
               }
 
               const otherTeam = tbs.teams === idx + 1 ? idx + 2 : idx;
@@ -352,7 +380,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 ordinalStanding: ordinal(idx+1),
                 status: getStatus(idx+1),
                 tiebreaker: true,
-                tiebreakerStats: tiebreakerResults[tbs.id][0] === x.code ? 1 : -1,
+                tiebreakerStats: tbr[0] === x.code ? 1 : -1,
+                tiebreakerScores: tbr[0] === x.code ? tbr[2]: tbr[3],
                 tiebreakerOtherTeam: otherTeam,
                 tiebreakerConfig: tbs,
                 elim: x.l === 3,
@@ -389,7 +418,9 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
     const stateMatches = this.state.matches;
     const stateRoundTeams = this.state.roundTeams;
-    let tiebreakerResults = this.state.tiebreakerResults || {};
+    let { matchOnly, tiebreakerResults } = this.state;
+
+    if (stage === this.state.rounds) matchOnly = false;
 
 
 
@@ -403,10 +434,22 @@ export default class Antwerp2022RMR extends React.PureComponent {
       })
     };
 
-    const setTiebreakerWinner = (team, losingTeam) => {
-      const tbc = team.tiebreakerConfig;
+    const setTiebreakerWinner = (t1, t2) => {
+      const tbc = t1.tiebreakerConfig;
       const tbr = this.state.tiebreakerResults;
-      tbr[tbc.id] = [team.code, losingTeam.code];
+      const gamescores = this.state.scores;
+
+      if (`b-${t1.code}-${t2.code}` in gamescores) {
+        const gs = gamescores[`b-${t1.code}-${t2.code}`];
+        tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])];
+      } else if (`b-${t2.code}-${t1.code}` in gamescores) {
+        const gs = gamescores[`b-${t2.code}-${t1.code}`];
+        tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0])];
+      } else {
+        tbr[tbc.id] = [t1.code, t2.code, [], []];
+      }
+
+
       this.setState({ tiebreakerResults: tbr}, () => {
         this.calculateMatchups(0, this.state.rounds + 1)
       });
@@ -416,24 +459,38 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const stageMatches = stateMatches[stage];
     if (!roundTeams) return null;
     if (!stageMatches) return null;
+
     return (
       <div key={stage}>
-        {roundTeams.filter(x => x.adv).map((team, _) => (
+        {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => (
           <div key={team.code} className={`team one ${team.status}`}>
-            <div className="team-box up">
-              <div className="team-box-split b" style={
-                team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
-              }>
+            <div className="team-box up" style={
+              team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
+            }>
+              <div className="team-box-split b">
                 <span className="team-box-text">
-                  {team.tiebreaker ? team.tiebreakerConfig.id : `${team.w}-${team.l}`}
+                  {`${team.w}-${team.l}`} {team.tiebreaker && "TB"}
                 </span>
               </div>
             </div>
             <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">{ordinal(team.standing)} ({abbrevs[team.status]})</span>
+              <div className="team-box-split b" style={
+                team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
+              }>
+                <span className="team-box-text">
+                  {`${ordinal(team.standing)} (${abbrevs[team.status]})`}
+                </span>
               </div>
             </div>
+            {team.tiebreaker && team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
+              <div className="team-box down" key={idx + '_tbs'}>
+                <div className="team-box-split b">
+                      <span className={`team-box-text`}>
+                        {p}
+                      </span>
+                </div>
+              </div>
+            ))}
             <div className="team-box med">
               {
                 (team.tiebreaker) ? (
@@ -585,7 +642,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </div>
           );
         })}
-        {roundTeams.filter(x => x.elim).map((team, _) => (
+        {roundTeams.filter(x => x.elim).filter(x => x.tiebreaker || !matchOnly).map((team, _) => (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up">
               <div className="team-box-split b">
@@ -675,23 +732,98 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 ))
               }
             </Menu>
+            <Form style={{ marginTop: 20 }} inverted>
+              <Form.Field>
+                <div style={{ margin: 10, display: "inline-block" }}>
+                  <Radio toggle onChange={
+                    (e, {checked}) =>
+                    {
+                      this.setState({ matchOnly: checked })
+                      localStorage.matchOnly = checked
+                    }
+                  } label="Matches Only" checked={this.state.matchOnly} />
+                </div>
+                <div style={{ margin: 10, display: "inline-block" }}>
+                  <Radio toggle onChange={
+                    (e, {checked}) =>
+                    {
+                      this.setState({ hideMatchUI: checked })
+                      localStorage.hideMatchUI = checked
+                    }
+                  } label="Hide Match UI" checked={this.state.hideMatchUI} />
+                </div>
+                <div style={{ margin: 10, display: "inline-block" }}>
+                  <Radio toggle onChange={
+                    (e, {checked}) =>
+                    {
+                      this.setState({ hideDiagramUI: checked })
+                      localStorage.hideDiagramUI = checked
+                    }
+                  } label="Hide Diagram UI" checked={this.state.hideDiagramUI} />
+                </div>
+              </Form.Field>
+            </Form>
           </div>
-          <div className="main-container">
-            {Array.from(Array(this.state.rounds + 1).keys()).map((round) => (
-              <>
-                <h1 className="round-title" key={round}>
-                  {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
+          {
+            !this.state.hideMatchUI && (
+              <div className="main-container">
+                {Array.from(Array(this.state.rounds + 1).keys()).map((round) => (
+                  <>
+                    <h1 className="round-title" key={round}>
+                      {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
+                    </h1>
+                    <div key={"_" + round}>{this.getMatchups(round)}</div>
+                  </>
+                ))}
+              </div>
+            )
+          }
+          {
+            !this.state.hideDiagramUI && (
+              <div className="main-container" style={{ overflowX: "scroll" }}>
+                <h1 className="round-title">
+                  Diagram
                 </h1>
-                <div key={"_" + round}>{this.getMatchups(round)}</div>
-              </>
-            ))}
-          </div>
-          <div className="main-container" style={{ overflowX: "scroll" }}>
-            <h1 className="round-title">
-              Diagram
-            </h1>
-            <GraphBuilder data={this.state} />
-          </div>
+                <Form style={{ marginTop: 20 }} inverted>
+                  <Form.Field>
+                    <div style={{ margin: 10, display: "inline-block" }}>
+                      <Radio toggle onChange={
+                        (e, {checked}) =>
+                        {
+                          this.setState({ eliminatedOnDiagram: checked })
+                          localStorage.eliminatedOnDiagram = checked
+                        }
+                      } label="Show Eliminated" checked={this.state.eliminatedOnDiagram} />
+                    </div>
+                    <div style={{ margin: 10, display: "inline-block" }}>
+                      <Radio toggle onChange={
+                        (e, {checked}) =>
+                        {
+                          this.setState({ straightLine: checked })
+                          localStorage.straightLine = checked
+                        }
+                      } label="Straight Line" checked={this.state.straightLine} />
+                    </div>
+                    <div style={{ margin: 10, display: "inline-block" }}>
+                      <Radio toggle onChange={
+                        (e, {checked}) =>
+                        {
+                          this.setState({ tight: checked })
+                          localStorage.tight = checked
+                        }
+                      } label="Vertical Overlapping" checked={this.state.tight} />
+                    </div>
+                  </Form.Field>
+                </Form>
+                <GraphBuilder
+                  data={this.state}
+                  eliminatedOnDiagram={this.state.eliminatedOnDiagram}
+                  straightLine={this.state.straightLine}
+                  tight={this.state.tight}
+                />
+              </div>
+            )
+          }
         </div>
       </div>
     );
