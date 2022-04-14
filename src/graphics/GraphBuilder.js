@@ -381,7 +381,7 @@ export default class GraphBuilder extends React.PureComponent {
         L${l.xs} ${l.ys}`
               )
               .join("");
-            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="2"/>;
+            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
           })}
 
           {nodes.map(
