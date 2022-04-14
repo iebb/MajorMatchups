@@ -376,7 +376,7 @@ export default class GraphBuilder extends React.PureComponent {
               <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
               n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
               n.name2 && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
-              n.midname && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 28}>{n.midname}</text>,
+              n.midname && <text key={"_6" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 26}>{n.midname}</text>,
             ]
           )}
         </svg>

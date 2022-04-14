@@ -247,7 +247,7 @@ export const AME = [
   },
   {
     "code": "am/caet",
-    "name": "S\u00e3o Caetano Esports",
+    "name": "S\u00e3o Caetano E.",
     "seed": 9,
     "description": "Seed #9"
   },
@@ -283,7 +283,7 @@ export const AME = [
   },
   {
     "code": "am/one",
-    "name": "Team oNe eSports",
+    "name": "oNe eSports",
     "seed": 15,
     "description": "Seed #15"
   },

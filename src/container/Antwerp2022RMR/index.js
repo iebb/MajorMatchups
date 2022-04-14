@@ -303,9 +303,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
           }
 
           if (`${team1.code}-${team2.code}` in pickResults) {
-            console.log(picked, "picked!!!");
             picked = pickResults[`${team1.code}-${team2.code}`]
-            console.log(picked, "changed to!!!");
           }
 
 
