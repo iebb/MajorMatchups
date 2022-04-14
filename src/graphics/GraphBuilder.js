@@ -42,7 +42,6 @@ export default class GraphBuilder extends React.PureComponent {
     const totalTeams = _teams.length;
     const teams = _teams.map((t, _idx) => {
       const y = nodeY;
-      console.log("yy=", y)
       nodeY += node_single_height + level_y_half_padding;
       colorTeams[t['code']] = d3.interpolateWarm(1 - t.seed / (totalTeams));
       return ({
@@ -91,20 +90,13 @@ export default class GraphBuilder extends React.PureComponent {
 
       const padSpace = space / (poolSpace + normalSpaces);
 
-
-      console.log(poolSpace, normalSpaces, padSpace);
-
-
-
-
-
       const advanced = teams.filter(t => t.adv).map(t => {
         const y = nodeY;
         nodeY += node_single_height + padSpace;
 
         relPos += 1;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
+          teamPaths[t.code].push({x, y: y + node_height / 4, pos: .5 + (relPos) / 40})
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
@@ -119,7 +111,7 @@ export default class GraphBuilder extends React.PureComponent {
             y: y + node_single_height,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
+          teamPaths[t.code].push({x, y: y - 0.4 * node_height, pos: .5 + (relPos) / 40})
           return null;
         }
 
@@ -158,7 +150,6 @@ export default class GraphBuilder extends React.PureComponent {
           lastPool = match.pool;
 
           const y = nodeY;
-          console.log("y=", y);
           nodeY += node_height + padSpace;
 
           teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: .5 + (relPos + 1) / 40})
@@ -179,7 +170,6 @@ export default class GraphBuilder extends React.PureComponent {
       }).filter(m=>m)
 
       if (matches.length) {
-        console.log("addpad")
         nodeY += padSpace * 2;
       }
 
