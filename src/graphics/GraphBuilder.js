@@ -11,7 +11,7 @@ export default class GraphBuilder extends React.PureComponent {
     const state = this.props.data;
     const padding = 8;
 
-    const node_point_height = 8;
+    const node_point_height = 10;
     const node_single_height = 24;
     const node_height = 48;
 
@@ -21,10 +21,10 @@ export default class GraphBuilder extends React.PureComponent {
     const level_y_half_padding = 8;
     const metro_d = 10;
 
-    const round_width = 200;
-    const tbo_round_width = 100;
-    const level_padding_initial = 80;
-    const level_padding_delta = 20;
+    const round_width = 180;
+    const tbo_round_width = 120;
+    const level_padding_initial = 100;
+    const level_padding_delta = 40;
 
     const radius = 20;
 
@@ -41,6 +41,8 @@ export default class GraphBuilder extends React.PureComponent {
 
     const totalTeams = _teams.length;
     const teams = _teams.map((t, _idx) => {
+      const y = nodeY;
+      console.log("yy=", y)
       nodeY += node_single_height + level_y_half_padding;
       colorTeams[t['code']] = d3.interpolateWarm(1 - t.seed / (totalTeams));
       return ({
@@ -50,9 +52,10 @@ export default class GraphBuilder extends React.PureComponent {
         height: node_single_height,
         padding: node_single_height,
         x: 0,
-        y: nodeY,
+        y,
       })
     })
+
 
     const teamPaths = {
 
@@ -65,48 +68,67 @@ export default class GraphBuilder extends React.PureComponent {
     let x = 0;
     const roundMatches = matches.map((round, round_idx) => {
       if (!round) return [];
-      const level_delta = level_padding_delta * Math.min(round_idx, 4) / 2;
-      let nodeY = level_padding_initial - level_y_padding - level_delta;
+      const level_delta = level_padding_delta * Math.min(round_idx, 3) / 2;
+      let nodeY = level_padding_initial - level_delta;
       let relPos = 0;
-      const pools = Math.max(new Set(round.map(match => match.pool)).size, 2)
-      const delta = level_delta / (pools - 1);
+      const pools = Math.max(new Set(round.map(match => match.pool)).size, 1)
       let lastPool = round[0] && round[0].pool;
 
       const teams = roundTeams[round_idx] || [];
-      x += round_idx <= 5 ? round_width : tbo_round_width;
+      x += (round_idx > 0 && round_idx <= 5) ? round_width : tbo_round_width;
+
+
+      const decidedTeams = teams.filter(t => t.adv || t.elim).length;
+
+      const decidedTeamsHeight = node_single_height * decidedTeams;
+      const liveTeamHeight = node_height * round.length;
+      const levelTotalHeight = (node_single_height + level_y_half_padding) * totalTeams + level_delta * 2;
+      const totalPools = round.length ? pools + (decidedTeams ? 2 : 0) : 1;
+
+      const space = levelTotalHeight - decidedTeamsHeight - liveTeamHeight;
+      const poolSpace = (totalPools - 1) * 3;
+      const normalSpaces = (decidedTeams + round.length - totalPools);
+
+      const padSpace = space / (poolSpace + normalSpaces);
+
+
+      console.log(poolSpace, normalSpaces, padSpace);
+
+
+
 
 
       const advanced = teams.filter(t => t.adv).map(t => {
-        nodeY += node_single_height + level_y_half_padding;
         const y = nodeY;
+        nodeY += node_single_height + padSpace;
 
         relPos += 1;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
             ...t,
             name: t.tiebreakerConfig.name,
-            name1: `${t.name}  / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won":"Lost":t.ordinalStanding}`,
-            name2: `${team2.name} / ${t.tiebreakerStats?t.tiebreakerStats<0?"Won":"Lost":t.ordinalStanding}`,
+            name1: `${t.name}  / ${t.tiebreakerStats>0?"Won":"Lost"}`,
+            name2: `${team2.name} / ${t.tiebreakerStats<0?"Won":"Lost"}`,
             is_single_node: true,
-            height: node_height,
-            padding: node_height,
+            height: node_height + padSpace,
+            padding: node_height + padSpace,
             x,
-            y: y - node_point_height + node_single_height,
+            y: y + node_single_height,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+          teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
           return null;
         }
 
-        teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 34})
+        teamPaths[t.code].push({x, y, pos: .5 + (relPos) / 40})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
             ...t,
-            name1: `${t.w}-${t.l}`,
+            name1: `${t.w}-${t.l} / ${t.ordinalStanding}`,
             is_single_node: true,
             height: node_point_height,
             padding: node_point_height,
@@ -127,16 +149,20 @@ export default class GraphBuilder extends React.PureComponent {
       })
 
 
+      if (advanced.length) lastPool = "*";
+
+
       const matches = round.map(match => {
         if (match) {
-          nodeY += node_height + level_y_padding;
-          if (match.pool !== lastPool) nodeY += delta;
+          if (match.pool !== lastPool) nodeY += padSpace * 2;
           lastPool = match.pool;
 
           const y = nodeY;
+          console.log("y=", y);
+          nodeY += node_height + padSpace;
 
-          teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: .5 + (relPos + 1) / 34})
-          teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: .5 + (relPos + 2) / 34})
+          teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: .5 + (relPos + 1) / 40})
+          teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: .5 + (relPos + 2) / 40})
           relPos += 2;
           return ({
             id: match.pool + " - match " + match['match'],
@@ -150,41 +176,44 @@ export default class GraphBuilder extends React.PureComponent {
             y,
           })
         }
-      })
+      }).filter(m=>m)
 
-      nodeY += node_height + level_y_padding;
+      if (matches.length) {
+        console.log("addpad")
+        nodeY += padSpace * 2;
+      }
 
 
       const eliminated = teams.filter(t => t.elim).map(t => {
         const y = nodeY;
-        nodeY += node_single_height + level_y_half_padding;
+        nodeY += node_single_height + padSpace;
         relPos += 1;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
             ...t,
             name: t.tiebreakerConfig.name,
-            name1: `${t.name} / ${t.tiebreakerStats?t.tiebreakerStats>0?"Won":"Lost":t.ordinalStanding}`,
-            name2: `${team2.name} / ${t.tiebreakerStats?t.tiebreakerStats<0?"Won":"Lost":t.ordinalStanding}`,
+            name1: `${t.name} / ${t.tiebreakerStats>0?"Won":"Lost"}`,
+            name2: `${team2.name} / ${t.tiebreakerStats<0?"Won":"Lost"}`,
             is_single_node: true,
-            height: node_height,
-            padding: node_height,
+            height: node_height + padSpace,
+            padding: node_height + padSpace,
             x,
-            y: y - node_point_height + node_single_height,
+            y: y + node_single_height,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+          teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
           return null;
         }
 
-        teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 34})
+        teamPaths[t.code].push({x, y, pos: 1 - (relPos) / 40})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
             ...t,
-            name1: `${t.w}-${t.l}`,
+            name1: `${t.w}-${t.l} / ${t.ordinalStanding}`,
             is_single_node: true,
             height: node_point_height,
             padding: node_point_height,
@@ -257,8 +286,8 @@ export default class GraphBuilder extends React.PureComponent {
           const source = paths[i];
           const target = paths[i-1];
           let c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
-          if (c1 < 5) {
-            source.y = target.y;
+          if (c1 < 4) {
+            target.y = source.y = (target.y + source.y) / 2;
             c1 = 0;
           }
           const rev = source.y < target.y ? -1 : 1;
@@ -309,6 +338,7 @@ export default class GraphBuilder extends React.PureComponent {
         <svg
           width={layout.width}
           height={layout.height}
+          className="graph"
           style={{
             backgroundColor: background_color
           }}>
@@ -316,6 +346,9 @@ export default class GraphBuilder extends React.PureComponent {
         text {
           font-family: sans-serif;
           font-size: 10px;
+        }
+        .graph:hover .link:not(:hover) {
+          filter: invert(0.5)
         }
         .node {
           stroke-linecap: round;
@@ -336,10 +369,7 @@ export default class GraphBuilder extends React.PureComponent {
         L${l.xs} ${l.ys}`
               )
               .join("");
-            return [
-              <path className="link" d={d} stroke={background_color} strokeWidth="5"/>,
-              <path className="link" d={d} stroke={b.color} strokeWidth="2"/>
-            ];
+            return <path className="link" d={d} stroke={b.color} strokeWidth="3"/>;
           })}
 
           {nodes.map(
