@@ -1,32 +1,15 @@
-@font-face{
-  font-family: Avenir;
-  src: url("font/avenir_medium.woff") format("woff");
-  font-weight:400;
-  font-style:normal;
-}
-@font-face{
-  font-family: Avenir;
-  src: url("./font/avenir_medium.woff") format("woff");
-  font-weight:600;
-  font-style:normal;
-}
-@font-face{
-  font-family: Avenir;
-  src: url("./font/avenir_bold.woff") format("woff");
-  font-weight:900;
-  font-style:normal;
-}
+
 body {
   background: #23294d;
   color: #dbdce4;
   text-align: center;
-  font-family: Avenir, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: Nunito, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, .ui.button {
-  font-family: Avenir, Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 600;
+  font-family: Nunito, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 a {

@@ -35,7 +35,7 @@ export default class GraphBuilder extends React.PureComponent {
     if (!matches[0]) return null;
     if (!roundTeams[0]) return null;
 
-    let nodeY = level_padding_initial;
+    let nodeY = level_padding_initial - level_y_half_padding;
 
     const _teams = matches[0].map(x => [x.team1, x.team2]).flat();
 
@@ -155,11 +155,16 @@ export default class GraphBuilder extends React.PureComponent {
           teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: .5 + (relPos + 1) / 40})
           teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: .5 + (relPos + 2) / 40})
           relPos += 2;
+
+
+
+
           return ({
             id: match.pool + " - match " + match['match'],
             name: `${match.pool} Match`,
             name1: match.team1.name,
             name2: match.team2.name,
+            midname: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
             parents: [match.team1.code, match.team2.code],
             height: node_height,
             padding: node_height,
@@ -359,18 +364,19 @@ export default class GraphBuilder extends React.PureComponent {
         L${l.xs} ${l.ys}`
               )
               .join("");
-            return <path className="link" d={d} stroke={b.color} strokeWidth="3"/>;
+            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
           })}
 
           {nodes.map(
             n => [
-              <path className="selectable node" data-id={n.id} stroke="black"
+              <path key={"_1" + n.id} className="selectable node" data-id={n.id} stroke="black"
                     strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
-              <path className="node" stroke="white" strokeWidth="4"
+              <path key={"_2" + n.id} className="node" stroke="white" strokeWidth="4"
                     d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
-              <text x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
-              n.name1 && <text x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
-              n.name2 && <text x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
+              <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
+              n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
+              n.name2 && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
+              n.midname && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 28}>{n.midname}</text>,
             ]
           )}
         </svg>

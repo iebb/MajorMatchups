@@ -55,7 +55,7 @@ class DesktopContainer extends Component {
           <Segment inverted textAlign="center" vertical>
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
-                <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Avenir, Lato', fontWeight: 700 }}>
+                <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Nunito', fontWeight: 700 }}>
                   SMC
                 </Menu.Item>
                 {Editions.map((edition) => (
