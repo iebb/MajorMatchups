@@ -51,8 +51,8 @@ export default class GraphBuilder extends React.PureComponent {
       const y = nodeY;
       nodeY += node_single_height + level_y_half_padding;
       colorTeams[t['code']] = t.seed <= totalTeams / 2 ?
-        d3.interpolateCool(0.2 + 0.8 * (8 - t.seed) / (totalTeams / 2)) :
-        d3.interpolateWarm(0.2 + 0.8 * (16 - t.seed) / (totalTeams / 2));
+        d3.interpolateCool(0.2 + 0.8 * (totalTeams / 2 - t.seed) / (totalTeams / 2)) :
+        d3.interpolateWarm(0.2 + 0.8 * (totalTeams - t.seed) / (totalTeams / 2));
       return ({
         id: t['code'], ...t,
         name: `#${t.seed} ${t.name}`,
@@ -341,13 +341,11 @@ export default class GraphBuilder extends React.PureComponent {
       metro_d
     };
 
-    const logos = true;
-
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${layout.width} ${layout.height}`}
-        style={{ height: 720, maxHeight: "80vh" }}
+        style={{ height: _teams.length * 45 + 200, maxHeight: "80vh" }}
       >
         <svg
           width={layout.width}

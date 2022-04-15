@@ -296,3 +296,30 @@ export const AME = [
     "description": "Seed #16"
   }
 ];
+
+export const AP = [
+  {
+    "code": "ap/tylo",
+    "name": "TYLOO",
+    "seed": 1,
+    "description": "China"
+  },
+  {
+    "code": "ap/rng",
+    "name": "Renegades",
+    "seed": 2,
+    "description": "Oceania"
+  },
+  {
+    "code": "ap/l4or",
+    "name": "LookingForOrg",
+    "seed": 3,
+    "description": "Middle East"
+  },
+  {
+    "code": "ap/ihc",
+    "name": "IHC Esports",
+    "seed": 4,
+    "description": "East Asia"
+  },
+];
