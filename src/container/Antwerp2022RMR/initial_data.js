@@ -8,8 +8,9 @@ export const EUB = [
     "description": "Seed #1"
   },
   {
-    "code": "eu/gamb",
-    "name": "Gambit Esports",
+    "code": "eu/play",
+    "name": "Players",
+    "alt_name": "Gambit Esports",
     "seed": 2,
     "description": "Seed #2"
   },
@@ -112,8 +113,9 @@ export const EUA = [
     "description": "Seed #2"
   },
   {
-    "code": "eu/vp",
-    "name": "Virtus.pro",
+    "code": "eu/outs",
+    "name": "Outsiders",
+    "alt_name": "Virtus.pro",
     "seed": 3,
     "description": "Seed #3"
   },
