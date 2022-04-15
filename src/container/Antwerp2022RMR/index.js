@@ -538,9 +538,9 @@ export default class Antwerp2022RMR extends React.PureComponent {
             {team.tiebreaker ? team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
               <div className="team-box down" key={idx + '_tbs'}>
                 <div className="team-box-split b">
-                      <span className={`team-box-text`}>
-                        {p}
-                      </span>
+                  <span className={`team-box-text`}>
+                    {p}
+                  </span>
                 </div>
               </div>
             )) : (
@@ -583,11 +583,11 @@ export default class Antwerp2022RMR extends React.PureComponent {
                   <div className="team-box down">
                     <div className="team-box-split b">
                 <span className="team-box-text">
-                  {
-                    team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
-                    )
-                  }
+                      {
+                        team.opponents.map((opp, _idx) =>
+                          <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={_idx} />
+                        )
+                      }
                 </span>
                     </div>
                   </div>
@@ -737,13 +737,13 @@ export default class Antwerp2022RMR extends React.PureComponent {
                   </div>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                <span className="team-box-text">
-                  {
-                    team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
-                    )
-                  }
-                </span>
+                    <span className="team-box-text">
+                      {
+                        team.opponents.map((opp, _idx) =>
+                          <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={_idx} />
+                        )
+                      }
+                    </span>
                     </div>
                   </div>
                 </>
