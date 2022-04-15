@@ -12,7 +12,7 @@ export default class GraphBuilder extends React.PureComponent {
     const eliminatedOnDiagram = this.props.eliminatedOnDiagram;
     const straightCorner = this.props.straightCorner;
     const posBase = 0.7;
-    const tight = this.props.tight ? 0 : 0.03;
+    const tight = this.props.tight ? 0 : 0.02;
 
     const padding = 8;
     const tightness = tight;
