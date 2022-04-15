@@ -11,10 +11,10 @@ export default class GraphBuilder extends React.PureComponent {
     const state = this.props.data;
     const eliminatedOnDiagram = this.props.eliminatedOnDiagram;
     const straightCorner = this.props.straightCorner;
-    const tight = this.props.tight ? 0 : 0.015;
+    const posBase = 0.7;
+    const tight = this.props.tight ? 0 : 0.03;
 
     const padding = 8;
-    const posBase = 0.8;
     const tightness = tight;
     const node_point_height = 10;
     const node_single_height = 24;
@@ -51,8 +51,8 @@ export default class GraphBuilder extends React.PureComponent {
       const y = nodeY;
       nodeY += node_single_height + level_y_half_padding;
       colorTeams[t['code']] = t.seed <= totalTeams / 2 ?
-        d3.interpolateCool(0.3 + 0.7 * (8 - t.seed) / (totalTeams / 2)) :
-        d3.interpolateWarm(0.3 + 0.7 * (16 - t.seed) / (totalTeams / 2));
+        d3.interpolateCool(0.2 + 0.8 * (8 - t.seed) / (totalTeams / 2)) :
+        d3.interpolateWarm(0.2 + 0.8 * (16 - t.seed) / (totalTeams / 2));
       return ({
         id: t['code'], ...t,
         name1: `Seed ${t.seed}`,
@@ -385,14 +385,14 @@ export default class GraphBuilder extends React.PureComponent {
           {nodes.map(
             n =>
               <g key={"_g/" + n.id + "/" + n.x + "/" + n.y}>
+                <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>
+                {n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>}
+                {n.name2 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 42}>{n.name2}</text>}
+                {n.midname && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 28}>{n.midname}</text>}
                 <path onClick={n.toggle} key={"_1" + n.id} className="selectable node" data-id={n.id} stroke="black"
-                      strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
+                      strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />
                 <path onClick={n.toggle} key={"_2" + n.id} className="node" stroke="white" strokeWidth="4"
-                      d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
-                <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
-                n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
-                n.name2 && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
-                n.midname && <text key={"_6" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 26}>{n.midname}</text>,
+                      d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />
               </g>
           )}
         </svg>
