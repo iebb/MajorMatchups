@@ -130,6 +130,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
           name: t.name,
           seed: t.seed,
           description: t.description,
+          logo: teamLogo(t.code),
         })),
         false,
         false,

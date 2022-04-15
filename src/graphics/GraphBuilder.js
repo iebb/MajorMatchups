@@ -26,7 +26,7 @@ export default class GraphBuilder extends React.PureComponent {
     const level_y_half_padding = 8;
     const metro_d = 10;
 
-    const round_width = 180;
+    const round_width = 200;
     const tbo_round_width = 120;
     const level_padding_initial = 100;
     const level_padding_delta = 40;
@@ -55,7 +55,7 @@ export default class GraphBuilder extends React.PureComponent {
         d3.interpolateWarm(0.2 + 0.8 * (16 - t.seed) / (totalTeams / 2));
       return ({
         id: t['code'], ...t,
-        name1: `Seed ${t.seed}`,
+        name: `#${t.seed} ${t.name}`,
         is_single_node: true,
         height: node_single_height,
         padding: node_single_height,
@@ -85,7 +85,7 @@ export default class GraphBuilder extends React.PureComponent {
       let lastPool = round[0] && round[0].pool;
 
       const teams = roundTeams[round_idx] || [];
-      x += (round_idx > 0 && round_idx <= 5) ? round_width : tbo_round_width;
+      x += (round_idx <= 5) ? round_width : tbo_round_width;
 
 
       const decidedTeams = teams.filter(t => t.adv || t.elim).length;
@@ -115,6 +115,9 @@ export default class GraphBuilder extends React.PureComponent {
             name: t.tiebreakerConfig.name,
             name1: `${t.name}`,
             name2: `${team2.name}`,
+            logo1: `${t.logo}`,
+            logo2: `${team2.logo}`,
+            logo: null,
             is_single_node: true,
             height: node_height + padSpace,
             padding: node_height + padSpace,
@@ -173,7 +176,10 @@ export default class GraphBuilder extends React.PureComponent {
             name: `${match.pool} Match`,
             name1: match.team1.name,
             name2: match.team2.name,
-            midname: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
+            logo1: match.team1.logo,
+            logo2: match.team2.logo,
+            logo: null,
+            text_mid: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
             parents: [match.team1.code, match.team2.code],
             height: node_height,
             padding: node_height,
@@ -200,8 +206,10 @@ export default class GraphBuilder extends React.PureComponent {
             id: t.code,
             ...t,
             name: t.tiebreakerConfig.name,
-            name1: `${t.name}`,
-            name2: `${team2.name}`,
+            name1: t.name,
+            name2: team2.name,
+            logo1: t.logo,
+            logo2: team2.logo,
             is_single_node: true,
             height: node_height + padSpace,
             padding: node_height + padSpace,
@@ -333,6 +341,8 @@ export default class GraphBuilder extends React.PureComponent {
       metro_d
     };
 
+    const logos = true;
+
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -385,10 +395,34 @@ export default class GraphBuilder extends React.PureComponent {
           {nodes.map(
             n =>
               <g key={"_g/" + n.id + "/" + n.x + "/" + n.y}>
-                <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>
-                {n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>}
-                {n.name2 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 42}>{n.name2}</text>}
-                {n.midname && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 28}>{n.midname}</text>}
+                {
+                  n.name && (n.logo ? (
+                    <>
+                      <image x={n.x + 4} y={n.y - n.height / 2 + 4 - 10} width={12} height={12} href={n.logo} />
+                      <text x={n.x + 4 + 16} y={n.y - n.height / 2 + 4}>{n.name}</text>
+                    </>
+                  ) : (
+                    <text x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>
+                  ))
+                }
+                {
+                  n.name1 && (
+                    <>
+                      <image x={n.x + 4} y={n.y - n.height / 2 + 16 - 10} width={12} height={12} href={n.logo1} />
+                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 16}>{n.name1}</text>
+                    </>
+                  )
+                }
+                {
+                  n.name2 && (
+                    <>
+                      <image x={n.x + 4} y={n.y - n.height / 2 + 42 - 10} width={12} height={12} href={n.logo2} />
+                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 42}>{n.name2}</text>
+                    </>
+                  )
+                }
+                {n.text_mid && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 28}>{n.text_mid}</text>}
+
                 <path onClick={n.toggle} key={"_1" + n.id} className="selectable node" data-id={n.id} stroke="black"
                       strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />
                 <path onClick={n.toggle} key={"_2" + n.id} className="node" stroke="white" strokeWidth="4"
