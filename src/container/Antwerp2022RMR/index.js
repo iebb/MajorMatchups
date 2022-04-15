@@ -172,11 +172,43 @@ export default class Antwerp2022RMR extends React.PureComponent {
   };
 
 
+
+  setWinner = (match, picked) => {
+    if (match.picked === picked) return;
+    const { pickResults } = this.state;
+    pickResults[`${match.team1.code}-${match.team2.code}`] = picked;
+    pickResults[`${match.team2.code}-${match.team1.code}`] = -picked;
+    this.setState({ pickResults }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
+    })
+  };
+
+  setTiebreakerWinner = (t1, t2) => {
+    const tbc = t1.tiebreakerConfig;
+    const tbr = this.state.tiebreakerResults;
+    const gamescores = this.state.scores;
+
+    if (`b-${t1.code}-${t2.code}` in gamescores) {
+      const gs = gamescores[`b-${t1.code}-${t2.code}`];
+      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])];
+    } else if (`b-${t2.code}-${t1.code}` in gamescores) {
+      const gs = gamescores[`b-${t2.code}-${t1.code}`];
+      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0])];
+    } else {
+      tbr[tbc.id] = [t1.code, t2.code, [], []];
+    }
+
+
+    this.setState({ tiebreakerResults: tbr}, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
+    });
+  };
+
   calculateMatchups(fromStage, toStage) {
 
-    const stateMatches = JSON.parse(JSON.stringify(this.state.matches));
-    const stateTeams = JSON.parse(JSON.stringify(this.state.teams));
-    const stateRoundTeams = JSON.parse(JSON.stringify(this.state.roundTeams));
+    const stateMatches = this.state.matches;
+    const stateTeams = this.state.teams;
+    const stateRoundTeams = copy(this.state.roundTeams);
     const { pickResults } = this.state;
     const gamescores = this.state.scores || {};
 
@@ -295,11 +327,11 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];
-          const mat = copy(m);
+          const mat = [...m];
           let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
           let result = 0;
 
-          let score = [['TBA'], ['TBA']];
+          let score = [[], []];
 
           if (`${team1.code}-${team2.code}` in gamescores) {
             const gs = gamescores[`${team1.code}-${team2.code}`];
@@ -322,8 +354,15 @@ export default class Antwerp2022RMR extends React.PureComponent {
           }
 
 
-
-          mat.push({ pool, match: m.length, team1, team2, picked, result, score, stage });
+          const _match = {
+            pool,
+            match: m.length,
+            team1, team2,
+            picked, result,
+            score, stage,
+            toggle: () => this.setWinner({picked, team1, team2}, -picked),
+          };
+          mat.push(_match);
           const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
           if (dfs(nPoolTeams, mat, mref, pool)) {
             return true;
@@ -354,8 +393,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
               if (
                 !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
               ) {
-                console.log(`b-${t1.code}-${t2.code}`);
-                console.log(`b-${t2.code}-${t1.code}`);
                 if (`b-${t1.code}-${t2.code}` in gamescores) {
                   const gs = gamescores[`b-${t1.code}-${t2.code}`];
                   const [winner, ] = getWinnerFromScore(gs);
@@ -373,7 +410,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 }
               }
 
-              const otherTeam = tbs.teams === idx + 1 ? idx + 2 : idx;
+              const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
+              const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
+              const lostTeam = tbr[0] === x.code ? otherTeam : x;
+              const winTeam = tbr[0] === x.code ? x : otherTeam;
               return ({
                 ...x,
                 standing: idx + 1,
@@ -382,11 +422,15 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 tiebreaker: true,
                 tiebreakerStats: tbr[0] === x.code ? 1 : -1,
                 tiebreakerScores: tbr[0] === x.code ? tbr[2]: tbr[3],
-                tiebreakerOtherTeam: otherTeam,
+                tiebreakerOtherTeam: otherTeamId,
                 tiebreakerConfig: tbs,
                 elim: x.l === 3,
                 adv: x.w === 3,
-                currentRound: true
+                currentRound: true,
+                toggle: () => this.setTiebreakerWinner({
+                  ...lostTeam,
+                  tiebreakerConfig: tbs,
+                }, winTeam),
               })
             }
           }
@@ -422,38 +466,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
     if (stage === this.state.rounds) matchOnly = false;
 
-
-
-    const setWinner = (match, picked) => {
-      if (match.picked === picked) return;
-      const { pickResults } = this.state;
-      pickResults[`${match.team1.code}-${match.team2.code}`] = picked;
-      pickResults[`${match.team2.code}-${match.team1.code}`] = -picked;
-      this.setState({ pickResults }, () => {
-        this.calculateMatchups(0, this.state.rounds + 1)
-      })
-    };
-
-    const setTiebreakerWinner = (t1, t2) => {
-      const tbc = t1.tiebreakerConfig;
-      const tbr = this.state.tiebreakerResults;
-      const gamescores = this.state.scores;
-
-      if (`b-${t1.code}-${t2.code}` in gamescores) {
-        const gs = gamescores[`b-${t1.code}-${t2.code}`];
-        tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])];
-      } else if (`b-${t2.code}-${t1.code}` in gamescores) {
-        const gs = gamescores[`b-${t2.code}-${t1.code}`];
-        tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0])];
-      } else {
-        tbr[tbc.id] = [t1.code, t2.code, [], []];
-      }
-
-
-      this.setState({ tiebreakerResults: tbr}, () => {
-        this.calculateMatchups(0, this.state.rounds + 1)
-      });
-    };
 
     const roundTeams = stateRoundTeams[stage];
     const stageMatches = stateMatches[stage];
@@ -496,7 +508,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 (team.tiebreaker) ? (
                   <div className={
                     `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
-                  } onClick={() => setTiebreakerWinner(team, roundTeams[team.tiebreakerOtherTeam - 1])}>
+                  } onClick={() => this.setTiebreakerWinner(team, roundTeams[team.tiebreakerOtherTeam - 1])}>
                     <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
                   </div>
                 ) : (
@@ -580,10 +592,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 </div>
               ))}
               <div className="team-box med">
-                <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
+                <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => this.setWinner(x, 1)}>
                   <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
                 </div>
-                <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => setWinner(x, -1)}>
+                <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => this.setWinner(x, -1)}>
                   <Image className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
                 </div>
               </div>

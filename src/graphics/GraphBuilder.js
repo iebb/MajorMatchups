@@ -113,13 +113,14 @@ export default class GraphBuilder extends React.PureComponent {
             id: t.code,
             ...t,
             name: t.tiebreakerConfig.name,
-            name1: `${t.name}  / ${t.tiebreakerStats>0?"Won":"Lost"}`,
-            name2: `${team2.name} / ${t.tiebreakerStats<0?"Won":"Lost"}`,
+            name1: `${t.name}`,
+            name2: `${team2.name}`,
             is_single_node: true,
             height: node_height + padSpace,
             padding: node_height + padSpace,
             x,
             y: y + node_single_height,
+            toggle: t.toggle,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
           teamPaths[t.code].push({x, y: y - 0.4 * node_height, pos: relPos})
@@ -167,9 +168,6 @@ export default class GraphBuilder extends React.PureComponent {
           teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: relPos + tightness})
           relPos += tightness * 2;
 
-
-
-
           return ({
             id: match.pool + " - match " + match['match'],
             name: `${match.pool} Match`,
@@ -179,6 +177,7 @@ export default class GraphBuilder extends React.PureComponent {
             parents: [match.team1.code, match.team2.code],
             height: node_height,
             padding: node_height,
+            toggle: match.toggle,
             x,
             y,
           })
@@ -201,13 +200,14 @@ export default class GraphBuilder extends React.PureComponent {
             id: t.code,
             ...t,
             name: t.tiebreakerConfig.name,
-            name1: `${t.name} / ${t.tiebreakerStats>0?"Won":"Lost"}`,
-            name2: `${team2.name} / ${t.tiebreakerStats<0?"Won":"Lost"}`,
+            name1: `${t.name}`,
+            name2: `${team2.name}`,
             is_single_node: true,
             height: node_height + padSpace,
             padding: node_height + padSpace,
             x,
             y: y + node_single_height,
+            toggle: t.toggle,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
           teamPaths[t.code].push({x, y, pos: relPos})
@@ -294,10 +294,6 @@ export default class GraphBuilder extends React.PureComponent {
           const source = paths[i];
           const target = paths[i-1];
           let c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
-          if (c1 < 4) {
-            target.y = source.y = (target.y + source.y) / 2;
-            c1 = 0;
-          }
           const rev = source.y < target.y ? -1 : 1;
           const u = source.pos;
           links.push({
@@ -346,55 +342,58 @@ export default class GraphBuilder extends React.PureComponent {
         <svg
           width={layout.width}
           height={layout.height}
-          className="graph"
           style={{
             backgroundColor: background_color
           }}>
           <style>{`
         text {
-          font-family: sans-serif;
-          font-size: 10px;
+          font-family: Nunito;
+          font-size: 12px;
         }
         .graph:hover .link:not(:hover) {
           opacity: 0.2
         }
         .node {
           stroke-linecap: round;
+          cursor: grab;
         }
         .link {
           fill: none;
         }`}</style>
 
-          {bundles.map((b, _) => {
-            let d = b.links
-              .map(
-                l => straightCorner ? `
-        M${l.xt} ${l.yt}
-        L${l.xb} ${l.yt}
-        L${l.xb} ${l.ys}
-        L${l.xs} ${l.ys}` : `
-        M${l.xt} ${l.yt}
-        L${l.xb - l.c1} ${l.yt}
-        A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
-        L${l.xb} ${l.y2}
-        A${l.c2} ${l.c2} 90 0 ${l.rev < 0 ? 1 : 0} ${l.xb + l.c2} ${l.ys}
-        L${l.xs} ${l.ys}`
-              )
-              .join("");
-            return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
-          })}
+          <g className="graph">
+            {bundles.map((b, _) => {
+              let d = b.links
+                .map(
+                  l => straightCorner ? `
+          M${l.xt} ${l.yt}
+          L${l.xb} ${l.yt}
+          L${l.xb} ${l.ys}
+          L${l.xs} ${l.ys}` : `
+          M${l.xt} ${l.yt}
+          L${l.xb - l.c1} ${l.yt}
+          A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
+          L${l.xb} ${l.y2}
+          A${l.c2} ${l.c2} 90 0 ${l.rev < 0 ? 1 : 0} ${l.xb + l.c2} ${l.ys}
+          L${l.xs} ${l.ys}`
+                )
+                .join("");
+              return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
+            })}
+          </g>
 
           {nodes.map(
-            n => [
-              <path key={"_1" + n.id} className="selectable node" data-id={n.id} stroke="black"
-                    strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
-              <path key={"_2" + n.id} className="node" stroke="white" strokeWidth="4"
-                    d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
-              <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
-              n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
-              n.name2 && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
-              n.midname && <text key={"_6" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 26}>{n.midname}</text>,
-            ]
+            n =>
+              <g key={"_g/" + n.id + "/" + n.x + "/" + n.y}>
+                <path onClick={n.toggle} key={"_1" + n.id} className="selectable node" data-id={n.id} stroke="black"
+                      strokeWidth="8" d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
+                <path onClick={n.toggle} key={"_2" + n.id} className="node" stroke="white" strokeWidth="4"
+                      d={`M${n.x} ${n.y - n.height / 2} L${n.x} ${n.y + n.height / 2}`} />,
+                <text key={"_3" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>,
+                n.name1 && <text key={"_4" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 16}>{n.name1}</text>,
+                n.name2 && <text key={"_5" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 40}>{n.name2}</text>,
+                n.midname && <text key={"_6" + n.id} x={n.x + 4} y={n.y - n.height / 2 + 26}>{n.midname}</text>,
+              </g>
           )}
         </svg>
       </svg>
