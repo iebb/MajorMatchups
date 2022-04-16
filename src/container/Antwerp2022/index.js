@@ -10,9 +10,7 @@ import GraphBuilder from '../../graphics/GraphBuilder';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 const abbrevs = {
-  "legend": "L",
-  "challenger": "C",
-  "contender": "O",
+  "advanced": "A",
   "eliminated": "E",
 }
 
@@ -138,9 +136,7 @@ export default class Antwerp2022 extends React.PureComponent {
     tiebreakerResults: {},
     pickResults: {},
     seats: {
-      legends: 0,
-      challengers: 0,
-      contenders: 0,
+      advanced: 8,
     },
     rounds: 0,
     winsToAdvance: 3,
@@ -273,9 +269,7 @@ export default class Antwerp2022 extends React.PureComponent {
     let tiebreakerResults = this.state.tiebreakerResults || {};
 
     const getStatus = standing => {
-      if (standing <= this.state.seats.legends) return "legend";
-      if (standing <= this.state.seats.challengers) return "challenger";
-      if (standing <= this.state.seats.contenders) return "contender";
+      if (standing <= this.state.seats.advanced) return "advanced";
       return "eliminated";
     }
 
