@@ -379,7 +379,7 @@ export default class GraphBuilder extends React.PureComponent {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${layout.width} ${layout.height}`}
-        style={{ height: _teams.length * 45 + 200, maxHeight: "80vh" }}
+        style={{ height: _teams.length * 30 + 200, maxHeight: "80vh" }}
       >
         <svg
           width={layout.width}
