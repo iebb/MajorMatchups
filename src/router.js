@@ -4,6 +4,7 @@ import Berlin2019 from './container/Berlin2019';
 import Stockholm2021 from './container/Stockholm2021';
 import Katowice2019 from './container/Katowice2019';
 import Antwerp2022RMR from "./container/Antwerp2022RMR";
+import Antwerp2022 from "./container/Antwerp2022";
 
 export default function Routes() {
   return (
@@ -19,6 +20,9 @@ export default function Routes() {
       </Route>
       <Route path="/22rmr_antwerp">
         <Antwerp2022RMR />
+      </Route>
+      <Route path="/22antwerp">
+        <Antwerp2022 />
       </Route>
       <Route path="/">
         <Redirect to="/22rmr_antwerp" />
