@@ -110,10 +110,13 @@ const getWinnerFromScore = (scores) => {
 
 export default class Antwerp2022RMR extends React.PureComponent {
   state = {
-    hideMatchUI: localStorage.hideMatchUI === "true" || false,
-    hideDiagramUI: localStorage.hideDiagramUI === "true" || false,
-    matchOnly: localStorage.matchOnly === "true" || false,
-    eliminatedOnDiagram: localStorage.eliminatedOnDiagram === "true" || true,
+    hideMatchUI: (localStorage.hideMatchUI || "false") === "true",
+    hideDiagramUI: (localStorage.hideDiagramUI || "false") === "true",
+    matchOnly: (localStorage.matchOnly || "false") === "true",
+    eliminatedOnDiagram: (localStorage.dash || "true") === "true",
+    dash: (localStorage.dash || "true") === "true",
+    tight: (localStorage.tight || "false") === "true",
+    straightCorner: (localStorage.straightCorner || "false") === "true",
     teams: [[], false, false, false, false, false],
     roundTeams: [
       [],
@@ -215,12 +218,14 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
     if (`b-${t1.code}-${t2.code}` in gamescores) {
       const gs = gamescores[`b-${t1.code}-${t2.code}`];
-      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])];
+      const [winner, ] = getWinnerFromScore(gs);
+      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), winner < 0]; // not winner
     } else if (`b-${t2.code}-${t1.code}` in gamescores) {
       const gs = gamescores[`b-${t2.code}-${t1.code}`];
-      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0])];
+      const [winner, ] = getWinnerFromScore(gs);
+      tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), winner > 0]; // is winner
     } else {
-      tbr[tbc.id] = [t1.code, t2.code, [], []];
+      tbr[tbc.id] = [t1.code, t2.code, [], [], true];
     }
 
 
@@ -365,6 +370,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
           let score = [[], []];
           const suffix = isDup ? "_" : ""
+          let undetermined = false;
 
           if (`${team1.code}-${team2.code}` + suffix in gamescores) {
             const gs = gamescores[`${team1.code}-${team2.code}` + suffix];
@@ -379,6 +385,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
               ) {
                 result = picked
               }
+            } else {
+              undetermined = true;
             }
           } else if (`${team2.code}-${team1.code}` + suffix in gamescores) {
             const gs = gamescores[`${team2.code}-${team1.code}` + suffix];
@@ -393,13 +401,19 @@ export default class Antwerp2022RMR extends React.PureComponent {
               ) {
                 result = picked
               }
+            } else {
+              undetermined = true;
             }
+          } else {
+            undetermined = true;
           }
 
           if (`${team1.code}-${team2.code}` + suffix in pickResults) {
+            if (picked !== pickResults[`${team1.code}-${team2.code}` + suffix]) {
+              undetermined = true;
+            }
             picked = pickResults[`${team1.code}-${team2.code}` + suffix]
           }
-
 
           const _match = {
             isDup,
@@ -408,6 +422,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
             team1, team2,
             picked, result,
             score, stage, suffix,
+            undetermined,
             toggle: () => this.setWinner({
               picked, team1, team2, suffix
             }, -picked),
@@ -446,17 +461,21 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 if (`b-${t1.code}-${t2.code}` in gamescores) {
                   const gs = gamescores[`b-${t1.code}-${t2.code}`];
                   const [winner, ] = getWinnerFromScore(gs);
-                  tbr = tiebreakerResults[tbs.id] = winner > 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0])];
+                  tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                    winner > 0 ?
+                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
+                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
+                  ) : [t1.code, t2.code, [], [], true];
                 } else if (`b-${t2.code}-${t1.code}` in gamescores) {
                   const gs = gamescores[`b-${t2.code}-${t1.code}`];
                   const [winner, ] = getWinnerFromScore(gs);
-                  tbr = tiebreakerResults[tbs.id] = winner < 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1])] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0])];
+                  tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                    winner < 0 ?
+                      [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
+                      [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
+                  ) : [t1.code, t2.code, [], [], true];
                 } else {
-                  tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], []];
+                  tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true];
                 }
               }
 
@@ -464,6 +483,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
               const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
               const lostTeam = tbr[0] === x.code ? otherTeam : x;
               const winTeam = tbr[0] === x.code ? x : otherTeam;
+              console.log(x.code, tbr);
               return ({
                 ...x,
                 standing: idx + 1,
@@ -472,6 +492,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 tiebreaker: true,
                 tiebreakerStats: tbr[0] === x.code ? 1 : -1,
                 tiebreakerScores: tbr[0] === x.code ? tbr[2]: tbr[3],
+                tiebreakerOtherScores: tbr[0] === x.code ? tbr[3]: tbr[2],
+                tiebreakerUndetermined: tbr[4],
                 tiebreakerOtherTeam: otherTeamId,
                 tiebreakerConfig: tbs,
                 elim: x.l === winsToAdvance,
@@ -873,6 +895,15 @@ export default class Antwerp2022RMR extends React.PureComponent {
                         }
                       } label="Vertical Overlapping" checked={this.state.tight} />
                     </div>
+                    <div style={{ margin: 10, display: "inline-block" }}>
+                      <Radio toggle onChange={
+                        (e, {checked}) =>
+                        {
+                          this.setState({ dash: checked })
+                          localStorage.dash = checked
+                        }
+                      } label="Dash for Unfinished/Manipulated" checked={this.state.dash} />
+                    </div>
                   </Form.Field>
                 </Form>
                 <div className="main-container" style={{ overflowX: "scroll" }}>
@@ -881,6 +912,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                     eliminatedOnDiagram={this.state.eliminatedOnDiagram}
                     straightCorner={this.state.straightCorner}
                     tight={this.state.tight}
+                    dash={this.state.dash}
                   />
                 </div>
               </div>

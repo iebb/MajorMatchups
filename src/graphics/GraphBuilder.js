@@ -65,12 +65,12 @@ export default class GraphBuilder extends React.PureComponent {
     })
 
 
-    const teamPaths = {
-
-    };
+    const teamPaths = {};
+    const teamSuffixes = {};
 
     teams.forEach(team => {
       teamPaths[team.code] = [{x: 0, y: team.y}]
+      teamSuffixes[team.code] = ""
     })
 
     let x = 0;
@@ -106,8 +106,15 @@ export default class GraphBuilder extends React.PureComponent {
         nodeY += node_single_height + padSpace;
 
         relPos += tightness;
+
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y: y + node_height / 4, pos: relPos})
+          teamPaths[t.code + teamSuffixes[t.code]].push({x, y: y + 15, pos: relPos})
+          if (t.tiebreakerUndetermined) {
+            if (teamSuffixes[t.code] === "") {
+              teamSuffixes[t.code] = "_";
+              teamPaths[t.code + "_"] = [{x, y: y + 15, pos: relPos}];
+            }
+          }
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
@@ -115,22 +122,28 @@ export default class GraphBuilder extends React.PureComponent {
             name: t.tiebreakerConfig.name,
             name1: `${t.name}`,
             name2: `${team2.name}`,
+            text_mid: t.tiebreakerScores.map((x, _idx) => `${x}:${t.tiebreakerOtherScores[_idx]}`).join(" / "),
             logo1: `${t.logo}`,
             logo2: `${team2.logo}`,
             logo: null,
             is_single_node: true,
-            height: node_height + padSpace,
-            padding: node_height + padSpace,
+            height: node_height,
+            padding: node_height,
             x,
-            y: y + node_single_height,
+            y: y + node_single_height - 4,
             toggle: t.toggle,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y: y - 0.4 * node_height, pos: relPos})
+          teamPaths[t.code + teamSuffixes[t.code]].push({x, y: y - 15, pos: relPos})
+          if (t.tiebreakerUndetermined) {
+            if (teamSuffixes[t.code] === "") {
+              teamSuffixes[t.code] = "_";
+              teamPaths[t.code + "_"] = [{x, y: y - 15, pos: relPos}];
+            }
+          }
           return null;
         }
-
-        teamPaths[t.code].push({x, y, pos: relPos})
+        teamPaths[t.code + teamSuffixes[t.code]].push({x, y, pos: relPos})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
@@ -167,8 +180,20 @@ export default class GraphBuilder extends React.PureComponent {
           const y = nodeY;
           nodeY += node_height + padSpace;
 
-          teamPaths[match.team1.code].push({x, y: y - node_height / 8, pos: relPos})
-          teamPaths[match.team2.code].push({x, y: y + node_height / 8, pos: relPos + tightness})
+          teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_height / 8, pos: relPos})
+          teamPaths[match.team2.code + teamSuffixes[match.team2.code]].push({x, y: y + node_height / 8, pos: relPos + tightness})
+
+          if (match.undetermined) {
+            if (teamSuffixes[match.team1.code] === "") {
+              teamSuffixes[match.team1.code] = "_";
+              teamPaths[match.team1.code + "_"] = [{x, y: y - node_height / 8, pos: relPos}];
+            }
+            if (teamSuffixes[match.team2.code] === "") {
+              teamSuffixes[match.team2.code] = "_";
+              teamPaths[match.team2.code + "_"] = [{x, y: y + node_height / 8, pos: relPos + tightness}];
+            }
+          }
+
           relPos += tightness * 2;
 
           return ({
@@ -200,7 +225,13 @@ export default class GraphBuilder extends React.PureComponent {
         nodeY += node_single_height + padSpace;
         relPos += tightness;
         if (t.tiebreakerOtherTeam > t.standing) {
-          teamPaths[t.code].push({x, y, pos: relPos})
+          teamPaths[t.code + teamSuffixes[t.code]].push({x, y, pos: relPos})
+          if (t.tiebreakerUndetermined) {
+            if (teamSuffixes[t.code] === "") {
+              teamSuffixes[t.code] = "_";
+              teamPaths[t.code + "_"] = [{x, y: y + node_height / 4, pos: relPos}];
+            }
+          }
           const team2 = teams[t.tiebreakerOtherTeam - 1];
           return ({
             id: t.code,
@@ -218,11 +249,11 @@ export default class GraphBuilder extends React.PureComponent {
             toggle: t.toggle,
           })
         } else if (t.tiebreakerOtherTeam < t.standing) {
-          teamPaths[t.code].push({x, y, pos: relPos})
+          teamPaths[t.code + teamSuffixes[t.code]].push({x, y, pos: relPos})
           return null;
         }
 
-        teamPaths[t.code].push({x, y, pos: relPos})
+        teamPaths[t.code + teamSuffixes[t.code]].push({x, y, pos: relPos})
         if (t.currentRound || round_idx === roundTeams.length - 1) {
           return ({
             id: t.code,
@@ -273,7 +304,7 @@ export default class GraphBuilder extends React.PureComponent {
       nodeY += (node_single_height) * cnt;
       let d = 0;
       for(const t of statusTeams) {
-        teamPaths[t.code].push({x: nextX, y: y + (d - cnt / 2 + .5) * node_single_height * 0.5, pos: .9})
+        teamPaths[t.code + teamSuffixes[t.code]].push({x: nextX, y: y + (d - cnt / 2 + .5) * node_single_height * 0.5, pos: .9})
         d++;
       }
 
@@ -321,9 +352,12 @@ export default class GraphBuilder extends React.PureComponent {
           })
         }
 
+        const teamColorName = (team[team.length - 1] === "_") ? team.substring(0,team.length - 1) : team;
+
         return {
           links,
-          color: colorTeams[team],
+          color: colorTeams[teamColorName],
+          dashed: team[team.length - 1] === "_"
         }
       }
     );
@@ -386,7 +420,7 @@ export default class GraphBuilder extends React.PureComponent {
           L${l.xs} ${l.ys}`
                 )
                 .join("");
-              return <path key={d} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
+              return <path key={d} strokeDasharray={b.dashed && this.props.dash ? "10,3" : null} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
             })}
           </g>
 
