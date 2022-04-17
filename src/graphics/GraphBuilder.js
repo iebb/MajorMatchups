@@ -325,11 +325,13 @@ export default class GraphBuilder extends React.PureComponent {
       ...finalRounds
     ]
 
-    const bundles = Object.keys(teamPaths).map(
-      team => {
+    const bundles = _teams.map(
+      _team => {
+        const team = _team.code;
         const links = [];
+        const dashLinks = [];
         const paths = teamPaths[team];
-        for(let i = 1; i < teamPaths[team].length; i++) {
+        for(let i = 1; i < paths.length; i++) {
           const source = paths[i];
           const target = paths[i-1];
           let c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
@@ -352,12 +354,34 @@ export default class GraphBuilder extends React.PureComponent {
           })
         }
 
-        const teamColorName = (team[team.length - 1] === "_") ? team.substring(0,team.length - 1) : team;
+        const dashPaths = teamPaths[team + "_"];
+        for(let i = 1; i < dashPaths.length; i++) {
+          const source = dashPaths[i];
+          const target = dashPaths[i-1];
+          let c1 = Math.min(Math.abs((source.y - target.y) / 2), radius);
+          const rev = source.y < target.y ? -1 : 1;
+          const u = source.pos;
+          dashLinks.push({
+            xs: source.x,
+            xt: target.x,
+            ys: source.y,
+            yt: target.y,
+
+            xb: source.x * u + target.x * (1-u),
+            yb: source.y * u + target.y * (1-u),
+
+            c1: c1,
+            c2: c1,
+            rev,
+            y1: target.y + c1 * rev,
+            y2: source.y - c1 * rev,
+          })
+        }
 
         return {
           links,
-          color: colorTeams[teamColorName],
-          dashed: team[team.length - 1] === "_"
+          dashLinks,
+          color: colorTeams[team],
         }
       }
     );
@@ -405,22 +429,30 @@ export default class GraphBuilder extends React.PureComponent {
 
           <g className="graph">
             {bundles.map((b, _) => {
-              let d = b.links
-                .map(
-                  l => straightCorner ? `
-          M${l.xt} ${l.yt}
-          L${l.xb} ${l.yt}
-          L${l.xb} ${l.ys}
-          L${l.xs} ${l.ys}` : `
-          M${l.xt} ${l.yt}
-          L${l.xb - l.c1} ${l.yt}
-          A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
-          L${l.xb} ${l.y2}
-          A${l.c2} ${l.c2} 90 0 ${l.rev < 0 ? 1 : 0} ${l.xb + l.c2} ${l.ys}
-          L${l.xs} ${l.ys}`
+              let d = b.links.map(
+                l => straightCorner ? `M${l.xt} ${l.yt} L${l.xb} ${l.yt} L${l.xb} ${l.ys} L${l.xs} ${l.ys}` :
+                  ` M${l.xt} ${l.yt}
+                    L${l.xb - l.c1} ${l.yt}
+                    A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
+                    L${l.xb} ${l.y2}
+                    A${l.c2} ${l.c2} 90 0 ${l.rev < 0 ? 1 : 0} ${l.xb + l.c2} ${l.ys}
+                    L${l.xs} ${l.ys}`
                 )
                 .join("");
-              return <path key={d} strokeDasharray={b.dashed && this.props.dash ? "10,3" : null} className="link" d={d} stroke={b.color} strokeWidth="3"/>;
+              let dashD = b.dashLinks.map(
+                l => straightCorner ? `M${l.xt} ${l.yt} L${l.xb} ${l.yt} L${l.xb} ${l.ys} L${l.xs} ${l.ys}` :
+                  ` M${l.xt} ${l.yt}
+                    L${l.xb - l.c1} ${l.yt}
+                    A${l.c1} ${l.c1} 90 0 ${l.rev < 0 ? 0 : 1} ${l.xb} ${l.y1}
+                    L${l.xb} ${l.y2}
+                    A${l.c2} ${l.c2} 90 0 ${l.rev < 0 ? 1 : 0} ${l.xb + l.c2} ${l.ys}
+                    L${l.xs} ${l.ys}`
+                )
+                .join("");
+              return <g className="link">
+                <path key={d} d={d} stroke={b.color} strokeWidth="3"/>
+                <path key={d} strokeDasharray={this.props.dash ? "10,3" : null} d={dashD} stroke={b.color} strokeWidth="3"/>
+              </g>;
             })}
           </g>
 
