@@ -261,7 +261,7 @@ export default class Antwerp2022 extends React.PureComponent {
     const stateMatches = this.state.matches;
     const stateTeams = this.state.teams;
     const stateRoundTeams = copy(this.state.roundTeams);
-    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf } = this.state;
+    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
     const gamescores = this.state.scores || {};
 
 
@@ -375,7 +375,7 @@ export default class Antwerp2022 extends React.PureComponent {
 
         let isDup = false;
 
-        if (!team2cands.length) {
+        if (!team2cands.length && allowDups) {
           team2cands = p.filter((team) => {
             return (team.seed !== team1.seed);
           });

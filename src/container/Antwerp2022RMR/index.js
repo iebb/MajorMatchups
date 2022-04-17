@@ -33,6 +33,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    allowDups: false,
   },
   {
     id: 1,
@@ -50,6 +51,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    allowDups: false,
   },
   {
     id: 2,
@@ -70,6 +72,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    allowDups: false,
   },
   {
     id: 3,
@@ -85,6 +88,7 @@ const Regions = [
     winsToAdvance: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
+    allowDups: true,
   },
 ];
 
@@ -143,6 +147,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       contenders: 0,
     },
     rounds: 0,
+    allowDups: false,
   };
 
   pack = (teams) => {
@@ -239,7 +244,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const stateMatches = this.state.matches;
     const stateTeams = this.state.teams;
     const stateRoundTeams = copy(this.state.roundTeams);
-    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf } = this.state;
+    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
     const gamescores = this.state.scores || {};
 
 
@@ -261,8 +266,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
       for (let i = 0; i < stage; i += 1) {
         if (stateMatches[i]) {
           for (const match of stateMatches[i]) {
-            if (match.team1.seed === tA && match.team2.seed === tB) return true;
-            if (match.team2.seed === tA && match.team1.seed === tB) return true;
+            if (match.team1.code === tA && match.team2.code === tB) return true;
+            if (match.team2.code === tA && match.team1.code === tB) return true;
           }
         }
       }
@@ -349,13 +354,13 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
         const team1 = p[0];
         let team2cands = p.filter((team) => {
-          if (team.seed === team1.seed) return false;
-          return !previouslyMatchedUp(stage, team.seed, team1.seed);
+          if (team.code === team1.code) return false;
+          return !previouslyMatchedUp(stage, team.code, team1.code);
         });
 
         let isDup = false;
 
-        if (!team2cands.length) {
+        if (!team2cands.length && allowDups) {
           team2cands = p.filter((team) => {
             return (team.seed !== team1.seed);
           });
