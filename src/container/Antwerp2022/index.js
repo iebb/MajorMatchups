@@ -806,16 +806,12 @@ export default class Antwerp2022 extends React.PureComponent {
           </div>
           <h3>Based on Seeding Rules used at 2021 Stockholm Major. Might not be accurate</h3>
           <p>
-            <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
-              reddit thread
-            </a>
-            <span style={{ margin: 10 }}>·</span>
             <a href="https://discord.gg/KYNbRYrZGe">
               discord server
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">
-              tweet
+              twitter
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://steamcommunity.com/id/iebbbb">

@@ -607,7 +607,7 @@ export default class Stockholm2021 extends React.PureComponent {
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">
-              tweet
+              twitter
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://steamcommunity.com/id/iebbbb">

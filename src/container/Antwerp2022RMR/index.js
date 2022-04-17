@@ -785,16 +785,12 @@ export default class Antwerp2022RMR extends React.PureComponent {
             <h1 className="title">PGL Antwerp RMR 2022 Matchup Calculator</h1>
           </div>
           <p>
-            <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
-              reddit thread
-            </a>
-            <span style={{ margin: 10 }}>·</span>
             <a href="https://discord.gg/KYNbRYrZGe">
               discord server
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">
-              tweet
+              twitter
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://steamcommunity.com/id/iebbbb">

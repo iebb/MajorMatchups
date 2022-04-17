@@ -412,7 +412,7 @@ export default class Berlin2019 extends React.PureComponent {
               </a>
               <span style={{ margin: 10 }}>·</span>
               <a href="https://twitter.com/CyberHono">
-                tweet
+                twitter
               </a>
             </p>
             <p>Tip: Match outcomes can be changed by clicking on the Losing Team</p>
