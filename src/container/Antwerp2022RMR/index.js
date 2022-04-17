@@ -19,6 +19,40 @@ const abbrevs = {
 const Regions = [
   {
     id: 0,
+    name: "Europe A",
+    seeds: EUA,
+    seats: {
+      legends: 4,
+      challengers: 6,
+      contenders: 8,
+    },
+    tiebreakers: {
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
+    },
+    rounds: 5,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+  },
+  {
+    id: 1,
+    name: "Europe B",
+    seeds: EUB,
+    seats: {
+      legends: 3,
+      challengers: 7,
+      contenders: 8,
+    },
+    tiebreakers: {
+      "4": [{teams: 3, id: "3/4", name: "3/4th Decider"}],
+    },
+    rounds: 5,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+  },
+  {
+    id: 2,
     name: "Americas",
     seeds: AME,
     seats: {
@@ -38,7 +72,7 @@ const Regions = [
     deciderBestOf: 2,
   },
   {
-    id: 1,
+    id: 3,
     name: "Asia-Pacific",
     seeds: AP,
     seats: {
@@ -50,40 +84,6 @@ const Regions = [
     rounds: 3,
     winsToAdvance: 2,
     nonDeciderBestOf: 2,
-    deciderBestOf: 2,
-  },
-  {
-    id: 2,
-    name: "Europe A",
-    seeds: EUA,
-    seats: {
-      legends: 4,
-      challengers: 6,
-      contenders: 8,
-    },
-    tiebreakers: {
-      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
-    },
-    rounds: 5,
-    winsToAdvance: 3,
-    nonDeciderBestOf: 1,
-    deciderBestOf: 2,
-  },
-  {
-    id: 3,
-    name: "Europe B",
-    seeds: EUB,
-    seats: {
-      legends: 3,
-      challengers: 7,
-      contenders: 8,
-    },
-    tiebreakers: {
-      "4": [{teams: 3, id: "3/4", name: "3/4th Decider"}],
-    },
-    rounds: 5,
-    winsToAdvance: 3,
-    nonDeciderBestOf: 1,
     deciderBestOf: 2,
   },
 ];
