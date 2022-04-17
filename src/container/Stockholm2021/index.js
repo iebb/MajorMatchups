@@ -606,7 +606,7 @@ export default class Stockholm2021 extends React.PureComponent {
               discord server
             </a>
             <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/intent/tweet?text=Major Matchup Calculator @ https://major.ieb.im/ by @CyberHono">
+            <a href="https://twitter.com/CyberHono">
               tweet
             </a>
             <span style={{ margin: 10 }}>·</span>
