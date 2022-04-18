@@ -354,7 +354,7 @@ export default class GraphBuilder extends React.PureComponent {
           })
         }
 
-        const dashPaths = teamPaths[team + "_"];
+        const dashPaths = teamPaths[team + "_"] || [];
         for(let i = 1; i < dashPaths.length; i++) {
           const source = dashPaths[i];
           const target = dashPaths[i-1];
