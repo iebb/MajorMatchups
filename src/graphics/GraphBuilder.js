@@ -449,9 +449,9 @@ export default class GraphBuilder extends React.PureComponent {
                     L${l.xs} ${l.ys}`
                 )
                 .join("");
-              return <g className="link">
-                <path key={d} d={d} stroke={b.color} strokeWidth="3"/>
-                <path key={d} strokeDasharray={this.props.dash ? "10,3" : null} d={dashD} stroke={b.color} strokeWidth="3"/>
+              return <g className="link" key={d} >
+                <path d={d} stroke={b.color} strokeWidth="3"/>
+                <path strokeDasharray={this.props.dash ? "10,3" : null} d={dashD} stroke={b.color} strokeWidth="3"/>
               </g>;
             })}
           </g>
