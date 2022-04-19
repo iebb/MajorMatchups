@@ -604,7 +604,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className="team-box-text">{plus_minus(team.buchholz)}</span>
+                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
                     </div>
                   </div>
                   <div className="team-box down">
@@ -759,7 +759,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 <>
                   <div className="team-box down">
                     <div className="team-box-split b">
-                      <span className="team-box-text">{plus_minus(team.buchholz)}</span>
+                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
                     </div>
                   </div>
                   <div className="team-box down">
