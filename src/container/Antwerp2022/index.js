@@ -925,7 +925,7 @@ export default class Antwerp2022 extends React.PureComponent {
                           this.setState({ dash: checked })
                           localStorage.dash = checked
                         }
-                      } label="Dash for Unfinished/Manipulated" checked={this.state.dash} />
+                      } label="Dash for Provisional" checked={this.state.dash} />
                     </div>
                   </Form.Field>
                 </Form>
