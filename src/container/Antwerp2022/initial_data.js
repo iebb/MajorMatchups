@@ -125,8 +125,8 @@ export const initialDataChallenger = [
 
 export const initialDataLegends = [
   {
-    code: "eu1|01",
-    name: "EUA #1",
+    code: "eu/hero",
+    name: "Heroic",
     seed: 1,
     description: "EUA #1",
   },
@@ -143,8 +143,8 @@ export const initialDataLegends = [
     description: "AM #1",
   },
   {
-    code: "eu1|04",
-    name: "EUA #2",
+    code: "eu/big",
+    name: "BIG",
     seed: 4,
     description: "EUA #2",
   },
