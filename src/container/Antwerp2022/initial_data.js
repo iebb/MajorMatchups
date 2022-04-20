@@ -37,7 +37,7 @@ export const initialDataChallenger = [
     description: "AM #3",
   },
   {
-    code: "eu2|11",
+    code: "eu1|11",
     name: "EUB #4",
     seed: 11,
     description: "EUB #4",
@@ -49,7 +49,7 @@ export const initialDataChallenger = [
     description: "EUA #5",
   },
   {
-    code: "eu2|13",
+    code: "eu1|13",
     name: "EUB #5",
     seed: 13,
     description: "EUB #5",
@@ -61,13 +61,13 @@ export const initialDataChallenger = [
     description: "EUA #6",
   },
   {
-    code: "eu2|15",
+    code: "eu1|15",
     name: "EUB #6",
     seed: 15,
     description: "EUB #6",
   },
   {
-    code: "eu2|16",
+    code: "eu1|16",
     name: "EUB #7",
     seed: 16,
     description: "EUB #7",
@@ -115,7 +115,7 @@ export const initialDataChallenger = [
     description: "EUA #8",
   },
   {
-    code: "eu2|24",
+    code: "eu1|24",
     name: "EUB #8",
     seed: 24,
     description: "EUB #8",
@@ -131,7 +131,7 @@ export const initialDataLegends = [
     description: "EUA #1",
   },
   {
-    code: "eu2|02",
+    code: "eu1|02",
     name: "EUB #1",
     seed: 2,
     description: "EUB #1",
@@ -149,7 +149,7 @@ export const initialDataLegends = [
     description: "EUA #2",
   },
   {
-    code: "eu2|05",
+    code: "eu1|05",
     name: "EUB #2",
     seed: 5,
     description: "EUB #2",
@@ -161,7 +161,7 @@ export const initialDataLegends = [
     description: "EUA #3",
   },
   {
-    code: "eu2|07",
+    code: "eu1|07",
     name: "EUB #3",
     seed: 7,
     description: "EUB #3",
