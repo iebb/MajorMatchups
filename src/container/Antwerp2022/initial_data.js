@@ -103,14 +103,14 @@ export const initialDataChallenger = [
     description: "AM #6",
   },
   {
-    code: "eu1|22",
-    name: "EUA #7",
+    code: "eu/ef",
+    name: "Eternal Fire",
     seed: 22,
     description: "EUA #7",
   },
   {
-    code: "eu1|23",
-    name: "EUA #8",
+    code: "eu/outs",
+    name: "Outsiders",
     seed: 23,
     description: "EUA #8",
   },
