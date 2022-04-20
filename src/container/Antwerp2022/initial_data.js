@@ -43,8 +43,8 @@ export const initialDataChallenger = [
     description: "EUB #4",
   },
   {
-    code: "eu1|12",
-    name: "EUA #5",
+    code: "eu/forz",
+    name: "forZe",
     seed: 12,
     description: "EUA #5",
   },
@@ -55,8 +55,8 @@ export const initialDataChallenger = [
     description: "EUB #5",
   },
   {
-    code: "eu1|14",
-    name: "EUA #6",
+    code: "eu/vita",
+    name: "Team Vitality",
     seed: 14,
     description: "EUA #6",
   },
@@ -155,8 +155,8 @@ export const initialDataLegends = [
     description: "EUB #2",
   },
   {
-    code: "eu1|06",
-    name: "EUA #3",
+    code: "eu/faze",
+    name: "FaZe Clan",
     seed: 6,
     description: "EUA #3",
   },
@@ -167,8 +167,8 @@ export const initialDataLegends = [
     description: "EUB #3",
   },
   {
-    code: "eu1|08",
-    name: "EUA #4",
+    code: "eu/navi",
+    name: "Natus Vincere",
     seed: 8,
     description: "EUA #4",
   },
