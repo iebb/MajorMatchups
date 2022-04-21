@@ -234,10 +234,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       }
     }
 
-    console.log(this.state.matches);
-    console.log(match);
-
-
     this.setState({ pickResults }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     })
@@ -403,7 +399,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];
           const mat = [...m];
-          let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
+          let picked = Math.random() > 0.5 ? 1 : -1; // 1 for A win and -1 for B win ; team1.seed <= team2.seed
           let result = 0;
 
           let score = [[], []];
