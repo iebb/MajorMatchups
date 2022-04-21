@@ -603,7 +603,7 @@ export default class Stockholm2021 extends React.PureComponent {
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://discord.gg/KYNbRYrZGe">
-              discord server
+              feedback(discord)
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">

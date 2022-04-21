@@ -833,7 +833,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
-              discord server
+              feedback(discord)
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">

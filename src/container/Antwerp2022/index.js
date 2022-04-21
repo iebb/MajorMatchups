@@ -807,7 +807,7 @@ export default class Antwerp2022 extends React.PureComponent {
           <h3>Based on Seeding Rules used at 2021 Stockholm Major. Might not be accurate</h3>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
-              discord server
+              feedback(discord)
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://twitter.com/CyberHono">
