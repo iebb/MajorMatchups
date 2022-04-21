@@ -233,12 +233,14 @@ export default class Antwerp2022RMR extends React.PureComponent {
     if (currentRound > 0) {
       const prevRound = this.state.matches[currentRound - 1];
       for(const prevMatch of prevRound) {
-        window.gtag("event", `round_${currentRound}_winner`, {
-          match: `${prevMatch.team1.code}-${prevMatch.team2.code}`,
-          round: currentRound,
-          winner: prevMatch.picked > 0 ? prevMatch.team1.code: prevMatch.team2.code,
-          loser: prevMatch.picked > 0 ? prevMatch.team2.code: prevMatch.team1.code,
-        });
+        if (!prevMatch.score || !prevMatch.score[0].length) {
+          window.gtag("event", `round_${currentRound}_winner`, {
+            match: `${prevMatch.team1.code}-${prevMatch.team2.code}`,
+            round: currentRound,
+            winner: prevMatch.picked > 0 ? prevMatch.team1.code : prevMatch.team2.code,
+            loser: prevMatch.picked > 0 ? prevMatch.team2.code : prevMatch.team1.code,
+          });
+        }
       }
     }
 
