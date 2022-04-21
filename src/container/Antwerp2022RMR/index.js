@@ -19,24 +19,6 @@ const abbrevs = {
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
-    seeds: EUA,
-    seats: {
-      legends: 4,
-      challengers: 6,
-      contenders: 8,
-    },
-    tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
-    },
-    rounds: 6,
-    winsToAdvance: 3,
-    nonDeciderBestOf: 1,
-    deciderBestOf: 2,
-    allowDups: false,
-  },
-  {
-    id: 1,
     name: "Europe B",
     seeds: EUB,
     seats: {
@@ -46,6 +28,24 @@ const Regions = [
     },
     tiebreakers: {
       "5": [{teams: 3, id: "3/4", name: "3/4th Decider"}],
+    },
+    rounds: 6,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    allowDups: false,
+  },
+  {
+    id: 1,
+    name: "Europe A",
+    seeds: EUA,
+    seats: {
+      legends: 4,
+      challengers: 6,
+      contenders: 8,
+    },
+    tiebreakers: {
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
     },
     rounds: 6,
     winsToAdvance: 3,
