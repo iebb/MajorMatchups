@@ -212,7 +212,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     pickResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
     pickResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
 
-    if (!match.score) {
+    if (!match.score || !match.score[0].length) {
       window.gtag("event", "pick_winner", {
         match: `${match.team1.code}-${match.team2.code}`,
         winner: picked > 0 ? match.team1.code: match.team2.code,
