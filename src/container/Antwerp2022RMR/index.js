@@ -219,10 +219,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
         loser: picked > 0 ? match.team2.code: match.team1.code,
         isTiebreaker: false,
       });
-      this.setState({ pickResults }, () => {
-        this.calculateMatchups(0, this.state.rounds + 1)
-      })
     }
+    this.setState({ pickResults }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
+    })
   };
 
   setTiebreakerWinner = (t1, t2) => {
@@ -242,6 +242,9 @@ export default class Antwerp2022RMR extends React.PureComponent {
       tbr[tbc.id] = [t1.code, t2.code, [], [], true];
     }
 
+    this.setState({ tiebreakerResults: tbr}, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
+    });
     window.gtag("event", "pick_winner", {
       match: `${t1.code}-${t2.code}`,
       winner: t1.code,
@@ -249,9 +252,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       isTiebreaker: true,
     });
 
-    this.setState({ tiebreakerResults: tbr}, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
   };
 
   calculateMatchups(fromStage, toStage) {
