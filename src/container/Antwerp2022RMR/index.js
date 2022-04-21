@@ -249,7 +249,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     }
 
     this.setState({ pickResults }, () => {
-      this.calculateMatchups(currentRound + 1, this.state.rounds + 1)
+      this.calculateMatchups(currentRound, this.state.rounds + 1)
     })
   };
 
