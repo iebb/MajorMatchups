@@ -188,6 +188,14 @@ export default class Antwerp2022RMR extends React.PureComponent {
   }
 
   init = (region) => {
+    this.setState({
+      ...this.pack(Regions[region].seeds),
+      advanceMode: 1,
+      regionId: region,
+      modified: true,
+      ...Regions[region],
+    }, () => this.calculateMatchups(0, this.state.rounds + 1));
+
     return fetch('https://score-service.deta.dev/fetch_results/ant21rmr')
       .then((resp) => resp.json())
       .then((resp) => {
