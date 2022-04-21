@@ -503,7 +503,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
               const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
               const lostTeam = tbr[0] === x.code ? otherTeam : x;
               const winTeam = tbr[0] === x.code ? x : otherTeam;
-              console.log(x.code, tbr);
               return ({
                 ...x,
                 standing: idx + 1,
