@@ -21,13 +21,7 @@ const { MediaContextProvider, Media } = createMedia({
 const Footer = () => (
   <div style={{ margin: 50, userSelect: 'text' }}>
     <p>
-      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-21
-    </p>
-    <p>
-      Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
-    </p>
-    <p>
-      Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
+      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-22 &middot; Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a> &middot; Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
     </p>
   </div>
 )
@@ -57,7 +51,7 @@ class DesktopContainer extends Component {
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
                 <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Nunito', fontWeight: 700 }}>
-                  SMC
+                  ieb's Swiss Calculator
                 </Menu.Item>
                 {Editions.map((edition) => (
                   <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
