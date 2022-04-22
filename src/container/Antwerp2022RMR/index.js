@@ -707,7 +707,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
             pickB = 'win';
           }
 
-          console.log(x.locked);
           if (x.locked) {
             pickA += " locked"
             pickB += " locked"
