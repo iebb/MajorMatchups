@@ -218,7 +218,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const { pickResults } = this.state;
     const roundMatch = this.state.matches[currentRound];
     for(const match of roundMatch) {
-      if ((!match.score || !match.score[0].length) && !match.locked) {
+      if (!match.result && !match.locked) {
         const p = Math.random() > 0.5 ? 1 : -1;
         pickResults[`${match.team1.code}-${match.team2.code}`] = p;
         pickResults[`${match.team2.code}-${match.team1.code}`] = -p;
@@ -251,7 +251,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       return;
     }
 
-    if (!match.score || !match.score[0].length) {
+    if (!match.result) {
       window.gtag("event", "pick_winner", {
         match: `${match.team1.code}-${match.team2.code}`,
         winner: picked > 0 ? match.team1.code: match.team2.code,
@@ -263,7 +263,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     if (currentRound > 0) {
       const prevRound = this.state.matches[currentRound - 1];
       for(const prevMatch of prevRound) {
-        if (!prevMatch.score || !prevMatch.score[0].length) {
+        if (!prevMatch.result) {
           window.gtag("event", `round_${currentRound}_winner`, {
             match: `${prevMatch.team1.code}-${prevMatch.team2.code}`,
             round: currentRound,
