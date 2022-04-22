@@ -638,19 +638,19 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
+                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                }
+                </sub>
+                </span>
               </div>
             </div>
             {
               (stage >= 1 && this.state.advanceMode === 1) && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
+                <div className="team-box down">
+                  <div className="team-box-split b">
                 <span className="team-box-text">
                       {
                         team.opponents.map((opp, _idx) =>
@@ -658,9 +658,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                         )
                       }
                 </span>
-                    </div>
                   </div>
-                </>
+                </div>
               )
             }
           </div>
@@ -719,25 +718,28 @@ export default class Antwerp2022RMR extends React.PureComponent {
               </div>
               <div className="team-box down">
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team1.seed}</span>
+                  <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team1.buchholz)}</span>
+                }
+                </sub>
+                  </span>
                 </div>
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team2.seed}</span>
+                  <span className="team-box-text" title="Seed, Low to High" >#{x.team2.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team2.buchholz)}</span>
+                }
+                </sub>
+                  </span>
                 </div>
               </div>
               {
                 stage >= 1 ? (this.state.advanceMode === 1) && (
-                  <>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{plus_minus(x.team1.buchholz)}</span>
-                      </div>
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{plus_minus(x.team2.buchholz)}</span>
-                      </div>
-                    </div>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
+                  <div className="team-box down">
+                    <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team1.opponents.map(opp =>
@@ -745,8 +747,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                       )
                     }
                   </span>
-                      </div>
-                      <div className="team-box-split b">
+                    </div>
+                    <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team2.opponents.map(opp =>
@@ -754,9 +756,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                       )
                     }
                   </span>
-                      </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
 
                   <div className="team-box down">
@@ -793,19 +794,19 @@ export default class Antwerp2022RMR extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
+                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                }
+                </sub>
+                </span>
               </div>
             </div>
             {
               (this.state.advanceMode === 1) && stage >= 1 && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
+                <div className="team-box down">
+                  <div className="team-box-split b">
                     <span className="team-box-text">
                       {
                         team.opponents.map((opp, _idx) =>
@@ -813,9 +814,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
                         )
                       }
                     </span>
-                    </div>
                   </div>
-                </>
+                </div>
               )
             }
           </div>
