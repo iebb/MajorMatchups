@@ -169,6 +169,10 @@ h3.title {
   color: #ababab;
 }
 
+.team-box-split {
+  position: relative;
+}
+
 .team-box-split.tb-win {
   background: #11cfff;
 }
@@ -179,6 +183,16 @@ h3.title {
 
 .team-box-split.win {
   background: #6d72ac;
+}
+
+.team-box-split.locked::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  display: block;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABB0lEQVRIieWUMWsCQRCFv5WASWFAW5uYMoUh/yQg+QXXmvwi/4+myokQ7IT0SZEIdnk2c6CLdzp7R1L4YNhd5s17s7Ow8N+Q1Jb0ImkmaW0xk/QsqV1XvC8pVzneJPXrdF6If0gaSepYPEpa7pj4b2JjKcR7B/Jdy0nSOMXg1YpHFZwn40xTDH6suFPBuTbOdxknRAUtYAjcAFfOnjbACliEEH7LDO6BO6dwjPcQwrw4tKLkoKY4wO3uITbwjuUQLqsMGseFg/sAZLafAPkpRZ4bZEDPIjvCTTJIgsdgAnwBn7Y/CZ43yAH3n/PnI9o0oLmnERusGjDY04jfYGHrgBqfXVpfZ4st9DPPr3/ZyIgAAAAASUVORK5CYII=") no-repeat;
+  position: absolute;
+  bottom: 0;
 }
 
 .team-box-split.rs-win {
