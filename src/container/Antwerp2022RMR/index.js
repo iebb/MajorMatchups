@@ -141,6 +141,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     tiebreakers: {},
     tiebreakerResults: {},
     pickResults: {},
+    lockResults: {},
     seats: {
       legends: 0,
       challengers: 0,
@@ -213,14 +214,40 @@ export default class Antwerp2022RMR extends React.PureComponent {
   };
 
 
+  shuffle = (currentRound) => {
+    const { pickResults } = this.state;
+    const roundMatch = this.state.matches[currentRound];
+    for(const match of roundMatch) {
+      if ((!match.score || !match.score[0].length) && !match.locked) {
+        const p = Math.random() > 0.5 ? 1 : -1;
+        pickResults[`${match.team1.code}-${match.team2.code}`] = p;
+        pickResults[`${match.team2.code}-${match.team1.code}`] = -p;
+      }
+    }
+    this.setState({ pickResults }, () => {
+      this.calculateMatchups(currentRound, this.state.rounds + 1)
+    })
+  };
+
 
   setWinner = (match, picked, suffix = "") => {
-    const { pickResults } = this.state;
+    const { pickResults, lockResults } = this.state;
     pickResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
     pickResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
 
+    const currentRound = match.team1.l + match.team1.w;
+
     if (match.picked === picked) {
-      this.setState({ pickResults });
+      if (lockResults[`${match.team1.code}-${match.team2.code}` + suffix]) {
+        delete lockResults[`${match.team1.code}-${match.team2.code}` + suffix];
+        delete lockResults[`${match.team2.code}-${match.team1.code}` + suffix];
+      } else {
+        lockResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
+        lockResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
+      }
+      this.setState({ pickResults, lockResults }, () => {
+        this.calculateMatchups(currentRound, this.state.rounds + 1)
+      })
       return;
     }
 
@@ -233,7 +260,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       });
     }
 
-    const currentRound = match.team1.l + match.team1.w;
     if (currentRound > 0) {
       const prevRound = this.state.matches[currentRound - 1];
       for(const prevMatch of prevRound) {
@@ -287,7 +313,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const stateMatches = this.state.matches;
     const stateTeams = this.state.teams;
     const stateRoundTeams = copy(this.state.roundTeams);
-    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
+    const { pickResults, lockResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
     const gamescores = this.state.scores || {};
 
 
@@ -463,12 +489,17 @@ export default class Antwerp2022RMR extends React.PureComponent {
             picked = pickResults[`${team1.code}-${team2.code}` + suffix]
           }
 
+          let locked = false;
+          if (`${team1.code}-${team2.code}` + suffix in lockResults) {
+            locked = true;
+          }
+
           const _match = {
             isDup,
             pool,
             match: m.length,
             team1, team2,
-            picked, result,
+            picked, locked, result,
             score, stage, suffix,
             undetermined,
             toggle: () => this.setWinner({
@@ -675,6 +706,13 @@ export default class Antwerp2022RMR extends React.PureComponent {
             pickA = 'lose';
             pickB = 'win';
           }
+
+          console.log(x.locked);
+          if (x.locked) {
+            pickA += " locked"
+            pickB += " locked"
+          }
+
           if (x.result === 1) {
             resultA = 'rs-win';
             resultB = 'rs-lose';
@@ -896,6 +934,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                   <>
                     <h1 className="round-title" key={round}>
                       {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
+                      <a style={{ float: "right", fontSize: "50%" }} onClick={() => this.shuffle(round)}>[shuffle]</a>
                     </h1>
                     <div key={"_" + round}>{this.getMatchups(round)}</div>
                   </>
