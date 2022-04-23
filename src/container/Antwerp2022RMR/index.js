@@ -933,7 +933,10 @@ export default class Antwerp2022RMR extends React.PureComponent {
                   <>
                     <h1 className="round-title" key={round}>
                       {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
-                      <a style={{ float: "right", fontSize: "50%" }} onClick={() => this.shuffle(round)}>[shuffle]</a>
+                      {
+                        round < 5 &&
+                        <a id={"shuffle_" + round} style={{ float: "right", fontSize: "50%" }} onClick={() => this.shuffle(round)}>[shuffle]</a>
+                      }
                     </h1>
                     <div key={"_" + round}>{this.getMatchups(round)}</div>
                   </>
