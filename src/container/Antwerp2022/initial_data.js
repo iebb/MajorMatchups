@@ -23,105 +23,6 @@
   8   8
 
 */
-export const initialDataChallenger = [
-  {
-    code: "am/mibr",
-    name: "MIBR",
-    seed: 9,
-    description: "AM #2",
-  },
-  {
-    code: "am/impe",
-    name: "Imperial Esports",
-    seed: 10,
-    description: "AM #3",
-  },
-  {
-    code: "eu/ence",
-    name: "ENCE",
-    seed: 11,
-    description: "EUB #4",
-  },
-  {
-    code: "eu/forz",
-    name: "forZe",
-    seed: 12,
-    description: "EUA #5",
-  },
-  {
-    code: "eu/g2",
-    name: "G2 Esports",
-    seed: 13,
-    description: "EUB #5",
-  },
-  {
-    code: "eu/vita",
-    name: "Team Vitality",
-    seed: 14,
-    description: "EUA #6",
-  },
-  {
-    code: "eu/astr",
-    name: "Astralis",
-    seed: 15,
-    description: "EUB #6",
-  },
-  {
-    code: "eu/bne",
-    name: "Bad News Eagles",
-    seed: 16,
-    description: "EUB #7",
-  },
-  {
-    code: "ap/ihc",
-    name: "IHC Esports",
-    seed: 17,
-    description: "AP #1",
-  },
-  {
-    code: "ap/rng",
-    name: "Renegades",
-    seed: 18,
-    description: "AP #2",
-  },
-  {
-    code: "am/col",
-    name: "Complexity Gaming",
-    seed: 19,
-    description: "AM #4",
-  },
-  {
-    code: "am/liqu",
-    name: "Team Liquid",
-    seed: 20,
-    description: "AM #5",
-  },
-  {
-    code: "am/9z",
-    name: "9z Team",
-    seed: 21,
-    description: "AM #6",
-  },
-  {
-    code: "eu/ef",
-    name: "Eternal Fire",
-    seed: 22,
-    description: "EUA #7",
-  },
-  {
-    code: "eu/outs",
-    name: "Outsiders",
-    seed: 23,
-    description: "EUA #8",
-  },
-  {
-    code: "eu/spir",
-    name: "Team Spirit",
-    seed: 24,
-    description: "EUB #8",
-  }
-];
-
 
 export const initialDataLegends = [
   {
@@ -137,22 +38,22 @@ export const initialDataLegends = [
     description: "EUB #1",
   },
   {
-    code: "am/furi",
-    name: "FURIA Esports",
-    seed: 3,
-    description: "AM #1",
-  },
-  {
     code: "eu/big",
     name: "BIG",
-    seed: 4,
+    seed: 3,
     description: "EUA #2",
   },
   {
     code: "eu/c9",
     name: "Cloud9 (Qualified as Players, former Gambit Roster)",
-    seed: 5,
+    seed: 4,
     description: "EUB #2",
+  },
+  {
+    code: "am/furi",
+    name: "FURIA Esports",
+    seed: 5,
+    description: "AM #1",
   },
   {
     code: "eu/faze",
@@ -173,6 +74,106 @@ export const initialDataLegends = [
     description: "EUA #4",
   },
 ];
+
+export const initialDataChallenger = [
+  {
+    code: "eu/ence",
+    name: "ENCE",
+    seed: 9,
+    description: "EUB #4",
+  },
+  {
+    code: "eu/g2",
+    name: "G2 Esports",
+    seed: 10,
+    description: "EUB #5",
+  },
+  {
+    code: "eu/forz",
+    name: "forZe",
+    seed: 11,
+    description: "EUA #5",
+  },
+  {
+    code: "eu/astr",
+    name: "Astralis",
+    seed: 12,
+    description: "EUB #6",
+  },
+  {
+    code: "eu/vita",
+    name: "Team Vitality",
+    seed: 13,
+    description: "EUA #6",
+  },
+  {
+    code: "am/mibr",
+    name: "MIBR",
+    seed: 14,
+    description: "AM #2",
+  },
+  {
+    code: "am/impe",
+    name: "Imperial Esports",
+    seed: 15,
+    description: "AM #3",
+  },
+  {
+    code: "eu/bne",
+    name: "Bad News Eagles",
+    seed: 16,
+    description: "EUB #7",
+  },
+  {
+    code: "eu/ef",
+    name: "Eternal Fire",
+    seed: 17,
+    description: "EUA #7",
+  },
+  {
+    code: "eu/spir",
+    name: "Team Spirit",
+    seed: 18,
+    description: "EUB #8",
+  },
+  {
+    code: "eu/outs",
+    name: "Outsiders",
+    seed: 19,
+    description: "EUA #8",
+  },
+  {
+    code: "am/col",
+    name: "Complexity Gaming",
+    seed: 20,
+    description: "AM #4",
+  },
+  {
+    code: "ap/ihc",
+    name: "IHC Esports",
+    seed: 21,
+    description: "AP #1",
+  },
+  {
+    code: "ap/rng",
+    name: "Renegades",
+    seed: 22,
+    description: "AP #2",
+  },
+  {
+    code: "am/liqu",
+    name: "Team Liquid",
+    seed: 23,
+    description: "AM #5",
+  },
+  {
+    code: "am/9z",
+    name: "9z Team",
+    seed: 24,
+    description: "AM #6",
+  },
+];
+
 /*
 export const finalDataLegends = [
   {
