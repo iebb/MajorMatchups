@@ -49,8 +49,8 @@ export const initialDataChallenger = [
     description: "EUA #5",
   },
   {
-    code: "eu1|13",
-    name: "EUB #5",
+    code: "eu/g2",
+    name: "G2 Esports",
     seed: 13,
     description: "EUB #5",
   },
@@ -131,8 +131,8 @@ export const initialDataLegends = [
     description: "EUA #1",
   },
   {
-    code: "eu1|02",
-    name: "EUB #1",
+    code: "eu/cphf",
+    name: "Copenhagen Flames",
     seed: 2,
     description: "EUB #1",
   },
@@ -149,8 +149,8 @@ export const initialDataLegends = [
     description: "EUA #2",
   },
   {
-    code: "eu1|05",
-    name: "EUB #2",
+    code: "eu/play",
+    name: "Players",
     seed: 5,
     description: "EUB #2",
   },
