@@ -25,7 +25,7 @@ export default function Routes() {
         <Antwerp2022 />
       </Route>
       <Route path="/">
-        <Redirect to="/22rmr_antwerp" />
+        <Redirect to="/22antwerp" />
       </Route>
     </Switch>
   );
