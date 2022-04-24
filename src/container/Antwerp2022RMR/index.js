@@ -196,7 +196,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       modified: true,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-
+/*
     return fetch('https://score-service.deta.dev/fetch_results/ant21rmr')
       .then((resp) => resp.json())
       .then((resp) => {
@@ -211,6 +211,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
       }).then(
         () => this.calculateMatchups(0, this.state.rounds + 1)
       );
+ */
   };
 
 
@@ -315,6 +316,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     const stateRoundTeams = copy(this.state.roundTeams);
     const { pickResults, lockResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
     const gamescores = this.state.scores || {};
+    console.log(gamescores);
 
 
     let tiebreakers = this.state.tiebreakers;

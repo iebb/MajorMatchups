@@ -135,6 +135,7 @@ export default class Antwerp2022 extends React.PureComponent {
     tiebreakers: {},
     tiebreakerResults: {},
     pickResults: {},
+    lockResults: {},
     seats: {
       advanced: 8,
     },
@@ -223,13 +224,69 @@ export default class Antwerp2022 extends React.PureComponent {
   };
 
 
-  setWinner = (match, picked, suffix = "") => {
-    if (match.picked === picked) return;
+
+  shuffle = (currentRound) => {
     const { pickResults } = this.state;
+    const roundMatch = this.state.matches[currentRound];
+    for(const match of roundMatch) {
+      if (!match.result && !match.locked) {
+        const p = Math.random() > 0.5 ? 1 : -1;
+        pickResults[`${match.team1.code}-${match.team2.code}`] = p;
+        pickResults[`${match.team2.code}-${match.team1.code}`] = -p;
+      }
+    }
+    this.setState({ pickResults }, () => {
+      this.calculateMatchups(currentRound, this.state.rounds + 1)
+    })
+  };
+
+
+  setWinner = (match, picked, suffix = "") => {
+    const { pickResults, lockResults } = this.state;
     pickResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
     pickResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
+
+    const currentRound = match.team1.l + match.team1.w;
+
+    if (match.picked === picked) {
+      if (lockResults[`${match.team1.code}-${match.team2.code}` + suffix]) {
+        delete lockResults[`${match.team1.code}-${match.team2.code}` + suffix];
+        delete lockResults[`${match.team2.code}-${match.team1.code}` + suffix];
+      } else {
+        lockResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
+        lockResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
+      }
+      this.setState({ pickResults, lockResults }, () => {
+        this.calculateMatchups(currentRound, this.state.rounds + 1)
+      })
+      return;
+    }
+
+    if (!match.result) {
+      window.gtag("event", "pick_winner", {
+        match: `${match.team1.code}-${match.team2.code}`,
+        winner: picked > 0 ? match.team1.code: match.team2.code,
+        loser: picked > 0 ? match.team2.code: match.team1.code,
+        isTiebreaker: false,
+      });
+    }
+
+    if (currentRound > 0) {
+      const prevRound = this.state.matches[currentRound - 1];
+      for(const prevMatch of prevRound) {
+        if (!prevMatch.result) {
+          window.gtag("event", `round_${currentRound}_winner`, {
+            match: `${prevMatch.team1.code}-${prevMatch.team2.code}`,
+            round: currentRound,
+            winner: prevMatch.picked > 0 ? prevMatch.team1.code : prevMatch.team2.code,
+            loser: prevMatch.picked > 0 ? prevMatch.team2.code : prevMatch.team1.code,
+          });
+        }
+      }
+    }
+
     this.setState({ pickResults }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
+      this.calculateMatchups(currentRound, this.state.rounds + 1)
     })
   };
 
@@ -250,10 +307,16 @@ export default class Antwerp2022 extends React.PureComponent {
       tbr[tbc.id] = [t1.code, t2.code, [], [], true];
     }
 
-
     this.setState({ tiebreakerResults: tbr}, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
+    window.gtag("event", "pick_winner", {
+      match: `${t1.code}-${t2.code}`,
+      winner: t1.code,
+      loser: t2.code,
+      isTiebreaker: true,
+    });
+
   };
 
   calculateMatchups(fromStage, toStage) {
@@ -261,7 +324,7 @@ export default class Antwerp2022 extends React.PureComponent {
     const stateMatches = this.state.matches;
     const stateTeams = this.state.teams;
     const stateRoundTeams = copy(this.state.roundTeams);
-    const { pickResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
+    const { pickResults, lockResults, winsToAdvance, nonDeciderBestOf, deciderBestOf, allowDups } = this.state;
     const gamescores = this.state.scores || {};
 
 
@@ -269,7 +332,9 @@ export default class Antwerp2022 extends React.PureComponent {
     let tiebreakerResults = this.state.tiebreakerResults || {};
 
     const getStatus = standing => {
-      if (standing <= this.state.seats.advanced) return "advanced";
+      if (standing <= this.state.seats.legends) return "legend";
+      if (standing <= this.state.seats.challengers) return "challenger";
+      if (standing <= this.state.seats.contenders) return "contender";
       return "eliminated";
     }
 
@@ -281,8 +346,8 @@ export default class Antwerp2022 extends React.PureComponent {
       for (let i = 0; i < stage; i += 1) {
         if (stateMatches[i]) {
           for (const match of stateMatches[i]) {
-            if (match.team1.seed === tA && match.team2.seed === tB) return true;
-            if (match.team2.seed === tA && match.team1.seed === tB) return true;
+            if (match.team1.code === tA && match.team2.code === tB) return true;
+            if (match.team2.code === tA && match.team1.code === tB) return true;
           }
         }
       }
@@ -369,8 +434,8 @@ export default class Antwerp2022 extends React.PureComponent {
 
         const team1 = p[0];
         let team2cands = p.filter((team) => {
-          if (team.seed === team1.seed) return false;
-          return !previouslyMatchedUp(stage, team.seed, team1.seed);
+          if (team.code === team1.code) return false;
+          return !previouslyMatchedUp(stage, team.code, team1.code);
         });
 
         let isDup = false;
@@ -385,7 +450,7 @@ export default class Antwerp2022 extends React.PureComponent {
         for (let c = team2cands.length - 1; c >= 0; c -= 1) {
           const team2 = team2cands[c];
           const mat = [...m];
-          let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
+          let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win ;
           let result = 0;
 
           let score = [[], []];
@@ -435,12 +500,17 @@ export default class Antwerp2022 extends React.PureComponent {
             picked = pickResults[`${team1.code}-${team2.code}` + suffix]
           }
 
+          let locked = false;
+          if (`${team1.code}-${team2.code}` + suffix in lockResults) {
+            locked = true;
+          }
+
           const _match = {
             isDup,
             pool,
             match: m.length,
             team1, team2,
-            picked, result,
+            picked, locked, result,
             score, stage, suffix,
             undetermined,
             toggle: () => this.setWinner({
@@ -483,8 +553,8 @@ export default class Antwerp2022 extends React.PureComponent {
                   const [winner, ] = getWinnerFromScore(gs);
                   tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
                     winner > 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
+                      [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
+                      [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
                   ) : [t1.code, t2.code, [], [], true];
                 } else if (`b-${t2.code}-${t1.code}` in gamescores) {
                   const gs = gamescores[`b-${t2.code}-${t1.code}`];
@@ -503,7 +573,6 @@ export default class Antwerp2022 extends React.PureComponent {
               const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
               const lostTeam = tbr[0] === x.code ? otherTeam : x;
               const winTeam = tbr[0] === x.code ? x : otherTeam;
-              console.log(x.code, tbr);
               return ({
                 ...x,
                 standing: idx + 1,
@@ -611,19 +680,19 @@ export default class Antwerp2022 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
+                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                }
+                </sub>
+                </span>
               </div>
             </div>
             {
               (stage >= 1 && this.state.advanceMode === 1) && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
+                <div className="team-box down">
+                  <div className="team-box-split b">
                 <span className="team-box-text">
                       {
                         team.opponents.map((opp, _idx) =>
@@ -631,9 +700,8 @@ export default class Antwerp2022 extends React.PureComponent {
                         )
                       }
                 </span>
-                    </div>
                   </div>
-                </>
+                </div>
               )
             }
           </div>
@@ -648,6 +716,12 @@ export default class Antwerp2022 extends React.PureComponent {
             pickA = 'lose';
             pickB = 'win';
           }
+
+          if (x.locked) {
+            pickA += " locked"
+            pickB += " locked"
+          }
+
           if (x.result === 1) {
             resultA = 'rs-win';
             resultB = 'rs-lose';
@@ -692,25 +766,28 @@ export default class Antwerp2022 extends React.PureComponent {
               </div>
               <div className="team-box down">
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team1.seed}</span>
+                  <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team1.buchholz)}</span>
+                }
+                </sub>
+                  </span>
                 </div>
                 <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team2.seed}</span>
+                  <span className="team-box-text" title="Seed, Low to High" >#{x.team2.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team2.buchholz)}</span>
+                }
+                </sub>
+                  </span>
                 </div>
               </div>
               {
                 stage >= 1 ? (this.state.advanceMode === 1) && (
-                  <>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{plus_minus(x.team1.buchholz)}</span>
-                      </div>
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{plus_minus(x.team2.buchholz)}</span>
-                      </div>
-                    </div>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
+                  <div className="team-box down">
+                    <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team1.opponents.map(opp =>
@@ -718,8 +795,8 @@ export default class Antwerp2022 extends React.PureComponent {
                       )
                     }
                   </span>
-                      </div>
-                      <div className="team-box-split b">
+                    </div>
+                    <div className="team-box-split b">
                   <span className="team-box-text">
                     {
                       x.team2.opponents.map(opp =>
@@ -727,9 +804,8 @@ export default class Antwerp2022 extends React.PureComponent {
                       )
                     }
                   </span>
-                      </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
 
                   <div className="team-box down">
@@ -766,19 +842,19 @@ export default class Antwerp2022 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
+                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                {
+                  (this.state.advanceMode === 1) &&
+                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                }
+                </sub>
+                </span>
               </div>
             </div>
             {
               (this.state.advanceMode === 1) && stage >= 1 && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text" title="Buchholtz Score, High to Low">{plus_minus(team.buchholz)}</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
+                <div className="team-box down">
+                  <div className="team-box-split b">
                     <span className="team-box-text">
                       {
                         team.opponents.map((opp, _idx) =>
@@ -786,9 +862,8 @@ export default class Antwerp2022 extends React.PureComponent {
                         )
                       }
                     </span>
-                    </div>
                   </div>
-                </>
+                </div>
               )
             }
           </div>
@@ -876,6 +951,10 @@ export default class Antwerp2022 extends React.PureComponent {
                   <>
                     <h1 className="round-title" key={round}>
                       {round === (this.state.rounds) ? `Final Results` : `Round ${round + 1}`}
+                      {
+                        round < 5 &&
+                        <a id={"shuffle_" + round} style={{ float: "right", fontSize: "50%" }} onClick={() => this.shuffle(round)}>[shuffle]</a>
+                      }
                     </h1>
                     <div key={"_" + round}>{this.getMatchups(round)}</div>
                   </>

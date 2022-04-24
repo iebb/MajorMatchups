@@ -37,8 +37,8 @@ export const initialDataChallenger = [
     description: "AM #3",
   },
   {
-    code: "eu1|11",
-    name: "EUB #4",
+    code: "eu/ence",
+    name: "ENCE",
     seed: 11,
     description: "EUB #4",
   },
@@ -61,14 +61,14 @@ export const initialDataChallenger = [
     description: "EUA #6",
   },
   {
-    code: "eu1|15",
-    name: "EUB #6",
+    code: "eu/astr",
+    name: "Astralis",
     seed: 15,
     description: "EUB #6",
   },
   {
-    code: "eu1|16",
-    name: "EUB #7",
+    code: "eu/bne",
+    name: "Bad News Eagles",
     seed: 16,
     description: "EUB #7",
   },
@@ -115,8 +115,8 @@ export const initialDataChallenger = [
     description: "EUA #8",
   },
   {
-    code: "eu1|24",
-    name: "EUB #8",
+    code: "eu/spir",
+    name: "Team Spirit",
     seed: 24,
     description: "EUB #8",
   }
@@ -161,8 +161,8 @@ export const initialDataLegends = [
     description: "EUA #3",
   },
   {
-    code: "eu1|07",
-    name: "EUB #3",
+    code: "eu/nip",
+    name: "Ninjas in Pyjamas",
     seed: 7,
     description: "EUB #3",
   },
