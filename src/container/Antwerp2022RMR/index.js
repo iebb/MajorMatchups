@@ -26,6 +26,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -45,6 +46,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -67,6 +69,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -84,6 +87,7 @@ const Regions = [
     winsToAdvance: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ_DUP",
     allowDups: true,
   },
 ];

@@ -1,9 +1,9 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { initialDataChallenger, initialDataLegends } from './initial_data';
-import { Scores } from './scores';
+import {Image, Menu} from 'semantic-ui-react';
+import {initialDataChallenger, initialDataLegends} from './initial_data';
+import {Scores} from './scores';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -12,14 +12,17 @@ import {
   setWinner,
   shuffle,
 } from '../../libs/common/common';
-import { SwissBuchholtz } from '../../libs/common/SwissBuchholtz';
-import { Knockout } from '../../libs/common/Knockout';
-import { BasicUI } from '../../libs/common/BasicUI';
+import {SwissBuchholtz} from '../../libs/common/SwissBuchholtz';
+import {Knockout} from '../../libs/common/Knockout';
+import {BasicUI} from '../../libs/common/BasicUI';
+import {getPickResults, setPickResults} from "../../libs/common/storage";
+import {SwissBuchholtzDup} from "../../libs/common/SwissBuchholtzDup";
+import {ordinal} from "../../libs/plural";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
-
+const EVENT = "22antwerp";
 
 const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code.split("|")[0]}.png`;
 
@@ -84,6 +87,8 @@ export default class Antwerp2022 extends React.PureComponent {
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
       this.setState(SwissBuchholtz.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_DUP") {
+      this.setState(SwissBuchholtzDup.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {
@@ -101,6 +106,7 @@ export default class Antwerp2022 extends React.PureComponent {
   init = (tStage) => {
     this.setState({
       ...TournamentStages[tStage],
+      pickResults: getPickResults('pickResults', 0, EVENT),
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
@@ -108,24 +114,19 @@ export default class Antwerp2022 extends React.PureComponent {
 
 
   advance = (_) => {
-    if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
-      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
-        (a, b) => {
-          if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
-          return a.seed - b.seed;
-        }
-      ).map((x, _idx) => ({
+    let finalTeams;
+    if (this.state.tournament === TournamentChallenger) {
+      const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
         description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0,
-        w: 0,
-        opponents: [],
-        buchholz: 0,
-        seed: _idx + 9,
+        l: 0, w: 0, buchholz: 0, seed: _idx + 9, opponents: [],
       }))
-
-      const finalTeams = [...initialDataLegends, ...teamsAdvanced];
+      finalTeams = [...initialDataLegends, ...teamsAdvanced];
+      setPickResults('pickResults', 0, EVENT, this.state.pickResults);
+    } else if (this.state.tournament === TournamentChampions) {
+      finalTeams = getPickResults('teams', 1, EVENT);
+    }
+    if (finalTeams) {
       this.setState({
         ...pack(finalTeams, teamLogo),
         matches: [false, false, false, false, false, false],
@@ -135,31 +136,23 @@ export default class Antwerp2022 extends React.PureComponent {
         loseToEliminate: 3,
         modified: true,
         rounds: 5,
+        pickResults: getPickResults('pickResults', 1, EVENT),
       }, () => {
         this.calculateMatchups(0, this.state.rounds + 1)
       });
     }
-
   };
 
   advance2 = (_) => {
-    if (this.state.tournament === TournamentLegends && this.state.teams[5]) {
-      const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
-        (a, b) => {
-          if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
-          return a.seed - b.seed;
-        }
-      ).map((x, _idx) => ({
+    if (this.state.tournament === TournamentLegends && this.state.roundTeams[5]) {
+      const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
         description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0,
-        w: 0,
-        opponents: [],
-        buchholz: 0,
-        seed: _idx + 1,
+        l: 0, w: 0, buchholz: 0, seed: _idx + 1, opponents: [],
       }))
 
+      setPickResults('pickResults', 1, EVENT, this.state.pickResults);
+      setPickResults('teams', 1, EVENT, this.state.teams[0]);
       this.setState({
         ...pack(teamsAdvanced, teamLogo),
         matches: [false, false, false, false, false, false],
@@ -169,13 +162,89 @@ export default class Antwerp2022 extends React.PureComponent {
         loseToEliminate: 1,
         rounds: 3,
         legends: false,
-        modified: true,
+        pickResults: getPickResults('pickResults', 2, EVENT),
       }, () => {
         this.calculateMatchups(0, this.state.rounds + 1)
       });
     }
 
   };
+
+  renderNMS = () => {
+    const result = this.state.roundTeams[5];
+    if (!result) return null;
+
+    const slots = [
+      {standing: "-", region: "EU", cont: true},
+      {standing: "-", region: "EU", cont: true},
+      {standing: "-", region: "EU", cont: true},
+      {standing: "-", region: "AM", cont: true},
+      {standing: "-", region: "AM", cont: true},
+      {standing: "-", region: "AM", cont: true},
+      {standing: "-", region: "AP", cont: true},
+      {standing: "-", region: "AP", cont: true},
+    ]
+
+    const regions = {
+      EU: { name: "Europe", icon: "https://major.ieb.im/images/regions/eu1.png" },
+      AM: { name: "Americas", icon: "https://major.ieb.im/images/regions/am.png" },
+      AP: { name: "Asia/Pac", icon: "https://major.ieb.im/images/regions/ap.png" },
+    }
+
+    const m = (team, _) => {
+      const r = regions[team.region];
+      const status = team.cont ? "contenders" : (team.elim ? "challengers" : "legends");
+      const statusText = team.cont ? "CONT" : (team.elim ? "CHAL" : "LEGEND");
+      return (
+        <div key={team.code} className={`team one ${status}`}>
+          <div className="team-box up">
+            <div className="team-box-split b">
+                <span className="team-box-text">
+                  {statusText}
+                </span>
+            </div>
+          </div>
+          <div className="team-box down">
+            <div className="team-box-split b">
+                <span className="team-box-text">
+                  {team.standing >= 9 ? ordinal(team.standing) : team.standing < 9 ? "1st-8th" : "17-24th"}
+                </span>
+            </div>
+          </div>
+          <div className="team-box down">
+            <div className="team-box-split b">
+                <span className="team-box-text">
+                  {r.name}
+                </span>
+            </div>
+          </div>
+          <div className="team-box med">
+            <div className="team-box-split b">
+              <Image className="team-logo" src={r.icon} />
+            </div>
+          </div>
+        </div>
+      )
+    };
+
+
+    return (
+      <div className='main-container'>
+        <h1 className='round-title'>
+          Next Major Slot Allocations
+        </h1>
+        <div>
+          {result.filter(x => x.adv).map(m)}
+        </div>
+        <div>
+          {result.filter(x => x.elim).map(m)}
+        </div>
+        <div>
+          {slots.map(m)}
+        </div>
+      </div>
+    )
+  }
 
 
   render() {
@@ -235,6 +304,11 @@ export default class Antwerp2022 extends React.PureComponent {
             }
           </Menu>
           <BasicUI state={this.state} shuffle={this.shuffle} />
+          <div style={{ marginTop: 20 }}>
+            {
+              this.state.tournament === 1 && this.renderNMS()
+            }
+          </div>
         </div>
       </div>
     );

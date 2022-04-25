@@ -52,7 +52,7 @@ export class BasicUI extends React.Component {
           !hideMatchUI && (
             <div className="main-container">
               {rounds.map((round) => (
-                <div key={"match-" + round}>
+                <div key={"match-" + round} style={{ marginTop: 20 }}>
                   <h1 className="round-title">
                     {round === (state.rounds) ? `Final Results` : `Round ${round + 1}`}
                     {

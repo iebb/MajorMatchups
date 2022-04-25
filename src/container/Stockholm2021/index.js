@@ -228,17 +228,17 @@ export default class Stockholm2021 extends React.PureComponent {
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
-                name="Challengers Stage"
+                name="Challengers"
                 active={this.state.tournament === TournamentChallenger}
                 onClick={() => this.init(TournamentChallenger)}
               />
               <Menu.Item
-                name={"Legends Stage"}
+                name={"Legends"}
                 active={this.state.tournament === TournamentLegends}
                 onClick={() => this.initLegends()}
               />
               <Menu.Item
-                name="Champion Stage"
+                name="Champions"
                 active={this.state.tournament === TournamentChampions}
                 onClick={() => this.initChampions()}
               />

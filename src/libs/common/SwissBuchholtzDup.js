@@ -1,7 +1,7 @@
 import { ordinal } from '../plural';
 import { copy, getStatus, getWinnerFromScore } from './common';
 
-export function SwissBuchholtz(fromStage, toStage) {
+export function SwissBuchholtzDup(fromStage, toStage) {
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
@@ -116,6 +116,15 @@ export function SwissBuchholtz(fromStage, toStage) {
         return !previouslyMatchedUp(stage, team.code, team1.code);
       });
 
+      let isDup = false;
+
+      if (!team2cands.length) {
+        team2cands = p.filter((team) => {
+          return (team.seed !== team1.seed);
+        });
+        isDup = true;
+      }
+
       for (let c = team2cands.length - 1; c >= 0; c -= 1) {
         const team2 = team2cands[c];
         const mat = [...m];
@@ -123,7 +132,7 @@ export function SwissBuchholtz(fromStage, toStage) {
         let result = 0;
 
         let score = [[], []];
-        const suffix = ""
+        const suffix = isDup ? "_" : ""
         let undetermined = false;
 
         if (`${team1.code}-${team2.code}` + suffix in gamescores) {
@@ -175,6 +184,7 @@ export function SwissBuchholtz(fromStage, toStage) {
         }
 
         const _match = {
+          isDup,
           pool,
           match: m.length,
           team1, team2,
