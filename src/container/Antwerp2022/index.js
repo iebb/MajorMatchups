@@ -188,11 +188,17 @@ export default class Antwerp2022 extends React.PureComponent {
       legendResult = this.state.legendResult;
     }
 
+
     const challengerResult = this.state.challengerResult;
     if (!legendResult || !championResult || !challengerResult) return null;
 
-    legendResult = legendResult.map(x => ({...x, status: "challengers"}));
-    championResult = championResult.map(x => ({...x, status: "legends"}));
+
+    const counters = {EU: 0, AM: 0, AP: 0};
+
+    championResult = championResult.map(x => ({...x, status: "legends", regionCounter: ++counters[x.region]}));
+    legendResult = legendResult.filter(
+      x => x.elim
+    ).map(x => ({...x, status: "challengers", regionCounter: ++counters[x.region]}));
 
     const losingTeamsinChallenger = this.state.challengerResult.filter(
       x => x.elim
@@ -205,20 +211,22 @@ export default class Antwerp2022 extends React.PureComponent {
           if (challengerSlots[otherRegion] > 0) {
             team.region = otherRegion
             team.name += " / Slot Transferred to " + otherRegion
+            break;
           }
         }
       }
       --challengerSlots[team.region];
       team.cont = true;
       team.standing += 8;
+      team.regionCounter = ++counters[team.region]
     }
 
     const slots = losingTeamsinChallenger;
 
     const regions = {
-      EU: { name: "Europe", icon: "https://major.ieb.im/images/regions/eu1.png" },
-      AM: { name: "Americas", icon: "https://major.ieb.im/images/regions/am.png" },
-      AP: { name: "Asia/Pac", icon: "https://major.ieb.im/images/regions/asia.png" },
+      EU: { name: "EU", icon: "https://major.ieb.im/images/regions/eu1.png" },
+      AM: { name: "AM", icon: "https://major.ieb.im/images/regions/am.png" },
+      AP: { name: "AP", icon: "https://major.ieb.im/images/regions/asia.png" },
     }
 
     const m = (team, _) => {
@@ -236,7 +244,7 @@ export default class Antwerp2022 extends React.PureComponent {
           <div className="team-box down">
             <div className="team-box-split b">
                 <span className="team-box-text">
-                  {r.name}
+                  {r.name} #{team.regionCounter}
                 </span>
             </div>
           </div>
@@ -262,7 +270,7 @@ export default class Antwerp2022 extends React.PureComponent {
           {championResult.map(m)}
         </div>
         <div>
-          {legendResult.filter(x => x.elim).map(m)}
+          {legendResult.map(m)}
         </div>
         <div>
           {slots.map(m)}
