@@ -45,7 +45,7 @@ export const initialDataLegends = [
   },
   {
     code: "eu/c9",
-    name: "Cloud9 (Qualified as Players, former Gambit Roster)",
+    name: "Cloud9 (Qualified as Players)",
     seed: 4,
     description: "EUB #2",
   },

@@ -213,6 +213,7 @@ export default class GraphBuilder extends React.PureComponent {
             y,
           })
         }
+        return null
       }).filter(m=>m)
 
       if (matches.length) {
