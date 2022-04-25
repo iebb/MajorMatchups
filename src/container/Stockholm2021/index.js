@@ -1,118 +1,136 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image, Menu } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
-import {FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends} from './final_results';
+import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
+import { BasicUI } from '../../libs/common/BasicUI';
+import { SwissBuchholtz } from '../../libs/common/SwissBuchholtz';
+import { Knockout } from '../../libs/common/Knockout';
+import {
+  AdvanceElimSeats,
+  ChampionSeats,
+  pack,
+  setTiebreakerWinner,
+  setWinner,
+  shuffle,
+} from '../../libs/common/common';
 
-const copy = (x) => JSON.parse(JSON.stringify(x));
-
-const TournamentChallenger = 1;
-const TournamentLegends = 2;
-const TournamentChampions = 3;
+const TournamentChallenger = 0;
+const TournamentLegends = 1;
+const TournamentChampions = 2;
 
 const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
+const scores = { 0: FinalResultsChallenger, 1: FinalResultsLegends, 2: FinalResultsChampions };
+
+const TournamentStages = [
+  {
+    id: 0,
+    ...pack(initialDataChallenger, teamLogo),
+    name: "Challengers",
+    tournament: TournamentChallenger,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    winsToAdvance: 3,
+    loseToEliminate: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    rounds: 5,
+    scores: scores[TournamentChallenger],
+  },
+  {
+    id: 1,
+    ...pack(finalDataLegends, teamLogo),
+    name: "Legends",
+    tournament: TournamentLegends,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    winsToAdvance: 3,
+    loseToEliminate: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    rounds: 5,
+    scores: scores[TournamentLegends],
+  },
+  {
+    id: 2,
+    ...pack(finalDataChampions, teamLogo),
+    name: "Champions",
+    tournament: TournamentChampions,
+    advanceMode: 2,
+    tournamentFormat: "KNOCKOUT",
+    seats: ChampionSeats,
+    winsToAdvance: 3,
+    loseToEliminate: 1,
+    nonDeciderBestOf: 2,
+    deciderBestOf: 2,
+    rounds: 3,
+    scores: scores[TournamentChampions],
+  },
+];
+
+
 
 export default class Stockholm2021 extends React.PureComponent {
   state = {
     teams: [[], false, false, false, false, false],
+    roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
     tournament: TournamentChallenger,
-    advanceMode: 1,
-    legends: false,
     modified: true,
     scores: {},
+    tiebreakers: {},
+    tiebreakerResults: {},
+    pickResults: {},
+    lockResults: {},
+    seats: AdvanceElimSeats,
+    rounds: 0,
+    winsToAdvance: 3,
+    loseToEliminate: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
   };
 
-  pack = (teams) => {
-    return {
-      teams: [
-        teams.map(t => ({
-          l: 0,
-          w: 0,
-          opponents: [],
-          buchholz: 0,
-          code: t.code,
-          name: t.name,
-          seed: t.seed,
-          description: t.description,
-        })),
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ],
-      matches: [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-      ]
+  calculateMatchups = (s, e) => {
+    if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
+      this.setState(SwissBuchholtz.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "KNOCKOUT") {
+      this.setState(Knockout.bind(this)(s, e));
+    } else {
+
     }
-  }
-
-  setScores = (scores) => {
-    const gamescores = {};
-    for(const stage of Object.keys(scores)) {
-      gamescores[stage] = {};
-      for (const key of Object.keys(scores[stage])) {
-        const val = scores[stage][key];
-        gamescores[stage][key] = val;
-        let key2 = key.split('-');
-        gamescores[stage][key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
-      }
-    }
-    this.setState({ scores: gamescores })
-  }
-
-  loadScores = (cb) => {
-    return fetch('https://major.ieb.im/api/?scores=18')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setScores(resp)
-      }).then(cb);
-  }
-
-
-
-
+  };
 
   componentDidMount() {
+    this.setWinner = setWinner.bind(this);
+    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
+    this.shuffle = shuffle.bind(this);
     this.initChampions();
-    this.setScores({ 1: FinalResultsChallenger, 2: FinalResultsLegends, 3: FinalResultsChampions })
-    this.loadScores().then(() => this.initChampions())
-
   }
 
 
   init = (_) => {
     this.setState({
-      ...this.pack(initialDataChallenger),
-      tournament: TournamentChallenger,
-      advanceMode: 1,
-      modified: true,
+      ...TournamentStages[TournamentChallenger],
+      ...pack(initialDataChallenger, teamLogo),
+    }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
     });
   };
 
   initLegends = (_) => {
     this.setState({
-      ...this.pack(finalDataLegends),
-      tournament: TournamentLegends,
-      advanceMode: 1,
-      modified: true,
+      ...TournamentStages[TournamentLegends],
+      ...pack(finalDataLegends, teamLogo),
+    }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
     });
 
   };
   initChampions = (_) => {
     this.setState({
-      ...this.pack(finalDataChampions),
-      tournament: TournamentChampions,
-      advanceMode: 2,
-      modified: true,
+      ...TournamentStages[TournamentChampions],
+      ...pack(finalDataChampions, teamLogo),
+    }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
     });
 
   };
@@ -137,14 +155,11 @@ export default class Stockholm2021 extends React.PureComponent {
 
       const finalTeams = [...initialDataLegends, ...teamsAdvanced];
       this.setState({
-        savedS1: [this.state.teams, this.state.matches],
-        savedS2: null,
-        ...this.pack(finalTeams),
+        ...TournamentStages[TournamentLegends],
+        ...pack(finalTeams, teamLogo),
         matches: [false, false, false, false, false, false],
-        tournament: TournamentLegends,
-        advanceMode: 1,
-        legends: false,
-        modified: true,
+      }, () => {
+        this.calculateMatchups(0, this.state.rounds + 1)
       });
     }
 
@@ -169,419 +184,15 @@ export default class Stockholm2021 extends React.PureComponent {
       }))
 
       this.setState({
-        ...this.pack(teamsAdvanced),
+        ...TournamentStages[TournamentChampions],
+        ...pack(teamsAdvanced, teamLogo),
         matches: [false, false, false, false, false, false],
-        savedS2: [this.state.teams, this.state.matches],
-        tournament: TournamentChampions,
-        advanceMode: 2,
-        legends: false,
-        modified: true,
+      }, () => {
+        this.calculateMatchups(0, this.state.rounds + 1)
       });
     }
 
   };
-
-  previouslyMatchedUp(stage, tA, tB) {
-    for (let i = 0; i < stage; i += 1) {
-      if (this.state.matches[i]) {
-        for (const match of this.state.matches[i]) {
-          if (match.team1.seed === tA && match.team2.seed === tB) return true;
-          if (match.team2.seed === tA && match.team1.seed === tB) return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  getMatchUps(stage) {
-    const stateMatches = JSON.parse(JSON.stringify(this.state.matches));
-    const stateTeams = JSON.parse(JSON.stringify(this.state.teams));
-    let teams;
-    let remaining;
-    let stageMatches;
-    if (this.state.refresh || !stateMatches[stage]) {
-
-      if (stage > 0 && !stateTeams[stage]) {
-        if (!stateMatches[stage - 1]) return false;
-
-        const teamsT = stateTeams[stage - 1].filter((team) => team.w === 3 || team.l === 3);
-
-
-        for (const match of stateMatches[stage - 1]) {
-          const opponents1 = [...match.team1.opponents, match.team2.code];
-          const opponents2 = [...match.team2.opponents, match.team1.code];
-
-          if (match.picked === 1) {
-            teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1 });
-            teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1 });
-          } else if (match.picked === -1) {
-            teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1 });
-            teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1 });
-          }
-        }
-
-        const buchholzScore = {};
-        for (const team of teamsT) {
-          buchholzScore[team.code] = team.w - team.l;
-        }
-        for (const team of teamsT) {
-          team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
-        }
-        stateTeams[stage] = teamsT;
-      }
-
-
-      if (this.state.advanceMode === 1) {
-        teams = stateTeams[stage].sort((x, y) => {
-          if (x.buchholz !== y.buchholz) {
-            return y.buchholz - x.buchholz;
-          }
-          return x.seed - y.seed;
-        });
-      } else {
-        teams = stateTeams[stage]
-      }
-
-      remaining = this.state.advanceMode === 1 ?
-        teams.filter((x) => x.w < 3 && x.l < 3): teams.filter((x) => x.l === 0);
-
-      const remainingTeams = copy(remaining);
-      const matchups = [];
-      const pools = Array.from(new Set(remainingTeams.map((t) => `${t.w}-${t.l}`))).sort((x, y) => {
-        const ax = x.split('-');
-        const ay = y.split('-');
-        const vx = parseInt(ax[0], 10) * 10 - parseInt(ax[1], 10);
-        const vy = parseInt(ay[0], 10) * 10 - parseInt(ay[1], 10);
-        return vy - vx;
-      });
-
-      const dfs = (p, m, mref, pool) => {
-        if (!p.length) {
-          for (const match of m) {
-            mref.push(match);
-          }
-          return true;
-        }
-
-        const team1 = p[0];
-        const team2cands = p.filter((team) => {
-          if (team.seed === team1.seed) return false;
-          return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
-        });
-
-        if (!team2cands.length) return false;
-        const gamescores = this.state.scores[this.state.tournament] || {};
-
-        for (let c = team2cands.length - 1; c >= 0; c -= 1) {
-          const team2 = team2cands[c];
-          const mat = copy(m);
-          let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win
-          if (Math.random() < 0.2) {
-            picked *= -1;
-          }
-          let result = 0;
-
-          let score = [['TBA'], ['TBA']];
-
-          if (`${team1.code}-${team2.code}` in gamescores) {
-            let teamA = 0;
-            let teamB = 0;
-            const gs = gamescores[`${team1.code}-${team2.code}`];
-            for(const sco of gs) {
-              if (sco[0] !== sco[1]) {
-                if (sco[0] > 15 || sco[1] > 15) {
-                  if (sco[0] > sco[1]) {
-                    teamA ++;
-                  } else if (sco[1] > sco[0]) {
-                    teamB ++;
-                  }
-                }
-              }
-            }
-            score[0] = gs.map(x => x[0])
-            score[1] = gs.map(x => x[1])
-            if (teamA !== teamB) {
-              picked = teamA > teamB ? 1 : -1;
-              if (this.state.advanceMode === 2) {
-                if (teamA === 2 || teamB === 2) {
-                  result = picked
-                }
-              } else {
-                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
-                  result = picked
-                }
-              }
-            }
-          }
-
-
-          mat.push({ pool, match: m.length, team1, team2, picked, result, score });
-          const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
-          if (dfs(nPoolTeams, mat, mref, pool)) {
-            return true;
-          }
-        }
-        return false;
-      };
-
-      for (const pool of pools) {
-        const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
-        dfs(poolTeams, [], matchups, pool);
-      }
-
-      stageMatches = matchups;
-      stateMatches[stage] = stageMatches;
-      let override = false;
-      for (const matches of stateMatches) {
-        if (matches) {
-          for (const match of matches) {
-            if (match.picked !== match.result && match.result) {
-              override = true;
-            }
-          }
-        }
-      }
-      this.setState({
-        teams: stateTeams, matches: stateMatches, refresh: false,
-      });
-    } else {
-      stageMatches = stateMatches[stage];
-      teams = stateTeams[stage].sort((x, y) => x.buchholz - y.buchholz);
-    }
-
-
-    const elim = teams.filter((x) => x.l === 3).sort((x, y) => {if (y.w - x.w) return y.w - x.w; return y.buchholz - x.buchholz});
-    const adv = teams.filter((x) => x.w === 3).sort((x, y) => {if (y.l - x.l) return x.l - y.l; return y.buchholz - x.buchholz});
-
-
-
-    const setWinner = (match, picked) => {
-      if (match.picked === picked) return;
-
-      stageMatches = stageMatches.map((y) =>
-        y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked },
-      );
-      stateMatches[stage] = stageMatches;
-      for (let p = stage + 1; p < 6; p += 1) {
-        stateTeams[p] = false;
-        stateMatches[p] = false;
-      }
-      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
-    };
-
-    return (
-      <div key={stage}>
-        {adv.map((team, _) => (
-          <div key={team.code} className="team one advanced">
-            <div className="team-box up">
-              <div className="team-box-split b">
-                <span className="team-box-text">
-                  {team.w}-{team.l}
-                </span>
-              </div>
-            </div>
-            <div className="team-box med">
-              <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">ADV</span>
-              </div>
-            </div>
-            {
-              (stage >= 1 && this.state.advanceMode === 1) && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text">{team.buchholz} B</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                <span className="team-box-text">
-                  {
-                    team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
-                    )
-                  }
-                </span>
-                    </div>
-                  </div>
-                </>
-              )
-            }
-          </div>
-        ))}
-
-
-
-        {stageMatches.map((x) => {
-          let pickA, pickB, resultA, resultB;
-          if (x.picked === 1) {
-            pickA = 'win';
-            pickB = 'lose';
-          } else if (x.picked === -1) {
-            pickA = 'lose';
-            pickB = 'win';
-          }
-          if (x.result === 1) {
-            resultA = 'rs-win';
-            resultB = 'rs-lose';
-          } else if (x.result === -1) {
-            resultA = 'rs-lose';
-            resultB = 'rs-win';
-          } else {
-            resultA = '';
-            resultB = '';
-          }
-
-          return (
-            <div key={`match-${x.pool}-${x.match}`} className="team two">
-              <div className="team-box up" style={{ background: `hsla(${100.0 * x.team1.w / (x.team1.w + x.team1.l)}, 100%, 50%, 0.5)` }}>
-                <div className="team-box-split b">
-                  <span className="team-box-text">{x.pool}</span>
-                </div>
-              </div>
-              {this.state.scores && x.score[0].map((p, idx) => (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className={`team-box-text ${x.score[0][idx] < x.score[1][idx] ? 'lose' :
-                        x.score[1][idx] < x.score[0][idx] ? 'win' : ''}`}>
-                        {x.score[0][idx]}
-                      </span>
-                    </div>
-                    <div className="team-box-split b">
-                      <span className={`team-box-text ${x.score[1][idx] < x.score[0][idx] ? 'lose' :
-                        x.score[0][idx] < x.score[1][idx] ? 'win' : ''}`}>
-                        {x.score[1][idx]}
-                      </span>
-                    </div>
-                  </div>
-                </>
-              ))}
-              <div className="team-box med">
-                <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
-                  <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
-                </div>
-                <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => setWinner(x, -1)}>
-                  <Image className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
-                </div>
-              </div>
-              <div className="team-box down">
-                <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team1.seed}</span>
-                </div>
-                <div className="team-box-split b">
-                  <span className="team-box-text">#{x.team2.seed}</span>
-                </div>
-              </div>
-              {
-                stage >= 1 ? (this.state.advanceMode === 1) && (
-                  <>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{x.team1.buchholz} B</span>
-                      </div>
-                      <div className="team-box-split b">
-                        <span className="team-box-text">{x.team2.buchholz} B</span>
-                      </div>
-                    </div>
-                    <div className="team-box down">
-                      <div className="team-box-split b">
-                  <span className="team-box-text">
-                    {
-                      x.team1.opponents.map(opp =>
-                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} key={opp}  />
-                      )
-                    }
-                  </span>
-                      </div>
-                      <div className="team-box-split b">
-                  <span className="team-box-text">
-                    {
-                      x.team2.opponents.map(opp =>
-                        <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} key={opp} />
-                      )
-                    }
-                  </span>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text descr">{x.team1.description}</span>
-                    </div>
-                    <div className="team-box-split b">
-                      <span className="team-box-text descr">{x.team2.description}</span>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          );
-        })}
-
-        {elim.map((team, _) => (
-          <div key={team.code} className="team one eliminated">
-            <div className="team-box up">
-              <div className="team-box-split b">
-                <span className="team-box-text">
-                  {team.w}-{team.l}
-                </span>
-              </div>
-            </div>
-            <div className="team-box med">
-              <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed}</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">ELIM</span>
-              </div>
-            </div>
-            {
-              (this.state.advanceMode === 1) && stage >= 1 && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <span className="team-box-text">{team.buchholz} B</span>
-                    </div>
-                  </div>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                <span className="team-box-text">
-                  {
-                    team.opponents.map(opp =>
-                      <Image className="team-logo-small" src={teamLogo(opp)} alt={opp} title={opp} key={opp} />
-                    )
-                  }
-                </span>
-                    </div>
-                  </div>
-                </>
-              )
-            }
-          </div>
-        ))}
-      </div>
-    );
-  }
 
   render() {
     return (
@@ -633,16 +244,7 @@ export default class Stockholm2021 extends React.PureComponent {
               />
             </Menu>
           </div>
-          <div className="main-container">
-            {(this.state.advanceMode === 1 ? [0, 1, 2, 3, 4, 5] : [0, 1, 2, 3]).map((round) => (
-              <>
-                <h1 className="round-title" key={round}>
-                  {round === (this.state.advanceMode === 1 ? 5 : 3) ? `Final Results` : `Round ${round + 1}`}
-                </h1>
-                <div key={"_" + round}>{this.getMatchUps(round)}</div>
-              </>
-            ))}
-          </div>
+          <BasicUI state={this.state} shuffle={this.shuffle} />
         </div>
       </div>
     );

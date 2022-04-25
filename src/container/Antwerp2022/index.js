@@ -60,16 +60,7 @@ const TournamentStages = [
 export default class Antwerp2022 extends React.PureComponent {
   state = {
     teams: [[], false, false, false, false, false],
-    roundTeams: [
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-    ],
+    roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
     regionId: 0,
     tournamentFormat: "SWISS_BUCHHOLTZ",

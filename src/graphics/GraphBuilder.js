@@ -47,12 +47,14 @@ export default class GraphBuilder extends React.PureComponent {
     const _teams = matches[0].map(x => [x.team1, x.team2]).flat();
 
     const totalTeams = _teams.length;
+    const offsetSeed = _teams[0].seed - 1;
     const teams = _teams.map((t, _idx) => {
       const y = nodeY;
+      const colorSeed = t.seed - offsetSeed;
       nodeY += node_single_height + level_y_half_padding;
-      colorTeams[t['code']] = t.seed <= totalTeams / 2 ?
-        d3.interpolateCool(0.2 + 0.8 * (totalTeams / 2 - t.seed) / (totalTeams / 2)) :
-        d3.interpolateWarm(0.2 + 0.8 * (totalTeams - t.seed) / (totalTeams / 2));
+      colorTeams[t['code']] = colorSeed <= totalTeams / 2 ?
+        d3.interpolateCool(0.2 + 0.8 * (totalTeams / 2 - colorSeed) / (totalTeams / 2)) :
+        d3.interpolateWarm(0.2 + 0.8 * (totalTeams - colorSeed) / (totalTeams / 2));
       return ({
         id: t['code'], ...t,
         name: `#${t.seed} ${t.name}`,

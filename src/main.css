@@ -141,32 +141,60 @@ h3.title {
   color: #ffc40a;
 }
 
-.team.legend .b  {
+.team.legends .b  {
   border: 1px solid #00ff00;
 }
-.team.legend .team-box-text {
+.team.legends .team-box-text {
   color: #00ff00;
 }
 
-.team.challenger .b  {
+.team.challengers .b  {
   border: 1px solid #abff00;
 }
-.team.challenger .team-box-text {
+.team.challengers .team-box-text {
   color: #abff00;
 }
 
-.team.contender .b  {
+.team.contenders .b  {
   border: 1px solid #ffcd00;
 }
-.team.contender .team-box-text {
+.team.contenders .team-box-text {
   color: #ffcd00;
 }
 
+.team.champion .b  {
+  border: 1px solid #c9b037;
+}
+.team.champion .team-box-text {
+  color: #c9b037;
+}
+
+.team.runner-up .b  {
+  border: 1px solid #d7d7d7;
+}
+.team.runner-up .team-box-text {
+  color: #d7d7d7;
+}
+
+.team.semifinalist .b  {
+  border: 1px solid #A77044;
+}
+.team.semifinalist .team-box-text {
+  color: #A77044;
+}
+
+.team.quarterfinalist .b  {
+  border: 1px solid #ffccaa;
+}
+.team.quarterfinalist .team-box-text {
+  color: #ffccaa;
+}
+
 .team.eliminated .b {
-  border: 1px solid #ababab;
+  border: 1px solid #8e8e8e;
 }
 .team.eliminated .team-box-text {
-  color: #ababab;
+  color: #8e8e8e;
 }
 
 .team-box-split {
