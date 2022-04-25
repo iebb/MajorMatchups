@@ -115,12 +115,14 @@ export default class Antwerp2022 extends React.PureComponent {
 
   advance = (_) => {
     let finalTeams;
+    let { challengerResult } = this.state
     if (this.state.tournament === TournamentChallenger) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
         description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
         l: 0, w: 0, buchholz: 0, seed: _idx + 9, opponents: [],
       }))
+      challengerResult = this.state.roundTeams[5];
       finalTeams = [...initialDataLegends, ...teamsAdvanced];
       setPickResults('pickResults', 0, EVENT, this.state.pickResults);
     } else if (this.state.tournament === TournamentChampions) {
@@ -129,6 +131,7 @@ export default class Antwerp2022 extends React.PureComponent {
     if (finalTeams) {
       this.setState({
         ...pack(finalTeams, teamLogo),
+        challengerResult,
         matches: [false, false, false, false, false, false],
         tournament: TournamentLegends,
         tournamentFormat: "SWISS_BUCHHOLTZ",
@@ -144,6 +147,7 @@ export default class Antwerp2022 extends React.PureComponent {
   };
 
   advance2 = (_) => {
+    let { legendResult } = this.state
     if (this.state.tournament === TournamentLegends && this.state.roundTeams[5]) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
@@ -151,10 +155,12 @@ export default class Antwerp2022 extends React.PureComponent {
         l: 0, w: 0, buchholz: 0, seed: _idx + 1, opponents: [],
       }))
 
+      legendResult = this.state.roundTeams[5];
       setPickResults('pickResults', 1, EVENT, this.state.pickResults);
       setPickResults('teams', 1, EVENT, this.state.teams[0]);
       this.setState({
         ...pack(teamsAdvanced, teamLogo),
+        legendResult,
         matches: [false, false, false, false, false, false],
         tournament: TournamentChampions,
         tournamentFormat: "KNOCKOUT",
@@ -188,7 +194,7 @@ export default class Antwerp2022 extends React.PureComponent {
     const regions = {
       EU: { name: "Europe", icon: "https://major.ieb.im/images/regions/eu1.png" },
       AM: { name: "Americas", icon: "https://major.ieb.im/images/regions/am.png" },
-      AP: { name: "Asia/Pac", icon: "https://major.ieb.im/images/regions/ap.png" },
+      AP: { name: "Asia/Pac", icon: "https://major.ieb.im/images/regions/asia.png" },
     }
 
     const m = (team, _) => {
