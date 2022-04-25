@@ -266,6 +266,29 @@ img.ui.image.team-logo {
   max-width: 64px;
   max-height: 64px;
 }
+.stacked-logo {
+  position: relative;
+}
+
+.team-logo-bg-container {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(35, 41, 77, 0.75);
+  border-top-left-radius: 16px;
+}
+
+img.ui.image.team-logo-bg {
+  width: 32px;
+  max-height: 32px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
 
 img.ui.image.team-logo-small {
   vertical-align: middle;

@@ -177,19 +177,43 @@ export default class Antwerp2022 extends React.PureComponent {
   };
 
   renderNMS = () => {
-    const result = this.state.roundTeams[5];
-    if (!result) return null;
+    let legendResult, championResult;
+    if (this.state.tournament === 1) {
+      legendResult = this.state.roundTeams[5];
+      if (!legendResult) return null;
+      championResult = legendResult.filter(x => x.adv).map(x => ({...x, standings: "1st-8th"}))
+    } else if (this.state.tournament === 2) {
+      championResult = this.state.roundTeams[3];
+      if (!championResult) return null;
+      legendResult = this.state.legendResult;
+    }
 
-    const slots = [
-      {standing: "-", region: "EU", cont: true},
-      {standing: "-", region: "EU", cont: true},
-      {standing: "-", region: "EU", cont: true},
-      {standing: "-", region: "AM", cont: true},
-      {standing: "-", region: "AM", cont: true},
-      {standing: "-", region: "AM", cont: true},
-      {standing: "-", region: "AP", cont: true},
-      {standing: "-", region: "AP", cont: true},
-    ]
+    const challengerResult = this.state.challengerResult;
+    if (!legendResult || !championResult || !challengerResult) return null;
+
+    legendResult = legendResult.map(x => ({...x, status: "challengers"}));
+    championResult = championResult.map(x => ({...x, status: "legends"}));
+
+    const losingTeamsinChallenger = this.state.challengerResult.filter(
+      x => x.elim
+    ).map(x => ({...x, status: "contenders"}));
+    const challengerSlots = {EU:3, AM:3, AP:2}
+    const regionOrders = ["EU", "AM", "AP"];
+    for(const team of losingTeamsinChallenger) {
+      if (challengerSlots[team.region] === 0) {
+        for(const otherRegion of regionOrders) {
+          if (challengerSlots[otherRegion] > 0) {
+            team.region = otherRegion
+            team.name += " / Slot Transferred to " + otherRegion
+          }
+        }
+      }
+      --challengerSlots[team.region];
+      team.cont = true;
+      team.standing += 8;
+    }
+
+    const slots = losingTeamsinChallenger;
 
     const regions = {
       EU: { name: "Europe", icon: "https://major.ieb.im/images/regions/eu1.png" },
@@ -199,21 +223,13 @@ export default class Antwerp2022 extends React.PureComponent {
 
     const m = (team, _) => {
       const r = regions[team.region];
-      const status = team.cont ? "contenders" : (team.elim ? "challengers" : "legends");
-      const statusText = team.cont ? "CONT" : (team.elim ? "CHAL" : "LEGEND");
+      const status = team.status;
       return (
         <div key={team.code} className={`team one ${status}`}>
-          <div className="team-box up">
-            <div className="team-box-split b">
-                <span className="team-box-text">
-                  {statusText}
-                </span>
-            </div>
-          </div>
           <div className="team-box down">
             <div className="team-box-split b">
                 <span className="team-box-text">
-                  {team.standing >= 9 ? ordinal(team.standing) : team.standing < 9 ? "1st-8th" : "17-24th"}
+                  {team.standings || ordinal(team.standing)}
                 </span>
             </div>
           </div>
@@ -225,8 +241,11 @@ export default class Antwerp2022 extends React.PureComponent {
             </div>
           </div>
           <div className="team-box med">
-            <div className="team-box-split b">
+            <div className="team-box-split b stacked-logo">
               <Image className="team-logo" src={r.icon} />
+              <div className="team-logo-bg-container">
+                <Image className="team-logo-bg" src={team.logo} alt={team.name} title={team.name} />
+              </div>
             </div>
           </div>
         </div>
@@ -240,10 +259,10 @@ export default class Antwerp2022 extends React.PureComponent {
           Next Major Slot Allocations
         </h1>
         <div>
-          {result.filter(x => x.adv).map(m)}
+          {championResult.map(m)}
         </div>
         <div>
-          {result.filter(x => x.elim).map(m)}
+          {legendResult.filter(x => x.elim).map(m)}
         </div>
         <div>
           {slots.map(m)}
@@ -312,7 +331,7 @@ export default class Antwerp2022 extends React.PureComponent {
           <BasicUI state={this.state} shuffle={this.shuffle} />
           <div style={{ marginTop: 20 }}>
             {
-              this.state.tournament === 1 && this.renderNMS()
+              this.state.tournament >= 1 && this.renderNMS()
             }
           </div>
         </div>
