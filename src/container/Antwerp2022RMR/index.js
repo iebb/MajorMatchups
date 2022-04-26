@@ -4,7 +4,7 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { AME, AP, EUA, EUB } from './initial_data';
 import { Scores } from './scores';
-import { SwissBuchholtz } from '../../libs/common/SwissBuchholtz';
+import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
 
@@ -124,6 +124,12 @@ export default class Antwerp2022RMR extends React.PureComponent {
     },
     rounds: 0,
     allowDups: false,
+  };
+
+  event = "22rmrantwerp";
+
+  getStage = () => {
+    return this.state.regionId;
   };
 
   init = (region) => {

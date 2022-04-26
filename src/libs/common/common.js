@@ -1,3 +1,5 @@
+import { setPickResults } from './storage';
+
 export const pack = (teams, teamLogo) => {
   return {
     teams: [
@@ -89,20 +91,7 @@ export function setWinner(match, picked, suffix = "")  {
     return;
   }
 
-  if (currentRound > 0) {
-    const prevRound = this.state.matches[currentRound - 1];
-    for(const prevMatch of prevRound) {
-      if (!prevMatch.result) {
-        window.gtag("event", `round_${currentRound}_winner`, {
-          match: `${prevMatch.team1.code}-${prevMatch.team2.code}`,
-          round: currentRound,
-          winner: prevMatch.picked > 0 ? prevMatch.team1.code : prevMatch.team2.code,
-          loser: prevMatch.picked > 0 ? prevMatch.team2.code : prevMatch.team1.code,
-        });
-      }
-    }
-  }
-
+  setPickResults('pickResults', this.getStage ? this.getStage() : 0, this.event, pickResults);
   this.setState({ pickResults }, () => {
     this.calculateMatchups(currentRound, this.state.rounds + 1)
   })

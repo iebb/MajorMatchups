@@ -1,5 +1,5 @@
-import { ordinal } from '../plural';
-import { copy, getStatus, getWinnerFromScore } from './common';
+import { ordinal } from '../../plural';
+import { copy, getStatus, getWinnerFromScore } from '../common';
 
 export function SwissBuchholtzDup(fromStage, toStage) {
   const {state} = this;

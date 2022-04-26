@@ -1,5 +1,5 @@
-import { ordinal } from '../plural';
-import { copy, getStatus, getWinnerFromScore } from './common';
+import { ordinal } from '../../plural';
+import { copy, getStatus, getWinnerFromScore } from '../common';
 
 
 export function Knockout(fromStage, toStage) {

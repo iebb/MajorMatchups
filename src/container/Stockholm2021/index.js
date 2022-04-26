@@ -5,8 +5,8 @@ import { Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
-import { SwissBuchholtz } from '../../libs/common/SwissBuchholtz';
-import { Knockout } from '../../libs/common/Knockout';
+import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
+import { Knockout } from '../../libs/common/formats/Knockout';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -87,6 +87,12 @@ export default class Stockholm2021 extends React.PureComponent {
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+  };
+
+  event = "21stockholm";
+
+  getStage = () => {
+    return this.state.tournament;
   };
 
   calculateMatchups = (s, e) => {

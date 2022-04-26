@@ -305,3 +305,7 @@ img.ui.image.team-logo-small {
 .ui.inverted.form .ui.toggle.checkbox input:checked~label {
   color: rgba(255, 255, 255,.95)!important;
 }
+
+iframe {
+  pointer-events: none;
+}
