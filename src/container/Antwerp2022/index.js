@@ -81,6 +81,7 @@ export default class Antwerp2022 extends React.PureComponent {
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    event: "22antwerp",
   };
 
   getStage = () => {
@@ -341,7 +342,7 @@ export default class Antwerp2022 extends React.PureComponent {
               )
             }
           </Menu>
-          <BasicUI state={this.state} shuffle={this.shuffle} />
+          <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
           <div style={{ marginTop: 20 }}>
             {
               this.state.tournament >= 1 && this.renderNMS()

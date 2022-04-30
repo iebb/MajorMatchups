@@ -1,4 +1,4 @@
-import { Form, Radio } from 'semantic-ui-react';
+import {Button, Form, Radio} from 'semantic-ui-react';
 import { getMatchupDisplay } from './Display';
 import GraphBuilder from '../../graphics/GraphBuilder';
 import React from 'react';
@@ -12,15 +12,39 @@ export class BasicUI extends React.Component {
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
     straightCorner: (localStorage.straightCorner || "false") === "true",
+    interactiveMode: (localStorage.interactiveMode || "false") === "true",
+    iRound: 0,
   }
+
+  submitAnalytics = () => {
+    const { state, stage } = this.props;
+    fetch(`https://score-service.deta.dev/save_picks/${state.event}_${stage}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({teams: state.roundTeams[state.rounds].map(x => x.code)})
+    });
+  }
+
   render() {
-    const { matchOnly, hideMatchUI, hideDiagramUI } = this.state;
+    const { matchOnly, interactiveMode, iRound, hideMatchUI, hideDiagramUI } = this.state;
     const { state, shuffle } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
+
     return (
       <div style={{ marginTop: 20 }}>
         <Form style={{ marginTop: 20 }} inverted>
           <Form.Field>
+            <div style={{ margin: 10, display: 'inline-block' }}>
+              <Radio toggle onChange={
+                (e, { checked }) => {
+                  this.setState({ interactiveMode: checked });
+                  localStorage.interactiveMode = checked;
+                }
+              } label='Interactive Mode (beta)' checked={interactiveMode} />
+            </div>
             <div style={{ margin: 10, display: 'inline-block' }}>
               <Radio toggle onChange={
                 (e, { checked }) => {
@@ -51,26 +75,80 @@ export class BasicUI extends React.Component {
         {
           !hideMatchUI && (
             <div className="main-container">
-              {rounds.map((round) => (
-                <div key={"match-" + round} style={{ marginTop: 20 }}>
-                  <h1 className="round-title">
-                    {round === (state.rounds) ? `Final Results` : `Round ${round + 1}`}
+              {
+                interactiveMode ? (
+                  <div key={"match-" + iRound} style={{ marginTop: 20 }}>
+                    <h1 className="round-title">
+                      {iRound === (state.rounds) ? `Final Results` : `Round ${iRound + 1}`}
+                    </h1>
+                    <div key={"_" + iRound}>{getMatchupDisplay({...state, matchOnly}, iRound)}</div>
+                    <div style={{ marginTop: 32 }}>
+                      <Button
+                        basic
+                        onClick={() => {
+                          this.setState({ iRound: iRound - 1});
+                        }}
+                        inverted
+                        disabled={iRound <= 0}
+                        content="Go Back"
+                        icon='left arrow'
+                        labelPosition='left'
+                      />
+                      <Button
+                        basic
+                        onClick={() => {
+                          if (iRound + 1 >= (state.rounds)) {
+                            this.submitAnalytics();
+                          } else {
+                            shuffle(iRound + 1);
+                            console.log("shuffled");
+                          }
+                          this.setState({ iRound: iRound + 1});
+                        }}
+                        inverted
+                        disabled={iRound >= (state.rounds)}
+                        content="Next Round"
+                        icon='right arrow'
+                        labelPosition='right'
+                      />
+                    </div>
                     {
-                      round < 5 &&
-                      <span
-                        style={{ float: "right", fontSize: "50%" }}
-                        onClick={() => shuffle(round)}
-                      >[shuffle]</span>
+                      iRound < (state.rounds) &&
+                      <div style={{ marginTop: 32 }}>
+                        <Button
+                          basic
+                          onClick={() => shuffle(iRound)}
+                          inverted
+                          content="Shuffle"
+                          icon='exchange'
+                          labelPosition='right'
+                        />
+                      </div>
                     }
-                  </h1>
-                  <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
-                </div>
-              ))}
+                  </div>
+                ) : (
+                  rounds.map((round) => (
+                    <div key={"match-" + round} style={{ marginTop: 20 }}>
+                      <h1 className="round-title">
+                        {round === (state.rounds) ? `Final Results` : `Round ${round + 1}`}
+                        {
+                          round < 5 &&
+                          <span
+                            style={{ float: "right", fontSize: "50%" }}
+                            onClick={() => shuffle(round)}
+                          >[shuffle]</span>
+                        }
+                      </h1>
+                      <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
+                    </div>
+                  ))
+                )
+              }
             </div>
           )
         }
         {
-          !hideDiagramUI && (
+          (!hideDiagramUI) && (!interactiveMode || iRound >= (state.rounds)) && (
             <div className='main-container'>
               <h1 className='round-title'>
                 Diagram

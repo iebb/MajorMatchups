@@ -87,6 +87,7 @@ export default class Stockholm2021 extends React.PureComponent {
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    event: "21stockholm",
   };
 
   event = "21stockholm";
@@ -250,7 +251,7 @@ export default class Stockholm2021 extends React.PureComponent {
               />
             </Menu>
           </div>
-          <BasicUI state={this.state} shuffle={this.shuffle} />
+          <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
         </div>
       </div>
     );

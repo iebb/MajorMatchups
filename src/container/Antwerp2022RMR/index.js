@@ -124,6 +124,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     },
     rounds: 0,
     allowDups: false,
+    event: "22rmrantwerp",
   };
 
   event = "22rmrantwerp";
@@ -203,7 +204,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
                 ))
               }
             </Menu>
-            <BasicUI state={this.state} shuffle={this.shuffle} />
+            <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
           </div>
         </div>
       </div>
