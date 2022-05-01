@@ -12,7 +12,7 @@ export class BasicUI extends React.Component {
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
     straightCorner: (localStorage.straightCorner || "false") === "true",
-    interactiveMode: (localStorage.interactiveMode || "false") === "true",
+    interactiveMode: (localStorage.interactiveMode || "true") === "true",
     iRound: 0,
   }
 
@@ -28,9 +28,15 @@ export class BasicUI extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.stage !== this.props.stage) {
+      this.setState({ iRound: 0 });
+    }
+  }
+
   render() {
     const { matchOnly, interactiveMode, iRound, hideMatchUI, hideDiagramUI } = this.state;
-    const { state, shuffle } = this.props;
+    const { state, shuffle, extras } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     return (
@@ -148,57 +154,70 @@ export class BasicUI extends React.Component {
           )
         }
         {
-          (!hideDiagramUI) && (!interactiveMode || iRound >= (state.rounds)) && (
-            <div className='main-container'>
-              <h1 className='round-title'>
-                Diagram
-              </h1>
-              <Form style={{ marginTop: 20 }} inverted>
-                <Form.Field>
-                  <div style={{ margin: 10, display: 'inline-block' }}>
-                    <Radio toggle onChange={
-                      (e, { checked }) => {
-                        this.setState({ eliminatedOnDiagram: checked });
-                        localStorage.eliminatedOnDiagram = checked;
-                      }
-                    } label='Show Eliminated' checked={this.state.eliminatedOnDiagram} />
+          (!interactiveMode || iRound >= (state.rounds)) && (
+            <>
+              {
+                extras && (
+                  <div>
+                    {extras()}
                   </div>
-                  <div style={{ margin: 10, display: 'inline-block' }}>
-                    <Radio toggle onChange={
-                      (e, { checked }) => {
-                        this.setState({ straightCorner: checked });
-                        localStorage.straightCorner = checked;
-                      }
-                    } label='Straight Corners' checked={this.state.straightCorner} />
+                )
+              }
+              {
+                (!hideDiagramUI) && (
+                  <div className='main-container'>
+                    <h1 className='round-title'>
+                      Diagram
+                    </h1>
+                    <Form style={{ marginTop: 20 }} inverted>
+                      <Form.Field>
+                        <div style={{ margin: 10, display: 'inline-block' }}>
+                          <Radio toggle onChange={
+                            (e, { checked }) => {
+                              this.setState({ eliminatedOnDiagram: checked });
+                              localStorage.eliminatedOnDiagram = checked;
+                            }
+                          } label='Show Eliminated' checked={this.state.eliminatedOnDiagram} />
+                        </div>
+                        <div style={{ margin: 10, display: 'inline-block' }}>
+                          <Radio toggle onChange={
+                            (e, { checked }) => {
+                              this.setState({ straightCorner: checked });
+                              localStorage.straightCorner = checked;
+                            }
+                          } label='Straight Corners' checked={this.state.straightCorner} />
+                        </div>
+                        <div style={{ margin: 10, display: 'inline-block' }}>
+                          <Radio toggle onChange={
+                            (e, { checked }) => {
+                              this.setState({ tight: checked });
+                              localStorage.tight = checked;
+                            }
+                          } label='Vertical Overlapping' checked={this.state.tight} />
+                        </div>
+                        <div style={{ margin: 10, display: 'inline-block' }}>
+                          <Radio toggle onChange={
+                            (e, { checked }) => {
+                              this.setState({ dash: checked });
+                              localStorage.dash = checked;
+                            }
+                          } label='Dash for Provisional' checked={this.state.dash} />
+                        </div>
+                      </Form.Field>
+                    </Form>
+                    <div className='main-container' style={{ overflowX: 'scroll' }}>
+                      <GraphBuilder
+                        data={state}
+                        eliminatedOnDiagram={this.state.eliminatedOnDiagram}
+                        straightCorner={this.state.straightCorner}
+                        tight={this.state.tight}
+                        dash={this.state.dash}
+                      />
+                    </div>
                   </div>
-                  <div style={{ margin: 10, display: 'inline-block' }}>
-                    <Radio toggle onChange={
-                      (e, { checked }) => {
-                        this.setState({ tight: checked });
-                        localStorage.tight = checked;
-                      }
-                    } label='Vertical Overlapping' checked={this.state.tight} />
-                  </div>
-                  <div style={{ margin: 10, display: 'inline-block' }}>
-                    <Radio toggle onChange={
-                      (e, { checked }) => {
-                        this.setState({ dash: checked });
-                        localStorage.dash = checked;
-                      }
-                    } label='Dash for Provisional' checked={this.state.dash} />
-                  </div>
-                </Form.Field>
-              </Form>
-              <div className='main-container' style={{ overflowX: 'scroll' }}>
-                <GraphBuilder
-                  data={state}
-                  eliminatedOnDiagram={this.state.eliminatedOnDiagram}
-                  straightCorner={this.state.straightCorner}
-                  tight={this.state.tight}
-                  dash={this.state.dash}
-                />
-              </div>
-            </div>
+                )
+              }
+            </>
           )
         }
       </div>

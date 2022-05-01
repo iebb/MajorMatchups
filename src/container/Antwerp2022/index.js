@@ -66,7 +66,7 @@ export default class Antwerp2022 extends React.PureComponent {
     teams: [[], false, false, false, false, false],
     roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
-    regionId: 0,
+    tournament: 0,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     legends: false,
     modified: true,
@@ -85,7 +85,7 @@ export default class Antwerp2022 extends React.PureComponent {
   };
 
   getStage = () => {
-    return this.state.regionId;
+    return this.state.tournament;
   };
 
 
@@ -342,12 +342,18 @@ export default class Antwerp2022 extends React.PureComponent {
               )
             }
           </Menu>
-          <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
-          <div style={{ marginTop: 20 }}>
-            {
-              this.state.tournament >= 1 && this.renderNMS()
+          <BasicUI
+            state={this.state}
+            stage={this.getStage()}
+            shuffle={this.shuffle}
+            extras={() =>
+              <div style={{ marginTop: 20 }}>
+                {
+                  this.state.tournament >= 1 && this.renderNMS()
+                }
+              </div>
             }
-          </div>
+          />
         </div>
       </div>
     );
