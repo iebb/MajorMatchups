@@ -250,7 +250,7 @@ export default class Katowice2019 extends React.PureComponent {
         stateTeams[p] = false;
         stateMatches[p] = false;
       }
-      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
+      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true });
     };
 
     return (

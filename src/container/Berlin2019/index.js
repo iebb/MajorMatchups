@@ -51,7 +51,6 @@ export default class Berlin2019 extends React.PureComponent {
       matches: [false, false, false, false, false, false],
       tournament: resp.tournament,
       legends: false,
-      modified: false,
     });
   };
 
@@ -259,7 +258,7 @@ export default class Berlin2019 extends React.PureComponent {
         stateTeams[p] = false;
         stateMatches[p] = false;
       }
-      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true, modified: true });
+      this.setState({ teams: stateTeams, matches: stateMatches, refresh: true });
     };
 
     return (

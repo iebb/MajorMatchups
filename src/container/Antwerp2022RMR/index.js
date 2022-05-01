@@ -111,7 +111,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
     regionId: 0,
     advanceMode: 1,
     legends: false,
-    modified: true,
     scores: Scores,
     tiebreakers: {},
     tiebreakerResults: {},
@@ -138,7 +137,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       ...pack(Regions[region].seeds, teamLogo),
       advanceMode: 1,
       regionId: region,
-      modified: true,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 /*
@@ -150,7 +148,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
           scores: resp,
           advanceMode: 1,
           regionId: region,
-          modified: true,
           ...Regions[region],
         });
       }).then(

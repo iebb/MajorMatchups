@@ -33,7 +33,7 @@ const TournamentStages = [
     name: "Challengers",
     tournament: TournamentChallenger,
     tournamentFormat: "SWISS_BUCHHOLTZ",
-    modified: true,
+    seats: AdvanceElimSeats,
     rounds: 5,
   },
   /*
@@ -43,7 +43,7 @@ const TournamentStages = [
     name: "Legends",
     tournament: TournamentLegends,
     advanceMode: 1,
-    modified: true,
+    seats: ChampionSeats,
     rounds: 5,
   },
   {
@@ -52,7 +52,7 @@ const TournamentStages = [
     name: "Champions",
     tournament: TournamentChampions,
     advanceMode: 2,
-    modified: true,
+    seats: ChampionSeats,
     // rounds: 5,
   },
 
@@ -69,7 +69,6 @@ export default class Antwerp2022 extends React.PureComponent {
     tournament: 0,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     legends: false,
-    modified: true,
     scores: Scores,
     tiebreakers: {},
     tiebreakerResults: {},
@@ -143,7 +142,6 @@ export default class Antwerp2022 extends React.PureComponent {
         tournamentFormat: "SWISS_BUCHHOLTZ",
         seats: AdvanceElimSeats,
         loseToEliminate: 3,
-        modified: true,
         rounds: 5,
         pickResults: getPickResults('pickResults', 1, this.event),
       }, () => {

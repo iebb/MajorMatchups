@@ -75,7 +75,6 @@ export default class Stockholm2021 extends React.PureComponent {
     roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
     tournament: TournamentChallenger,
-    modified: true,
     scores: {},
     tiebreakers: {},
     tiebreakerResults: {},
