@@ -1,9 +1,10 @@
-import {Button, Form, Radio} from 'semantic-ui-react';
+import {Button, Form, Label, Radio} from 'semantic-ui-react';
 import { getMatchupDisplay } from './Display';
 import GraphBuilder from '../../graphics/GraphBuilder';
 import React from 'react';
 
 export class BasicUI extends React.Component {
+
   state = {
     hideMatchUI: (localStorage.hideMatchUI || "false") === "true",
     hideDiagramUI: (localStorage.hideDiagramUI || "false") === "true",
@@ -34,23 +35,44 @@ export class BasicUI extends React.Component {
     }
   }
 
+  isInteractiveModeEnabled = () => {
+    // if (this.props.state.event !== "22antwerp") return false;
+    return !Object.keys(this.props.state.scores).length;
+
+  }
+
   render() {
     const { matchOnly, interactiveMode, iRound, hideMatchUI, hideDiagramUI } = this.state;
-    const { state, shuffle, extras } = this.props;
+    const { state, shuffle } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     return (
       <div style={{ marginTop: 20 }}>
         <Form style={{ marginTop: 20 }} inverted>
           <Form.Field>
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ interactiveMode: checked });
-                  localStorage.interactiveMode = checked;
-                }
-              } label='Interactive Mode (beta)' checked={interactiveMode} />
-            </div>
+            {
+              this.isInteractiveModeEnabled() && (
+                <div style={{ margin: 10, display: 'inline-block' }}>
+                  <Radio toggle onChange={
+                    (e, { checked }) => {
+                      this.setState({ interactiveMode: checked });
+                      localStorage.interactiveMode = checked;
+                    }
+                  } label={"\u00A0"} checked={interactiveMode} />
+                  {
+                    this.state.interactiveMode ? (
+                      <Label color='red' tag>
+                        Round by Round
+                      </Label>
+                    ) : (
+                      <Label color='blue' tag>
+                        Classic Mode
+                      </Label>
+                    )
+                  }
+                </div>
+              )
+            }
             <div style={{ margin: 10, display: 'inline-block' }}>
               <Radio toggle onChange={
                 (e, { checked }) => {
@@ -82,7 +104,7 @@ export class BasicUI extends React.Component {
           !hideMatchUI && (
             <div className="main-container">
               {
-                interactiveMode ? (
+                this.isInteractiveModeEnabled() && interactiveMode ? (
                   <div key={"match-" + iRound} style={{ marginTop: 20 }}>
                     <h1 className="round-title">
                       {iRound === (state.rounds) ? `Final Results` : `Round ${iRound + 1}`}
@@ -156,13 +178,6 @@ export class BasicUI extends React.Component {
         {
           (!interactiveMode || iRound >= (state.rounds)) && (
             <>
-              {
-                extras && (
-                  <div>
-                    {extras()}
-                  </div>
-                )
-              }
               {
                 (!hideDiagramUI) && (
                   <div className='main-container'>

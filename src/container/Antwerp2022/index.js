@@ -115,6 +115,14 @@ export default class Antwerp2022 extends React.PureComponent {
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
+
+    fetch('https://score-service.deta.dev/get_picks/22antwerp')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          pickStats: resp.results,
+        });
+      });
   };
 
 
@@ -283,6 +291,46 @@ export default class Antwerp2022 extends React.PureComponent {
     )
   }
 
+  renderPickStats = () => {
+    const { pickStats } = this.state;
+    const rt = this.state.roundTeams[this.state.rounds];
+    if (!this.state.pickStats || !rt) {
+      return null;
+    }
+    const tournamentPickStats = pickStats[this.getStage()];
+
+    const m = (team, _) => {
+      return (
+        <div key={team.code} className={`team one`}>
+          <div className="team-box down">
+            <div className="team-box-split b">
+                <span className="team-box-text">
+                  {tournamentPickStats[team.code]}%
+                </span>
+            </div>
+          </div>
+          <div className="team-box med">
+            <div className="team-box-split b">
+              <Image className="team-logo" src={team.logo} />
+            </div>
+          </div>
+        </div>
+      )
+    };
+
+
+    return (
+      <div className='main-container'>
+        <h1 className='round-title'>
+          Everyone's Picks
+        </h1>
+        <div>
+          {rt.sort((y, x) => tournamentPickStats[x.code] - tournamentPickStats[y.code]).map(m)}
+        </div>
+      </div>
+    )
+  }
+
 
   render() {
     return (
@@ -344,14 +392,15 @@ export default class Antwerp2022 extends React.PureComponent {
             state={this.state}
             stage={this.getStage()}
             shuffle={this.shuffle}
-            extras={() =>
-              <div style={{ marginTop: 20 }}>
-                {
-                  this.state.tournament >= 1 && this.renderNMS()
-                }
-              </div>
-            }
           />
+          <div style={{ marginTop: 20 }}>
+            {
+              this.state.tournament >= 1 && this.renderNMS()
+            }
+            {
+              this.renderPickStats()
+            }
+          </div>
         </div>
       </div>
     );
