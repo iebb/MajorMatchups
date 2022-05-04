@@ -6,7 +6,7 @@ import {initialDataChallenger, initialDataLegends} from './initial_data';
 import {Scores} from './scores';
 import {
   AdvanceElimSeats,
-  ChampionSeats,
+  ChampionSeats, copy,
   pack,
   setTiebreakerWinner,
   setWinner,
@@ -293,10 +293,10 @@ export default class Antwerp2022 extends React.PureComponent {
 
   renderPickStats = () => {
     const { pickStats } = this.state;
-    const rt = this.state.roundTeams[this.state.rounds];
-    if (!this.state.pickStats || !rt) {
+    if (!this.state.pickStats || !this.state.roundTeams[this.state.rounds]) {
       return null;
     }
+    const rt = copy(this.state.roundTeams[this.state.rounds]);
     const tournamentPickStats = pickStats[this.getStage()];
 
     const m = (team, _) => {
