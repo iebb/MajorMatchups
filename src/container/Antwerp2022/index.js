@@ -343,7 +343,7 @@ export default class Antwerp2022 extends React.PureComponent {
             Seeding Rules: <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">2022 Rulebook</a>.
           </h3>
           <h3 style={{ color: 'yellow' }}>
-            *NEW* Do and Share your Major Pick'ems Online at <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a> (Tournament Pass Required)
+            *NEW* Place and Share your Major Pick'ems Online at <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a> (Tournament Pass Required)
           </h3>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
