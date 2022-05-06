@@ -340,10 +340,10 @@ export default class Antwerp2022 extends React.PureComponent {
             <h1 className="title">PGL Antwerp Major 2022 Matchup Calculator</h1>
           </div>
           <h3>
-            Seeding based on rules from the <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">Rulebook</a>.
+            Seeding Rules: <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">2022 Rulebook</a>.
           </h3>
           <h3 style={{ color: 'yellow' }}>
-            *NEW* Do Pick'ems Online - <a href="https://pick.ieb.im/" target="_blank">https://pick.ieb.im/</a> (Experimental)
+            *NEW* Do and Share your Major Pick'ems Online - <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im/</a> (Tournament Pass Required)
           </h3>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
