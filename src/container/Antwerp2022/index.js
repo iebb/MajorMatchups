@@ -23,7 +23,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
-const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code.split("|")[0]}.png`;
+const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022/${code}_large.png`;
 
 
 const TournamentStages = [
@@ -398,9 +398,6 @@ export default class Antwerp2022 extends React.PureComponent {
           <div style={{ marginTop: 20 }}>
             {
               this.state.tournament >= 1 && this.renderNMS()
-            }
-            {
-              this.renderPickStats()
             }
           </div>
         </div>
