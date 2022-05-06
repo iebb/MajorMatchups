@@ -13,7 +13,7 @@ export class BasicUI extends React.Component {
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
     straightCorner: (localStorage.straightCorner || "false") === "true",
-    interactiveMode: (localStorage.interactiveMode || "true") === "true",
+    interactiveMode: false, // (localStorage.interactiveMode || "true") === "true",
     iRound: 0,
   }
 
@@ -36,8 +36,9 @@ export class BasicUI extends React.Component {
   }
 
   isInteractiveModeEnabled = () => {
+    return false;
     // if (this.props.state.event !== "22antwerp") return false;
-    return !Object.keys(this.props.state.scores).length;
+    //return !Object.keys(this.props.state.scores).length;
 
   }
 
