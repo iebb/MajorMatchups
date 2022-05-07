@@ -340,10 +340,7 @@ export default class Antwerp2022 extends React.PureComponent {
             <h1 className="title">PGL Antwerp Major 2022 Matchup Calculator</h1>
           </div>
           <h3>
-            Seeding Rules: <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">2022 Rulebook</a>.
-          </h3>
-          <h3 style={{ color: 'yellow' }}>
-            *NEW* Place and Share your Major Pick'ems Online at <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a> (Tournament Pass Required)
+            Seeding and NMS Based on <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">2022 Rulebook</a>.
           </h3>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
@@ -358,6 +355,9 @@ export default class Antwerp2022 extends React.PureComponent {
               steam profile
             </a>
           </p>
+          <h2 style={{ color: 'yellow' }}>
+            Place, share your Pick'em, and see stats at <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
+          </h2>
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
             {
               TournamentStages.map(ts => (
