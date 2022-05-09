@@ -118,7 +118,9 @@ export default class Antwerp2022 extends React.PureComponent {
             1: resp[2],
             2: resp[3],
           };
-          this.setState({scores: this._scores[this.state.tournament]})
+          this.setState({scores: this._scores[this.state.tournament]}, () => {
+            this.calculateMatchups(0, this.state.rounds + 1)
+          });
         })
     }, 30000)
   }
