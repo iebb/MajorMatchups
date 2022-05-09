@@ -106,6 +106,21 @@ export default class Antwerp2022 extends React.PureComponent {
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.init(0);
+
+    clearInterval(window.fetchInterval);
+
+    window.fetchInterval = setInterval(() => {
+      fetch('https://score-service.deta.dev/fetch_results/event_19')
+        .then((resp) => resp.json())
+        .then((resp) => {
+          this._scores = {
+            0: resp[1],
+            1: resp[2],
+            2: resp[3],
+          };
+          this.setState({scores: this._scores[tStage]})
+        })
+    }, 30000)
   }
 
   init = (tStage) => {
