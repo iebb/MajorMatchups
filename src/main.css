@@ -292,9 +292,9 @@ img.ui.image.team-logo-bg {
 img.ui.image.team-logo-small {
   vertical-align: middle;
   display: inline-block;
-  max-width: 9px;
-  max-height: 9px;
-  margin: 2px 2px;
+  max-width: 18px;
+  max-height: 18px;
+  margin: -2px -2px;
 }
 
 .descr {
