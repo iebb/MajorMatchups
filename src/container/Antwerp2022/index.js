@@ -61,7 +61,7 @@ const TournamentStages = [
 
 export default class Antwerp2022 extends React.PureComponent {
   event = "22antwerp";
-
+  _scores = {};
   state = {
     teams: [[], false, false, false, false, false],
     roundTeams: [[],[],[],[],[],[],[],[],[],],
@@ -111,18 +111,34 @@ export default class Antwerp2022 extends React.PureComponent {
   init = (tStage) => {
     this.setState({
       ...TournamentStages[tStage],
+      scores: this._scores[tStage],
       pickResults: getPickResults('pickResults', tStage, this.event),
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
 
-    fetch('https://score-service.deta.dev/get_picks/22antwerp')
+
+    fetch('https://score-service.deta.dev/fetch_results/event_19')
       .then((resp) => resp.json())
       .then((resp) => {
-        this.setState({
-          pickStats: resp.results,
-        });
-      });
+        this._scores = {
+          0: resp[1],
+          1: resp[2],
+          2: resp[3],
+        };
+        this.setState({scores: this._scores[tStage]})
+        // this.state.score = resp[tStage];
+      }).then(
+        () => this.calculateMatchups(0, this.state.rounds + 1)
+      );
+
+    // fetch('https://score-service.deta.dev/get_picks/22antwerp')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       pickStats: resp.results,
+    //     });
+    //   });
   };
 
 
@@ -148,6 +164,7 @@ export default class Antwerp2022 extends React.PureComponent {
         matches: [false, false, false, false, false, false],
         tournament: TournamentLegends,
         tournamentFormat: "SWISS_BUCHHOLTZ",
+        scores: this._scores[TournamentLegends],
         seats: AdvanceElimSeats,
         loseToEliminate: 3,
         rounds: 5,
@@ -175,6 +192,7 @@ export default class Antwerp2022 extends React.PureComponent {
         legendResult,
         matches: [false, false, false, false, false, false],
         tournament: TournamentChampions,
+        scores: this._scores[TournamentChampions],
         tournamentFormat: "KNOCKOUT",
         seats: ChampionSeats,
         loseToEliminate: 1,
