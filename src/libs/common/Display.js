@@ -22,6 +22,8 @@ export const getMatchupDisplay = (state, stage) => {
   if (!roundTeams) return null;
   if (!stageMatches) return null;
 
+  const altTimeline = stageMatches.filter((x) => x.result && x.picked !== x.result).length;
+
   return (
     <div key={stage}>
       {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => (
@@ -95,7 +97,6 @@ export const getMatchupDisplay = (state, stage) => {
           }
         </div>
       ))}
-
       {stageMatches.map((x) => {
         let pickA, pickB, resultA, resultB;
         if (x.picked === 1) {
@@ -257,6 +258,13 @@ export const getMatchupDisplay = (state, stage) => {
           }
         </div>
       ))}
+      {
+        altTimeline && (
+          <p style={{ color: "yellow", marginTop: 15, fontWeight: 600 }}>
+            {altTimeline} match(es) in <span style={{ color: "#ed293f" }}>red</span> are having different outcomes than you have picked.
+          </p>
+        )
+      }
     </div>
   );
 }
