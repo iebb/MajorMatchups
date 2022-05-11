@@ -72,7 +72,7 @@ export default class Antwerp2022 extends React.PureComponent {
     scores: Scores,
     tiebreakers: {},
     tiebreakerResults: {},
-    pickResults: getPickResults('pickResults', 0, this.event),
+    pickResults: {}, // getPickResults('pickResults', 0, this.event),
     lockResults: {},
     seats: AdvanceElimSeats,
     rounds: 0,
