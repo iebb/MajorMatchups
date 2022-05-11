@@ -392,6 +392,10 @@ export default class Antwerp2022 extends React.PureComponent {
             <a href="https://steamcommunity.com/id/iebbbb">
               steam profile
             </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://weibo.com/u/1940682383">
+              微博
+            </a>
           </p>
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
             {
