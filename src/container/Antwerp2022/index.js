@@ -44,7 +44,7 @@ const TournamentStages = [
     tournament: TournamentLegends,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     advanceMode: 1,
-    seats: ChampionSeats,
+    seats: AdvanceElimSeats,
     rounds: 5,
   },
   /*
