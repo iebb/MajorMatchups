@@ -42,6 +42,7 @@ const TournamentStages = [
     ...pack(finalDataLegends, teamLogo),
     name: "Legends",
     tournament: TournamentLegends,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     advanceMode: 1,
     seats: ChampionSeats,
     rounds: 5,
