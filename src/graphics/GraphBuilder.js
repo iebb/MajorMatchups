@@ -9,7 +9,7 @@ export default class GraphBuilder extends React.PureComponent {
   render = () => {
 
     const state = this.props.data;
-    const eliminatedOnDiagram = this.props.eliminatedOnDiagram;
+    const eliminatedOnVisualization = this.props.eliminatedOnVisualization;
     const straightCorner = this.props.straightCorner;
     const posBase = 0.7;
     const tight = this.props.tight ? 0 : 0.02;
@@ -223,7 +223,7 @@ export default class GraphBuilder extends React.PureComponent {
       }
 
 
-      const eliminated = eliminatedOnDiagram ? teams.filter(t => t.elim).map(t => {
+      const eliminated = eliminatedOnVisualization ? teams.filter(t => t.elim).map(t => {
         const y = nodeY;
         nodeY += node_single_height + padSpace;
         relPos += tightness;
@@ -292,7 +292,7 @@ export default class GraphBuilder extends React.PureComponent {
     nodeY = level_padding_initial - level_y_padding - level_delta;
 
     const finalRounds = Array.from(finalStatus).filter(
-      x => eliminatedOnDiagram || x !== "eliminated"
+      x => eliminatedOnVisualization || x !== "eliminated"
     ).map(status => {
       const nextX = x + round_width;
       const statusTeams = finalRound.filter(x => x.status === status);

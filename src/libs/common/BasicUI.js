@@ -7,9 +7,9 @@ export class BasicUI extends React.Component {
 
   state = {
     hideMatchUI: (localStorage.hideMatchUI || "false") === "true",
-    hideDiagramUI: (localStorage.hideDiagramUI || "false") === "true",
+    hideVisualizationUI: (localStorage.hideVisualizationUI || "false") === "true",
     matchOnly: (localStorage.matchOnly || "false") === "true",
-    eliminatedOnDiagram: (localStorage.dash || "true") === "true",
+    eliminatedOnVisualization: (localStorage.dash || "true") === "true",
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
     straightCorner: (localStorage.straightCorner || "false") === "true",
@@ -43,7 +43,7 @@ export class BasicUI extends React.Component {
   }
 
   render() {
-    const { matchOnly, interactiveMode, iRound, hideMatchUI, hideDiagramUI } = this.state;
+    const { matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
     const { state, shuffle } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
@@ -93,10 +93,10 @@ export class BasicUI extends React.Component {
             <div style={{ margin: 10, display: 'inline-block' }}>
               <Radio toggle onChange={
                 (e, { checked }) => {
-                  this.setState({ hideDiagramUI: checked });
-                  localStorage.hideDiagramUI = checked;
+                  this.setState({ hideVisualizationUI: checked });
+                  localStorage.hideVisualizationUI = checked;
                 }
-              } label='Hide Diagram UI' checked={hideDiagramUI} />
+              } label='Hide Visualization UI' checked={hideVisualizationUI} />
             </div>
           </Form.Field>
         </Form>
@@ -156,21 +156,25 @@ export class BasicUI extends React.Component {
                     }
                   </div>
                 ) : (
-                  rounds.map((round) => (
-                    <div key={"match-" + round} style={{ marginTop: 20 }}>
-                      <h1 className="round-title">
-                        {round === (state.rounds) ? `Final Results` : `Round ${round + 1}`}
-                        {
-                          round < 5 &&
-                          <span
-                            style={{ float: "right", fontSize: "50%" }}
-                            onClick={() => shuffle(round)}
-                          >[shuffle]</span>
-                        }
-                      </h1>
-                      <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
-                    </div>
-                  ))
+                  <div>
+                    {
+                      rounds.map((round) => (
+                        <div key={"match-" + round} style={{ marginTop: 20 }}>
+                          <h1 className="round-title">
+                            {round === (state.rounds) ? `Final Results` : `Round ${round + 1}`}
+                            {
+                              round < state.rounds &&
+                              <span
+                                style={{ float: "right", fontSize: "50%" }}
+                                onClick={() => shuffle(round)}
+                              >[shuffle]</span>
+                            }
+                          </h1>
+                          <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
+                        </div>
+                      ))
+                    }
+                  </div>
                 )
               }
             </div>
@@ -180,20 +184,20 @@ export class BasicUI extends React.Component {
           (!interactiveMode || iRound >= (state.rounds)) && (
             <>
               {
-                (!hideDiagramUI) && (
+                (!hideVisualizationUI) && (
                   <div className='main-container'>
                     <h1 className='round-title'>
-                      Diagram
+                      Visualization
                     </h1>
                     <Form style={{ marginTop: 20 }} inverted>
                       <Form.Field>
                         <div style={{ margin: 10, display: 'inline-block' }}>
                           <Radio toggle onChange={
                             (e, { checked }) => {
-                              this.setState({ eliminatedOnDiagram: checked });
-                              localStorage.eliminatedOnDiagram = checked;
+                              this.setState({ eliminatedOnVisualization: checked });
+                              localStorage.eliminatedOnVisualization = checked;
                             }
-                          } label='Show Eliminated' checked={this.state.eliminatedOnDiagram} />
+                          } label='Show Eliminated' checked={this.state.eliminatedOnVisualization} />
                         </div>
                         <div style={{ margin: 10, display: 'inline-block' }}>
                           <Radio toggle onChange={
@@ -224,7 +228,7 @@ export class BasicUI extends React.Component {
                     <div className='main-container' style={{ overflowX: 'scroll' }}>
                       <GraphBuilder
                         data={state}
-                        eliminatedOnDiagram={this.state.eliminatedOnDiagram}
+                        eliminatedOnVisualization={this.state.eliminatedOnVisualization}
                         straightCorner={this.state.straightCorner}
                         tight={this.state.tight}
                         dash={this.state.dash}
