@@ -259,7 +259,7 @@ export const getMatchupDisplay = (state, stage) => {
         </div>
       ))}
       {
-        altTimeline && (
+        altTimeline > 0 && (
           <p style={{ color: "yellow", marginTop: 15, fontWeight: 600 }}>
             {altTimeline} match(es) in <span style={{ color: "#ed293f" }}>red</span> are having different outcomes than you have picked.
           </p>
