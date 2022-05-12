@@ -44,7 +44,7 @@ export class BasicUI extends React.Component {
 
   render() {
     const { matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
-    const { state, shuffle } = this.props;
+    const { state, shuffle, advance } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     return (
@@ -173,6 +173,21 @@ export class BasicUI extends React.Component {
                           <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
                         </div>
                       ))
+                    }
+                    {
+                      advance && (
+                        <div style={{ marginTop: 50 }}>
+                          <Button
+                            basic
+                            onClick={advance}
+                            inverted
+                            content="Next Stage"
+                            icon='right arrow'
+                            labelPosition='right'
+                            size="huge"
+                          />
+                        </div>
+                      )
                     }
                   </div>
                 )

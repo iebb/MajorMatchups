@@ -2,11 +2,12 @@
 
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
-import {initialDataChallenger, initialDataLegends} from './initial_data';
+import {finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
 import {Scores} from './scores';
 import {
   AdvanceElimSeats,
-  ChampionSeats, copy,
+  ChampionSeats,
+  copy,
   pack,
   setTiebreakerWinner,
   setWinner,
@@ -36,16 +37,16 @@ const TournamentStages = [
     seats: AdvanceElimSeats,
     rounds: 5,
   },
-  /*
   {
     id: 1,
-    ...pack(finalDataLegends),
+    ...pack(finalDataLegends, teamLogo),
     name: "Legends",
     tournament: TournamentLegends,
     advanceMode: 1,
     seats: ChampionSeats,
     rounds: 5,
   },
+  /*
   {
     id: 2,
     ...pack(finalDataChampions),
@@ -105,7 +106,7 @@ export default class Antwerp2022 extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init(0);
+    this.init(1);
 
     // clearInterval(window.fetchInterval);
     //
@@ -409,16 +410,6 @@ export default class Antwerp2022 extends React.PureComponent {
               ))
             }
             {
-              this.state.tournament >= 0 && (
-                <Menu.Item
-                  key="adv-1"
-                  name="Legends"
-                  active={this.state.tournament === 1}
-                  onClick={() => this.advance()}
-                />
-              )
-            }
-            {
               this.state.tournament >= 1 && (
                 <Menu.Item
                   key="adv-2"
@@ -433,6 +424,9 @@ export default class Antwerp2022 extends React.PureComponent {
             state={this.state}
             stage={this.getStage()}
             shuffle={this.shuffle}
+            advance={
+              this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null
+            }
           />
           <div style={{ marginTop: 20 }}>
             {

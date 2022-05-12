@@ -198,107 +198,66 @@ export const initialDataChallenger = [
   },
 ];
 
-/*
 export const finalDataLegends = [
+  ...initialDataLegends,
   {
-    code: "nip",
-    name: "Ninjas in Pyjamas",
-    "seed": 1,
-    "description": "EU #1"
-  },
-  {
-    code: "furi",
-    name: "FURIA",
-    "seed": 2,
-    "description": "NA #1"
-  },
-  {
-    code: "navi",
-    name: "Natus Vincere",
-    "seed": 3,
-    "description": "CIS #1"
+    code: "g2",
+    name: "G2 Esports",
+    seed: 9,
+    description: "3-0, +5",
+    region: "EU",
   },
   {
     code: "vita",
-    name: "Vitality",
-    "seed": 4,
-    "description": "EU #2"
-  },
-  {
-    code: "liq",
-    name: "Liquid",
-    "seed": 5,
-    "description": "NA #2"
-  },
-  {
-    code: "gamb",
-    name: "Gambit",
-    "seed": 6,
-    "description": "CIS #2"
-  },
-  {
-    code: "g2",
-    name: "G2",
-    "seed": 7,
-    "description": "EU #3"
-  },
-  {
-    code: "evl",
-    name: "Evil Genius",
-    "seed": 8,
-    "description": "NA #3"
-  },
-  {
-    code: "faze",
-    name: "FaZe Clan",
-    "seed": 9,
-    "description": "0L, 3B, #24"
-  },
-  {
-    code: "cope",
-    name: "Copenhagen Flames",
-    "seed": 10,
-    "description": "0L, 1B, #23"
+    name: "Team Vitality",
+    seed: 10,
+    description: "3-0, -4",
+    region: "EU",
   },
   {
     code: "ence",
     name: "ENCE",
-    "seed": 11,
-    "description": "1L, 0B, #12"
+    seed: 11,
+    description: "3-1, +3",
+    region: "EU",
   },
   {
-    code: "ent",
-    name: "Entropiq",
-    "seed": 12,
-    "description": "1L, 0B, #20"
+    code: "spir",
+    name: "Team Spirit",
+    seed: 12,
+    description: "3-1, +1",
+    region: "EU",
   },
   {
-    code: "vp",
-    name: "Virtus.pro",
-    "seed": 13,
-    "description": "1L, -1B, #22"
+    code: "out",
+    name: "Outsiders",
+    seed: 13,
+    description: "3-1, -2",
+    region: "EU",
   },
   {
-    code: "hero",
-    name: "Heroic",
-    "seed": 14,
-    "description": "2L, 3B, #15"
+    code: "imp",
+    name: "Imperial Esports",
+    seed: 14,
+    description: "3-2, +1",
+    region: "AM",
   },
   {
-    code: "astr",
-    name: "Astralis",
-    "seed": 15,
-    "description": "2L, -1B, #10"
+    code: "bne",
+    name: "Bad News Eagles",
+    seed: 15,
+    description: "3-2, -1",
+    region: "EU",
   },
   {
-    code: "mouz",
-    name: "MOUZ",
-    "seed": 16,
-    "description": "2L, -3B, #16"
-  }
+    code: "liq",
+    name: "Team Liquid",
+    seed: 16,
+    description: "3-2, -2",
+    region: "AM",
+  },
 ];
-
-
+/*
 export const finalDataChampions = [
   {
     code: "navi",
