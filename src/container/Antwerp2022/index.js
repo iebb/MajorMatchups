@@ -403,7 +403,7 @@ export default class Antwerp2022 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">Adv</span>
+                <span className="team-box-text">7 Adv</span>
               </div>
             </div>
             <div className="team-box down">
@@ -419,7 +419,6 @@ export default class Antwerp2022 extends React.PureComponent {
           </div>
           {rt.sort((y, x) => advance[x.code] - advance[y.code]).map(m)}
         </div>
-        <p style={{ marginTop: 30 }}>Note: 3-0 doesn't count as a pick for advance here</p>
       </div>
     )
   }
