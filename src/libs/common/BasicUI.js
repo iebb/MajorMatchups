@@ -130,7 +130,6 @@ export class BasicUI extends React.Component {
                             this.submitAnalytics();
                           } else {
                             shuffle(iRound + 1);
-                            console.log("shuffled");
                           }
                           this.setState({ iRound: iRound + 1});
                         }}

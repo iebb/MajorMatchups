@@ -50,6 +50,5 @@ export const getRelativeSeed = (seeds) => {
     const filtered = results[team[0]].filter((x) => x >= Math.ceil(avg - stddev) && x <= Math.floor(avg + stddev));
     results[team[0]] = mean(filtered);
   }
-  console.log(results);
   return results;
 };
