@@ -347,8 +347,9 @@ export default class Antwerp2022 extends React.PureComponent {
 
     const { stats, total } = pickStats;
 
-    const tournamentPickStats = stats[groupId];
     const tournamentPickTotal = total[groupId];
+    if (!tournamentPickTotal) return null;
+    const tournamentPickStats = stats[groupId];
 
     const advance = {}
     const threeZero = {}
