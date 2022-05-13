@@ -356,7 +356,7 @@ export default class Antwerp2022 extends React.PureComponent {
     const zeroThree = {}
 
     for (const k of Object.keys(tournamentPickStats)) {
-      advance[k] = (tournamentPickStats[k]['3-0'] + tournamentPickStats[k]['Adv']) / tournamentPickTotal;
+      advance[k] = tournamentPickStats[k]['Adv'] / tournamentPickTotal;
       threeZero[k] = tournamentPickStats[k]['3-0'] / tournamentPickTotal;
       zeroThree[k] = tournamentPickStats[k]['0-3'] / tournamentPickTotal;
     }
@@ -419,7 +419,7 @@ export default class Antwerp2022 extends React.PureComponent {
           </div>
           {rt.sort((y, x) => advance[x.code] - advance[y.code]).map(m)}
         </div>
-        <p style={{ marginTop: 30 }}>Note: 3-0 also counts as a pick for advance</p>
+        <p style={{ marginTop: 30 }}>Note: 3-0 doesn't count as a pick for advance here</p>
       </div>
     )
   }
