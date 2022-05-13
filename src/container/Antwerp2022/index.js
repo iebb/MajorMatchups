@@ -152,7 +152,14 @@ export default class Antwerp2022 extends React.PureComponent {
         () => this.calculateMatchups(0, this.state.rounds + 1)
       );
 
-    // fetch('https://score-service.deta.dev/get_picks/22antwerp')
+    fetch('https://pick.ieb.im/pick-api/stats_cached/19')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          pickStats: resp,
+        });
+      });
+    //   fetch('https://score-service.deta.dev/get_picks/22antwerp')
     //   .then((resp) => resp.json())
     //   .then((resp) => {
     //     this.setState({
@@ -336,16 +343,39 @@ export default class Antwerp2022 extends React.PureComponent {
       return null;
     }
     const rt = copy(this.state.roundTeams[this.state.rounds]);
-    const tournamentPickStats = pickStats[this.getStage()];
+    const groupId = 206 + this.getStage();
+
+    const { stats, total } = pickStats;
+
+    const tournamentPickStats = stats[groupId];
+    const tournamentPickTotal = total[groupId];
+
+    const advance = {}
+    const threeZero = {}
+    const zeroThree = {}
+
+    for (const k of Object.keys(tournamentPickStats)) {
+      advance[k] = (tournamentPickStats[k]['3-0'] + tournamentPickStats[k]['Adv']) / tournamentPickTotal;
+      threeZero[k] = tournamentPickStats[k]['3-0'] / tournamentPickTotal;
+      zeroThree[k] = tournamentPickStats[k]['0-3'] / tournamentPickTotal;
+    }
 
     const m = (team, _) => {
       return (
         <div key={team.code} className={`team one`}>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text">
-                  {tournamentPickStats[team.code]}%
-                </span>
+                <span className="team-box-text" style={{ color: "#ffc40a" }}>{(threeZero[team.code] * 100.0).toFixed(1)}%</span>
+            </div>
+          </div>
+          <div className="team-box down">
+            <div className="team-box-split b">
+                <span className="team-box-text" style={{ color: "#5eb1f6" }}>{(advance[team.code] * 100.0).toFixed(1)}%</span>
+            </div>
+          </div>
+          <div className="team-box down">
+            <div className="team-box-split b">
+                <span className="team-box-text" style={{ color: "#8e8e8e" }}>{(zeroThree[team.code] * 100.0).toFixed(1)}%</span>
             </div>
           </div>
           <div className="team-box med">
@@ -361,11 +391,34 @@ export default class Antwerp2022 extends React.PureComponent {
     return (
       <div className='main-container'>
         <h1 className='round-title'>
-          Everyone's Picks
+          Pick'em Stats (Detail: <a href="https://pick.ieb.im/stats">https://pick.ieb.im/stats</a>)
         </h1>
         <div>
-          {rt.sort((y, x) => tournamentPickStats[x.code] - tournamentPickStats[y.code]).map(m)}
+          <div className={`team one`}>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">3-0</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">Adv</span>
+              </div>
+            </div>
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text">0-3</span>
+              </div>
+            </div>
+            <div className="team-box med">
+              <div className="team-box-split b">
+                <Image className="team-logo" src={teamLogo("pgl")} />
+              </div>
+            </div>
+          </div>
+          {rt.sort((y, x) => advance[x.code] - advance[y.code]).map(m)}
         </div>
+        <p style={{ marginTop: 30 }}>Note: 3-0 also counts as a pick for advance</p>
       </div>
     )
   }
@@ -431,6 +484,11 @@ export default class Antwerp2022 extends React.PureComponent {
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null
             }
           />
+          <div style={{ marginTop: 20 }}>
+            {
+              this.renderPickStats()
+            }
+          </div>
           <div style={{ marginTop: 20 }}>
             {
               this.state.tournament >= 1 && this.renderNMS()
