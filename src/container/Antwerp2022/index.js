@@ -3,7 +3,7 @@
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
 import {finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
-import {Scores} from './scores';
+import {ChallengerResults, Scores} from './scores';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -83,6 +83,7 @@ export default class Antwerp2022 extends React.PureComponent {
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
     event: "22antwerp",
+    challengerResult: ChallengerResults,
   };
 
   getStage = () => {
@@ -176,6 +177,7 @@ export default class Antwerp2022 extends React.PureComponent {
     } else if (this.state.tournament === TournamentChampions) {
       finalTeams = getPickResults('teams', 1, this.event);
     }
+
     if (finalTeams) {
       this.setState({
         ...pack(finalTeams, teamLogo),
@@ -396,7 +398,7 @@ export default class Antwerp2022 extends React.PureComponent {
             </a>
             <span style={{ margin: 10 }}>·</span>
             <a href="https://weibo.com/u/1940682383">
-              微博
+              weibo
             </a>
           </p>
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
