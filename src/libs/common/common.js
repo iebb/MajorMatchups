@@ -38,9 +38,9 @@ export const getWinnerFromScore = (scores) => {
   for(const sco of scores) {
     if (sco[0] !== sco[1]) {
       if (sco[0] > 15 || sco[1] > 15) {
-        if (sco[0] - sco[1] >= 2) {
+        if (sco[0] - sco[1] >= 2 && sco[0] % 3 === 1) {
           teamA ++;
-        } else if (sco[1] - sco[0] >= 2) {
+        } else if (sco[1] - sco[0] >= 2 && sco[1] % 3 === 1) {
           teamB ++;
         }
       }
