@@ -63,7 +63,7 @@ const TournamentStages = [
 
 export default class Antwerp2022 extends React.PureComponent {
   event = "22antwerp";
-  _scores = {};
+  _scores = Scores;
   state = {
     teams: [[], false, false, false, false, false],
     roundTeams: [[],[],[],[],[],[],[],[],[],],
@@ -71,7 +71,7 @@ export default class Antwerp2022 extends React.PureComponent {
     tournament: 0,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     legends: false,
-    scores: Scores,
+    scores: {},
     tiebreakers: {},
     tiebreakerResults: {},
     pickResults: getPickResults('pickResults', 0, this.event),
