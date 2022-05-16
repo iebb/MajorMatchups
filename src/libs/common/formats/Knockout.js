@@ -14,9 +14,6 @@ export function Knockout(fromStage, toStage) {
   } = state; //   allowDups, tiebreakers
   const gamescores = state.scores || {};
 
-
-  let tiebreakerResults = state.tiebreakerResults || {};
-
   let teams;
   let remaining;
   let stageMatches;
@@ -25,6 +22,9 @@ export function Knockout(fromStage, toStage) {
     const teamCompare = (x, y) => {
       if (y.l - x.l) return x.l - y.l;
       if (y.w - x.w) return y.w - x.w;
+      if (!y._seed) y._seed = y.seed;
+      if (!x._seed) x._seed = x.seed;
+      if (y._seed - x._seed) return x._seed - y._seed;
 
       return x.seed - y.seed;
     };
@@ -37,12 +37,14 @@ export function Knockout(fromStage, toStage) {
         const opponents1 = [...match.team1.opponents, match.team2.code];
         const opponents2 = [...match.team2.opponents, match.team1.code];
 
+        const _seed = Math.min(match.team1._seed, match.team2._seed);
+
         if (match.picked === 1) {
-          teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1 });
-          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1 });
+          teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1, _seed });
+          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1, _seed });
         } else if (match.picked === -1) {
-          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1 });
-          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1 });
+          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1, _seed });
+          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1, _seed });
         }
       }
       stateTeams[stage] = teamsT;
@@ -63,17 +65,15 @@ export function Knockout(fromStage, toStage) {
     });
 
     let idx = 0;
-    const isDup = false; // might be useful for double-elimination, leave for now
     const makeMatch = (team1, team2) => {
       let picked = team1.seed <= team2.seed ? 1 : -1; // 1 for A win and -1 for B win ;
       let result = 0;
 
       let score = [[], []];
-      const suffix = isDup ? "_" : ""
       let undetermined = false;
 
-      if (`${team1.code}-${team2.code}` + suffix in gamescores) {
-        const gs = gamescores[`${team1.code}-${team2.code}` + suffix];
+      if (`${team1.code}-${team2.code}` in gamescores) {
+        const gs = gamescores[`${team1.code}-${team2.code}`];
         score[0] = gs.map(x => x[0])
         score[1] = gs.map(x => x[1])
         const [winner, maxW] = getWinnerFromScore(gs);
@@ -88,8 +88,8 @@ export function Knockout(fromStage, toStage) {
         } else {
           undetermined = true;
         }
-      } else if (`${team2.code}-${team1.code}` + suffix in gamescores) {
-        const gs = gamescores[`${team2.code}-${team1.code}` + suffix];
+      } else if (`${team2.code}-${team1.code}` in gamescores) {
+        const gs = gamescores[`${team2.code}-${team1.code}`];
         score[1] = gs.map(x => x[0])
         score[0] = gs.map(x => x[1])
         const [winner, maxW] = getWinnerFromScore(gs);
@@ -108,15 +108,15 @@ export function Knockout(fromStage, toStage) {
         undetermined = true;
       }
 
-      if (`${team1.code}-${team2.code}` + suffix in pickResults) {
-        if (picked !== pickResults[`${team1.code}-${team2.code}` + suffix]) {
+      if (`${team1.code}-${team2.code}` in pickResults) {
+        if (picked !== pickResults[`${team1.code}-${team2.code}`]) {
           undetermined = true;
         }
-        picked = pickResults[`${team1.code}-${team2.code}` + suffix]
+        picked = pickResults[`${team1.code}-${team2.code}`]
       }
 
       let locked = false;
-      if (`${team1.code}-${team2.code}` + suffix in lockResults) {
+      if (`${team1.code}-${team2.code}` in lockResults) {
         locked = true;
       }
 
@@ -124,13 +124,13 @@ export function Knockout(fromStage, toStage) {
         match: idx++,
         team1, team2,
         picked, locked, result,
-        score, stage, suffix,
+        score, stage,
         undetermined,
         setWinner: (pick) => this.setWinner({
-          picked, team1, team2, suffix
+          picked, team1, team2, suffix: "",
         }, pick),
         toggle: () => this.setWinner({
-          picked, team1, team2, suffix
+          picked, team1, team2, suffix: "",
         }, -picked),
       };
     }
@@ -166,7 +166,6 @@ export function Knockout(fromStage, toStage) {
 
   return {
     teams: stateTeams,
-    tiebreakerResults,
     roundTeams: stateRoundTeams,
     matches: stateMatches,
   };
