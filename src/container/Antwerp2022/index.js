@@ -366,17 +366,17 @@ export default class Antwerp2022 extends React.PureComponent {
         <div key={team.code} className={`team one`}>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text" style={{ color: "#ffc40a" }}>{(threeZero[team.code] * 100.0).toFixed(1)}%</span>
+                <span className="team-box-text" title="3-0" style={{ color: "#ffc40a" }}>{(threeZero[team.code] * 100.0).toFixed(1)}%</span>
             </div>
           </div>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text" style={{ color: "#5eb1f6" }}>{(advance[team.code] * 100.0).toFixed(1)}%</span>
+                <span className="team-box-text" title="Remaining 7 Advancing Teams" style={{ color: "#5eb1f6" }}>{(advance[team.code] * 100.0).toFixed(1)}%</span>
             </div>
           </div>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text" style={{ color: "#8e8e8e" }}>{(zeroThree[team.code] * 100.0).toFixed(1)}%</span>
+                <span className="team-box-text" title="0-3" style={{ color: "#8e8e8e" }}>{(zeroThree[team.code] * 100.0).toFixed(1)}%</span>
             </div>
           </div>
           <div className="team-box med">
@@ -395,28 +395,6 @@ export default class Antwerp2022 extends React.PureComponent {
           Pick'em Stats (Detail: <a href="https://pick.ieb.im/stats">https://pick.ieb.im/stats</a>)
         </h1>
         <div>
-          <div className={`team one`}>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">3-0</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">7 Adv</span>
-              </div>
-            </div>
-            <div className="team-box down">
-              <div className="team-box-split b">
-                <span className="team-box-text">0-3</span>
-              </div>
-            </div>
-            <div className="team-box med">
-              <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo("pgl")} />
-              </div>
-            </div>
-          </div>
           {rt.sort((y, x) => advance[x.code] - advance[y.code]).map(m)}
         </div>
       </div>
