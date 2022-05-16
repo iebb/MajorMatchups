@@ -14,7 +14,7 @@ const teams = [];
 let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `/images/berlin2019/${code}.png`;
+const teamLogo = (code) => `https://major.ieb.im/images/berlin2019/${code}.png`;
 
 export default class Berlin2019 extends React.PureComponent {
   state = {
@@ -402,9 +402,11 @@ export default class Berlin2019 extends React.PureComponent {
         <div className="page-container">
           <div className="title-container">
             <h1 className="title">StarLadder Berlin Major 2019 Matchups</h1>
-            <h2>
-              <a href="https://www.twitch.tv/starladder_cs_en/squad">Twitch Stream</a>
-            </h2>
+            <h3>
+              Seeding: Live-Elo based on HLTV Ranking | <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da" style={{ color: "#ffcd00" }}>
+              How to use this site
+            </a>
+            </h3>
             <p>
               <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">
                 reddit thread

@@ -205,12 +205,15 @@ export default class Stockholm2021 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">PGL Stockholm Major 2021 Matchup Calculator</h1>
+            <h1 className="title">PGL Stockholm Major 2021</h1>
           </div>
-          <p style={{ fontSize: "120%" }}>
+          <h3>
             <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
-              UPDATED - The Buchholtz System</a>
-          </p>
+              Seeding Rules
+            </a> | <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da" style={{ color: "#ffcd00" }}>
+              How to use this site
+            </a>
+          </h3>
           <p>
             <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
               reddit thread
@@ -247,7 +250,14 @@ export default class Stockholm2021 extends React.PureComponent {
               />
             </Menu>
           </div>
-          <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
+          <BasicUI
+            state={this.state}
+            stage={this.getStage()}
+            shuffle={this.shuffle}
+            advance={
+              this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null
+            }
+          />
         </div>
       </div>
     );
