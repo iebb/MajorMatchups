@@ -22,9 +22,9 @@ export function Knockout(fromStage, toStage) {
     const teamCompare = (x, y) => {
       if (y.l - x.l) return x.l - y.l;
       if (y.w - x.w) return y.w - x.w;
-      if (!y._seed) y._seed = y.seed;
-      if (!x._seed) x._seed = x.seed;
       if (y.l < loseToEliminate) {
+        if (!y._seed) y._seed = y.seed;
+        if (!x._seed) x._seed = x.seed;
         if (y._seed - x._seed) return y._seed - x._seed;
       }
       return x.seed - y.seed;
