@@ -343,7 +343,9 @@ export default class Antwerp2022 extends React.PureComponent {
       return null;
     }
     const rt = copy(this.state.roundTeams[this.state.rounds]);
-    const groupId = 206 + this.getStage();
+    const s = this.getStage();
+    if (s >= 2) return null;
+    const groupId = 206 + s;
 
     const { stats, total } = pickStats;
 
