@@ -152,7 +152,7 @@ export default class Antwerp2022 extends React.PureComponent {
         () => this.calculateMatchups(0, this.state.rounds + 1)
       );
 
-    fetch('https://pick.ieb.im/pick-api/stats_cached/19')
+    fetch('https://d8nswj.deta.dev/stats_cached/19')
       .then((resp) => resp.json())
       .then((resp) => {
         this.setState({
