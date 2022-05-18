@@ -25,7 +25,7 @@ export function Knockout(fromStage, toStage) {
       if (y.l < loseToEliminate) {
         if (!y._seed) y._seed = y.seed;
         if (!x._seed) x._seed = x.seed;
-        if (y._seed - x._seed) return y._seed - x._seed;
+        if (x._seed - y._seed) return x._seed - y._seed;
       }
       return x.seed - y.seed;
     };
@@ -42,9 +42,9 @@ export function Knockout(fromStage, toStage) {
 
         if (match.picked === 1) {
           teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1, _seed });
-          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1 });
+          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1, _seed });
         } else if (match.picked === -1) {
-          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1 });
+          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1, _seed });
           teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1, _seed });
         }
       }
