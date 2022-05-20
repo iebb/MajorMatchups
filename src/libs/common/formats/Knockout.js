@@ -81,8 +81,8 @@ export function Knockout(fromStage, toStage) {
         if (winner) {
           picked = winner > 0 ? 1 : -1;
           if (
-            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === deciderBestOf)
+            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW >= deciderBestOf) ||
+            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW >= deciderBestOf)
           ) {
             result = picked
           }
@@ -97,8 +97,8 @@ export function Knockout(fromStage, toStage) {
         if (winner) {
           picked = winner < 0 ? 1 : -1;
           if (
-            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === deciderBestOf)
+            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW >= deciderBestOf) ||
+            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW >= deciderBestOf)
           ) {
             result = picked
           }
