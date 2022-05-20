@@ -10,7 +10,7 @@ export function Knockout(fromStage, toStage) {
   const {
     pickResults, lockResults,
     winsToAdvance, loseToEliminate,
-    nonDeciderBestOf, deciderBestOf,
+    deciderBestOf,
   } = state; //   allowDups, tiebreakers
   const gamescores = state.scores || {};
 
@@ -82,7 +82,7 @@ export function Knockout(fromStage, toStage) {
           picked = winner > 0 ? 1 : -1;
           if (
             ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === nonDeciderBestOf)
+            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === deciderBestOf)
           ) {
             result = picked
           }
@@ -98,7 +98,7 @@ export function Knockout(fromStage, toStage) {
           picked = winner < 0 ? 1 : -1;
           if (
             ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === nonDeciderBestOf)
+            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === deciderBestOf)
           ) {
             result = picked
           }
