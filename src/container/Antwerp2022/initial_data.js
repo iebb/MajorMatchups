@@ -257,55 +257,62 @@ export const finalDataLegends = [
     region: "AM",
   },
 ];
-/*
+
 export const finalDataChampions = [
+  {
+    code: "spir",
+    name: "Team Spirit",
+    seed: 1,
+    description: "0L, 3B, #12",
+    region: "EU",
+  },
   {
     code: "navi",
     name: "Natus Vincere",
-    "seed": 1,
-    "description": "0L, 4B, #3"
+    seed: 2,
+    description: "0L, -1B, #8",
+    region: "EU",
   },
   {
-    code: "g2",
-    name: "G2",
-    "seed": 2,
-    "description": "0L, -3B, #7"
-  },
-  {
-    code: "hero",
-    name: "Heroic",
-    "seed": 3,
-    "description": "1L, 1B, #14"
-  },
-  {
-    code: "gamb",
-    name: "Gambit",
-    "seed": 4,
-    "description": "1L, -2B, #6"
-  },
-  {
-    code: "furi",
-    name: "FURIA",
-    "seed": 5,
-    "description": "1L, -7B, #2"
-  },
-  {
-    code: "vp",
-    name: "Virtus.pro",
-    "seed": 6,
-    "description": "2L, 3B, #13"
+    code: "ence",
+    name: "ENCE",
+    seed: 3,
+    description: "1L, 2B, #11",
+    region: "EU",
   },
   {
     code: "nip",
     name: "Ninjas in Pyjamas",
-    "seed": 7,
-    "description": "2L, 0B, #1"
+    seed: 4,
+    description: "1L, 1B, #7",
+    region: "EU",
   },
   {
-    code: "vita",
-    name: "Vitality",
-    "seed": 8,
-    "description": "2L, -3B, #4"
+    code: "faze",
+    name: "Faze Clan",
+    seed: 5,
+    description: "1L, -2B, #6",
+    region: "EU",
+  },
+  {
+    code: "cope",
+    name: "Copenhagen Flames",
+    seed: 6,
+    description: "2L, 3B, #2",
+    region: "EU",
+  },
+  {
+    code: "hero",
+    name: "Heroic",
+    seed: 7,
+    description: "2L, 0B, #1",
+    region: "EU",
+  },
+  {
+    code: "furi",
+    name: "FURIA",
+    seed: 8,
+    description: "2L, -1B, #5",
+    region: "AM",
   }
 ]
-*/

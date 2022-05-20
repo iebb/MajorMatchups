@@ -2,8 +2,8 @@
 
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
-import {finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
-import {ChallengerResults, Scores} from './scores';
+import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { ChallengerResults, LegendResults, Scores } from './scores';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -47,18 +47,17 @@ const TournamentStages = [
     seats: AdvanceElimSeats,
     rounds: 5,
   },
-  /*
   {
     id: 2,
-    ...pack(finalDataChampions),
+    ...pack(finalDataChampions, teamLogo),
     name: "Champions",
     tournament: TournamentChampions,
+    tournamentFormat: "KNOCKOUT",
     advanceMode: 2,
     seats: ChampionSeats,
-    // rounds: 5,
+    loseToEliminate: 1,
+    rounds: 3,
   },
-
-   */
 ];
 
 export default class Antwerp2022 extends React.PureComponent {
@@ -84,6 +83,7 @@ export default class Antwerp2022 extends React.PureComponent {
     deciderBestOf: 2,
     event: "22antwerp",
     challengerResult: ChallengerResults,
+    legendResult: LegendResults,
   };
 
   getStage = () => {
@@ -249,6 +249,7 @@ export default class Antwerp2022 extends React.PureComponent {
 
     const challengerResult = this.state.challengerResult;
     if (!legendResult || !championResult || !challengerResult) return null;
+
 
 
     const counters = {EU: 0, AM: 0, AP: 0};
@@ -450,6 +451,7 @@ export default class Antwerp2022 extends React.PureComponent {
               ))
             }
             {
+              /*
               this.state.tournament >= 1 && (
                 <Menu.Item
                   key="adv-2"
@@ -458,6 +460,8 @@ export default class Antwerp2022 extends React.PureComponent {
                   onClick={() => this.advance2()}
                 />
               )
+
+               */
             }
           </Menu>
           <BasicUI
