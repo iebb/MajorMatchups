@@ -108,7 +108,7 @@ export default class Antwerp2022 extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init(1);
+    this.init(2);
 
     // clearInterval(window.fetchInterval);
     //
@@ -138,34 +138,28 @@ export default class Antwerp2022 extends React.PureComponent {
     });
 
 
-    fetch('https://score-service.deta.dev/fetch_results/event_19')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this._scores = {
-          0: resp[1],
-          1: resp[2],
-          2: resp[3],
-        };
-        this.setState({scores: this._scores[tStage]})
-        // this.state.score = resp[tStage];
-      }).then(
-        () => this.calculateMatchups(0, this.state.rounds + 1)
-      );
+    // fetch('https://score-service.deta.dev/fetch_results/event_19')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this._scores = {
+    //       0: resp[1],
+    //       1: resp[2],
+    //       2: resp[3],
+    //     };
+    //     this.setState({scores: this._scores[tStage]})
+    //     // this.state.score = resp[tStage];
+    //   }).then(
+    //     () => this.calculateMatchups(0, this.state.rounds + 1)
+    //   );
 
-    fetch('https://d8nswj.deta.dev/stats_cached/19')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          pickStats: resp,
-        });
-      });
-    //   fetch('https://score-service.deta.dev/get_picks/22antwerp')
+    // fetch('https://d8nswj.deta.dev/stats_cached/19')
     //   .then((resp) => resp.json())
     //   .then((resp) => {
     //     this.setState({
-    //       pickStats: resp.results,
+    //       pickStats: resp,
     //     });
     //   });
+
   };
 
 
