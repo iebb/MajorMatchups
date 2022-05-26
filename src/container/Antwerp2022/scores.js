@@ -1,5 +1,5 @@
 export const Scores = {
-  "1": {
+  "0": {
     "bne-ence": [[9,16],[13,16]],
     "bne-forz": [[7,16]],
     "cplx-out": [[9,16]],
@@ -34,7 +34,7 @@ export const Scores = {
     "spir-imp": [[16,6]],
     "vita-astr": [[16,8]]
   },
-  "2": {
+  "1": {
     "bne-cope": [[14,16]],
     "bne-faze": [[4,16]],
     "cope-spir": [[6,16],[8,16],[16,10]],
@@ -69,7 +69,7 @@ export const Scores = {
     "vita-hero": [[12,16],[16,14],[7,16]],
     "vita-nip": [[4,16]]
   },
-  "3": {
+  "2": {
     "cope-ence":[[12,16],[10,16]],
     "ence-navi":[[12,16],[7,16]],
     "faze-navi":[[16,10],[19,16]],
