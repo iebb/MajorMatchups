@@ -27,6 +27,7 @@ const Footer = () => (
 )
 
 const Editions = [
+  ['2022 Rio RMR', '/22rmr_rio'],
   ['2022 Antwerp', '/22antwerp'],
   ['2022 Antwerp RMR', '/22rmr_antwerp'],
   ['2021 Stockholm', '/21stockholm'],
