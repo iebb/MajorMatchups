@@ -298,27 +298,27 @@ export const AME = [
 
 export const AP = [
   {
-    "code": "ap/tylo",
-    "name": "TYLOO",
+    "code": "ap/ihc",
+    "name": "IHC Esports",
     "seed": 1,
+    "description": "East Asia"
+  },
+  {
+    "code": "ap/ra",
+    "name": "Rare Atom",
+    "seed": 2,
     "description": "China"
   },
   {
-    "code": "ap/rng",
-    "name": "Renegades",
-    "seed": 2,
+    "code": "ap/ghg",
+    "name": "Grayhound Gaming",
+    "seed": 3,
     "description": "Oceania"
   },
   {
-    "code": "ap/l4or",
-    "name": "LookingForOrg",
-    "seed": 3,
-    "description": "Middle East"
-  },
-  {
-    "code": "ap/ihc",
-    "name": "IHC Esports",
+    "code": "ap/tylo",
+    "name": "JJH Int'l",
     "seed": 4,
-    "description": "East Asia"
+    "description": "Middle East"
   },
 ];

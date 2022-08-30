@@ -72,7 +72,6 @@ const Regions = [
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
-  /*
   {
     id: 3,
     name: "Asia-Pacific",
@@ -91,8 +90,6 @@ const Regions = [
     tournamentFormat: "SWISS_BUCHHOLTZ_DUP",
     allowDups: true,
   },
-
-   */
 ];
 
 const teamLogo = (code) => `https://major.ieb.im/images/rio2022_rmr/${code}.png`;

@@ -1,29 +1,5 @@
 // prettier-ignore
 
-/*
-  EUA EUB AM AP
-  1   1   1
-  2   2
-  3   3
-  4
-
-          2
-          3
-      4
-  5   5
-  6   6
-      7
-
-              1
-              2
-           4
-           5
-           6
-  7
-  8   8
-
-*/
-
 export const initialDataLegends = [
   {
     code: "hero",
