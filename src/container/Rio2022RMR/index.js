@@ -7,6 +7,8 @@ import { Scores } from './scores';
 import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
+import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
+import {Knockout} from "../../libs/common/formats/Knockout";
 
 const Regions = [
   {
@@ -159,7 +161,15 @@ export default class Rio2022RMR extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtz.bind(this)(s, e));
+    if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
+      this.setState(SwissBuchholtz.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_DUP") {
+      this.setState(SwissBuchholtzDup.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "KNOCKOUT") {
+      this.setState(Knockout.bind(this)(s, e));
+    } else {
+
+    }
   };
 
   componentDidMount() {

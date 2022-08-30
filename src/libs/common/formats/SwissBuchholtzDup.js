@@ -102,6 +102,8 @@ export function SwissBuchholtzDup(fromStage, toStage) {
       return vy - vx;
     });
 
+    console.log(pools);
+
     const dfs = (p, m, mref, pool) => {
       if (!p.length) {
         for (const match of m) {

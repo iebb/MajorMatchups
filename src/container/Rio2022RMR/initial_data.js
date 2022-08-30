@@ -304,19 +304,19 @@ export const AP = [
     "description": "East Asia"
   },
   {
-    "code": "ap/ra",
-    "name": "Rare Atom",
-    "seed": 2,
-    "description": "China"
-  },
-  {
     "code": "ap/ghg",
     "name": "Grayhound Gaming",
-    "seed": 3,
+    "seed": 2,
     "description": "Oceania"
   },
   {
-    "code": "ap/tylo",
+    "code": "ap/ra",
+    "name": "Rare Atom",
+    "seed": 3,
+    "description": "China"
+  },
+  {
+    "code": "ap/jjhi",
     "name": "JJH Int'l",
     "seed": 4,
     "description": "Middle East"
