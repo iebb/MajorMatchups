@@ -9,6 +9,7 @@ import Routes from './router';
 
 import './main.css';
 import { BrowserRouter as Router, NavLink } from 'react-router-dom';
+import KofiButton from "kofi-button";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -20,19 +21,20 @@ const { MediaContextProvider, Media } = createMedia({
 
 const Footer = () => (
   <div style={{ margin: 50, userSelect: 'text' }}>
-    <p>
+    <KofiButton kofiID='A0A8ERCTF' title="Support Me on Ko-fi" color='#29abe0' style={{ display: "none" }} />
+    <p style={{ margin: "2em" }}>
       by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-22 &middot; Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a> &middot; Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
     </p>
   </div>
 )
 
 const Editions = [
-  ['2022 Rio RMR', '/22rmr_rio'],
-  ['2022 Antwerp', '/22antwerp'],
-  ['2022 Antwerp RMR', '/22rmr_antwerp'],
-  ['2021 Stockholm', '/21stockholm'],
-  ['2019 Berlin', '/19berlin'],
-  ['2019 Katowice', '/19katowice'],
+  ['22 Rio RMR', '/22rmr_rio'],
+  ['22 Antwerp', '/22antwerp'],
+  ['22 Antwerp RMR', '/22rmr_antwerp'],
+  ['21 Stockholm', '/21stockholm'],
+  ['19 Berlin', '/19berlin'],
+  ['19 Katowice', '/19katowice'],
 ];
 
 class DesktopContainer extends Component {
@@ -52,7 +54,7 @@ class DesktopContainer extends Component {
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
                 <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Nunito', fontWeight: 700 }}>
-                  ieb's Swiss Calculator
+                  ieb's SwissCalc
                 </Menu.Item>
                 {Editions.map((edition) => (
                   <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
@@ -60,10 +62,12 @@ class DesktopContainer extends Component {
                   </NavLink>
                 ))}
               </Container>
+              <Menu.Item header style={{ padding: 0 }}>
+                <KofiButton kofiID='A0A8ERCTF' title="Support Me on Ko-fi" color='#29abe0' style={{ display: "none" }} />
+              </Menu.Item>
             </Menu>
           </Segment>
         </Visibility>
-
         {children}
         <Footer />
       </Media>
