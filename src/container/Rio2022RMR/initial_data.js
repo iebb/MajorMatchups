@@ -223,8 +223,8 @@ export const AME = [
     "description": "Seed #4"
   },
   {
-    "code": "am/ex-g",
-    "name": "ex-Gaimin Gladiators",
+    "code": "am/squi",
+    "name": "Squirtle Squad",
     "seed": 5,
     "description": "Seed #5"
   },
@@ -247,14 +247,14 @@ export const AME = [
     "description": "Seed #8"
   },
   {
-    "code": "am/tbd09",
-    "name": "TBD",
+    "code": "am/eg",
+    "name": "Evil Geniuses",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "am/tbd10",
-    "name": "TBD",
+    "code": "am/atk",
+    "name": "ATK",
     "seed": 10,
     "description": "Seed #10"
   },
@@ -271,14 +271,14 @@ export const AME = [
     "description": "Seed #12"
   },
   {
-    "code": "am/tbd13",
-    "name": "TBD",
+    "code": "am/one",
+    "name": "Team oNe eSports",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "am/tbd14",
-    "name": "TBD",
+    "code": "am/infi",
+    "name": "Infinity",
     "seed": 14,
     "description": "Seed #14"
   },
