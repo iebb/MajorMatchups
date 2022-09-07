@@ -217,26 +217,26 @@ export const AME = [
     "description": "Seed #3"
   },
   {
-    "code": "am/col",
-    "name": "Complexity Gaming",
+    "code": "am/pain",
+    "name": "paiN Gaming",
     "seed": 4,
     "description": "Seed #4"
   },
   {
-    "code": "am/squi",
-    "name": "Squirtle Squad",
+    "code": "am/col",
+    "name": "Complexity Gaming",
     "seed": 5,
     "description": "Seed #5"
   },
   {
-    "code": "am/pain",
-    "name": "paiN Gaming",
+    "code": "am/mibr",
+    "name": "MIBR",
     "seed": 6,
     "description": "Seed #6"
   },
   {
-    "code": "am/mibr",
-    "name": "MIBR",
+    "code": "am/squi",
+    "name": "Squirtle Squad",
     "seed": 7,
     "description": "Seed #7"
   },
@@ -247,50 +247,50 @@ export const AME = [
     "description": "Seed #8"
   },
   {
-    "code": "am/eg",
-    "name": "Evil Geniuses",
+    "code": "am/9z",
+    "name": "9z Team",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "am/atk",
-    "name": "ATK",
+    "code": "am/eg",
+    "name": "Evil Geniuses",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "am/9z",
-    "name": "9z Team",
+    "code": "am/plan",
+    "name": "O Plano",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "am/plan",
-    "name": "O Plano",
+    "code": "am/atk",
+    "name": "ATK",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "am/one",
-    "name": "Team oNe eSports",
+    "code": "am/arct",
+    "name": "Arctic eSports",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "am/infi",
-    "name": "Infinity",
+    "code": "am/one",
+    "name": "Team oNe eSports",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "am/arct",
-    "name": "Arctic eSports",
+    "code": "am/isur",
+    "name": "Isurus",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "am/isur",
-    "name": "Isurus",
+    "code": "am/infi",
+    "name": "Infinity",
     "seed": 16,
     "description": "Seed #16"
   }
