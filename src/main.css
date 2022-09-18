@@ -1,14 +1,14 @@
 
 body {
-  background: #282f57;
+  background: #232a33;
   color: #dbdce4;
   text-align: center;
-  font-family: Nunito, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, .ui.button {
-  font-family: Nunito, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 

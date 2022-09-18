@@ -53,7 +53,7 @@ class DesktopContainer extends Component {
           <Segment inverted textAlign="center" vertical>
             <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
               <Container>
-                <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Nunito', fontWeight: 700 }}>
+                <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Inter', fontWeight: 600 }}>
                   ieb's SwissCalc
                 </Menu.Item>
                 {Editions.map((edition) => (
@@ -62,9 +62,6 @@ class DesktopContainer extends Component {
                   </NavLink>
                 ))}
               </Container>
-              <Menu.Item header style={{ padding: 0 }}>
-                <KofiButton kofiID='A0A8ERCTF' title="Support Me on Ko-fi" color='#29abe0' style={{ display: "none" }} />
-              </Menu.Item>
             </Menu>
           </Segment>
         </Visibility>

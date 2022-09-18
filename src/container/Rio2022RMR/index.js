@@ -9,6 +9,8 @@ import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common
 import { BasicUI } from '../../libs/common/BasicUI';
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {Knockout} from "../../libs/common/formats/Knockout";
+import sponsorLogo from '../../images/sponsor/rio_sb.svg';
+
 
 const Regions = [
   {
@@ -184,6 +186,9 @@ export default class Rio2022RMR extends React.PureComponent {
         <div className="page-container">
           <div className="title-container">
             <h1 className="title">IEM Rio RMR 2022 Matchup Calculator</h1>
+            <p style={{ fontSize: 18, marginTop: -16 }}>
+              Sponsored by <a href="https://sportsbet.io"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            </p>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
@@ -213,6 +218,9 @@ export default class Rio2022RMR extends React.PureComponent {
             </Menu>
             <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
           </div>
+          <p style={{ fontSize: 18, marginTop: 36 }}>
+            Sponsored by <a href="https://sportsbet.io"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+          </p>
         </div>
       </div>
     );
