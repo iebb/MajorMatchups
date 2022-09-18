@@ -1,7 +1,8 @@
 import { ordinal } from '../plural';
-import { Image } from 'semantic-ui-react';
+import {Header, Image, Popup, Table} from 'semantic-ui-react';
 import { plus_minus } from '../plus_minus';
 import React from 'react';
+
 
 export const getMatchupDisplay = (state, stage) => {
   const stateMatches = state.matches;
@@ -14,8 +15,54 @@ export const getMatchupDisplay = (state, stage) => {
   const roundTeams = (stateRoundTeams[stage] || []);
   const stageMatches = stateMatches[stage];
   const logos = {}
+  const teams = {}
   for(const team of roundTeams) {
     logos[team.code] = team.logo;
+  }
+  for(const team of roundTeams) {
+    teams[team.code] = team;
+  }
+
+  const getBuchholtzPopup = (team) => {
+    return (
+      <Popup
+        inverted
+        trigger={<span className="team-box-text">/ {plus_minus(team.buchholz)}</span>}
+        content={
+          <Table basic='very' celled inverted>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Opponent</Table.HeaderCell>
+                <Table.HeaderCell>Score</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {
+                (team.buchholzBreakdown || []).map((opp, _idx) =>
+                  <Table.Row key={_idx}>
+                    <Table.Cell>
+                      <Header as='h4' image>
+                        <Image src={logos[opp.code]} alt={opp.code} title={opp.code} rounded size='mini' />
+                        <Header.Content>
+                          {teams[opp.code].name}
+                          <Header.Subheader>{teams[opp.code].description}</Header.Subheader>
+                        </Header.Content>
+                      </Header>
+                    </Table.Cell>
+                    <Table.Cell>{opp.b}</Table.Cell>
+                  </Table.Row>
+                )
+              }
+              <Table.Row>
+                <Table.Cell><b>Total Buchholtz</b></Table.Cell>
+                <Table.Cell>{team.buchholz}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        }
+        position='bottom center'
+      />
+    )
   }
 
 
@@ -71,30 +118,14 @@ export const getMatchupDisplay = (state, stage) => {
           </div>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                <span className="team-box-text">#{team.seed} <sub>
                 {
-                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") &&
-                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(team)
                 }
                 </sub>
                 </span>
             </div>
           </div>
-          {
-            (stage >= 1 && state.tournamentFormat === "SWISS_BUCHHOLTZ") && (
-              <div className="team-box down">
-                <div className="team-box-split b">
-                <span className="team-box-text">
-                      {
-                        team.opponents.map((opp, _idx) =>
-                          <Image className="team-logo-small" src={logos[opp]} alt={opp} title={opp} key={_idx} />
-                        )
-                      }
-                </span>
-                </div>
-              </div>
-            )
-          }
         </div>
       ))}
       {stageMatches.map((x) => {
@@ -159,8 +190,7 @@ export const getMatchupDisplay = (state, stage) => {
               <div className="team-box-split b">
                   <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
                 {
-                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") &&
-                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team1.buchholz)}</span>
+                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(x.team1)
                 }
                 </sub>
                   </span>
@@ -168,46 +198,12 @@ export const getMatchupDisplay = (state, stage) => {
               <div className="team-box-split b">
                   <span className="team-box-text" title="Seed, Low to High" >#{x.team2.seed} <sub>
                 {
-                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") &&
-                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(x.team2.buchholz)}</span>
+                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(x.team2)
                 }
                 </sub>
                   </span>
               </div>
             </div>
-            {
-              stage >= 1 ? (state.tournamentFormat === "SWISS_BUCHHOLTZ") && (
-                <div className="team-box down">
-                  <div className="team-box-split b">
-                  <span className="team-box-text">
-                    {
-                      x.team1.opponents.map(opp =>
-                        <Image className="team-logo-small" src={logos[opp]} alt={opp} key={opp}  />
-                      )
-                    }
-                  </span>
-                  </div>
-                  <div className="team-box-split b">
-                  <span className="team-box-text">
-                    {
-                      x.team2.opponents.map(opp =>
-                        <Image className="team-logo-small" src={logos[opp]} alt={opp} key={opp} />
-                      )
-                    }
-                  </span>
-                  </div>
-                </div>
-              ) : (
-                <div className="team-box down">
-                  <div className="team-box-split b">
-                    <span className="team-box-text descr">{x.team1.description}</span>
-                  </div>
-                  <div className="team-box-split b">
-                    <span className="team-box-text descr">{x.team2.description}</span>
-                  </div>
-                </div>
-              )
-            }
           </div>
         );
       })}
@@ -232,30 +228,14 @@ export const getMatchupDisplay = (state, stage) => {
           </div>
           <div className="team-box down">
             <div className="team-box-split b">
-                <span className="team-box-text" title="Seed, Low to High" >#{team.seed} <sub>
+                <span className="team-box-text">#{team.seed} <sub>
                 {
-                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") &&
-                  <span title="Buchholtz Score, High to Low" className="team-box-text">/ {plus_minus(team.buchholz)}</span>
+                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(team)
                 }
                 </sub>
                 </span>
             </div>
           </div>
-          {
-            (state.tournamentFormat === "SWISS_BUCHHOLTZ") && stage >= 1 && (
-              <div className="team-box down">
-                <div className="team-box-split b">
-                    <span className="team-box-text">
-                      {
-                        team.opponents.map((opp, _idx) =>
-                          <Image className="team-logo-small" src={logos[opp]} alt={opp} title={opp} key={_idx} />
-                        )
-                      }
-                    </span>
-                </div>
-              </div>
-            )
-          }
         </div>
       ))}
       {

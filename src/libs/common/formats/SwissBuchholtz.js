@@ -83,6 +83,10 @@ export function SwissBuchholtz(fromStage, toStage) {
       }
       for (const team of teamsT) {
         team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
+        team.buchholzBreakdown = team.opponents.map(x => ({
+          code: x,
+          b: buchholzScore[x],
+        }))
       }
       stateTeams[stage] = teamsT;
     }
