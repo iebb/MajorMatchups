@@ -235,8 +235,8 @@ export const AME = [
     "description": "Seed #6"
   },
   {
-    "code": "am/squi",
-    "name": "Squirtle Squad",
+    "code": "am/noun",
+    "name": "Nouns Esports",
     "seed": 7,
     "description": "Seed #7"
   },
