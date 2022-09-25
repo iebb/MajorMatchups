@@ -1,2 +1,3 @@
 /api/*  https://major-api.ieb.im/:splat  200
+/*    https://br.majors.im/:splat   302   Country=br
 /*    /index.html   200

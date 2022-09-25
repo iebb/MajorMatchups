@@ -12,6 +12,41 @@ h1, h2, h3, h4, h5, .ui.button {
   font-weight: 400;
 }
 
+@media only screen and (max-width: 768px) {
+  .bottom-mobile {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #232a33;
+    z-index: 9999;
+  }
+  .mid-mobile {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .bottom-mobile {
+    display: none;
+  }
+  .mid-mobile {
+    display: block;
+  }
+}
+
+h1, h2, h3, h4, h5, .ui.button {
+  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+
+.ui.menu {
+  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
 a {
   color: #8d91bf;
 }
