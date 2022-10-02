@@ -92,8 +92,8 @@ export const EUB = [
     "description": "Seed #15"
   },
   {
-    "code": "eu/benc",
-    "name": "BenchedHeroes",
+    "code": "eu/ig",
+    "name": "Illuminar Gaming",
     "seed": 16,
     "description": "Seed #16"
   }
