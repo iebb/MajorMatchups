@@ -185,7 +185,7 @@ export default class Rio2022RMR extends React.PureComponent {
           <div className="title-container">
             <h1 className="title">IEM Rio RMR 2022 Matchup Calculator</h1>
             <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://sportsbet.io"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
             </p>
           </div>
           <p>
@@ -217,7 +217,7 @@ export default class Rio2022RMR extends React.PureComponent {
             <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
           </div>
           <p style={{ fontSize: 18, marginTop: 36 }}>
-            Sponsored by <a href="https://sportsbet.io"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
           </p>
         </div>
       </div>
