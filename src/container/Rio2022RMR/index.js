@@ -27,7 +27,7 @@ const Regions = [
       "5": [{teams: 4, id: "4/5", name: "5th Decider"}],
       "6": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
     },
-    rounds: 6,
+    rounds: 7,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
