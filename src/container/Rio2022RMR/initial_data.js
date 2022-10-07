@@ -316,7 +316,7 @@ export const AP = [
     "description": "China"
   },
   {
-    "code": "ap/jjhi",
+    "code": "ap/jjh",
     "name": "JJH Int'l",
     "seed": 4,
     "description": "Middle East"
