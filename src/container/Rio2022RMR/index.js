@@ -1,15 +1,15 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { AME, AP, EUA, EUB } from './initial_data';
-import { Scores } from './scores';
-import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
-import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
-import { BasicUI } from '../../libs/common/BasicUI';
-import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
+import {Menu} from 'semantic-ui-react';
+import {AME, AP, EUA, EUB} from './initial_data';
+import {Scores} from './scores';
+import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
+import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
+import {BasicUI} from '../../libs/common/BasicUI';
 import {Knockout} from "../../libs/common/formats/Knockout";
 import sponsorLogo from '../../images/sponsor/rio_sb.svg';
+import {Knockout2} from "../../libs/common/formats/Knockout2";
 
 
 const Regions = [
@@ -92,7 +92,7 @@ const Regions = [
     winsToAdvance: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_DUP",
+    tournamentFormat: "KNOCKOUT2",
     allowDups: true,
   },
 ];
@@ -113,7 +113,7 @@ export default class Rio2022RMR extends React.PureComponent {
       [],
     ],
     matches: [false, false, false, false, false, false],
-    regionId: 0,
+    regionId: 3,
     advanceMode: 1,
     legends: false,
     scores: Scores,
@@ -164,8 +164,8 @@ export default class Rio2022RMR extends React.PureComponent {
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
       this.setState(SwissBuchholtz.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_DUP") {
-      this.setState(SwissBuchholtzDup.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "KNOCKOUT2") {
+      this.setState(Knockout2.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {

@@ -70,8 +70,9 @@ export const getStatus = (standing, seats=AdvanceElimSeats) => {
   return seats[seats.length - 1]
 }
 
-export function setWinner(match, picked, suffix = "")  {
+export function setWinner(match, picked)  {
   const { pickResults, lockResults } = this.state;
+  const { suffix } = match;
   pickResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
   pickResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
 
