@@ -19,6 +19,7 @@ import {BasicUI} from '../../libs/common/BasicUI';
 import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
+import sponsorLogo from "../../images/sponsor/rio_sb.svg";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -384,6 +385,9 @@ export default class Rio2022Provisional extends React.PureComponent {
         <div className="page-container">
           <div className="title-container">
             <h1 className="title">IEM Rio Major 2022 Matchup Calculator (Provisional)</h1>
+            <p style={{ fontSize: 18, marginTop: -16 }}>
+              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            </p>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
@@ -452,6 +456,9 @@ export default class Rio2022Provisional extends React.PureComponent {
               this.state.tournament >= 1 && this.renderNMS()
             }
           </div>
+          <p style={{ fontSize: 18, marginTop: 36 }}>
+            Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+          </p>
         </div>
       </div>
     );

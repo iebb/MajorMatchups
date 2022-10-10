@@ -16,6 +16,26 @@ import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
 const Regions = [
   {
     id: 0,
+    name: "Europe A",
+    seeds: EUA,
+    seats: [
+      { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
+      { status: "challengers", until: 6, abbrev: "C", statusPositioned: true },
+      { status: "contenders", until: 8, abbrev: "Co", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
+    },
+    rounds: 6,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    allowDups: false,
+  },
+  {
+    id: 1,
     name: "Europe B",
     seeds: EUB,
     seats: [
@@ -29,26 +49,6 @@ const Regions = [
       "6": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
     },
     rounds: 7,
-    winsToAdvance: 3,
-    nonDeciderBestOf: 1,
-    deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
-    allowDups: false,
-  },
-  {
-    id: 1,
-    name: "Europe A",
-    seeds: EUA,
-    seats: [
-      { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
-      { status: "challengers", until: 6, abbrev: "C", statusPositioned: true },
-      { status: "contenders", until: 8, abbrev: "Co", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
-    ],
-    tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
-    },
-    rounds: 6,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
