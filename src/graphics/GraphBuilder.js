@@ -47,6 +47,7 @@ export default class GraphBuilder extends React.PureComponent {
     const _teams = matches[0].map(x => [x.team1, x.team2]).flat();
 
     const totalTeams = _teams.length;
+    console.log(_teams);
     const offsetSeed = _teams[0].seed - 1;
     const teams = _teams.map((t, _idx) => {
       const y = nodeY;

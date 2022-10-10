@@ -104,12 +104,12 @@ export function setTiebreakerWinner(t1, t2) {
   const tbr = this.state.tiebreakerResults;
   const gamescores = this.state.scores;
 
-  if (`b-${t1.code}-${t2.code}` in gamescores) {
-    const gs = gamescores[`b-${t1.code}-${t2.code}`];
+  if (`${t1.code}-${t2.code}#1` in gamescores) {
+    const gs = gamescores[`${t1.code}-${t2.code}#1`];
     const [winner, ] = getWinnerFromScore(gs);
     tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), winner < 0]; // not winner
-  } else if (`b-${t2.code}-${t1.code}` in gamescores) {
-    const gs = gamescores[`b-${t2.code}-${t1.code}`];
+  } else if (`${t2.code}-${t1.code}#1` in gamescores) {
+    const gs = gamescores[`${t2.code}-${t1.code}#1`];
     const [winner, ] = getWinnerFromScore(gs);
     tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), winner > 0]; // is winner
   } else {

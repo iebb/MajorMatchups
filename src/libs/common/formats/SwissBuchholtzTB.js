@@ -225,10 +225,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
             if (
               !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
             ) {
-              console.log(t1, t2, gamescores);
               if (`${t1.code}-${t2.code}#1` in gamescores) {
                 const gs = gamescores[`${t1.code}-${t2.code}#1`];
-                console.log("found pst", gs);
                 const [winner, ] = getWinnerFromScore(gs);
                 tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
                   winner > 0 ?
@@ -238,21 +236,16 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               } else if (`${t2.code}-${t1.code}#1` in gamescores) {
                 const gs = gamescores[`${t2.code}-${t1.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
-                console.log("found rev", gs);
                 tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
                   winner < 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
+                    [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false] :
+                    [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false]
                 ) : [t1.code, t2.code, [], [], true];
               } else {
-                console.log("not found", `${t1.code}-${t2.code}#1`, `${t2.code}-${t1.code}#1`)
-                console.log("not found", gamescores[`${t1.code}-${t2.code}#1`], gamescores[`${t2.code}-${t1.code}#1`])
-                console.log(gamescores)
                 tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true];
               }
             }
 
-            console.log("tbr after", tbr);
 
             const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
             const otherTeam = tbs.teams === idx + 1 ? t2 : t1;

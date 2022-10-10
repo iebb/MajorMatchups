@@ -94,7 +94,7 @@ const Regions = [
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     tournamentFormat: "KNOCKOUT2",
-    allowDups: true,
+    allowDups: false,
   },
 ];
 

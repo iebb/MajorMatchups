@@ -234,16 +234,16 @@ export function SwissBuchholtzDup(fromStage, toStage) {
             if (
               !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
             ) {
-              if (`b-${t1.code}-${t2.code}` in gamescores) {
-                const gs = gamescores[`b-${t1.code}-${t2.code}`];
+              if (`${t1.code}-${t2.code}#1` in gamescores) {
+                const gs = gamescores[`${t1.code}-${t2.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
                 tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
                   winner > 0 ?
                     [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
                     [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
                 ) : [t1.code, t2.code, [], [], true];
-              } else if (`b-${t2.code}-${t1.code}` in gamescores) {
-                const gs = gamescores[`b-${t2.code}-${t1.code}`];
+              } else if (`${t2.code}-${t1.code}#1` in gamescores) {
+                const gs = gamescores[`${t2.code}-${t1.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
                 tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
                   winner < 0 ?
