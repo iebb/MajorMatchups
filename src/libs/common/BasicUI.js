@@ -1,5 +1,5 @@
 import {Button, Form, Label, Radio} from 'semantic-ui-react';
-import { getMatchupDisplay } from './Display';
+import {getMatchupDisplay} from './Display';
 import GraphBuilder from '../../graphics/GraphBuilder';
 import React from 'react';
 
@@ -44,62 +44,66 @@ export class BasicUI extends React.Component {
 
   render() {
     const { matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
-    const { state, shuffle, advance } = this.props;
+    const { state, shuffle, advance, inter } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     return (
       <div style={{ marginTop: 20 }}>
-        <Form style={{ marginTop: 20 }} inverted>
-          <Form.Field>
-            {
-              this.isInteractiveModeEnabled() && (
+        {
+          (
+            <Form style={{ marginTop: 20 }} inverted>
+              <Form.Field>
+                {
+                  this.isInteractiveModeEnabled() && (
+                    <div style={{ margin: 10, display: 'inline-block' }}>
+                      <Radio toggle onChange={
+                        (e, { checked }) => {
+                          this.setState({ interactiveMode: checked });
+                          localStorage.interactiveMode = checked;
+                        }
+                      } label={"\u00A0"} checked={interactiveMode} />
+                      {
+                        this.state.interactiveMode ? (
+                          <Label color='red' tag>
+                            Round by Round
+                          </Label>
+                        ) : (
+                          <Label color='blue' tag>
+                            Classic Mode
+                          </Label>
+                        )
+                      }
+                    </div>
+                  )
+                }
                 <div style={{ margin: 10, display: 'inline-block' }}>
                   <Radio toggle onChange={
                     (e, { checked }) => {
-                      this.setState({ interactiveMode: checked });
-                      localStorage.interactiveMode = checked;
+                      this.setState({ matchOnly: checked });
+                      localStorage.matchOnly = checked;
                     }
-                  } label={"\u00A0"} checked={interactiveMode} />
-                  {
-                    this.state.interactiveMode ? (
-                      <Label color='red' tag>
-                        Round by Round
-                      </Label>
-                    ) : (
-                      <Label color='blue' tag>
-                        Classic Mode
-                      </Label>
-                    )
-                  }
+                  } label='Matches Only' checked={matchOnly} />
                 </div>
-              )
-            }
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ matchOnly: checked });
-                  localStorage.matchOnly = checked;
-                }
-              } label='Matches Only' checked={matchOnly} />
-            </div>
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ hideMatchUI: checked });
-                  localStorage.hideMatchUI = checked;
-                }
-              } label='Hide Match UI' checked={hideMatchUI} />
-            </div>
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ hideVisualizationUI: checked });
-                  localStorage.hideVisualizationUI = checked;
-                }
-              } label='Hide Visualization UI' checked={hideVisualizationUI} />
-            </div>
-          </Form.Field>
-        </Form>
+                <div style={{ margin: 10, display: 'inline-block' }}>
+                  <Radio toggle onChange={
+                    (e, { checked }) => {
+                      this.setState({ hideMatchUI: checked });
+                      localStorage.hideMatchUI = checked;
+                    }
+                  } label='Hide Match UI' checked={hideMatchUI} />
+                </div>
+                <div style={{ margin: 10, display: 'inline-block' }}>
+                  <Radio toggle onChange={
+                    (e, { checked }) => {
+                      this.setState({ hideVisualizationUI: checked });
+                      localStorage.hideVisualizationUI = checked;
+                    }
+                  } label='Hide Visualization UI' checked={hideVisualizationUI} />
+                </div>
+              </Form.Field>
+            </Form>
+          )
+        }
 
         {
           !hideMatchUI && (
@@ -194,6 +198,7 @@ export class BasicUI extends React.Component {
             </div>
           )
         }
+        {inter}
         {
           (!interactiveMode || iRound >= (state.rounds)) && (
             <>
