@@ -8,6 +8,7 @@ export const pack = (teams, teamLogo) => {
         w: 0,
         opponents: [],
         buchholz: 0,
+        buchholzBreakdown: [],
         ...t,
         logo: teamLogo(t.code),
       })),

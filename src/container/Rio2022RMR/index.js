@@ -10,6 +10,7 @@ import {BasicUI} from '../../libs/common/BasicUI';
 import {Knockout} from "../../libs/common/formats/Knockout";
 import sponsorLogo from '../../images/sponsor/rio_sb.svg';
 import {Knockout2} from "../../libs/common/formats/Knockout2";
+import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
 
 
 const Regions = [
@@ -31,7 +32,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
+    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
     allowDups: false,
   },
   {
@@ -51,7 +52,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
+    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
     allowDups: false,
   },
   {
@@ -74,7 +75,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
+    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
     allowDups: false,
   },
   {
@@ -164,6 +165,8 @@ export default class Rio2022RMR extends React.PureComponent {
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
       this.setState(SwissBuchholtz.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_TB") {
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT2") {
       this.setState(Knockout2.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {

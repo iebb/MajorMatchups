@@ -38,7 +38,7 @@ export const getMatchupDisplay = (state, stage) => {
             </Table.Header>
             <Table.Body>
               {
-                (team.buchholzBreakdown || []).map((opp, _idx) =>
+                (team.buchholzBreakdown || []).map((opp, _idx) => teams[opp.code] &&
                   <Table.Row key={_idx}>
                     <Table.Cell>
                       <Header as='h4' image>
@@ -73,61 +73,64 @@ export const getMatchupDisplay = (state, stage) => {
 
   return (
     <div key={stage}>
-      {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => (
-        <div key={team.code} className={`team one ${team.status}`}>
-          <div className="team-box up" style={
-            team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
-          }>
-            <div className="team-box-split b">
+      {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
+        if (team.tiebreaker) console.log("tbs", team.tiebreakerScores);
+        return (
+          <div key={team.code} className={`team one ${team.status}`}>
+            <div className="team-box up" style={
+              team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
+            }>
+              <div className="team-box-split b">
                 <span className="team-box-text">
                   {`${team.w}-${team.l}`} {team.tiebreaker && "TB"}
                 </span>
+              </div>
             </div>
-          </div>
-          {team.tiebreaker ? team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
-            <div className="team-box down" key={idx + '_tbs'}>
-              <div className="team-box-split b">
+            {team.tiebreaker ? team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
+              <div className="team-box down" key={idx + '_tbs'}>
+                <div className="team-box-split b">
                   <span className={`team-box-text`}>
                     {p}
                   </span>
+                </div>
               </div>
-            </div>
-          )) : (
-            <div className="team-box down">
-              <div className="team-box-split b">
+            )) : (
+              <div className="team-box down">
+                <div className="team-box-split b">
                 <span className="team-box-text">
                   {`${ordinal(team.standing)} (${team.abbrev})`}
                 </span>
+                </div>
               </div>
+            )}
+            <div className="team-box med">
+              {
+                (team.tiebreaker) ? (
+                  <div className={
+                    `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
+                  } onClick={() => team.setTiebreakerWin()}>
+                    <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+                  </div>
+                ) : (
+                  <div className="team-box-split b">
+                    <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+                  </div>
+                )
+              }
             </div>
-          )}
-          <div className="team-box med">
-            {
-              (team.tiebreaker) ? (
-                <div className={
-                  `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
-                } onClick={() => team.setTiebreakerWin()}>
-                  <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-                </div>
-              ) : (
-                <div className="team-box-split b">
-                  <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-                </div>
-              )
-            }
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
+            <div className="team-box down">
+              <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed} <sub>
                 {
                   (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(team)
                 }
                 </sub>
                 </span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
       {stageMatches.map((x) => {
         let pickA, pickB, resultA, resultB;
         if (x.picked === 1) {
