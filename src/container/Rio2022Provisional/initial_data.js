@@ -79,7 +79,7 @@ export const initialDataChallenger = [
     "name": "Evil Geniuses",
     seed: 11,
     description: "AM #2",
-    region: "EU",
+    region: "AM",
   },
   {
     "code": "eu/c9",
