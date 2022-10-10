@@ -91,6 +91,7 @@ const Regions = [
     tiebreakers: {},
     rounds: 3,
     winsToAdvance: 2,
+    loseToEliminate: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     tournamentFormat: "KNOCKOUT2",
@@ -144,20 +145,21 @@ export default class Rio2022RMR extends React.PureComponent {
       advanceMode: 1,
       regionId: region,
       ...Regions[region],
-    }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    return fetch('https://score-service.deta.dev/fetch_results/rio22rmr')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...pack(Regions[region].seeds, teamLogo),
-          scores: resp,
-          advanceMode: 1,
-          regionId: region,
-          ...Regions[region],
-        });
-      }).then(
-        () => this.calculateMatchups(0, this.state.rounds + 1)
-      );
+    }, () => this.calculateMatchups(0, Regions[region].rounds + 1));
+
+    // return fetch('https://score-service.deta.dev/fetch_results/rio22rmr')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       ...pack(Regions[region].seeds, teamLogo),
+    //       scores: resp,
+    //       advanceMode: 1,
+    //       regionId: region,
+    //       ...Regions[region],
+    //     });
+    //   }).then(
+    //     () => this.calculateMatchups(0, this.state.rounds + 1)
+    //   );
   };
 
 
