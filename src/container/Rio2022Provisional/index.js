@@ -99,8 +99,6 @@ export default class Rio2022Provisional extends React.PureComponent {
       this.setState(SwissBuchholtzDup.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
-    } else {
-
     }
   };
 

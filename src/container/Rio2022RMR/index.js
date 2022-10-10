@@ -8,7 +8,7 @@ import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
 import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
 import {BasicUI} from '../../libs/common/BasicUI';
 import {Knockout} from "../../libs/common/formats/Knockout";
-import sponsorLogo from '../../images/sponsor/rio_sb.svg';
+import headerPt from '../../images/sponsor/header-pt.png';
 import {Knockout2} from "../../libs/common/formats/Knockout2";
 import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
 
@@ -94,11 +94,13 @@ const Regions = [
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     tournamentFormat: "KNOCKOUT2",
-    allowDups: false,
+    allowDups: true,
   },
 ];
 
 const teamLogo = (code) => `https://major.ieb.im/images/rio2022_rmr/${code}.png`;
+
+const redirectLink = "https://cutt.ly/DV3TjD7";
 
 export default class Rio2022RMR extends React.PureComponent {
   state = {
@@ -114,7 +116,7 @@ export default class Rio2022RMR extends React.PureComponent {
       [],
     ],
     matches: [false, false, false, false, false, false],
-    regionId: 3,
+    regionId: 0,
     advanceMode: 1,
     legends: false,
     scores: Scores,
@@ -186,25 +188,11 @@ export default class Rio2022RMR extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">IEM Rio RMR 2022 Matchup Calculator</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-            </p>
+          <div className="title-container sponsored">
+            <a href={redirectLink}>
+              <img src={headerPt} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 220 }}/>
+            </a>
           </div>
-          <p>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-          </p>
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               {
@@ -218,11 +206,12 @@ export default class Rio2022RMR extends React.PureComponent {
                 ))
               }
             </Menu>
-            <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
+            <BasicUI
+              state={this.state}
+              stage={this.getStage()}
+              shuffle={this.shuffle}
+            />
           </div>
-          <p style={{ fontSize: 18, marginTop: 36 }}>
-            Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-          </p>
         </div>
       </div>
     );
