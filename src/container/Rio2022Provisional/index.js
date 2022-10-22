@@ -388,6 +388,9 @@ export default class Rio2022Provisional extends React.PureComponent {
             <p style={{ fontSize: 18, marginTop: -16 }}>
               Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
             </p>
+            <h2 style={{ color: 'yellow' }}>
+              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
+            </h2>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
