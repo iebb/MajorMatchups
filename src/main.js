@@ -9,7 +9,7 @@ import Routes from './router';
 
 import './main.css';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
-import advertisement3 from "./images/sponsor/br-banner3.png";
+import advertisement3 from "./images/sponsor/banner-pt-3.png";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
