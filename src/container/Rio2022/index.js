@@ -20,10 +20,13 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
+import headerPt from "../../images/sponsor/header-pt-2.png";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
+
+const redirectLink = "https://cutt.ly/INjQYvS";
 
 const teamLogo = (code) => `https://major.ieb.im/images/rio2022/${code}_glitter_large.png`;
 
@@ -383,11 +386,10 @@ export default class Rio2022 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">IEM Rio Major 2022 Matchup Calculator</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-            </p>
+          <div className="title-container sponsored">
+            <a href={redirectLink}>
+              <img src={headerPt} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 220 }}/>
+            </a>
             <h2 style={{ color: 'yellow' }}>
               Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
             </h2>
