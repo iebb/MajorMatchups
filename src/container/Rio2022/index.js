@@ -111,7 +111,7 @@ export default class Rio2022 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init(0);
 
-    fetch('https://score-service.deta.dev/fetch_results/event_20')
+    fetch('https://result-api.majors.im/event_20.json')
       .then((resp) => resp.json())
       .then((resp) => {
         this._scores = {
