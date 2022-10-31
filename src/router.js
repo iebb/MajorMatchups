@@ -7,6 +7,7 @@ import Antwerp2022RMR from "./container/Antwerp2022RMR";
 import Antwerp2022 from "./container/Antwerp2022";
 import Rio2022RMR from "./container/Rio2022RMR";
 import Rio2022Provisional from "./container/Rio2022Provisional";
+import Rio2022 from "./container/Rio2022";
 
 export default function Routes() {
   return (
@@ -30,7 +31,7 @@ export default function Routes() {
         <Rio2022RMR />
       </Route>
       <Route path="/22rio">
-        <Rio2022Provisional />
+        <Rio2022 />
       </Route>
       <Route path="/">
         <Redirect to="/22rio" />

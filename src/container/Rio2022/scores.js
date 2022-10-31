@@ -5,7 +5,7 @@ export const Scores = {
   },
   "2": {
   },
-  "key": "event_20"
+  "key": "event_19"
 }
 
 export const ChallengerResults = [
