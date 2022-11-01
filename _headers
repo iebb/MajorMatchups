@@ -1,3 +1,6 @@
 /static/*
     cache-control: public
     cache-control: max-age=604800
+/images/*
+    cache-control: public
+    cache-control: max-age=604800
