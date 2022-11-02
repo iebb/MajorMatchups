@@ -92,7 +92,7 @@ const Regions = [
   },
 ];
 
-const teamLogo = (code) => `https://major.ieb.im/images/antwerp2022_rmr/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/antwerp2022_rmr/${code}.png`;
 
 export default class Antwerp2022RMR extends React.PureComponent {
   state = {

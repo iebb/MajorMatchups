@@ -99,7 +99,7 @@ const Regions = [
   },
 ];
 
-const teamLogo = (code) => `https://major.ieb.im/images/rio2022_rmr/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/rio2022_rmr/${code}.png`;
 
 export default class Rio2022RMR extends React.PureComponent {
   state = {

@@ -20,7 +20,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
-const teamLogo = (code) => `https://major.ieb.im/images/stockh2021/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/stockh2021/${code}.png`;
 const scores = { 0: FinalResultsChallenger, 1: FinalResultsLegends, 2: FinalResultsChampions };
 
 const TournamentStages = [

@@ -4,7 +4,7 @@ import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { FinalResults } from './final_results';
 
-const teamLogo = (code) => `https://major.ieb.im/images/katowice2019/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/katowice2019/${code}.png`;
 
 
 const copy = x => JSON.parse(JSON.stringify(x));
