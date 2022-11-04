@@ -166,6 +166,7 @@ export default class Rio2022 extends React.PureComponent {
         seats: AdvanceElimSeats,
         loseToEliminate: 3,
         rounds: 5,
+        pickemTags: ["picks_216"],
         pickResults: getPickResults('pickResults', 1, this.event),
       }, () => {
         this.calculateMatchups(0, this.state.rounds + 1)
@@ -196,6 +197,7 @@ export default class Rio2022 extends React.PureComponent {
         seats: ChampionSeats,
         loseToEliminate: 1,
         rounds: 3,
+        pickemTags: [],
         legends: false,
         pickResults: getPickResults('pickResults', 2, this.event),
       }, () => {
