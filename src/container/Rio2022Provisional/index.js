@@ -26,7 +26,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
-const teamLogo = (code) => `https://major.ieb.im/images/rio2022_rmr/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/rio2022_rmr/${code}.png`;
 
 const redirectLink = "https://cutt.ly/INjQYvS";
 
@@ -259,9 +259,9 @@ export default class Rio2022Provisional extends React.PureComponent {
     const slots = losingTeamsinChallenger;
 
     const regions = {
-      EU: { name: "EU", icon: "https://major.ieb.im/images/regions/eu1.png" },
-      AM: { name: "AM", icon: "https://major.ieb.im/images/regions/am.png" },
-      AP: { name: "AP", icon: "https://major.ieb.im/images/regions/asia.png" },
+      EU: { name: "EU", icon: "https://majors.im/images/regions/eu1.png" },
+      AM: { name: "AM", icon: "https://majors.im/images/regions/am.png" },
+      AP: { name: "AP", icon: "https://majors.im/images/regions/asia.png" },
     }
 
     const m = (team, _) => {

@@ -99,7 +99,7 @@ const Regions = [
   },
 ];
 
-const teamLogo = (code) => `https://major.ieb.im/images/rio2022_rmr/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/rio2022_rmr/${code}.png`;
 
 const redirectLink = "https://cutt.ly/DV3TjD7";
 

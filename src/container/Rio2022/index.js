@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
-import {initialDataChallenger, initialDataLegends} from './initial_data';
+import {initialDataChallenger, initialDataLegends, finalDataLegends} from './initial_data';
 import {ChallengerResults, LegendResults, Scores} from './scores';
 import {
   AdvanceElimSeats,
@@ -26,6 +26,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
+const teamLogo = (code) => `https://majors.im/images/rio2022/${code}_glitter_large.png`;
 const redirectLink = "https://cutt.ly/INjQYvS";
 
 const teamLogo = (code) => `https://major.ieb.im/images/rio2022/${code}_glitter_large.png`;
@@ -39,6 +40,18 @@ const TournamentStages = [
     tournament: TournamentChallenger,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     seats: AdvanceElimSeats,
+    rounds: 5,
+    pickemTags: ["picks_215"],
+  },
+  {
+    id: 1,
+    ...pack(finalDataLegends, teamLogo),
+    name: "Legends",
+    tournament: TournamentLegends,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    advanceMode: 1,
+    seats: AdvanceElimSeats,
+    pickemTags: ["picks_216"],
     rounds: 5,
   },
   // {
@@ -112,7 +125,7 @@ export default class Rio2022 extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init(0);
+    this.init(1);
 
     fetch('https://result-api.majors.im/event_20.json')
       .then((resp) => resp.json())
@@ -168,6 +181,7 @@ export default class Rio2022 extends React.PureComponent {
         seats: AdvanceElimSeats,
         loseToEliminate: 3,
         rounds: 5,
+        pickemTags: ["picks_216"],
         pickResults: getPickResults('pickResults', 1, this.event),
       }, () => {
         this.calculateMatchups(0, this.state.rounds + 1)
@@ -198,6 +212,7 @@ export default class Rio2022 extends React.PureComponent {
         seats: ChampionSeats,
         loseToEliminate: 1,
         rounds: 3,
+        pickemTags: [],
         legends: false,
         pickResults: getPickResults('pickResults', 2, this.event),
       }, () => {
@@ -256,9 +271,9 @@ export default class Rio2022 extends React.PureComponent {
     const slots = losingTeamsinChallenger;
 
     const regions = {
-      EU: { name: "EU", icon: "https://major.ieb.im/images/regions/eu1.png" },
-      AM: { name: "AM", icon: "https://major.ieb.im/images/regions/am.png" },
-      AP: { name: "AP", icon: "https://major.ieb.im/images/regions/asia.png" },
+      EU: { name: "EU", icon: "https://majors.im/images/regions/eu1.png" },
+      AM: { name: "AM", icon: "https://majors.im/images/regions/am.png" },
+      AP: { name: "AP", icon: "https://majors.im/images/regions/asia.png" },
     }
 
     const m = (team, _) => {
@@ -382,13 +397,14 @@ export default class Rio2022 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container sponsored">
-            <a href={redirectLink}>
-              <img src={headerPt} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 220 }}/>
-            </a>
-            <h2 style={{ color: 'yellow' }}>
-              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
-            </h2>
+          <div className="title-container">
+            <h1 className="title">IEM Rio Major 2022 Matchup Calculator</h1>
+            <p style={{ fontSize: 18, marginTop: -16 }}>
+              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            </p>
+            <h3 style={{ color: 'yellow' }}>
+              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
+            </h3>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
@@ -419,6 +435,7 @@ export default class Rio2022 extends React.PureComponent {
               ))
             }
             {
+              /*
               this.state.tournament >= 0 && (
                 <Menu.Item
                   key="adv-2"
@@ -426,7 +443,7 @@ export default class Rio2022 extends React.PureComponent {
                   active={this.state.tournament === 1}
                   onClick={() => this.advance()}
                 />
-              )
+              )*/
             }
             {
               this.state.tournament >= 1 && (
@@ -442,6 +459,7 @@ export default class Rio2022 extends React.PureComponent {
           <BasicUI
             state={this.state}
             stage={this.getStage()}
+            pickemTags={this.state.pickemTags}
             shuffle={this.shuffle}
             advance={
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null

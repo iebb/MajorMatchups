@@ -1,13 +1,32 @@
 import { ordinal } from '../plural';
-import {Header, Image, Popup, Table} from 'semantic-ui-react';
+import { Header, Image, Label, Popup, Table } from 'semantic-ui-react';
 import { plus_minus } from '../plus_minus';
 import React from 'react';
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
 export const getMatchupDisplay = (state, stage) => {
   const stateMatches = state.matches;
   const stateRoundTeams = state.roundTeams;
-  let { matchOnly, tiebreakerResults } = state;
+  const statePickemTags = state.pickemTags;
+
+  const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
+  const picked = {};
+  try {
+    for (const pick of pickEms.split("|")) {
+      const pickSplit = pick.split(":");
+      picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
+    }
+  } catch (e) {
+    
+  }
+
+
+  let { trackPickems, matchOnly, tiebreakerResults } = state;
 
   if (stage === state.rounds) matchOnly = false;
 
@@ -71,6 +90,40 @@ export const getMatchupDisplay = (state, stage) => {
 
   const altTimeline = stageMatches.filter((x) => x.result && x.picked !== x.result).length;
 
+  const teamLogo = team => {
+    const pick = picked[team.code];
+
+    if (typeof pick === 'undefined' || !trackPickems) return (
+      <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+    );
+
+    if (pick === 0) return (
+      <>
+        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Label color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+          3-0
+        </Label>
+      </>
+    );
+    if (pick === 8) return (
+      <>
+        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Label color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+          0-3
+        </Label>
+      </>
+    );
+
+    return (
+      <>
+        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Label color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+          Adv
+        </Label>
+      </>
+    );
+  }
+
   return (
     <div key={stage}>
       {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
@@ -109,11 +162,11 @@ export const getMatchupDisplay = (state, stage) => {
                   <div className={
                     `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
                   } onClick={() => team.setTiebreakerWin()}>
-                    <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+                    {teamLogo(team)}
                   </div>
                 ) : (
                   <div className="team-box-split b">
-                    <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+                    {teamLogo(team)}
                   </div>
                 )
               }
@@ -183,10 +236,10 @@ export const getMatchupDisplay = (state, stage) => {
             ))}
             <div className="team-box med">
               <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => x.setWinner(1)}>
-                <Image className="team-logo" src={x.team1.logo} alt={x.team1.name} title={x.team1.name} />
+                {teamLogo(x.team1)}
               </div>
               <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => x.setWinner(-1)}>
-                <Image className="team-logo" src={x.team2.logo} alt={x.team2.name} title={x.team2.name} />
+                {teamLogo(x.team2)}
               </div>
             </div>
             <div className="team-box down">
@@ -226,7 +279,7 @@ export const getMatchupDisplay = (state, stage) => {
           </div>
           <div className="team-box med">
             <div className="team-box-split b">
-              <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+              {teamLogo(team)}
             </div>
           </div>
           <div className="team-box down">
