@@ -14,7 +14,7 @@ export const getMatchupDisplay = (state, stage) => {
   const stateRoundTeams = state.roundTeams;
   const statePickemTags = state.pickemTags;
 
-  const pickEms = statePickemTags ? getCookie(statePickemTags[0]) : "";
+  const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
   const picked = {};
   for (const pick of pickEms.split("|")) {
     const pickSplit = pick.split(":");
