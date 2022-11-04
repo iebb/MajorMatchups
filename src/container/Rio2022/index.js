@@ -37,6 +37,7 @@ const TournamentStages = [
     tournamentFormat: "SWISS_BUCHHOLTZ",
     seats: AdvanceElimSeats,
     rounds: 5,
+    pickemTags: ["picks_215"],
   },
   // {
   //   id: 1,
@@ -384,9 +385,9 @@ export default class Rio2022 extends React.PureComponent {
             <p style={{ fontSize: 18, marginTop: -16 }}>
               Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
             </p>
-            <h2 style={{ color: 'yellow' }}>
-              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
-            </h2>
+            <h3 style={{ color: 'yellow' }}>
+              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
+            </h3>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
@@ -440,6 +441,7 @@ export default class Rio2022 extends React.PureComponent {
           <BasicUI
             state={this.state}
             stage={this.getStage()}
+            pickemTags={this.state.pickemTags}
             shuffle={this.shuffle}
             advance={
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null

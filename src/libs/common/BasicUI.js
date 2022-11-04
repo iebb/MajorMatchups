@@ -9,6 +9,7 @@ export class BasicUI extends React.Component {
     hideMatchUI: (localStorage.hideMatchUI || "false") === "true",
     hideVisualizationUI: (localStorage.hideVisualizationUI || "false") === "true",
     matchOnly: (localStorage.matchOnly || "false") === "true",
+    trackPickems: (localStorage.matchOnly || "true") === "true",
     eliminatedOnVisualization: (localStorage.dash || "true") === "true",
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
@@ -43,7 +44,7 @@ export class BasicUI extends React.Component {
   }
 
   render() {
-    const { matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
+    const { trackPickems, matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
     const { state, shuffle, advance } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
@@ -74,6 +75,14 @@ export class BasicUI extends React.Component {
                 </div>
               )
             }
+            <div style={{ margin: 10, display: 'inline-block' }}>
+              <Radio toggle onChange={
+                (e, { checked }) => {
+                  this.setState({ trackPickems: checked });
+                  localStorage.trackPickems = checked;
+                }
+              } label='Track Pick`em' checked={trackPickems} />
+            </div>
             <div style={{ margin: 10, display: 'inline-block' }}>
               <Radio toggle onChange={
                 (e, { checked }) => {
@@ -169,7 +178,7 @@ export class BasicUI extends React.Component {
                               >[shuffle]</span>
                             }
                           </h1>
-                          <div key={"_" + round}>{getMatchupDisplay({...state, matchOnly}, round)}</div>
+                          <div key={"_" + round}>{getMatchupDisplay({...state, trackPickems, matchOnly}, round)}</div>
                         </div>
                       ))
                     }
