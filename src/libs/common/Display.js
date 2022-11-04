@@ -96,7 +96,7 @@ export const getMatchupDisplay = (state, stage) => {
     if (pick === 0) return (
       <>
         <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label as='a' color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+        <Label color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
           3-0
         </Label>
       </>
@@ -104,7 +104,7 @@ export const getMatchupDisplay = (state, stage) => {
     if (pick === 8) return (
       <>
         <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label as='a' color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+        <Label color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
           0-3
         </Label>
       </>
@@ -113,7 +113,7 @@ export const getMatchupDisplay = (state, stage) => {
     return (
       <>
         <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label as='a' color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
+        <Label color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
           Adv
         </Label>
       </>
