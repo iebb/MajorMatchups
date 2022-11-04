@@ -16,9 +16,13 @@ export const getMatchupDisplay = (state, stage) => {
 
   const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
   const picked = {};
-  for (const pick of pickEms.split("|")) {
-    const pickSplit = pick.split(":");
-    picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
+  try {
+    for (const pick of pickEms.split("|")) {
+      const pickSplit = pick.split(":");
+      picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
+    }
+  } catch (e) {
+    
   }
 
 
