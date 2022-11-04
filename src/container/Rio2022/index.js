@@ -20,7 +20,7 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
-import headerPt from "../../images/sponsor/header-pt-2.png";
+import headerPt from "../../images/sponsor/header-pt-2c.png";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -399,9 +399,9 @@ export default class Rio2022 extends React.PureComponent {
             <a href={redirectLink}>
               <img src={headerPt} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 220 }}/>
             </a>
-            <h2 style={{ color: 'yellow' }}>
-              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
-            </h2>
+            <h3 style={{ color: 'yellow' }}>
+              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
+            </h3>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">
