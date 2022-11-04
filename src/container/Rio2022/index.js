@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
-import {initialDataChallenger, initialDataLegends} from './initial_data';
+import {initialDataChallenger, initialDataLegends, finalDataLegends} from './initial_data';
 import {ChallengerResults, LegendResults, Scores} from './scores';
 import {
   AdvanceElimSeats,
@@ -38,6 +38,16 @@ const TournamentStages = [
     seats: AdvanceElimSeats,
     rounds: 5,
     pickemTags: ["picks_215"],
+  },
+  {
+    id: 1,
+    ...pack(finalDataLegends, teamLogo),
+    name: "Legends",
+    tournament: TournamentLegends,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    advanceMode: 1,
+    seats: AdvanceElimSeats,
+    rounds: 5,
   },
   // {
   //   id: 1,
@@ -110,7 +120,7 @@ export default class Rio2022 extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init(0);
+    this.init(1);
 
     fetch('https://result-api.majors.im/event_20.json')
       .then((resp) => resp.json())
@@ -420,6 +430,7 @@ export default class Rio2022 extends React.PureComponent {
               ))
             }
             {
+              /*
               this.state.tournament >= 0 && (
                 <Menu.Item
                   key="adv-2"
@@ -427,7 +438,7 @@ export default class Rio2022 extends React.PureComponent {
                   active={this.state.tournament === 1}
                   onClick={() => this.advance()}
                 />
-              )
+              )*/
             }
             {
               this.state.tournament >= 1 && (
