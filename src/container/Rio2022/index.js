@@ -29,8 +29,6 @@ const TournamentChampions = 2;
 const teamLogo = (code) => `https://majors.im/images/rio2022/${code}_glitter_large.png`;
 const redirectLink = "https://cutt.ly/INjQYvS";
 
-const teamLogo = (code) => `https://major.ieb.im/images/rio2022/${code}_glitter_large.png`;
-
 
 const TournamentStages = [
   {
@@ -397,14 +395,13 @@ export default class Rio2022 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">IEM Rio Major 2022 Matchup Calculator</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-            </p>
-            <h3 style={{ color: 'yellow' }}>
-              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
-            </h3>
+          <div className="title-container sponsored">
+            <a href={redirectLink}>
+              <img src={headerPt} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 220 }}/>
+            </a>
+            <h2 style={{ color: 'yellow' }}>
+              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
+            </h2>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">

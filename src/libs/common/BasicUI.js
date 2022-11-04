@@ -203,7 +203,6 @@ export class BasicUI extends React.Component {
             </div>
           )
         }
-        {inter}
         {
           (!interactiveMode || iRound >= (state.rounds)) && (
             <>
