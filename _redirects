@@ -15,6 +15,17 @@ https://major.ieb.im/    https://br.majors.im/   302   Language=pt!
 http://major.ieb.im/    https://majors.im/    302!
 https://major.ieb.im/    https://majors.im/    302!
 
+http://majors.im/*    https://br.majors.im/:splat   302   Country=br,pt!
+http://majors.im/*    https://br.majors.im/:splat   302   Language=pt!
+
+https://majors.im/*    https://br.majors.im/:splat   302   Country=br,pt!
+https://majors.im/*    https://br.majors.im/:splat   302   Language=pt!
+
+http://majors.im/    https://br.majors.im/   302   Country=br,pt!
+http://majors.im/    https://br.majors.im/   302   Language=pt!
+https://majors.im/    https://br.majors.im/   302   Country=br,pt!
+https://majors.im/    https://br.majors.im/   302   Language=pt!
+
 /*    https://br.majors.im/:splat   302   Country=br,pt!
 /*    https://br.majors.im/:splat   302   Language=pt-br,pt,pt-pt!
 
