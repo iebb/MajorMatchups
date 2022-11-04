@@ -20,7 +20,7 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
-import headerPt from "../../images/sponsor/header-pt-2c.png";
+import headerPt from "../../images/sponsor/header-pt-2d.png";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
