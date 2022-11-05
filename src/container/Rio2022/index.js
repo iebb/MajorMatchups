@@ -48,6 +48,7 @@ const TournamentStages = [
     advanceMode: 1,
     seats: AdvanceElimSeats,
     rounds: 5,
+    pickemTags: ["picks_216"],
   },
   // {
   //   id: 1,
