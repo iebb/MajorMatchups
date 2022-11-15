@@ -1,22 +1,90 @@
 export const Scores = {
   "0": {
+    "fntc-nine": [[16,14],[16,11]],
+    "gl-c9": [[13,16],[13,16]],
+    "og-vita": [[8,16],[16,6],[17,19]],
+    "gl-furi": [[11,16],[9,16]],
+    "c9-evl": [[16,11],[16,5]],
+    "fntc-out": [[14,16],[1,16]],
+    "vita-gray": [[16,12],[16,6]],
+    "ihc-og": [[14,16],[11,16]],
+    "big-nine": [[19,15],[16,4]],
+    "c9-imp": [[22,19],[19,15]],
+    "bne-gl": [[16,7],[16,9]],
+    "ihc-zzn": [[19,16],[19,16],[14,16]],
+    "mouz-fntc": [[16,9],[9,16],[16,8]],
+    "og-furi": [[16,19]],
+    "gray-big": [[6,16]],
+    "out-vita": [[16,12]],
+    "evl-nine": [[17,19]],
+    "gray-c9": [[19,17]],
+    "og-fntc": [[13,16]],
+    "gl-vita": [[16,10]],
+    "nine-imp": [[16,11]],
+    "bne-big": [[16,11]],
+    "evl-mouz": [[10,16]],
+    "ihc-out": [[12,16]],
+    "zzn-furi": [[6,16]],
+    "fntc-c9": [[19,17]],
+    "vita-imp": [[16,9]],
+    "ihc-evl": [[9,16]],
+    "furi-big": [[16,19]],
+    "og-gray": [[16,5]],
+    "bne-zzn": [[16,3]],
+    "out-mouz": [[6,16]],
+    "nine-gl": [[6,16]]
   },
   "1": {
+    "liq-spir": [[13,16],[16,12],[10,16]],
+    "big-navi": [[11,16],[12,16]],
+    "ence-mouz": [[9,16],[16,8],[5,16]],
+    "hero-liq": [[16,11],[5,16],[16,8]],
+    "spr-spir": [[8,16],[9,16]],
+    "fntc-big": [[16,7],[16,14]],
+    "ence-vita": [[19,15],[16,12]],
+    "out-mouz": [[16,10],[16,10]],
+    "navi-bne": [[16,9],[16,3]],
+    "nip-spr": [[14,16],[11,16]],
+    "furi-big": [[16,6],[16,9]],
+    "bne-faze": [[22,20],[8,16],[19,16]],
+    "hero-c9": [[9,16],[9,16]],
+    "fntc-ence": [[16,7]],
+    "spir-out": [[14,16]],
+    "navi-liq": [[14,16]],
+    "vita-mouz": [[17,19]],
+    "out-nip": [[16,12]],
+    "hero-fntc": [[16,2]],
+    "bne-ence": [[7,16]],
+    "spir-furi": [[13,16]],
+    "faze-vita": [[6,16]],
+    "c9-navi": [[16,14]],
+    "spr-liq": [[5,16]],
+    "big-mouz": [[16,7]],
+    "ence-furi": [[6,16]],
+    "fntc-nip": [[16,13]],
+    "navi-vita": [[25,21]],
+    "out-hero": [[9,16]],
+    "big-spr": [[16,11]],
+    "faze-c9": [[14,16]],
+    "bne-spir": [[8,16]],
+    "liq-mouz": [[2,16]]
   },
   "2": {
-  },
-  "key": "event_19"
+    "hero-out": [[5,16],[12,16]],
+    "furi-hero": [[5,16],[17,19],[16,6]],
+    "out-mouz": [[16,7],[14,16],[16,10]],
+    "furi-navi": [[16,10],[16,10],[14,16]],
+    "hero-spir": [[16,14],[16,8]],
+    "c9-mouz": [[9,16],[13,16],[16,11]],
+    "out-fntc": [[16,8],[16,11]]
+  }
 }
 
 export const ChallengerResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": [
-      "liq",
-      "spir",
-      "ence"
-    ],
+    "opponents": ["liq","spir","ence"],
     "buchholz": 5,
     "code": "g2",
     "name": "G2 Esports",
@@ -37,11 +105,7 @@ export const ChallengerResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": [
-      "cplx",
-      "astr",
-      "forz"
-    ],
+    "opponents": ["cplx","astr","forz"],
     "buchholz": -4,
     "code": "vita",
     "name": "Team Vitality",
@@ -62,12 +126,7 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "nine",
-      "out",
-      "g2",
-      "bne"
-    ],
+    "opponents": ["nine","out","g2","bne"],
     "buchholz": 3,
     "code": "ence",
     "name": "ENCE",
@@ -88,12 +147,7 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "imp",
-      "g2",
-      "eter",
-      "astr"
-    ],
+    "opponents": ["imp","g2","eter","astr"],
     "buchholz": 1,
     "code": "spir",
     "name": "Team Spirit",
@@ -114,12 +168,7 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "mibr",
-      "ence",
-      "cplx",
-      "forz"
-    ],
+    "opponents": ["mibr","ence","cplx","forz"],
     "buchholz": -2,
     "code": "out",
     "name": "Outsiders",
@@ -140,13 +189,7 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "spir",
-      "liq",
-      "bne",
-      "ihc",
-      "forz"
-    ],
+    "opponents": ["spir","liq","bne","ihc","forz"],
     "buchholz": 1,
     "code": "imp",
     "name": "Imperial Esports",
@@ -167,13 +210,7 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "eter",
-      "forz",
-      "imp",
-      "ence",
-      "mibr"
-    ],
+    "opponents": ["eter","forz","imp","ence","mibr"],
     "buchholz": -1,
     "code": "bne",
     "name": "Bad News Eagles",
@@ -194,13 +231,7 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "g2",
-      "imp",
-      "nine",
-      "cplx",
-      "astr"
-    ],
+    "opponents": ["g2","imp","nine","cplx","astr"],
     "buchholz": -2,
     "code": "liq",
     "name": "Team Liquid",
@@ -221,13 +252,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "ren",
-      "bne",
-      "vita",
-      "out",
-      "imp"
-    ],
+    "opponents": ["ren","bne","vita","out","imp"],
     "buchholz": 4,
     "code": "forz",
     "name": "forZe",
@@ -248,13 +273,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "ihc",
-      "vita",
-      "mibr",
-      "spir",
-      "liq"
-    ],
+    "opponents": ["ihc","vita","mibr","spir","liq"],
     "buchholz": 3,
     "code": "astr",
     "name": "Astralis",
@@ -275,13 +294,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "out",
-      "nine",
-      "astr",
-      "eter",
-      "bne"
-    ],
+    "opponents": ["out","nine","astr","eter","bne"],
     "buchholz": -3,
     "code": "mibr",
     "name": "MIBR",
@@ -302,12 +315,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "vita",
-      "ihc",
-      "out",
-      "liq"
-    ],
+    "opponents": ["vita","ihc","out","liq"],
     "buchholz": 4,
     "code": "cplx",
     "name": "Complexity Gaming",
@@ -328,12 +336,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "bne",
-      "ren",
-      "spir",
-      "mibr"
-    ],
+    "opponents": ["bne","ren","spir","mibr"],
     "buchholz": -1,
     "code": "eter",
     "name": "Eternal Fire",
@@ -354,12 +357,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "astr",
-      "cplx",
-      "ren",
-      "imp"
-    ],
+    "opponents": ["astr","cplx","ren","imp"],
     "buchholz": -5,
     "code": "ihc",
     "name": "IHC Esports",
@@ -380,11 +378,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": [
-      "ence",
-      "mibr",
-      "liq"
-    ],
+    "opponents": ["ence","mibr","liq"],
     "buchholz": 2,
     "code": "nine",
     "name": "9z Team",
@@ -405,11 +399,7 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": [
-      "forz",
-      "eter",
-      "ihc"
-    ],
+    "opponents": ["forz","eter","ihc"],
     "buchholz": -5,
     "code": "ren",
     "name": "Renegades",
@@ -433,11 +423,7 @@ export const LegendResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": [
-      "furi",
-      "hero",
-      "cope"
-    ],
+    "opponents": ["furi","hero","cope"],
     "buchholz": 3,
     "code": "spir",
     "name": "Team Spirit",
@@ -458,11 +444,7 @@ export const LegendResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": [
-      "g2",
-      "big",
-      "nip"
-    ],
+    "opponents": ["g2","big","nip"],
     "buchholz": -1,
     "code": "navi",
     "name": "Natus Vincere",
@@ -483,12 +465,7 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "faze",
-      "cope",
-      "out",
-      "hero"
-    ],
+    "opponents": ["faze","cope","out","hero"],
     "buchholz": 2,
     "code": "ence",
     "name": "ENCE",
@@ -509,12 +486,7 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "vita",
-      "c9",
-      "navi",
-      "furi"
-    ],
+    "opponents": ["vita","c9","navi","furi"],
     "buchholz": 1,
     "code": "nip",
     "name": "Ninjas in Pyjamas",
@@ -535,12 +507,7 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": [
-      "ence",
-      "bne",
-      "c9",
-      "cope"
-    ],
+    "opponents": ["ence","bne","c9","cope"],
     "buchholz": -2,
     "code": "faze",
     "name": "FaZe Clan",
@@ -561,13 +528,7 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "bne",
-      "ence",
-      "spir",
-      "faze",
-      "imp"
-    ],
+    "opponents": ["bne","ence","spir","faze","imp"],
     "buchholz": 3,
     "code": "cope",
     "name": "Copenhagen Flames",
@@ -588,13 +549,7 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "liq",
-      "spir",
-      "g2",
-      "ence",
-      "vita"
-    ],
+    "opponents": ["liq","spir","g2","ence","vita"],
     "buchholz": 0,
     "code": "hero",
     "name": "Heroic",
@@ -615,13 +570,7 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": [
-      "spir",
-      "liq",
-      "big",
-      "nip",
-      "g2"
-    ],
+    "opponents": ["spir","liq","big","nip","g2"],
     "buchholz": -1,
     "code": "furi",
     "name": "FURIA Esports",
@@ -642,13 +591,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "navi",
-      "imp",
-      "hero",
-      "out",
-      "furi"
-    ],
+    "opponents": ["navi","imp","hero","out","furi"],
     "buchholz": 2,
     "code": "g2",
     "name": "G2 Esports",
@@ -669,13 +612,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "nip",
-      "out",
-      "liq",
-      "big",
-      "hero"
-    ],
+    "opponents": ["nip","out","liq","big","hero"],
     "buchholz": -4,
     "code": "vita",
     "name": "Team Vitality",
@@ -696,13 +633,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": [
-      "big",
-      "g2",
-      "bne",
-      "c9",
-      "cope"
-    ],
+    "opponents": ["big","g2","bne","c9","cope"],
     "buchholz": -7,
     "code": "imp",
     "name": "Imperial Esports",
@@ -723,12 +654,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "imp",
-      "navi",
-      "furi",
-      "vita"
-    ],
+    "opponents": ["imp","navi","furi","vita"],
     "buchholz": 2,
     "code": "big",
     "name": "BIG",
@@ -749,12 +675,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "out",
-      "nip",
-      "faze",
-      "imp"
-    ],
+    "opponents": ["out","nip","faze","imp"],
     "buchholz": 1,
     "code": "c9",
     "name": "Cloud9",
@@ -775,12 +696,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": [
-      "c9",
-      "vita",
-      "ence",
-      "g2"
-    ],
+    "opponents": ["c9","vita","ence","g2"],
     "buchholz": -2,
     "code": "out",
     "name": "Outsiders",
@@ -801,11 +717,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": [
-      "cope",
-      "faze",
-      "imp"
-    ],
+    "opponents": ["cope","faze","imp"],
     "buchholz": 2,
     "code": "bne",
     "name": "Bad News Eagles",
@@ -826,11 +738,7 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": [
-      "hero",
-      "furi",
-      "vita"
-    ],
+    "opponents": ["hero","furi","vita"],
     "buchholz": 1,
     "code": "liq",
     "name": "Team Liquid",
