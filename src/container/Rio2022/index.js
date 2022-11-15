@@ -123,20 +123,20 @@ export default class Rio2022 extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init(1);
+    this.init(2);
 
-    fetch('https://result-api.majors.im/event_20.json')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this._scores = {
-          0: resp[1],
-          1: resp[2],
-          2: resp[3],
-        };
-        this.setState({scores: this._scores[this.state.tournament]}, () => {
-          this.calculateMatchups(0, this.state.rounds + 1)
-        });
-      });
+    // fetch('https://result-api.majors.im/event_20.json')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this._scores = {
+    //       0: resp[1],
+    //       1: resp[2],
+    //       2: resp[3],
+    //     };
+    //     this.setState({scores: this._scores[this.state.tournament]}, () => {
+    //       this.calculateMatchups(0, this.state.rounds + 1)
+    //     });
+    //   });
   }
 
   init = (tStage) => {

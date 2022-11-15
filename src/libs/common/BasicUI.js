@@ -119,7 +119,7 @@ export class BasicUI extends React.Component {
                     <h1 className="round-title">
                       {iRound === (state.rounds) ? `Final Results` : `Round ${iRound + 1}`}
                     </h1>
-                    <div key={"_" + iRound}>{getMatchupDisplay({...state, matchOnly}, iRound)}</div>
+                    <div key={"_" + iRound}>{getMatchupDisplay({...state, trackPickems, matchOnly}, iRound)}</div>
                     <div style={{ marginTop: 32 }}>
                       <Button
                         basic
