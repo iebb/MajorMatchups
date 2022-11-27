@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Image, Menu} from 'semantic-ui-react';
-import {initialDataChallenger, initialDataLegends, finalDataLegends} from './initial_data';
+import {initialDataChallenger, initialDataLegends, finalDataLegends, finalDataChampions} from './initial_data';
 import {ChallengerResults, LegendResults, Scores} from './scores';
 import {
   AdvanceElimSeats,
@@ -52,6 +52,17 @@ const TournamentStages = [
     pickemTags: ["picks_216"],
     rounds: 5,
   },
+  {
+    id: 2,
+    ...pack(finalDataChampions, teamLogo),
+    name: "Champions",
+    tournament: TournamentChampions,
+    tournamentFormat: "KNOCKOUT",
+    advanceMode: 2,
+    seats: ChampionSeats,
+    loseToEliminate: 1,
+    rounds: 3,
+  },
   // {
   //   id: 1,
   //   ...pack(finalDataLegends, teamLogo),
@@ -61,17 +72,6 @@ const TournamentStages = [
   //   advanceMode: 1,
   //   seats: AdvanceElimSeats,
   //   rounds: 5,
-  // },
-  // {
-  //   id: 2,
-  //   ...pack(finalDataChampions, teamLogo),
-  //   name: "Champions",
-  //   tournament: TournamentChampions,
-  //   tournamentFormat: "KNOCKOUT",
-  //   advanceMode: 2,
-  //   seats: ChampionSeats,
-  //   loseToEliminate: 1,
-  //   rounds: 3,
   // },
 ];
 
@@ -443,6 +443,7 @@ export default class Rio2022 extends React.PureComponent {
               )*/
             }
             {
+              /*
               this.state.tournament >= 1 && (
                 <Menu.Item
                   key="adv-2"
@@ -450,7 +451,7 @@ export default class Rio2022 extends React.PureComponent {
                   active={this.state.tournament === 2}
                   onClick={() => this.advance2()}
                 />
-              )
+              )*/
             }
           </Menu>
           <BasicUI
