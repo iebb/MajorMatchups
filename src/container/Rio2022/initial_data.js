@@ -233,3 +233,63 @@ export const finalDataLegends = [
     region: "EU",
   },
 ];
+
+
+export const finalDataChampions = [
+  {
+    code: "c9",
+    name: "Cloud9",
+    seed: 1,
+    description: "3-0, 0",
+    region: "EU",
+  },
+  {
+    seed: 2,
+    code: "furi",
+    name: "FURIA Esports",
+    description: "3-0, -1",
+    region: "EU",
+  },
+  {
+    code: "hero",
+    name: "Heroic",
+    seed: 3,
+    description: "3-1, +6",
+    region: "EU",
+  },
+  {
+    code: "out",
+    name: "Outsiders",
+    seed: 4,
+    description: "3-1, +1",
+    region: "EU",
+  },
+  {
+    code: "fntc",
+    name: "Fnatic",
+    seed: 5,
+    description: "3-1, -3",
+    region: "EU",
+  },
+  {
+    code: "spir",
+    name: "Team Spirit",
+    seed: 6,
+    description: "3-2, 0",
+    region: "EU",
+  },
+  {
+    code: "navi",
+    name: "Natus Vincere",
+    seed: 7,
+    description: "3-2, -3, Seed 2",
+    region: "EU",
+  },
+  {
+    code: "mouz",
+    name: "MOUZ",
+    seed: 8,
+    description: "3-2, -3, Seed 9",
+    region: "EU",
+  }
+]
