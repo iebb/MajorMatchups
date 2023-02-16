@@ -11,7 +11,7 @@ import { BasicUI } from '../../libs/common/BasicUI';
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe Closed Qual A",
     seeds: EUA,
     seats: [
       { status: "RMR A", until: 4, abbrev: "1", statusPositioned: true },
@@ -19,7 +19,7 @@ const Regions = [
       { status: "RMR Decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
-    rounds: 6,
+    rounds: 5,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
@@ -28,7 +28,7 @@ const Regions = [
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe Closed Qual B",
     seeds: EUB,
     seats: [
       { status: "RMR B", until: 4, abbrev: "1", statusPositioned: true },
@@ -36,7 +36,7 @@ const Regions = [
       { status: "RMR Decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
-    rounds: 6,
+    rounds: 5,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
@@ -126,7 +126,7 @@ export default class Paris2023Qual extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">PGL Antwerp RMR 2022 Matchup Calculator</h1>
+            <h1 className="title">BLAST.tv Paris Major 2023 RMR Matchup Calculator</h1>
           </div>
           <p>
             <a href="https://discord.gg/KYNbRYrZGe">

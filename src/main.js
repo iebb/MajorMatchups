@@ -29,6 +29,7 @@ const Footer = () => (
 )
 
 const Editions = [
+  ['23 Paris RMR Qual', '/23qual_paris'],
   ['22 Rio', '/22rio'],
   ['22 Rio RMR', '/22rmr_rio'],
   ['22 Antwerp', '/22antwerp'],
