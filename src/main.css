@@ -378,6 +378,35 @@ iframe {
   pointer-events: none;
 }
 
+
+.team.rmr-decider .b  {
+  border: 1px solid #c2572a;
+}
+.team.rmr-decider .team-box-text {
+  color: #c2572a;
+}
+
+
+.team.rmr-a .b  {
+  border: 1px solid #fc40ff;
+}
+.team.rmr-a .team-box-text {
+  color: #fc40ff;
+}
+.team.rmr-b .b  {
+  border: 1px solid #5eb1f6;
+}
+.team.rmr-b .team-box-text {
+  color: #5eb1f6;
+}
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 1600px) {
 
   .page-container {

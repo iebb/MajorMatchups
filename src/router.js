@@ -8,6 +8,7 @@ import Antwerp2022 from "./container/Antwerp2022";
 import Rio2022RMR from "./container/Rio2022RMR";
 import Rio2022Provisional from "./container/Rio2022Provisional";
 import Rio2022 from "./container/Rio2022";
+import Paris2023Qual from "./container/Paris2023Qual";
 
 export default function Routes() {
   return (
@@ -33,8 +34,11 @@ export default function Routes() {
       <Route path="/22rio">
         <Rio2022 />
       </Route>
+      <Route path="/23qual_paris">
+        <Paris2023Qual />
+      </Route>
       <Route path="/">
-        <Redirect to="/22rio" />
+        <Redirect to="/23qual_paris" />
       </Route>
     </Switch>
   );
