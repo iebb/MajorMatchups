@@ -4,14 +4,14 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import {EUA, EUB, NAM, SAM} from './initial_data';
 import { Scores } from './scores';
-import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
 
 const Regions = [
   {
     id: 0,
-    name: "Europe Closed Qual A",
+    name: "Europe A",
     seeds: EUA,
     seats: [
       { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
@@ -28,7 +28,7 @@ const Regions = [
   },
   {
     id: 1,
-    name: "Europe Closed Qual B",
+    name: "Europe B",
     seeds: EUB,
     seats: [
       { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
@@ -45,7 +45,7 @@ const Regions = [
   },
   {
     id: 2,
-    name: "North Am Closed Qual",
+    name: "North Am",
     seeds: NAM,
     seats: [
       { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
@@ -63,7 +63,7 @@ const Regions = [
   },
   {
     id: 3,
-    name: "South Am Closed Qual B",
+    name: "South Am",
     seeds: SAM,
     seats: [
       { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
@@ -148,7 +148,7 @@ export default class Paris2023Qual extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtz.bind(this)(s, e));
+    this.setState(SwissBuchholtzTB.bind(this)(s, e));
   };
 
   componentDidMount() {
