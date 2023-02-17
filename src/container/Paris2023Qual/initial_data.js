@@ -196,3 +196,200 @@ export const EUB = [
     "description": "Seed #16"
   }
 ];
+ export const NAM = [
+   {
+     "code": "col",
+     "name": "Complexity",
+     "seed": 1,
+     "description": "Seed #1"
+   },
+   {
+     "code": "mibr",
+     "name": "MIBR",
+     "seed": 2,
+     "description": "Seed #2"
+   },
+   {
+     "code": "pain",
+     "name": "paiN Gaming",
+     "seed": 3,
+     "description": "Seed #3"
+   },
+   {
+     "code": "eg",
+     "name": "Evil Geniuses",
+     "seed": 4,
+     "description": "Seed #4"
+   },
+   {
+     "code": "noun",
+     "name": "Nouns Esports",
+     "seed": 5,
+     "description": "Seed #5"
+   },
+   {
+     "code": "atk",
+     "name": "ATK",
+     "seed": 6,
+     "description": "Seed #6"
+   },
+   {
+     "code": "los",
+     "name": "LOS + oNe",
+     "seed": 7,
+     "description": "Seed #7"
+   },
+   {
+     "code": "vend",
+     "name": "Vendetta",
+     "seed": 8,
+     "description": "Seed #8"
+   },
+   {
+     "code": "timb",
+     "name": "timbermen",
+     "seed": 9,
+     "description": "Seed #9"
+   },
+   {
+     "code": "myth",
+     "name": "Mythic",
+     "seed": 10,
+     "description": "Seed #10"
+   },
+   {
+     "code": "stri",
+     "name": "Strife Esports",
+     "seed": 11,
+     "description": "Seed #11"
+   },
+   {
+     "code": "dtn",
+     "name": "Detonate",
+     "seed": 12,
+     "description": "Seed #12"
+   },
+   {
+     "code": "yur",
+     "name": "yur",
+     "seed": 13,
+     "description": "Seed #13"
+   },
+   {
+     "code": "4orm",
+     "name": "4ORMULA",
+     "seed": 14,
+     "description": "Seed #14"
+   },
+   {
+     "code": "flyt",
+     "name": "Take Flyte",
+     "seed": 15,
+     "description": "Seed #15"
+   },
+   {
+     "code": "reig",
+     "name": "REIGN",
+     "seed": 16,
+     "description": "Seed #16"
+   }
+ ];
+
+ export const SAM = [
+   {
+     "code": "flux",
+     "name": "Fluxo",
+     "seed": 1,
+     "description": "Seed #1"
+   },
+   {
+     "code": "00",
+     "name": "00 Nation",
+     "seed": 2,
+     "description": "Seed #2"
+   },
+   {
+     "code": "9z",
+     "name": "9z Team",
+     "seed": 3,
+     "description": "Seed #3"
+   },
+   {
+     "code": "shar",
+     "name": "Sharks Esports",
+     "seed": 4,
+     "description": "Seed #4"
+   },
+   {
+     "code": "arct",
+     "name": "Arctic eSports",
+     "seed": 5,
+     "description": "Seed #5"
+   },
+   {
+     "code": "cori",
+     "name": "Corinthians",
+     "seed": 6,
+     "description": "Seed #6"
+   },
+   {
+     "code": "impe",
+     "name": "Imperial Esports",
+     "seed": 7,
+     "description": "Seed #7"
+   },
+   {
+     "code": "plan",
+     "name": "O Plano",
+     "seed": 8,
+     "description": "Seed #8"
+   },
+   {
+     "code": "best",
+     "name": "BESTIA",
+     "seed": 9,
+     "description": "Seed #9"
+   },
+   {
+     "code": "fusc",
+     "name": "Fusc\u00e3o 1500",
+     "seed": 10,
+     "description": "Seed #10"
+   },
+   {
+     "code": "odk",
+     "name": "ODDIK",
+     "seed": 11,
+     "description": "Seed #11"
+   },
+   {
+     "code": "win",
+     "name": "WINDINGO",
+     "seed": 12,
+     "description": "Seed #12"
+   },
+   {
+     "code": "paqu",
+     "name": "Paquet\u00e1 Gaming",
+     "seed": 13,
+     "description": "Seed #13"
+   },
+   {
+     "code": "flam",
+     "name": "Flamengo Esports",
+     "seed": 14,
+     "description": "Seed #14"
+   },
+   {
+     "code": "intz",
+     "name": "INTZ",
+     "seed": 15,
+     "description": "Seed #15"
+   },
+   {
+     "code": "red",
+     "name": "RED Canids",
+     "seed": 16,
+     "description": "Seed #16"
+   }
+ ]
