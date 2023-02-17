@@ -20,7 +20,7 @@ export const EUA = [
     "description": "Seed #3"
   },
   {
-    "code": "cph",
+    "code": "cphf",
     "name": "CPH Flames",
     "seed": 4,
     "description": "Seed #4"
@@ -50,7 +50,7 @@ export const EUA = [
     "description": "Seed #8"
   },
   {
-    "code": "into",
+    "code": "itb",
     "name": "Into The Breach",
     "seed": 9,
     "description": "Seed #9"
@@ -74,7 +74,7 @@ export const EUA = [
     "description": "Seed #12"
   },
   {
-    "code": "eter",
+    "code": "ef",
     "name": "Eternal Fire",
     "seed": 13,
     "description": "Seed #13"
@@ -86,7 +86,7 @@ export const EUA = [
     "description": "Seed #14"
   },
   {
-    "code": "team",
+    "code": "ldlc",
     "name": "Team LDLC",
     "seed": 15,
     "description": "Seed #15"
@@ -112,7 +112,7 @@ export const EUB = [
     "description": "Seed #2"
   },
   {
-    "code": "game",
+    "code": "gl",
     "name": "GamerLegion",
     "seed": 3,
     "description": "Seed #3"
@@ -130,7 +130,7 @@ export const EUB = [
     "description": "Seed #5"
   },
   {
-    "code": "team",
+    "code": "falc",
     "name": "Team Falcons",
     "seed": 6,
     "description": "Seed #6"
@@ -142,13 +142,13 @@ export const EUB = [
     "description": "Seed #7"
   },
   {
-    "code": "illu",
+    "code": "ig",
     "name": "Illuminar Gaming",
     "seed": 8,
     "description": "Seed #8"
   },
   {
-    "code": "eyeb",
+    "code": "eye",
     "name": "EYEBALLERS",
     "seed": 9,
     "description": "Seed #9"
@@ -160,7 +160,7 @@ export const EUB = [
     "description": "Seed #10"
   },
   {
-    "code": "hono",
+    "code": "hnrs",
     "name": "HONORIS",
     "seed": 11,
     "description": "Seed #11"
