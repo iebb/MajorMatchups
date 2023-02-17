@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import { EUA, EUB } from './initial_data';
+import {EUA, EUB, NAM, SAM} from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
@@ -37,6 +37,42 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     rounds: 5,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+  {
+    id: 2,
+    name: "North Am Closed Qual",
+    seeds: NAM,
+    seats: [
+      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+    },
+    rounds: 6,
+    winsToAdvance: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+  {
+    id: 3,
+    name: "South Am Closed Qual B",
+    seeds: SAM,
+    seats: [
+      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+    },
+    rounds: 6,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
