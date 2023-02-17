@@ -139,8 +139,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-/*
-    return fetch('https://score-service.deta.dev/fetch_results/ant21rmr')
+
+    return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
       .then((resp) => resp.json())
       .then((resp) => {
         this.setState({
@@ -153,7 +153,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       }).then(
         () => this.calculateMatchups(0, this.state.rounds + 1)
       );
- */
   };
 
 
