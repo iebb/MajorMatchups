@@ -140,19 +140,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
-    return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...this.pack(Regions[region].seeds),
-          scores: resp,
-          advanceMode: 1,
-          regionId: region,
-          ...Regions[region],
-        });
-      }).then(
-        () => this.calculateMatchups(0, this.state.rounds + 1)
-      );
   };
 
 
