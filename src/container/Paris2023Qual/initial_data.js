@@ -297,14 +297,14 @@ export const EUB = [
 
  export const SAM = [
    {
-     "code": "flux",
-     "name": "Fluxo",
+     "code": "impe",
+     "name": "Imperial Esports",
      "seed": 1,
      "description": "Seed #1"
    },
    {
-     "code": "00",
-     "name": "00 Nation",
+     "code": "shar",
+     "name": "Sharks Esports",
      "seed": 2,
      "description": "Seed #2"
    },
@@ -315,80 +315,80 @@ export const EUB = [
      "description": "Seed #3"
    },
    {
-     "code": "shar",
-     "name": "Sharks Esports",
+     "code": "cori",
+     "name": "Corinthians",
      "seed": 4,
      "description": "Seed #4"
    },
    {
-     "code": "arct",
-     "name": "Arctic eSports",
+     "code": "flux",
+     "name": "Fluxo",
      "seed": 5,
      "description": "Seed #5"
    },
    {
-     "code": "cori",
-     "name": "Corinthians",
+     "code": "00",
+     "name": "00 Nation",
      "seed": 6,
      "description": "Seed #6"
    },
    {
-     "code": "impe",
-     "name": "Imperial Esports",
+     "code": "plan",
+     "name": "O Plano",
      "seed": 7,
      "description": "Seed #7"
    },
    {
-     "code": "plan",
-     "name": "O Plano",
+     "code": "arct",
+     "name": "Arctic eSports",
      "seed": 8,
      "description": "Seed #8"
    },
    {
-     "code": "best",
-     "name": "BESTIA",
+     "code": "fusc",
+     "name": "Fusc\u00e3o 1500",
      "seed": 9,
      "description": "Seed #9"
    },
    {
-     "code": "fusc",
-     "name": "Fusc\u00e3o 1500",
+     "code": "best",
+     "name": "BESTIA",
      "seed": 10,
      "description": "Seed #10"
    },
    {
-     "code": "odk",
-     "name": "ODDIK",
+     "code": "flam",
+     "name": "Flamengo Esports",
      "seed": 11,
      "description": "Seed #11"
    },
    {
-     "code": "win",
-     "name": "WINDINGO",
+     "code": "paqu",
+     "name": "Paquet\u00e1 Gaming",
      "seed": 12,
      "description": "Seed #12"
    },
    {
-     "code": "paqu",
-     "name": "Paquet\u00e1 Gaming",
+     "code": "odk",
+     "name": "ODDIK",
      "seed": 13,
      "description": "Seed #13"
    },
    {
-     "code": "flam",
-     "name": "Flamengo Esports",
+     "code": "red",
+     "name": "RED Canids",
      "seed": 14,
      "description": "Seed #14"
    },
    {
-     "code": "intz",
-     "name": "INTZ",
+     "code": "win",
+     "name": "WINDINGO",
      "seed": 15,
      "description": "Seed #15"
    },
    {
-     "code": "red",
-     "name": "RED Canids",
+     "code": "intz",
+     "name": "INTZ",
      "seed": 16,
      "description": "Seed #16"
    }
