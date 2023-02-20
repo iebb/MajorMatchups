@@ -297,14 +297,14 @@ export const EUB = [
 
  export const SAM = [
    {
-     "code": "impe",
-     "name": "Imperial Esports",
+     "code": "flux",
+     "name": "Fluxo",
      "seed": 1,
      "description": "Seed #1"
    },
    {
-     "code": "shar",
-     "name": "Sharks Esports",
+     "code": "00",
+     "name": "00 Nation",
      "seed": 2,
      "description": "Seed #2"
    },
@@ -315,62 +315,62 @@ export const EUB = [
      "description": "Seed #3"
    },
    {
-     "code": "cori",
-     "name": "Corinthians",
+     "code": "impe",
+     "name": "Imperial Esports",
      "seed": 4,
      "description": "Seed #4"
    },
    {
-     "code": "flux",
-     "name": "Fluxo",
+     "code": "shar",
+     "name": "Sharks Esports",
      "seed": 5,
      "description": "Seed #5"
    },
    {
-     "code": "00",
-     "name": "00 Nation",
+     "code": "cori",
+     "name": "Corinthians",
      "seed": 6,
      "description": "Seed #6"
    },
    {
-     "code": "plan",
-     "name": "O Plano",
+     "code": "arct",
+     "name": "Arctic eSports",
      "seed": 7,
      "description": "Seed #7"
    },
    {
-     "code": "arct",
-     "name": "Arctic eSports",
+     "code": "plan",
+     "name": "O Plano",
      "seed": 8,
      "description": "Seed #8"
    },
    {
-     "code": "fusc",
-     "name": "Fusc\u00e3o 1500",
+     "code": "best",
+     "name": "BESTIA",
      "seed": 9,
      "description": "Seed #9"
    },
    {
-     "code": "best",
-     "name": "BESTIA",
+     "code": "fusc",
+     "name": "Fusc\u00e3o 1500",
      "seed": 10,
      "description": "Seed #10"
    },
    {
-     "code": "flam",
-     "name": "Flamengo Esports",
+     "code": "odk",
+     "name": "ODDIK",
      "seed": 11,
      "description": "Seed #11"
    },
    {
-     "code": "paqu",
-     "name": "Paquet\u00e1 Gaming",
+     "code": "win",
+     "name": "WINDINGO",
      "seed": 12,
      "description": "Seed #12"
    },
    {
-     "code": "odk",
-     "name": "ODDIK",
+     "code": "intz",
+     "name": "INTZ",
      "seed": 13,
      "description": "Seed #13"
    },
@@ -381,14 +381,14 @@ export const EUB = [
      "description": "Seed #14"
    },
    {
-     "code": "win",
-     "name": "WINDINGO",
+     "code": "flam",
+     "name": "Flamengo Esports",
      "seed": 15,
      "description": "Seed #15"
    },
    {
-     "code": "intz",
-     "name": "INTZ",
+     "code": "paqu",
+     "name": "Paquet\u00e1 Gaming",
      "seed": 16,
      "description": "Seed #16"
    }
