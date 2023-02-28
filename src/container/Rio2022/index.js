@@ -27,7 +27,7 @@ const TournamentLegends = 1;
 const TournamentChampions = 2;
 
 const teamLogo = (code) => `https://majors.im/images/rio2022/${code}_glitter_large.png`;
-const redirectLink = "https://cutt.ly/INjQYvS";
+const redirectLink = "https://cutt.ly/5Bikcss";
 
 
 const TournamentStages = [
