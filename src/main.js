@@ -49,7 +49,7 @@ const Editions = [
   ['19 Katowice', '/19katowice'],
 ];
 
-const redirectLink = "https://cutt.ly/INjQYvS";
+const redirectLink = "https://cutt.ly/eBejmLo";
 
 
 
