@@ -9,7 +9,6 @@ import Routes from './router';
 
 import './main.css';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
-import advertisement3 from "./images/sponsor/banner-pt-3.png";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -49,15 +48,25 @@ const Editions = [
   ['19 Katowice', '/19katowice'],
 ];
 
-const redirectLink = "https://cutt.ly/5Bikcss"; // "https://cutt.ly/eBejmLo";
-
-
 
 class DesktopContainer extends Component {
   state = {};
 
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
+
+
+  componentDidMount() {
+    fetch('/config')
+      .then((resp) => resp.json())
+      .then((resp) => {
+       this.setState({
+         banner: resp.banner,
+         link: resp.link,
+         regions: resp.regions,
+       })
+      });
+  }
 
   render() {
     const { children } = this.props;
@@ -85,19 +94,23 @@ class DesktopContainer extends Component {
           {children}
           <div style={{ padding: 80 }} />
         </Media>
-        <div className="bottom-desktop">
-          <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-            <a href={redirectLink} className="ads-img">
-              <img src={advertisement3} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-            </a>
-            <div style={{ flex: 1 }}>
-              <Footer />
+        {
+          this.state.link && (
+            <div className="bottom-desktop">
+              <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
+                <a href={this.state.link} className="ads-img">
+                  <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+                </a>
+                <div style={{ flex: 1 }}>
+                  <Footer />
+                </div>
+                <a href={this.state.link} className="alt-ads ads-img">
+                  <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+                </a>
+              </div>
             </div>
-            <a href={redirectLink} className="alt-ads ads-img">
-              <img src={advertisement3} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-            </a>
-          </div>
-        </div>
+          )
+        }
       </div>
     );
   }
@@ -113,6 +126,18 @@ class MobileContainer extends Component {
   handleSidebarHide = () => this.setState({ sidebarOpened: false });
 
   handleToggle = () => this.setState({ sidebarOpened: true });
+
+  componentDidMount() {
+    fetch('/config')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          banner: resp.banner,
+          link: resp.link,
+          regions: resp.regions,
+        })
+      });
+  }
 
   render() {
     const { children } = this.props;
@@ -157,8 +182,8 @@ class MobileContainer extends Component {
         </Media>
         <div className="bottom-mobile">
           <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-            <a href={redirectLink} style={{ flex: 1, display: "inline-block" }}>
-              <img src={advertisement3} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+            <a href={this.state.link} style={{ flex: 1, display: "inline-block" }}>
+              <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
             </a>
           </div>
         </div>
