@@ -177,7 +177,7 @@ class ResponsiveContainer extends Component {
           <div style={{ padding: 80 }} />
         </Media>
         {
-          this.state.link ? (
+          this.state.adtype === "custom" ? (
             <div className="bottom-desktop">
               <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
                 <a href={this.state.link} className="ads-img">
@@ -195,23 +195,24 @@ class ResponsiveContainer extends Component {
             <div className="bottom-desktop">
               <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
                 <div className="alt-ads ads-img">
-                <ins className="adsbygoogle"
+                  <div dangerouslySetInnerHTML={{ __html: `<ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-3253159471656308"
                      data-ad-slot="8397184946"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins>` }} />
+
                 </div>
                 <div style={{ flex: 1 }}>
                   <Footer />
                 </div>
                 <div className="alt-ads ads-img">
-                  <ins className="adsbygoogle"
-                       style="display:block"
-                       data-ad-client="ca-pub-3253159471656308"
-                       data-ad-slot="8186529436"
-                       data-ad-format="auto"
-                       data-full-width-responsive="true"></ins>
+                  <div dangerouslySetInnerHTML={{ __html: `<ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3253159471656308"
+                     data-ad-slot="8186529436"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>` }} />
                 </div>
               </div>
             </div>
