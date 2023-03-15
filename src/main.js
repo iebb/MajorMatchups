@@ -18,25 +18,6 @@ const { MediaContextProvider, Media } = createMedia({
   },
 });
 
-const Footer = () => (
-  <div style={{ margin: 10, userSelect: 'text' }}>
-    <p style={{ fontSize: 15, marginTop: 24 }}>
-      <br/>
-      <a href="https://discord.gg/KYNbRYrZGe">
-        feedback(discord)
-      </a>
-      <span style={{ margin: 10 }}>·</span>
-      <a href="https://twitter.com/CyberHono">
-        twitter
-      </a>
-      <br/>
-      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2022 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
-      <br/>Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
-    </p>
-    <div className="dynamic-padding" />
-  </div>
-)
-
 
 const Editions = [
   ['23 Paris', [
@@ -85,9 +66,42 @@ class ResponsiveContainer extends Component {
       });
   }
 
+
+
+  Footer = () => (
+    <div style={{ margin: 10, userSelect: 'text' }}>
+      <p style={{ fontSize: 15, marginTop: 24 }}>
+        <br/>
+        <a href="https://discord.gg/KYNbRYrZGe">
+          feedback(discord)
+        </a>
+        <span style={{ margin: 10 }}>·</span>
+        <a href="https://twitter.com/CyberHono">
+          twitter
+        </a>
+        {
+          this.state.adtype === "google" && (
+            <>
+              <span style={{ margin: 10 }}>·</span>
+              <a onClick={() => { localStorage.dontDisplayAds ? delete localStorage.dontDisplayAds : localStorage.dontDisplayAds = 1 }}>
+                { localStorage.dontDisplayAds ? "enable" : "disable" } ads
+              </a>
+            </>
+          )
+        }
+        <br/>
+        by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
+        <br/>Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
+      </p>
+      <div className="dynamic-padding" />
+    </div>
+  )
+
   render() {
     const { children } = this.props;
     const { sidebarOpened, fixed, country } = this.state;
+
+    const Footer = this.Footer;
 
     return (
       <div>
@@ -133,10 +147,8 @@ class ResponsiveContainer extends Component {
                   </Menu>
                 </Container>
               </Segment>
-
               {children}
               <Footer />
-
             </Sidebar.Pusher>
           </Sidebar.Pushable>
           <div className="bottom-mobile">
@@ -177,6 +189,9 @@ class ResponsiveContainer extends Component {
           <div style={{ padding: 80 }} />
         </Media>
         {
+          localStorage.dontDisplayAds ? (
+            <Footer />
+          ) :
           this.state.adtype === "custom" ? (
             <div className="bottom-desktop">
               <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
@@ -205,14 +220,6 @@ class ResponsiveContainer extends Component {
                 </div>
                 <div style={{ flex: 1 }}>
                   <Footer />
-                </div>
-                <div className="alt-ads ads-img">
-                  <div dangerouslySetInnerHTML={{ __html: `<ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3253159471656308"
-                     data-ad-slot="8186529436"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>` }} />
                 </div>
               </div>
             </div>
