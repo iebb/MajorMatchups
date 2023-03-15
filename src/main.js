@@ -80,6 +80,7 @@ class ResponsiveContainer extends Component {
           country: resp.country,
           link: resp.link,
           regions: resp.regions,
+          adtype: resp.adtype,
         })
       });
   }
