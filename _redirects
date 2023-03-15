@@ -1,7 +1,5 @@
-/js/script.js https://analytics.nekoko.it/js/script.js 200
-/api/event https://analytics.nekoko.it/api/event 200
-
-/api/*  https://major-api.ieb.im/:splat  200
-/config  https://ads.badasstemple.eu/api.php 200
-
-/*    /index.html   200
+/js/script.js   http://analytics-http.nekoko.it/js/script.js 200
+/api/event      http://analytics-http.nekoko.it/api/event 200
+/api/*          https://major-api.ieb.im/:splat  200
+/config         https://ads.badasstemple.eu/api.php 200
+/*              /index.html   200
