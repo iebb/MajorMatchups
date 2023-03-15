@@ -83,7 +83,9 @@ class ResponsiveContainer extends Component {
           this.state.adtype === "google" && (
             <>
               <span style={{ margin: 10 }}>·</span>
-              <a onClick={() => { localStorage.dontDisplayAds ? delete localStorage.dontDisplayAds : localStorage.dontDisplayAds = 1 }}>
+              <a onClick={() => { localStorage.dontDisplayAds ?
+                delete localStorage.dontDisplayAds :
+                localStorage.dontDisplayAds = alert("we all don't like ads, however it's what makes this site alive. refresh to see the changes."), 1 }}>
                 { localStorage.dontDisplayAds ? "enable" : "disable" } ads
               </a>
             </>
