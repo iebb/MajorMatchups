@@ -1,4 +1,8 @@
+/js/script.js https://analytics.nekoko.it/js/script.js 200
+/api/event https://analytics.nekoko.it/api/event 200
+
 /api/*  https://major-api.ieb.im/:splat  200
+
 
 http://major.ieb.im/*    https://br.majors.im/:splat   302   Country=br,pt!
 http://major.ieb.im/*    https://br.majors.im/:splat   302   Language=pt!
