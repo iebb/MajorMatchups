@@ -416,3 +416,30 @@ iframe {
   }
 
 }
+
+.ui.vertical.inverted.menu .menu .item, .ui.vertical.inverted.menu .menu .item a:not(.ui) {
+  color: rgba(255,255,255,.5);
+}
+
+.ui.vertical.inverted.menu .dropdown.item .menu  {
+  background: #1f1f1f;
+  color: white;
+}
+
+.ui.inverted.menu .dropdown.item .menu  {
+  background: #1f1f1f;
+  color: white;
+}
+
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .active.item {
+  border-color: #1f1f1f;
+  color: white!important;
+}
+
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item {
+  color: #cccccc!important;
+}
+
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item:hover {
+  color: white!important;
+}

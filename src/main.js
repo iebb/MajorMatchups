@@ -4,7 +4,7 @@
 import {createMedia} from '@artsy/fresnel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {Container, Icon, Menu, Segment, Sidebar, Visibility} from 'semantic-ui-react';
+import {Container, Dropdown, Icon, Menu, Segment, Sidebar, Visibility} from 'semantic-ui-react';
 import Routes from './router';
 
 import './main.css';
@@ -37,15 +37,26 @@ const Footer = () => (
   </div>
 )
 
+
 const Editions = [
-  ['23 Paris RMR Qual', '/23qual_paris'],
-  ['22 Rio', '/22rio'],
-  ['22 Rio RMR', '/22rmr_rio'],
-  ['22 Antwerp', '/22antwerp'],
-  ['22 Antwerp RMR', '/22rmr_antwerp'],
-  ['21 Stockholm', '/21stockholm'],
-  ['19 Berlin', '/19berlin'],
-  ['19 Katowice', '/19katowice'],
+  ['23 Paris', [
+    ['RMR Closed Qualifier', '/23qual_paris'],
+  ]],
+  ['22 Rio', [
+    ['22 Rio Major', '/22rio'],
+    ['22 Rio RMR', '/22rmr_rio'],
+  ]],
+  ['22 Antwerp', [
+    ['22 Antwerp Major', '/22antwerp'],
+    ['22 Antwerp RMR', '/22rmr_antwerp'],
+  ]],
+  ['21 Stockholm', [
+    ['21 Stockholm Major', '/21stockholm'],
+  ]],
+  ['Legacy', [
+    ['19 Berlin', '/19berlin'],
+    ['19 Katowice', '/19katowice'],
+  ]],
 ];
 
 
@@ -91,9 +102,23 @@ class ResponsiveContainer extends Component {
             >
 
               {Editions.map((edition) => (
-                <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
-                  {edition[0]}
-                </NavLink>
+                <Dropdown
+                  className='link item'
+                  pointing='right'
+                  direction='left'
+                  item key={edition[0]} text={edition[0]} inverted>
+                  <Dropdown.Menu>
+                    {
+                      edition[1].map(e => (
+                        <Dropdown.Item key={e[1]}>
+                          <NavLink as="a" className="item" to={e[1]} onClick={this.handleSidebarHide}>
+                            {e[0]}
+                          </NavLink>
+                        </Dropdown.Item>
+                      ))
+                    }
+                  </Dropdown.Menu>
+                </Dropdown>
               ))}
             </Sidebar>
 
@@ -130,10 +155,19 @@ class ResponsiveContainer extends Component {
                     MajorS.im <sub style={{ color: '#33ff33', margin: 3 }}>{country}</sub>
                   </Menu.Item>
                   {Editions.map((edition) => (
-                    <NavLink as="a" className="item" key={edition[1]} to={edition[1]}>
-                      {edition[0]}
-                    </NavLink>
+                    <Dropdown item key={edition[0]} text={edition[0]} inverted>
+                      <Dropdown.Menu inverted>
+                        {
+                          edition[1].map(e => (
+                            <NavLink as="a" className="item" key={e[1]} to={e[1]}>
+                              {e[0]}
+                            </NavLink>
+                          ))
+                        }
+                      </Dropdown.Menu>
+                    </Dropdown>
                   ))}
+
                 </Container>
               </Menu>
             </Segment>
