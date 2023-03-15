@@ -12,8 +12,19 @@ h1, h2, h3, h4, h5, .ui.button {
   font-weight: 400;
 }
 
+
+.bottom-mobile > img {
+  border-top-left-radius: 15px;
+}
+
+h1, h2, h3, h4, h5, .ui.button {
+  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
 @media only screen and (max-width: 768px) {
   .bottom-mobile {
+    display: block;
     position: fixed;
     width: 100%;
     left: 0;
@@ -22,8 +33,11 @@ h1, h2, h3, h4, h5, .ui.button {
     background: #232a33;
     z-index: 9999;
   }
-  .mid-mobile {
+  .bottom-desktop {
     display: none;
+  }
+  .dynamic-padding {
+    padding-bottom: 150px;
   }
 }
 
@@ -31,14 +45,32 @@ h1, h2, h3, h4, h5, .ui.button {
   .bottom-mobile {
     display: none;
   }
-  .mid-mobile {
+  .bottom-desktop {
     display: block;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #232a33;
+    z-index: 9999;
+    border-top: 2px dashed #fff;
+  }
+  .dynamic-padding {
+    padding-bottom: 0;
   }
 }
 
-h1, h2, h3, h4, h5, .ui.button {
-  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 400;
+.ads-img {
+  flex: 1;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 1280px) {
+  .alt-ads {
+    display: none;
+    flex: 0;
+  }
 }
 
 
@@ -70,6 +102,8 @@ a:hover {
   margin-bottom: 24px;
 }
 
+.sponsored {
+}
 .title-container {
   margin-bottom: 24px;
 }

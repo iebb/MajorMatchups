@@ -2,6 +2,7 @@
 /api/event https://analytics.nekoko.it/api/event 200
 
 /api/*  https://major-api.ieb.im/:splat  200
+/config  https://ads.badasstemple.eu/api.php 200
 
 
 http://major.ieb.im/*    https://br.majors.im/:splat   302   Country=br,pt!
