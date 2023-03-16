@@ -83,9 +83,16 @@ class ResponsiveContainer extends Component {
           this.state.adtype === "google" && (
             <>
               <span style={{ margin: 10 }}>·</span>
-              <a onClick={() => { localStorage.dontDisplayAds ?
-                delete localStorage.dontDisplayAds :
-                localStorage.dontDisplayAds = alert("we all don't like ads, however it's what makes this site alive. refresh to see the changes."), 1 }}>
+              <a onClick={() => {
+
+                if (localStorage.dontDisplayAds) {
+                  delete localStorage.dontDisplayAds
+                } else {
+                  alert("feel free to turn it back on when you are feeling good and wants to support this site. refresh to see the changes.")
+                  localStorage.dontDisplayAds = 1
+                }
+
+              }}>
                 { localStorage.dontDisplayAds ? "enable" : "disable" } ads
               </a>
             </>
@@ -192,27 +199,27 @@ class ResponsiveContainer extends Component {
         </Media>
         {
           localStorage.dontDisplayAds ? (
-            <Footer />
-          ) :
-          this.state.adtype === "custom" ? (
-            <div className="bottom-desktop">
-              <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-                <a href={this.state.link} className="ads-img">
-                  <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-                </a>
-                <div style={{ flex: 1 }}>
-                  <Footer />
+              <Footer />
+            ) :
+            this.state.adtype === "custom" ? (
+              <div className="bottom-desktop">
+                <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
+                  <a href={this.state.link} className="ads-img">
+                    <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+                  </a>
+                  <div style={{ flex: 1 }}>
+                    <Footer />
+                  </div>
+                  <a href={this.state.link} className="alt-ads ads-img">
+                    <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+                  </a>
                 </div>
-                <a href={this.state.link} className="alt-ads ads-img">
-                  <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-                </a>
               </div>
-            </div>
-          ) : this.state.adtype === "google" ? (
-            <div className="bottom-desktop">
-              <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-                <div className="alt-ads ads-img">
-                  <div dangerouslySetInnerHTML={{ __html: `<!-- MajorSim Fallback -->
+            ) : this.state.adtype === "google" ? (
+              <div className="bottom-desktop">
+                <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
+                  <div className="alt-ads ads-img">
+                    <div dangerouslySetInnerHTML={{ __html: `<!-- MajorSim Fallback -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-3253159471656308"
@@ -223,15 +230,15 @@ class ResponsiveContainer extends Component {
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>` }} />
 
-                </div>
-                <div style={{ flex: 1 }}>
-                  <Footer />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <Footer />
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : (
-            <Footer />
-          )
+            ) : (
+              <Footer />
+            )
         }
       </div>
     );
