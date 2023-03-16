@@ -160,13 +160,6 @@ class ResponsiveContainer extends Component {
               <Footer />
             </Sidebar.Pusher>
           </Sidebar.Pushable>
-          <div className="bottom-mobile">
-            <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-              <a href={this.state.link} style={{ flex: 1, display: "inline-block" }}>
-                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-              </a>
-            </div>
-          </div>
         </Media>
         <Media greaterThan="mobile">
           <Visibility once={false} onBottomPassed={this.showFixedMenu} onBottomPassedReverse={this.hideFixedMenu}>
@@ -174,7 +167,7 @@ class ResponsiveContainer extends Component {
               <Menu fixed={fixed ? 'top' : null} inverted pointing={!fixed} secondary={!fixed} size="large">
                 <Container>
                   <Menu.Item header style={{ fontSize: "150%", padding: 5, paddingRight: 20, fontFamily: 'Inter', fontWeight: 600 }}>
-                    MajorS.im <sub style={{ color: '#33ff33', margin: 3 }}>{country}</sub>
+                    MajorS.im
                   </Menu.Item>
                   {Editions.map((edition) => (
                     <Dropdown item key={edition[0]} text={edition[0]} inverted>
