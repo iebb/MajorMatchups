@@ -190,6 +190,7 @@ class ResponsiveContainer extends Component {
           {children}
           <div style={{ padding: 80 }} />
         </Media>
+        <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
         {
           localStorage.dontDisplayAds ? (
               <Footer />
