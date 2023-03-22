@@ -118,6 +118,7 @@ export default class Paris2023RMR extends React.PureComponent {
   };
 
   init = (region) => {
+    this.props.history.push("#" + Regions[region].name);
     this.setState({
       ...pack(Regions[region].seeds, teamLogo),
       advanceMode: 1,
@@ -148,7 +149,17 @@ export default class Paris2023RMR extends React.PureComponent {
     this.setWinner = setWinner.bind(this);
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
+
+    const hash = this.props.history?.location?.hash?.slice(1);
+
+    for(const h of Regions) {
+      if (h.name === hash) {
+        this.init(h.id);
+        return;
+      }
+    }
     this.init(0);
+
   }
   render() {
     return (
