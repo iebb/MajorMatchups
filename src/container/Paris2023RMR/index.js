@@ -56,7 +56,7 @@ const Regions = [
   },
   {
     id: 2,
-    name: "North Am",
+    name: "Americas",
     seeds: AME,
     seats: [
       { status: "legends", until: 1, abbrev: "L", statusPositioned: true },
