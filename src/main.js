@@ -21,7 +21,8 @@ const { MediaContextProvider, Media } = createMedia({
 
 const Editions = [
   ['23 Paris', [
-    ['RMR Closed Qualifier', '/23qual_paris'],
+    ['23 Paris RMR', '/23rmr_paris'],
+    ['23 Paris RMR Closed Qualifier', '/23qual_paris'],
   ]],
   ['22 Rio', [
     ['22 Rio Major', '/22rio'],

@@ -22,7 +22,7 @@ export const getMatchupDisplay = (state, stage) => {
       picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
     }
   } catch (e) {
-    
+
   }
 
 
@@ -127,7 +127,6 @@ export const getMatchupDisplay = (state, stage) => {
   return (
     <div key={stage}>
       {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
-        if (team.tiebreaker) console.log("tbs", team.tiebreakerScores);
         return (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up" style={

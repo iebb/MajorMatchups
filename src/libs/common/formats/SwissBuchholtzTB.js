@@ -12,6 +12,13 @@ export function SwissBuchholtzTB(fromStage, toStage) {
     nonDeciderBestOf, deciderBestOf,
     tiebreakers
   } = state;
+
+  let { losesToEliminate } = state;
+
+  if (!losesToEliminate) {
+    losesToEliminate = winsToAdvance;
+  }
+
   const gamescores = state.scores || {};
 
   let tiebreakerResults = state.tiebreakerResults || {};
@@ -38,7 +45,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
       if (y.l - x.l) return x.l - y.l;
       if (y.w - x.w) return y.w - x.w;
 
-      if (x.w === winsToAdvance || x.l === winsToAdvance) { // normal race over, go for tbs
+      if (x.w === winsToAdvance || x.l === losesToEliminate) { // normal race over, go for tbs
         for(const s of Object.keys(tiebreakers)) {
           if (parseInt(s, 10) < stage) {
             for(const tb of tiebreakers[s]) {
@@ -61,7 +68,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
 
 
     if (stage > 0) {
-      const teamsT = stateTeams[stage - 1].filter((team) => team.w === winsToAdvance || team.l === winsToAdvance);
+      const teamsT = stateTeams[stage - 1].filter((team) => team.w === winsToAdvance || team.l === losesToEliminate);
 
 
       for (const match of stateMatches[stage - 1]) {
@@ -94,7 +101,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
 
     teams = stateTeams[stage].sort(teamCompare);
 
-    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < winsToAdvance);
+    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < losesToEliminate);
 
     const remainingTeams = copy(remaining);
     const matchups = [];
@@ -138,8 +145,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           if (winner) {
             picked = winner > 0 ? 1 : -1;
             if (
-              ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-              (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === nonDeciderBestOf)
+              ((team1.w === winsToAdvance - 1 || team1.l === losesToEliminate - 1) && maxW === deciderBestOf) ||
+              (team1.w < winsToAdvance - 1 && team1.l < losesToEliminate - 1 && maxW === nonDeciderBestOf)
             ) {
               result = picked
             }
@@ -154,8 +161,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           if (winner) {
             picked = winner < 0 ? 1 : -1;
             if (
-              ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW === deciderBestOf) ||
-              (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW === nonDeciderBestOf)
+              ((team1.w === winsToAdvance - 1 || team1.l === losesToEliminate - 1) && maxW === deciderBestOf) ||
+              (team1.w < winsToAdvance - 1 && team1.l < losesToEliminate - 1 && maxW === nonDeciderBestOf)
             ) {
               result = picked
             }
@@ -263,7 +270,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               tiebreakerUndetermined: tbr[4],
               tiebreakerOtherTeam: otherTeamId,
               tiebreakerConfig: tbs,
-              elim: x.l === winsToAdvance,
+              elim: x.l >= losesToEliminate,
               adv: x.w === winsToAdvance,
               currentRound: true,
               setTiebreakerWin: () => this.setTiebreakerWinner({
@@ -284,7 +291,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         standing: idx + 1,
         ...getStatus(idx+1, state.seats),
         ordinalStanding: ordinal(idx+1),
-        elim: x.l === winsToAdvance,
+        elim: x.l >= losesToEliminate,
         adv: x.w === winsToAdvance,
         currentRound: x.w + x.l === stage,
       })

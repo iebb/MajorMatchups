@@ -1,0 +1,192 @@
+/* eslint-disable global-require */
+
+import React from 'react';
+import { Menu } from 'semantic-ui-react';
+import {AME, EUA, EUB} from './initial_data';
+import { Scores } from './scores';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
+import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
+import { BasicUI } from '../../libs/common/BasicUI';
+
+const Regions = [
+  {
+    id: 0,
+    name: "Europe A",
+    seeds: EUA,
+    seats: [
+      { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
+      { status: "challengers", until: 6, abbrev: "Ch", statusPositioned: true },
+      { status: "contenders", until: 8, abbrev: "Co", statusPositioned: true },
+      { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    rounds: 6,
+    tiebreakers: {
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+    },
+    winsToAdvance: 3,
+    losesToEliminate: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+  {
+    id: 1,
+    name: "Europe B",
+    seeds: EUB,
+    seats: [
+      { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
+      { status: "challengers", until: 7, abbrev: "Ch", statusPositioned: true },
+      { status: "contenders", until: 8, abbrev: "Co", statusPositioned: true },
+      { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "6": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
+    },
+    rounds: 7,
+    winsToAdvance: 3,
+    losesToEliminate: 3,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+  {
+    id: 2,
+    name: "North Am",
+    seeds: AME,
+    seats: [
+      { status: "legends", until: 1, abbrev: "L", statusPositioned: true },
+      { status: "challengers", until: 2, abbrev: "Ch", statusPositioned: true },
+      { status: "contenders", until: 5, abbrev: "Co", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "4": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}],
+    },
+    rounds: 5,
+    winsToAdvance: 3,
+    losesToEliminate: 2,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+];
+
+const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png?rev=2`;
+
+export default class Paris2023RMR extends React.PureComponent {
+  state = {
+    teams: [[], false, false, false, false, false],
+    roundTeams: [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+    ],
+    matches: [false, false, false, false, false, false],
+    regionId: 0,
+    advanceMode: 1,
+    legends: false,
+    scores: Scores,
+    tiebreakers: {},
+    tiebreakerResults: {},
+    pickResults: {},
+    lockResults: {},
+    seats: {
+      legends: 0,
+      challengers: 0,
+      contenders: 0,
+    },
+    rounds: 0,
+    allowDups: false,
+    event: "par23rmr",
+  };
+
+  event = "par23rmr";
+
+  getStage = () => {
+    return this.state.regionId;
+  };
+
+  init = (region) => {
+    this.setState({
+      ...pack(Regions[region].seeds, teamLogo),
+      advanceMode: 1,
+      regionId: region,
+      ...Regions[region],
+    }, () => this.calculateMatchups(0, this.state.rounds + 1));
+
+    return fetch('https://y5au3m.deta.dev/fetch_results/par23rmr')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          ...pack(Regions[region].seeds, teamLogo),
+          advanceMode: 1,
+          scores: resp,
+          regionId: region,
+          ...Regions[region],
+        }, () => this.calculateMatchups(0, this.state.rounds + 1));
+      });
+  };
+
+
+
+  calculateMatchups = (s, e) => {
+    this.setState(SwissBuchholtzTB.bind(this)(s, e));
+  };
+
+  componentDidMount() {
+    this.setWinner = setWinner.bind(this);
+    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
+    this.shuffle = shuffle.bind(this);
+    this.init(0);
+  }
+  render() {
+    return (
+      <div className="outer">
+        <div className="page-container">
+          <div className="title-container">
+            <h1 className="title">BLAST.tv Paris Major 2023 RMR Matchup Calculator</h1>
+          </div>
+          <p>
+            <a href="https://discord.gg/KYNbRYrZGe">
+              feedback(discord)
+            </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://twitter.com/CyberHono">
+              twitter
+            </a>
+            <span style={{ margin: 10 }}>·</span>
+            <a href="https://steamcommunity.com/id/iebbbb">
+              steam profile
+            </a>
+          </p>
+          <div style={{ marginTop: 20 }}>
+            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+              {
+                Regions.map(region => (
+                  <Menu.Item
+                    key={region.id}
+                    name={region.name}
+                    active={this.state.regionId === region.id}
+                    onClick={() => this.init(region.id)}
+                  />
+                ))
+              }
+            </Menu>
+            <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}

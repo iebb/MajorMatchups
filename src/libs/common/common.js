@@ -102,7 +102,7 @@ export function setWinner(match, picked)  {
 export function setTiebreakerWinner(t1, t2) {
   const tbc = t1.tiebreakerConfig;
   const tbr = this.state.tiebreakerResults;
-  const gamescores = this.state.scores;
+  const gamescores = this.state.scores || [];
 
   if (`${t1.code}-${t2.code}#1` in gamescores) {
     const gs = gamescores[`${t1.code}-${t2.code}#1`];

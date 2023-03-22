@@ -18,18 +18,6 @@ export class BasicUI extends React.Component {
     iRound: 0,
   }
 
-  submitAnalytics = () => {
-    const { state, stage } = this.props;
-    fetch(`https://score-service.deta.dev/save_picks/${state.event}_${stage}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({teams: state.roundTeams[state.rounds].map(x => x.code)})
-    });
-  }
-
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.stage !== this.props.stage) {
       this.setState({ iRound: 0 });
@@ -135,11 +123,7 @@ export class BasicUI extends React.Component {
                       <Button
                         basic
                         onClick={() => {
-                          if (iRound + 1 >= (state.rounds)) {
-                            this.submitAnalytics();
-                          } else {
-                            shuffle(iRound + 1);
-                          }
+                          shuffle(iRound + 1);
                           this.setState({ iRound: iRound + 1});
                         }}
                         inverted
