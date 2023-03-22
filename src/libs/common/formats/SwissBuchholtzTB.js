@@ -225,8 +225,6 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           const tb = tbs.teams === idx + 1 || tbs.teams === idx;
           if (tb) {
             let tbr = tiebreakerResults[tbs.id];
-            // console.log("tbr", tbr);
-            // console.log("gs", gamescores);
             const t1 = teamsSorted[tbs.teams - 1];
             const t2 = teamsSorted[tbs.teams];
             if (

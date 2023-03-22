@@ -128,18 +128,18 @@ export default class Paris2023Qual extends React.PureComponent {
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-
-    return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...pack(Regions[region].seeds, teamLogo),
-          advanceMode: 1,
-          scores: resp,
-          regionId: region,
-          ...Regions[region],
-        }, () => this.calculateMatchups(0, this.state.rounds + 1));
-      });
+    //
+    // return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       ...pack(Regions[region].seeds, teamLogo),
+    //       advanceMode: 1,
+    //       scores: resp,
+    //       regionId: region,
+    //       ...Regions[region],
+    //     }, () => this.calculateMatchups(0, this.state.rounds + 1));
+    //   });
   };
 
 
