@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Container, Dropdown, Icon, Menu, Segment, Sidebar, Visibility} from 'semantic-ui-react';
 import Routes from './router';
+import { GoogleAds } from 'react-google-ads';
 
 import './main.css';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
