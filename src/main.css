@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, .ui.button {
   display: inline-block;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1440px) {
   .alt-ads {
     display: none;
     flex: 0;

@@ -212,6 +212,22 @@ class ResponsiveContainer extends Component {
           <div style={{ flex: 1 }}>
             <Footer />
           </div>
+          {
+            this.state.adtype === "custom" ? (
+              <a href={this.state.link} className="alt-ads ads-img">
+                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%" }}/>
+              </a>
+            ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
+              <div className="alt-ads ads-img">
+                <GoogleAd
+                  style={{ display: 'block' }}
+                  googleAdId="ca-pub-3253159471656308"
+                  format="horizontal"
+                  slot="8397184946"
+                />
+              </div>
+            ) : null
+          }
         </div>
       </div>
     );
