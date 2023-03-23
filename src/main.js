@@ -81,10 +81,11 @@ class ResponsiveContainer extends Component {
           twitter
         </a>
         {
+          /*
           this.state.adtype === "google" && (
             <>
               <span style={{ margin: 10 }}>·</span>
-              <a onClick={() => {
+              <span onClick={() => {
                 if (localStorage.dontDisplayAds) {
                   delete localStorage.dontDisplayAds
                 } else {
@@ -93,9 +94,11 @@ class ResponsiveContainer extends Component {
                 }
               }}>
                 { localStorage.dontDisplayAds ? "enable" : "disable" } ads
-              </a>
+              </span>
             </>
           )
+
+           */
         }
         <br/>
         by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
