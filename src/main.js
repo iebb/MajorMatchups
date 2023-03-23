@@ -198,6 +198,7 @@ class ResponsiveContainer extends Component {
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
               <div className="ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
                 <GoogleAd
+                  style={{ display:'inline-block', height: 150 }}
                   googleAdId="ca-pub-3253159471656308"
                   slot="8397184946"
                 />
@@ -215,6 +216,7 @@ class ResponsiveContainer extends Component {
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
               <div className="alt-ads ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
                 <GoogleAd
+                  style={{ display:'inline-block', height: 150 }}
                   googleAdId="ca-pub-3253159471656308"
                   slot="8186529436"
                 />
