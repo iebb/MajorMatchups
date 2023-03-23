@@ -198,7 +198,7 @@ class ResponsiveContainer extends Component {
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
               <div className="ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
                 <GoogleAd
-                  style={{ display:'inline-block', height: 150 }}
+                  style={{ display:'inline-block', width: 768, height: 90 }}
                   googleAdId="ca-pub-3253159471656308"
                   slot="8397184946"
                 />
@@ -208,21 +208,6 @@ class ResponsiveContainer extends Component {
           <div style={{ flex: 1 }}>
             <Footer />
           </div>
-          {
-            this.state.adtype === "custom" ? (
-              <a href={this.state.link} className="alt-ads ads-img">
-                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-              </a>
-            ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
-              <div className="alt-ads ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
-                <GoogleAd
-                  style={{ display:'inline-block', height: 150 }}
-                  googleAdId="ca-pub-3253159471656308"
-                  slot="8186529436"
-                />
-              </div>
-            ) : null
-          }
         </div>
       </div>
     );
