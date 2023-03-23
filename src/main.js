@@ -196,12 +196,12 @@ class ResponsiveContainer extends Component {
           {
             this.state.adtype === "custom" ? (
               <a href={this.state.link} className="ads-img">
-                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%" }}/>
               </a>
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
-              <div className="ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
+              <div className="ads-img" style={{ height: 90 }}>
                 <GoogleAd
-                  style={{ display:'inline-block', width: 768, height: 90 }}
+                  style={{ display: 'inline-block', width: 768, height: 90 }}
                   googleAdId="ca-pub-3253159471656308"
                   slot="8397184946"
                 />
