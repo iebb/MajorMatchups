@@ -22,43 +22,23 @@ h1, h2, h3, h4, h5, .ui.button {
   font-weight: 400;
 }
 
-@media only screen and (max-width: 768px) {
-  .bottom-mobile {
-    display: block;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #232a33;
-    z-index: 9999;
-  }
-  .bottom-desktop {
-    display: none;
-  }
-  .dynamic-padding {
-    padding-bottom: 150px;
-  }
+.bottom-desktop {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #232a33;
+  z-index: 9999;
+  border-top: 2px dashed #fff;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
 }
 
-@media only screen and (min-width: 767px) {
-  .bottom-mobile {
-    display: none;
-  }
-  .bottom-desktop {
-    display: block;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #232a33;
-    z-index: 9999;
-    border-top: 2px dashed #fff;
-  }
-  .dynamic-padding {
-    padding-bottom: 0;
-  }
+.dynamic-padding {
+  padding-bottom: 150px;
 }
 
 .ads-img {
@@ -70,6 +50,12 @@ h1, h2, h3, h4, h5, .ui.button {
   .alt-ads {
     display: none;
     flex: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .bottom-desktop {
+    flex-direction: column;
   }
 }
 

@@ -54,25 +54,33 @@ class ResponsiveContainer extends Component {
 
 
   componentDidMount() {
-    fetch('/config')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          banner: resp.banner,
-          country: resp.country,
-          link: resp.link,
-          regions: resp.regions,
-          adtype: resp.adtype,
-        })
-      });
+
+    this.setState({
+      banner: "https://meta.badasstemple.eu/uploads/upload_1677858127.jpg",
+      country: "BR",
+      link: "",
+      regions: "",
+      adtype: "custom",
+    });
+
+    // fetch('/config')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       banner: resp.banner,
+    //       country: resp.country,
+    //       link: resp.link,
+    //       regions: resp.regions,
+    //       adtype: resp.adtype,
+    //     })
+    //   });
   }
 
 
 
   Footer = () => (
     <div style={{ margin: 10, userSelect: 'text' }}>
-      <p style={{ fontSize: 15, marginTop: 24 }}>
-        <br/>
+      <p style={{ fontSize: 15, marginTop: 0 }}>
         <a href="https://discord.gg/KYNbRYrZGe">
           feedback(discord)
         </a>
@@ -85,14 +93,12 @@ class ResponsiveContainer extends Component {
             <>
               <span style={{ margin: 10 }}>·</span>
               <a onClick={() => {
-
                 if (localStorage.dontDisplayAds) {
                   delete localStorage.dontDisplayAds
                 } else {
                   alert("feel free to turn it back on when you are feeling good and wants to support this site. refresh to see the changes.")
-                  localStorage.dontDisplayAds = 1
+                  localStorage.dontDisplayAds = "1"
                 }
-
               }}>
                 { localStorage.dontDisplayAds ? "enable" : "disable" } ads
               </a>
@@ -103,7 +109,6 @@ class ResponsiveContainer extends Component {
         by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
         <br/>Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
       </p>
-      <div className="dynamic-padding" />
     </div>
   )
 
@@ -112,7 +117,6 @@ class ResponsiveContainer extends Component {
     const { sidebarOpened, fixed, country } = this.state;
 
     const Footer = this.Footer;
-
     return (
       <div>
         <Media as={Sidebar.Pushable} at="mobile">
@@ -131,7 +135,7 @@ class ResponsiveContainer extends Component {
                   className='link item'
                   pointing='right'
                   direction='left'
-                  item key={edition[0]} text={edition[0]} inverted>
+                  item key={edition[0]} text={edition[0]}>
                   <Dropdown.Menu>
                     {
                       edition[1].map(e => (
@@ -171,8 +175,8 @@ class ResponsiveContainer extends Component {
                     MajorS.im
                   </Menu.Item>
                   {Editions.map((edition) => (
-                    <Dropdown item key={edition[0]} text={edition[0]} inverted>
-                      <Dropdown.Menu inverted>
+                    <Dropdown item key={edition[0]} text={edition[0]}>
+                      <Dropdown.Menu>
                         {
                           edition[1].map(e => (
                             <NavLink as="a" className="item" key={e[1]} to={e[1]}>
@@ -189,52 +193,44 @@ class ResponsiveContainer extends Component {
             </Segment>
           </Visibility>
           {children}
-          <div style={{ padding: 80 }} />
         </Media>
         <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
-        {
-          localStorage.dontDisplayAds ? (
-              <Footer />
-            ) :
+        <div className="dynamic-padding" />
+        <div className="bottom-desktop">
+          {
             this.state.adtype === "custom" ? (
-              <div className="bottom-desktop">
-                <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-                  <a href={this.state.link} className="ads-img">
-                    <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-                  </a>
-                  <div style={{ flex: 1 }}>
-                    <Footer />
-                  </div>
-                  <a href={this.state.link} className="alt-ads ads-img">
-                    <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
-                  </a>
-                </div>
+              <a href={this.state.link} className="ads-img">
+                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+              </a>
+            ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
+              <div className="ads-img">
+                <GoogleAds
+                  client="ca-pub-3253159471656308"
+                  slot="8397184946"
+                  style={{ display: 'inline-block', width: '100%', }}
+                />
               </div>
-            ) : this.state.adtype === "google" ? (
-              <div className="bottom-desktop">
-                <div style={{ margin: "0 auto", flexDirection: "row", width: "100%", flexWrap: "nowrap", display: "flex" }}>
-                  <div className="alt-ads ads-img">
-                    <div dangerouslySetInnerHTML={{ __html: `<!-- MajorSim Fallback -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3253159471656308"
-     data-ad-slot="8397184946"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>` }} />
-
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <Footer />
-                  </div>
-                </div>
+            ) : null
+          }
+          <div style={{ flex: 1 }}>
+            <Footer />
+          </div>
+          {
+            this.state.adtype === "custom" ? (
+              <a href={this.state.link} className="alt-ads ads-img">
+                <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
+              </a>
+            ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
+              <div className="alt-ads ads-img">
+                <GoogleAds
+                  client="ca-pub-3253159471656308"
+                  slot="8186529436"
+                  style={{ display: 'inline-block', width: '100%', }}
+                />
               </div>
-            ) : (
-              <Footer />
-            )
-        }
+            ) : null
+          }
+        </div>
       </div>
     );
   }
