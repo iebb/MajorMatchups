@@ -187,6 +187,7 @@ class ResponsiveContainer extends Component {
         </Media>
         <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
         <div className="dynamic-padding" />
+
         <div className="bottom-desktop">
           {
             this.state.adtype === "custom" ? (
