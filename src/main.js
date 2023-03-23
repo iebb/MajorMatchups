@@ -54,26 +54,17 @@ class ResponsiveContainer extends Component {
 
 
   componentDidMount() {
-
-    this.setState({
-      banner: "https://meta.badasstemple.eu/uploads/upload_1677858127.jpg",
-      country: "BR",
-      link: "",
-      regions: "",
-      adtype: "custom",
-    });
-
-    // fetch('/config')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       banner: resp.banner,
-    //       country: resp.country,
-    //       link: resp.link,
-    //       regions: resp.regions,
-    //       adtype: resp.adtype,
-    //     })
-    //   });
+    fetch('/config')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          banner: resp.banner,
+          country: resp.country,
+          link: resp.link,
+          regions: resp.regions,
+          adtype: resp.adtype,
+        })
+      });
   }
 
 
