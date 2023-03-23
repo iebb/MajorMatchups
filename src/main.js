@@ -203,7 +203,7 @@ class ResponsiveContainer extends Component {
                 <GoogleAd
                   style={{ display: 'block', width: 768 }}
                   googleAdId="ca-pub-3253159471656308"
-                  format="vertical"
+                  format="horizontal"
                   slot="8397184946"
                 />
               </div>
