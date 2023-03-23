@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Container, Dropdown, Icon, Menu, Segment, Sidebar, Visibility} from 'semantic-ui-react';
 import Routes from './router';
-import { GoogleAds } from 'react-google-ads';
 
 import './main.css';
 import {BrowserRouter as Router, NavLink} from 'react-router-dom';
+import GoogleAd from "./libs/GoogleAd";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -196,11 +196,10 @@ class ResponsiveContainer extends Component {
                 <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
               </a>
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
-              <div className="ads-img">
-                <GoogleAds
-                  client="ca-pub-3253159471656308"
+              <div className="ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
+                <GoogleAd
+                  googleAdId="ca-pub-3253159471656308"
                   slot="8397184946"
-                  style={{ display: 'inline-block', width: '100%', }}
                 />
               </div>
             ) : null
@@ -214,11 +213,10 @@ class ResponsiveContainer extends Component {
                 <img src={this.state.banner} alt="Sportsbet.io" style={{ maxWidth: "100%", maxHeight: 150 }}/>
               </a>
             ) : this.state.adtype === "google" && (localStorage.dontDisplayAds !== "1") ? (
-              <div className="alt-ads ads-img">
-                <GoogleAds
-                  client="ca-pub-3253159471656308"
+              <div className="alt-ads ads-img" style={{ maxWidth: "100%", maxHeight: 150 }}>
+                <GoogleAd
+                  googleAdId="ca-pub-3253159471656308"
                   slot="8186529436"
-                  style={{ display: 'inline-block', width: '100%', }}
                 />
               </div>
             ) : null
