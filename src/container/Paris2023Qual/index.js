@@ -7,6 +7,7 @@ import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
+import Title from "../../libs/BannerInsertion";
 
 const Regions = [
   {
@@ -158,22 +159,9 @@ export default class Paris2023Qual extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">BLAST.tv Paris Major 2023 RMR Matchup Calculator</h1>
-          </div>
-          <p>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-          </p>
+          <Title
+            title="BLAST.tv Paris 2023 RMR Matchup Calculator"
+          />
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               {

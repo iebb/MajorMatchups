@@ -20,6 +20,7 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
+import Title from "../../libs/BannerInsertion";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -393,32 +394,9 @@ export default class Rio2022 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">IEM Rio Major 2022 Matchup Calculator</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-            </p>
-            <h3 style={{ color: 'yellow' }}>
-              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
-            </h3>
-          </div>
-          <p>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://weibo.com/u/1940682383">
-              weibo
-            </a>
-          </p>
+          <Title
+            title="IEM Rio Major 2022 Matchup Calculator"
+          />
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
             {
               TournamentStages.map(ts => (
