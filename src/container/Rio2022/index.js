@@ -395,7 +395,7 @@ export default class Rio2022 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="IEM Rio Major 2022 Matchup Calculator"
+            title="IEM Rio Major 2022 Matchup Calc"
             isMajor
           />
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>

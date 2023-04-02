@@ -167,7 +167,7 @@ export default class Paris2023RMR extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="BLAST.tv Paris 2023 RMR Matchup Calculator"
+            title="BLAST.tv Paris 2023 RMR Matchup Calc"
           />
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>

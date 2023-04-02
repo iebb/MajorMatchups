@@ -2,7 +2,7 @@
   "name": "katowice2019-elo-calc",
   "version": "1.1.4",
   "homepage": "./",
-  "description": "Katowice 2019 Elo Calculator",
+  "description": "Katowice 2019 Elo Calc",
   "repository": {
     "type": "git",
     "url": "git://github.com/react-boilerplate/react-boilerplate.git"
