@@ -41,10 +41,28 @@ h1, h2, h3, h4, h5, .ui.button {
   padding-bottom: 150px;
 }
 
-.ads-img {
+.adv-img {
   flex: 1;
   display: inline-block;
 }
+
+.adv-logo-inline {
+  display: flex;
+}
+.adv-logo-inline-left {
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
+}
+.adv-logo-inline-right {
+  flex: 2;
+  text-align: left;
+  margin-left: 10px;
+}
+.adv-logo-inline-left img {
+  height: 50px;
+}
+
 
 @media only screen and (max-width: 1920px) {
   .alt-ads {
@@ -53,9 +71,38 @@ h1, h2, h3, h4, h5, .ui.button {
   }
 }
 
+/* desktop site */
+@media only screen and (min-width: 801px) {
+  .mobile-menu {
+    display: none;
+  }
+  .adv-logo-inline-left {
+    border-right: 1px solid rgba(155, 155, 155, 0.4);
+    padding-right: 20px;
+  }
+}
+
+/* mobile site */
 @media only screen and (max-width: 800px) {
   .bottom-desktop {
     flex-direction: column;
+  }
+  .desktop-menu {
+    display: none;
+  }
+  .adv-logo-inline {
+    flex-direction: column;
+  }
+  .adv-logo-inline-left {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .adv-logo-inline-left img {
+    height: 32px;
+  }
+  .adv-logo-inline-right {
+    text-align: center;
+    margin: 10px auto;
   }
 }
 

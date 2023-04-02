@@ -1,18 +1,37 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
+import {SettingsCtx} from "./Context";
 
 function Title({ title, classNames }) {
+  const ctx = useContext(SettingsCtx);
+
   return (
     <div className={classNames}>
-
       <div className="title-container">
-        <h1 className="title">{title}</h1>
-        <p style={{fontSize: 18, marginTop: -16}}>
-          Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
-            <img src={sponsorLogo} alt="Sportsbet.io"
-                 style={{maxHeight: 20, marginLeft: 10}}/>
-          </a>
-        </p>
+        {
+          ctx.adType === "custom" ? (
+            <div className="adv-logo-inline">
+              <div className="adv-logo-inline-left">
+                <a href="https://redirect.badasstemple.eu/br7lju">
+                  <img src={sponsorLogo} alt={ctx.adProvider} />
+                </a>
+              </div>
+              <div className="adv-logo-inline-right">
+                <h1 className="title">{title}</h1>
+              </div>
+            </div>
+          ) : (
+            <>
+              <h1 className="title">{title}</h1>
+              <p style={{fontSize: 18, marginTop: -16}}>
+                Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
+                <img src={sponsorLogo} alt={ctx.adProvider}
+                     style={{maxHeight: 20, marginLeft: 10}}/>
+              </a>
+              </p>
+            </>
+          )
+        }
         <h3 style={{color: 'yellow'}}>
           {/* eslint-disable-next-line */}
           Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
