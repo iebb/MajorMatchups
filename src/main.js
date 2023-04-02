@@ -69,7 +69,6 @@ export const ResponsiveContainer = ({ children }) => {
         ...JSON.parse(localStorage.config)
       });
     } catch {
-      setAd(BaseAd);
     }
 
     fetch('/config')
@@ -80,7 +79,7 @@ export const ResponsiveContainer = ({ children }) => {
         localStorage.config = JSON.stringify(resp);
         localStorage.adtype = resp.adtype;
       });
-  })
+  }, []);
   return (
     <SettingsCtx.Provider value={{
       adType, ad, adProvider: ad.name || "",
