@@ -61,7 +61,7 @@ export const ResponsiveContainer = ({ children }) => {
       .then((resp) => resp.json())
       .then((resp) => {
         setAdType(resp.adtype);
-        setAd(resp.ad);
+        setAd(resp);
       });
   })
   return (
