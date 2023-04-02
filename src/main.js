@@ -50,18 +50,35 @@ const Footer = () => (
   </div>
 )
 
+const BaseAd = {
+  banner: "",
+  name: "",
+  link: "",
+};
+
 export const ResponsiveContainer = ({ children }) => {
-  const [ad, setAd] = useState({});
-  const [adType, setAdType] = useState("none");
+  const [ad, setAd] = useState(BaseAd);
+  const [adType, setAdType] = useState(localStorage.adtype || "none");
   const [sidebarOpened, setSidebarOpened] = useState(false);
   const [fixed, setFixed] = useState(false);
 
   useEffect(() => {
+    try {
+      setAd({
+        ...BaseAd,
+        ...JSON.parse(localStorage.config)
+      });
+    } catch {
+      setAd(BaseAd);
+    }
+
     fetch('/config')
       .then((resp) => resp.json())
       .then((resp) => {
         setAdType(resp.adtype);
         setAd(resp);
+        localStorage.config = JSON.stringify(resp);
+        localStorage.adtype = resp.adtype;
       });
   })
   return (
