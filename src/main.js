@@ -161,7 +161,7 @@ export const ResponsiveContainer = ({ children }) => {
         {
           adType === "custom" ? (
             <a href={ad.link} className="adv-img">
-              <img src={ad.banner} alt={ad.name} style={{ maxWidth: "100%" }}/>
+              <img className="adv-img-img" src={ad.banner} alt={ad.name} />
             </a>
           ) : adType === "google" ? (
             <div className="adv-img">
@@ -180,7 +180,7 @@ export const ResponsiveContainer = ({ children }) => {
         {
           adType === "custom" ? (
             <a href={ad.link} className="alt-ads adv-img">
-              <img src={ad.banner} alt={ad.name} style={{ maxWidth: "100%" }}/>
+              <img className="adv-img-img" src={ad.banner} alt={ad.name} />
             </a>
           ) : adType === "google" ? (
             <div className="alt-ads adv-img">
