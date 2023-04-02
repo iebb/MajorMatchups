@@ -403,9 +403,7 @@ export default class Berlin2019 extends React.PureComponent {
           <div className="title-container">
             <h1 className="title">StarLadder Berlin Major 2019 Matchups</h1>
             <h3>
-              Seeding: Live-Elo based on HLTV Ranking | <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da" style={{ color: "#ffcd00" }}>
-              How to use this site
-            </a>
+              Seeding: Live-Elo based on HLTV Ranking
             </h3>
             <p>
               <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">

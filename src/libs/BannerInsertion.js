@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "./Context";
 
-function Title({ title, classNames }) {
+function Title({ title, isMajor = false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
 
   return (
@@ -32,14 +32,22 @@ function Title({ title, classNames }) {
             </>
           )
         }
-        <h3 style={{color: 'yellow'}}>
-          {/* eslint-disable-next-line */}
-          Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
-        </h3>
+        {
+          isMajor && (
+            <h3 style={{color: 'yellow'}}>
+              {/* eslint-disable-next-line */}
+              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
+            </h3>
+          )
+        }
       </div>
       <p>
         <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">
           rulebook
+        </a>
+        <span style={{margin: 10}}>·</span>
+        <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da">
+          tutorial
         </a>
         <span style={{margin: 10}}>·</span>
         <a href="https://discord.gg/KYNbRYrZGe">
@@ -53,6 +61,12 @@ function Title({ title, classNames }) {
         <a href="https://steamcommunity.com/id/iebbbb">
           steam profile
         </a>
+        {
+          extras.map((x, _idx) => <>
+            <span style={{margin: 10}} key={_idx}>·</span>
+            <a href={x.link} key={_idx + "@"}>{x.title}</a>
+          </>)
+        }
       </p>
     </div>
   );

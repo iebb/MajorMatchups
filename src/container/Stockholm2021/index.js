@@ -15,6 +15,7 @@ import {
   setWinner,
   shuffle,
 } from '../../libs/common/common';
+import Title from "../../libs/BannerInsertion";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -204,33 +205,16 @@ export default class Stockholm2021 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">PGL Stockholm Major 2021</h1>
-          </div>
-          <h3>
-            <a href="https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages">
-              Seeding Rules
-            </a> | <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da" style={{ color: "#ffcd00" }}>
-              How to use this site
-            </a>
-          </h3>
-          <p>
-            <a href="https://www.reddit.com/r/GlobalOffensive/comments/qef216/the_matchup_simulator_again/">
-              reddit thread
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-          </p>
+          <Title
+            title="PGL Stockholm Major 2021 Matchup Calculator"
+            isMajor
+            extras={[
+              {
+                title: "seeding rules",
+                link: "https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages"
+              }
+            ]}
+          />
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
               <Menu.Item
