@@ -78,7 +78,7 @@ const Regions = [
   },
 ];
 
-const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png?rev=2`;
+const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png`;
 
 export default class Paris2023RMR extends React.PureComponent {
   state = {
