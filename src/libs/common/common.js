@@ -77,7 +77,7 @@ export function setWinner(match, picked)  {
   pickResults[`${match.team1.code}-${match.team2.code}` + suffix] = picked;
   pickResults[`${match.team2.code}-${match.team1.code}` + suffix] = -picked;
 
-  const currentRound = match.team1.l + match.team1.w;
+  const currentRound = match.stage || (match.team1.l + match.team1.w);
 
   if (match.picked === picked) {
     if (lockResults[`${match.team1.code}-${match.team2.code}` + suffix]) {

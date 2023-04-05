@@ -295,3 +295,54 @@ export const EUB = [
      "description": "Seed #16"
    }
  ]
+
+ export const AP =[
+   {
+     "code": "mong",
+     "name": "The MongolZ",
+     "seed": 1,
+     "description": "Seed #1"
+   },
+   {
+     "code": "tm",
+     "name": "Twisted Minds",
+     "seed": 8,
+     "description": "Seed #8"
+   },
+   {
+     "code": "ra",
+     "name": "Rare Atom",
+     "seed": 4,
+     "description": "Seed #4"
+   },
+   {
+     "code": "vert",
+     "name": "VERTEX Esports Club",
+     "seed": 5,
+     "description": "Seed #5"
+   },
+   {
+     "code": "ghg",
+     "name": "Grayhound Gaming",
+     "seed": 3,
+     "description": "Seed #3"
+   },
+   {
+     "code": "tylo",
+     "name": "TYLOO",
+     "seed": 6,
+     "description": "Seed #6"
+   },
+   {
+     "code": "erup",
+     "name": "Eruption",
+     "seed": 2,
+     "description": "Seed #2"
+   },
+   {
+     "code": "ig",
+     "name": "Invictus Gaming International",
+     "seed": 7,
+     "description": "Seed #7"
+   }
+ ]

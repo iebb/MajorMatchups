@@ -209,6 +209,34 @@ export const getMatchupDisplay = (state, stage) => {
           resultB = '';
         }
 
+        if (x.team2.code === null) {
+
+          return (
+            <div key={`match-${x.pool}-${x.match}`} className="team">
+              <div className="team-box up" style={{ background: `hsla(${100.0 * x.team1.w / (x.team1.w + x.team1.l)}, 100%, 50%, 0.5)` }}>
+                <div className="team-box-split b">
+                  <span className="team-box-text">{x.pool}</span>
+                </div>
+              </div>
+              <div className="team-box med">
+                <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => x.setWinner(1)}>
+                  {teamLogo(x.team1)}
+                </div>
+              </div>
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
+                {
+                  (state.tournamentFormat === "SWISS_BUCHHOLTZ") && getBuchholtzPopup(x.team1)
+                }
+                </sub>
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
 
         return (
           <div key={`match-${x.pool}-${x.match}`} className="team two">

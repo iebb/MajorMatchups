@@ -1,13 +1,14 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import {AME, EUA, EUB} from './initial_data';
-import { Scores } from './scores';
-import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
-import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
-import { BasicUI } from '../../libs/common/BasicUI';
+import {Menu} from 'semantic-ui-react';
+import {AME, AP, EUA, EUB} from './initial_data';
+import {Scores} from './scores';
+import {SwissBuchholtzTB} from '../../libs/common/formats/SwissBuchholtzTB';
+import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
+import {BasicUI} from '../../libs/common/BasicUI';
 import Title from "../../libs/BannerInsertion";
+import {Knockout28} from "../../libs/common/formats/Knockout28";
 
 const Regions = [
   {
@@ -28,7 +29,7 @@ const Regions = [
     winsToAdvance: 3,
     losesToEliminate: 3,
     nonDeciderBestOf: 1,
-    deciderBestOf: 2,
+    deciderBestOf: 3,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
@@ -76,9 +77,26 @@ const Regions = [
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
+  {
+    id: 3,
+    name: "Asia-Pacific",
+    seeds: AP,
+    seats: [
+      { status: "contenders", until: 2, abbrev: "Co", statusPositioned: true },
+      { status: "eliminated", until: 8, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {},
+    rounds: 5,
+    winsToAdvance: 3,
+    loseToEliminate: 2,
+    nonDeciderBestOf: 2,
+    deciderBestOf: 2,
+    tournamentFormat: "KNOCKOUT2",
+    allowDups: false,
+  },
 ];
 
-const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png`;
+const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png?v=2`;
 
 export default class Paris2023RMR extends React.PureComponent {
   state = {
@@ -143,7 +161,11 @@ export default class Paris2023RMR extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtzTB.bind(this)(s, e));
+    if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "KNOCKOUT2") {
+      this.setState(Knockout28.bind(this)(s, e));
+    }
   };
 
   componentDidMount() {

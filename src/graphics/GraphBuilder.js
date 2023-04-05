@@ -176,44 +176,83 @@ export default class GraphBuilder extends React.PureComponent {
 
       const matches = round.map(match => {
         if (match) {
-          if (match.pool !== lastPool) nodeY += padSpace * 2;
-          lastPool = match.pool;
+          if (match.team2.code !== null) {
+            if (match.pool !== lastPool) nodeY += padSpace * 2;
+            lastPool = match.pool;
 
-          const y = nodeY;
-          nodeY += node_height + padSpace;
+            const y = nodeY;
+            nodeY += node_height + padSpace;
 
-          teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_height / 8, pos: relPos})
-          teamPaths[match.team2.code + teamSuffixes[match.team2.code]].push({x, y: y + node_height / 8, pos: relPos + tightness})
+            teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_height / 8, pos: relPos})
+            teamPaths[match.team2.code + teamSuffixes[match.team2.code]].push({x, y: y + node_height / 8, pos: relPos + tightness})
 
-          if (match.undetermined) {
-            if (teamSuffixes[match.team1.code] === "") {
-              teamSuffixes[match.team1.code] = "_";
-              teamPaths[match.team1.code + "_"] = [{x, y: y - node_height / 8, pos: relPos}];
+            if (match.undetermined) {
+              if (teamSuffixes[match.team1.code] === "") {
+                teamSuffixes[match.team1.code] = "_";
+                teamPaths[match.team1.code + "_"] = [{x, y: y - node_height / 8, pos: relPos}];
+              }
+              if (teamSuffixes[match.team2.code] === "") {
+                teamSuffixes[match.team2.code] = "_";
+                teamPaths[match.team2.code + "_"] = [{x, y: y + node_height / 8, pos: relPos + tightness}];
+              }
             }
-            if (teamSuffixes[match.team2.code] === "") {
-              teamSuffixes[match.team2.code] = "_";
-              teamPaths[match.team2.code + "_"] = [{x, y: y + node_height / 8, pos: relPos + tightness}];
+
+            relPos += tightness * 2;
+
+            return ({
+              id: match.pool + " - match " + match['match'],
+              name: `${match.pool} Match`,
+              name1: match.team1.name,
+              name2: match.team2.name,
+              logo1: match.team1.logo,
+              logo2: match.team2.logo,
+              logo: null,
+              text_mid: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
+              parents: [match.team1.code, match.team2.code],
+              height: node_height,
+              padding: node_height,
+              toggle: match.toggle,
+              x,
+              y,
+            })
+          } else {
+
+            if (match.pool !== lastPool) nodeY += padSpace * 2;
+            lastPool = match.pool;
+
+            const y = nodeY;
+            nodeY += node_height + padSpace;
+
+            teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_height / 8, pos: relPos})
+
+            if (match.undetermined) {
+              if (teamSuffixes[match.team1.code] === "") {
+                teamSuffixes[match.team1.code] = "_";
+                teamPaths[match.team1.code + "_"] = [{x, y: y - node_height / 8, pos: relPos}];
+              }
             }
+
+            relPos += tightness * 2;
+
+            return ({
+              id: match.pool + " - match " + match['match'],
+              name: '',
+              name1: match.team1.name,
+              name2: '',
+              logo1: match.team1.logo,
+              logo2: null,
+              logo: null,
+              text_mid: '',
+              parents: [match.team1.code],
+              height: node_height,
+              padding: node_height,
+              toggle: match.toggle,
+              x,
+              y,
+            })
           }
 
-          relPos += tightness * 2;
 
-          return ({
-            id: match.pool + " - match " + match['match'],
-            name: `${match.pool} Match`,
-            name1: match.team1.name,
-            name2: match.team2.name,
-            logo1: match.team1.logo,
-            logo2: match.team2.logo,
-            logo: null,
-            text_mid: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
-            parents: [match.team1.code, match.team2.code],
-            height: node_height,
-            padding: node_height,
-            toggle: match.toggle,
-            x,
-            y,
-          })
         }
         return null
       }).filter(m=>m)
