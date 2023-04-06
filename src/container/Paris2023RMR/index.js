@@ -89,7 +89,7 @@ const Regions = [
     rounds: 5,
     winsToAdvance: 3,
     loseToEliminate: 2,
-    nonDeciderBestOf: 2,
+    nonDeciderBestOf: 1,
     deciderBestOf: 2,
     tournamentFormat: "KNOCKOUT2",
     allowDups: false,
@@ -145,17 +145,17 @@ export default class Paris2023RMR extends React.PureComponent {
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
-    // return fetch('https://y5au3m.deta.dev/fetch_results/par23rmr')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       ...pack(Regions[region].seeds, teamLogo),
-    //       advanceMode: 1,
-    //       scores: resp,
-    //       regionId: region,
-    //       ...Regions[region],
-    //     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //   });
+    return fetch('https://y5au3m.deta.dev/fetch_results/par23rmr')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          ...pack(Regions[region].seeds, teamLogo),
+          advanceMode: 1,
+          scores: resp,
+          regionId: region,
+          ...Regions[region],
+        }, () => this.calculateMatchups(0, this.state.rounds + 1));
+      });
   };
 
 

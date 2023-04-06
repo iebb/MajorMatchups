@@ -10,6 +10,7 @@ export function Knockout28(fromStage, toStage) {
   const {
     pickResults, lockResults,
     winsToAdvance, loseToEliminate,
+    nonDeciderBestOf,
     deciderBestOf, rounds
   } = state; //   allowDups, tiebreakers
   const gamescores = state.scores || {};
@@ -125,7 +126,10 @@ export function Knockout28(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner > 0 ? 1 : -1;
-          if (maxW >= deciderBestOf) {
+          if (
+            ((team1.w === winsToAdvance - 1 || team1.l === loseToEliminate - 1) && maxW >= deciderBestOf) ||
+            (team1.w < winsToAdvance - 1 && team1.l < loseToEliminate - 1 && maxW >= nonDeciderBestOf)
+          ) {
             result = picked
           }
         } else {
@@ -138,7 +142,10 @@ export function Knockout28(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner < 0 ? 1 : -1;
-          if (maxW >= deciderBestOf) {
+          if (
+            ((team1.w === winsToAdvance - 1 || team1.l === loseToEliminate - 1) && maxW >= deciderBestOf) ||
+            (team1.w < winsToAdvance - 1 && team1.l < loseToEliminate - 1 && maxW >= nonDeciderBestOf)
+          ) {
             result = picked
           }
         } else {
