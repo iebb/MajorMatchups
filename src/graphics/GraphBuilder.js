@@ -87,7 +87,7 @@ export default class GraphBuilder extends React.PureComponent {
       let lastPool = round[0] && round[0].pool;
 
       const teams = roundTeams[round_idx] || [];
-      x += (round_idx <= 5) ? round_width : tbo_round_width;
+      x += round_width;
 
 
       const decidedTeams = teams.filter(t => t.adv || t.elim).length;
@@ -128,6 +128,7 @@ export default class GraphBuilder extends React.PureComponent {
             logo1: `${t.logo}`,
             logo2: `${team2.logo}`,
             logo: null,
+            picked: t.picked,
             is_single_node: true,
             height: node_height,
             padding: node_height,
@@ -206,6 +207,7 @@ export default class GraphBuilder extends React.PureComponent {
               name2: match.team2.name,
               logo1: match.team1.logo,
               logo2: match.team2.logo,
+              picked: match.picked,
               logo: null,
               text_mid: match.score[0].map((x, _idx) => `${x}:${match.score[1][_idx]}`).join(" / "),
               parents: [match.team1.code, match.team2.code],
@@ -223,12 +225,12 @@ export default class GraphBuilder extends React.PureComponent {
             const y = nodeY;
             nodeY += node_height + padSpace;
 
-            teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_height / 8, pos: relPos})
+            teamPaths[match.team1.code + teamSuffixes[match.team1.code]].push({x, y: y - node_point_height / 8, pos: relPos})
 
             if (match.undetermined) {
               if (teamSuffixes[match.team1.code] === "") {
                 teamSuffixes[match.team1.code] = "_";
-                teamPaths[match.team1.code + "_"] = [{x, y: y - node_height / 8, pos: relPos}];
+                teamPaths[match.team1.code + "_"] = [{x, y: y - node_point_height / 8, pos: relPos}];
               }
             }
 
@@ -236,16 +238,13 @@ export default class GraphBuilder extends React.PureComponent {
 
             return ({
               id: match.pool + " - match " + match['match'],
-              name: '',
-              name1: match.team1.name,
-              name2: '',
-              logo1: match.team1.logo,
-              logo2: null,
-              logo: null,
-              text_mid: '',
+              name: match.team1.name,
+              name1: "(to next stage)",
+              logo: match.team1.logo,
               parents: [match.team1.code],
-              height: node_height,
-              padding: node_height,
+              is_single_node: true,
+              height: node_point_height,
+              padding: node_point_height,
               toggle: match.toggle,
               x,
               y,
@@ -504,8 +503,8 @@ export default class GraphBuilder extends React.PureComponent {
                 {
                   n.name && (n.logo ? (
                     <>
-                      <image x={n.x + 4} y={n.y - n.height / 2 + 4 - 10} width={12} height={12} href={n.logo} />
-                      <text x={n.x + 4 + 16} y={n.y - n.height / 2 + 4}>{n.name}</text>
+                      <image x={n.x + 4} y={n.y - n.height / 2 + 4 - 14} width={12} height={12} href={n.logo} />
+                      <text x={n.x + 4 + 16} y={n.y - n.height / 2}>{n.name}</text>
                     </>
                   ) : (
                     <text x={n.x + 4} y={n.y - n.height / 2 + 4}>{n.name}</text>
@@ -515,7 +514,10 @@ export default class GraphBuilder extends React.PureComponent {
                   n.name1 && (
                     <>
                       <image x={n.x + 4} y={n.y - n.height / 2 + 16 - 10} width={12} height={12} href={n.logo1} />
-                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 16}>{n.name1}</text>
+                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 16}
+                            style={n.picked === 1 ? {color: "rgb(82, 246, 103)"} : null}>{n.name1}
+                        {n.picked === 1 ? " ✅" : null}
+                      </text>
                     </>
                   )
                 }
@@ -523,7 +525,10 @@ export default class GraphBuilder extends React.PureComponent {
                   n.name2 && (
                     <>
                       <image x={n.x + 4} y={n.y - n.height / 2 + 42 - 10} width={12} height={12} href={n.logo2} />
-                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 42}>{n.name2}</text>
+                      <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 42}
+                            style={n.picked === -1 ? {color: "rgb(82, 246, 103)"} : null}>{n.name2}
+                        {n.picked === -1 ? " ✅" : null}
+                      </text>
                     </>
                   )
                 }
