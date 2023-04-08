@@ -29,7 +29,7 @@ const Regions = [
     winsToAdvance: 3,
     losesToEliminate: 3,
     nonDeciderBestOf: 1,
-    deciderBestOf: 3,
+    deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
