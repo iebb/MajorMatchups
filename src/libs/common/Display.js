@@ -46,7 +46,7 @@ export const getMatchupDisplay = (state, stage) => {
     return (
       <Popup
         inverted
-        trigger={<span className="team-box-text">/ {plus_minus(team.buchholz)}</span>}
+        trigger={<span className="team-box-text">/ {team.buchholzLocked ? "🔒" : plus_minus(team.buchholz)}</span>}
         content={
           <Table basic='very' celled inverted>
             <Table.Header>

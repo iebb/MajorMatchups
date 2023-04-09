@@ -25,13 +25,14 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
     },
+    buchholtzLockIns: [`3-1`],
     rounds: 6,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -52,7 +53,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -75,7 +76,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -166,8 +167,6 @@ export default class Rio2022RMR extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_TB") {
       this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT2") {
       this.setState(Knockout2.bind(this)(s, e));

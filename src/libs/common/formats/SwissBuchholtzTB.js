@@ -14,9 +14,13 @@ export function SwissBuchholtzTB(fromStage, toStage) {
   } = state;
 
   let { losesToEliminate } = state;
+  let { buchholtzLockIns } = state;
 
   if (!losesToEliminate) {
     losesToEliminate = winsToAdvance;
+  }
+  if (!buchholtzLockIns) {
+    buchholtzLockIns = [];
   }
 
   const gamescores = state.scores || {};
@@ -89,11 +93,16 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         buchholzScore[team.code] = team.w - team.l;
       }
       for (const team of teamsT) {
-        team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
-        team.buchholzBreakdown = team.opponents.map(x => ({
-          code: x,
-          b: buchholzScore[x],
-        }))
+        if (!team.buchholzLocked) {
+          team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
+          team.buchholzBreakdown = team.opponents.map(x => ({
+            code: x,
+            b: buchholzScore[x],
+          }))
+          if (buchholtzLockIns.indexOf(`${team.w}-${team.l}`) !== -1) {
+            team.buchholzLocked = 1;
+          }
+        }
       }
       stateTeams[stage] = teamsT;
     }
