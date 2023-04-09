@@ -44,8 +44,8 @@ export const initialDataLegends = [
     region: "EU",
   },
   {
-    "code": "eu1#4",
-    "name": "EUA #4",
+    "code": "bne",
+    "name": "Bad News Eagles",
     seed: 7,
     description: "EUA #4",
     region: "EU",
@@ -68,8 +68,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu1#5",
-    "name": "EUA #5",
+    "code": "gl",
+    "name": "GamerLegion",
     seed: 10,
     description: "EUA #5",
     region: "EU",

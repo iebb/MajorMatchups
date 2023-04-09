@@ -242,11 +242,15 @@ export const getMatchupDisplay = (state, stage) => {
                   </span>
                 </div>
               </div>
-              <div className="team-box down">
-                <div className="team-box-split b">
-                  <span className="team-box-text-sm">{x.team1.description}</span>
-                </div>
-              </div>
+              {
+                (state.showDescription || stage === 0) && (
+                  <div className="team-box down">
+                    <div className="team-box-split b">
+                      <span className="team-box-text-sm">{x.team1.description}</span>
+                    </div>
+                  </div>
+                )
+              }
             </div>
           );
         }
