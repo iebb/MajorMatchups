@@ -23,6 +23,7 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     rounds: 6,
+    buchholtzLockIns: [`3-1`],
     tiebreakers: {
       "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
@@ -44,6 +45,7 @@ const Regions = [
       { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
+    buchholtzLockIns: [`3-1`],
     tiebreakers: {
       "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
       "6": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
