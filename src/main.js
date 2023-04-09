@@ -13,6 +13,7 @@ import {SettingsCtx} from "./libs/Context";
 
 const Editions = [
   ['23 Paris', [
+    ['23 Paris [Provisional]', '/23paris'],
     ['23 Paris RMR', '/23rmr_paris'],
     ['23 Paris RMR Closed Qualifier', '/23qual_paris'],
   ]],
