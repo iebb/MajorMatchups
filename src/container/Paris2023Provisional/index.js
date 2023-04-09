@@ -27,7 +27,7 @@ const TournamentChampions = 2;
 
 const teamLogo = (code) => {
   return code.indexOf("#") !== -1 ?
-    `https://majors.im/images/regions/${code.split("#")[0]}.png?r=1`
+    `https://majors.im/images/regions/${code.split("#")[0]}.png?r=2`
     :
   `https://majors.im/images/paris2023_rmr/${code}.png`;
 }
@@ -87,6 +87,7 @@ export default class Paris2023Provisional extends React.PureComponent {
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
+    showDescription: 1,
     event: "23par_prov",
     challengerResult: ChallengerResults,
     legendResult: LegendResults,

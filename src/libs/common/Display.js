@@ -180,6 +180,15 @@ export const getMatchupDisplay = (state, stage) => {
                 </span>
               </div>
             </div>
+            {
+              (state.showDescription || stage === 0) && (
+                <div className="team-box down">
+                  <div className="team-box-split b">
+                    <span className="team-box-text">{team.description}</span>
+                  </div>
+                </div>
+              )
+            }
           </div>
         )
       })}
@@ -231,6 +240,11 @@ export const getMatchupDisplay = (state, stage) => {
                 }
                 </sub>
                   </span>
+                </div>
+              </div>
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text">{x.team1.description}</span>
                 </div>
               </div>
             </div>
@@ -287,6 +301,18 @@ export const getMatchupDisplay = (state, stage) => {
                   </span>
               </div>
             </div>
+            {
+              (state.showDescription || stage === 0) && (
+                <div className="team-box down">
+                  <div className="team-box-split b">
+                    <span className="team-box-text">{x.team1.description}</span>
+                  </div>
+                  <div className="team-box-split b">
+                    <span className="team-box-text">{x.team2.description}</span>
+                  </div>
+                </div>
+              )
+            }
           </div>
         );
       })}
@@ -319,6 +345,15 @@ export const getMatchupDisplay = (state, stage) => {
                 </span>
             </div>
           </div>
+          {
+            (state.showDescription || stage === 0) && (
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text">{team.description}</span>
+                </div>
+              </div>
+            )
+          }
         </div>
       ))}
       {
