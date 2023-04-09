@@ -75,10 +75,10 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "am#2",
-    "name": "AM #2",
+    "code": "am#1",
+    "name": "AM #1",
     seed: 11,
-    description: "AM #2",
+    description: "AM #1",
     region: "AM",
   },
   {
@@ -166,8 +166,8 @@ export const initialDataChallenger = [
     region: "AM",
   },
   {
-    "code": "asia#2",
-    "name": "AP#2",
+    "code": "mong",
+    "name": "The MongolZ",
     seed: 24,
     description: "AP #2",
     region: "AP",
