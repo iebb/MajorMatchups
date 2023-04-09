@@ -147,16 +147,16 @@ export default class Stockholm2021 extends React.PureComponent {
       const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
         (a, b) => {
           if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
+          if (a.buchholtz !== b.buchholtz) return b.buchholtz - a.buchholtz;
           return a.seed - b.seed;
         }
       ).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
         l: 0,
         w: 0,
         opponents: [],
-        buchholz: 0,
+        buchholtz: 0,
         seed: _idx + 9,
       }))
 
@@ -177,16 +177,16 @@ export default class Stockholm2021 extends React.PureComponent {
       const teamsAdvanced = this.state.teams[5].filter(x => x.w === 3).sort(
         (a, b) => {
           if (a.l !== b.l) return a.l - b.l;
-          if (a.buchholz !== b.buchholz) return b.buchholz - a.buchholz;
+          if (a.buchholtz !== b.buchholtz) return b.buchholtz - a.buchholtz;
           return a.seed - b.seed;
         }
       ).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
         l: 0,
         w: 0,
         opponents: [],
-        buchholz: 0,
+        buchholtz: 0,
         seed: _idx + 1,
       }))
 
@@ -211,7 +211,7 @@ export default class Stockholm2021 extends React.PureComponent {
             extras={[
               {
                 title: "seeding rules",
-                link: "https://press.pglesports.com/161255-the-buchholz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages"
+                link: "https://press.pglesports.com/161255-the-buchholtz-system-will-replace-the-tie-breaker-system-during-the-challengers-and-legends-stages"
               }
             ]}
           />

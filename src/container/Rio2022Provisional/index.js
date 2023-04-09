@@ -147,9 +147,9 @@ export default class Rio2022Provisional extends React.PureComponent {
     if (this.state.tournament === TournamentChallenger) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0, w: 0, buchholz: 0, seed: _idx + 9, opponents: [],
-        buchholzBreakdown: [],
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
+        l: 0, w: 0, buchholtz: 0, seed: _idx + 9, opponents: [],
+        buchholtzBreakdown: [],
       }))
       challengerResult = this.state.roundTeams[5];
       finalTeams = [...initialDataLegends, ...teamsAdvanced];
@@ -181,9 +181,9 @@ export default class Rio2022Provisional extends React.PureComponent {
     if (this.state.tournament === TournamentLegends && this.state.roundTeams[5]) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0, w: 0, buchholz: 0, seed: _idx + 1, opponents: [],
-        buchholzBreakdown: [],
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
+        l: 0, w: 0, buchholtz: 0, seed: _idx + 1, opponents: [],
+        buchholtzBreakdown: [],
       }))
 
       legendResult = this.state.roundTeams[5];

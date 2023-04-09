@@ -4,7 +4,6 @@ import React from 'react';
 import {Menu} from 'semantic-ui-react';
 import {AME, AP, EUA, EUB} from './initial_data';
 import {Scores} from './scores';
-import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
 import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
 import {BasicUI} from '../../libs/common/BasicUI';
 import {Knockout} from "../../libs/common/formats/Knockout";

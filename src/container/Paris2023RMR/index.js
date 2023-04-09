@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Menu} from 'semantic-ui-react';
-import {AME, AP, EUA, EUB} from './initial_data';
+import {AME, AP, EUA, EUB, EUTB} from './initial_data';
 import {Scores} from './scores';
 import {SwissBuchholtzTB} from '../../libs/common/formats/SwissBuchholtzTB';
 import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
@@ -96,9 +96,34 @@ const Regions = [
     tournamentFormat: "KNOCKOUT2",
     allowDups: false,
   },
+  {
+    id: 4,
+    name: "Europe Tiebreaker",
+    seeds: EUTB,
+    seats: [
+      { status: "contenders", until: 1, abbrev: "L", statusPositioned: true },
+      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "1": [{teams: 2, id: "2/3", name: "3rd Decider"}],
+      "2": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}],
+    },
+    rounds: 3,
+    winsToAdvance: 1,
+    losesToEliminate: 1,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
 ];
 
-const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png?v=2`;
+const teamLogo = (code) => {
+  return code.indexOf("#") !== -1 ?
+    `https://majors.im/images/regions/${code.split("#")[0]}.png?r=2`
+    :
+    `https://majors.im/images/paris2023_rmr/${code}.png`;
+}
 
 export default class Paris2023RMR extends React.PureComponent {
   state = {

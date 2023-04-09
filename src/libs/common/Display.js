@@ -46,7 +46,7 @@ export const getMatchupDisplay = (state, stage) => {
     return (
       <Popup
         inverted
-        trigger={<span className="team-box-text">/ {team.buchholzLocked ? "🔒" : plus_minus(team.buchholz)}</span>}
+        trigger={<span className="team-box-text">/ {team.buchholtzLocked ? "🔒" : plus_minus(team.buchholtz)}</span>}
         content={
           <Table basic='very' celled inverted>
             <Table.Header>
@@ -57,7 +57,7 @@ export const getMatchupDisplay = (state, stage) => {
             </Table.Header>
             <Table.Body>
               {
-                (team.buchholzBreakdown || []).map((opp, _idx) => teams[opp.code] &&
+                (team.buchholtzBreakdown || []).map((opp, _idx) => teams[opp.code] &&
                   <Table.Row key={_idx}>
                     <Table.Cell>
                       <Header as='h4' image>
@@ -74,7 +74,7 @@ export const getMatchupDisplay = (state, stage) => {
               }
               <Table.Row>
                 <Table.Cell><b>Total Buchholtz</b></Table.Cell>
-                <Table.Cell>{team.buchholz}</Table.Cell>
+                <Table.Cell>{team.buchholtz}</Table.Cell>
               </Table.Row>
             </Table.Body>
           </Table>

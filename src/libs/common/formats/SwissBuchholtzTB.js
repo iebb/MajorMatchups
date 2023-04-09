@@ -65,8 +65,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         }
 
       }
-
-      if (y.buchholz - x.buchholz) return y.buchholz - x.buchholz;
+      if (stage > 0)
+      if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
       return x.seed - y.seed;
     };
 
@@ -88,19 +88,19 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         }
       }
 
-      const buchholzScore = {};
+      const buchholtzScore = {};
       for (const team of teamsT) {
-        buchholzScore[team.code] = team.w - team.l;
+        buchholtzScore[team.code] = team.w - team.l;
       }
       for (const team of teamsT) {
-        if (!team.buchholzLocked) {
-          team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
-          team.buchholzBreakdown = team.opponents.map(x => ({
+        if (!team.buchholtzLocked) {
+          team.buchholtz = team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
+          team.buchholtzBreakdown = team.opponents.map(x => ({
             code: x,
-            b: buchholzScore[x],
+            b: buchholtzScore[x],
           }))
           if (buchholtzLockIns.indexOf(`${team.w}-${team.l}`) !== -1) {
-            team.buchholzLocked = 1;
+            team.buchholtzLocked = 1;
           }
         }
       }

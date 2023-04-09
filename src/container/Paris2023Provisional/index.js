@@ -17,7 +17,6 @@ import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
 import {Knockout} from '../../libs/common/formats/Knockout';
 import {BasicUI} from '../../libs/common/BasicUI';
 import {getPickResults, setPickResults} from "../../libs/common/storage";
-import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
 
@@ -151,9 +150,9 @@ export default class Paris2023Provisional extends React.PureComponent {
     if (this.state.tournament === TournamentChallenger) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0, w: 0, buchholz: 0, seed: _idx + 9, opponents: [],
-        buchholzBreakdown: [],
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
+        l: 0, w: 0, buchholtz: 0, seed: _idx + 9, opponents: [],
+        buchholtzBreakdown: [],
       }))
       challengerResult = this.state.roundTeams[5];
       finalTeams = [...initialDataLegends, ...teamsAdvanced];
@@ -185,9 +184,9 @@ export default class Paris2023Provisional extends React.PureComponent {
     if (this.state.tournament === TournamentLegends && this.state.roundTeams[5]) {
       const teamsAdvanced = this.state.roundTeams[5].filter(x => x.adv).map((x, _idx) => ({
         ...x,
-        description: `${x.l}L, ${x.buchholz}B, #${x.seed}`,
-        l: 0, w: 0, buchholz: 0, seed: _idx + 1, opponents: [],
-        buchholzBreakdown: [],
+        description: `${x.l}L, ${x.buchholtz}B, #${x.seed}`,
+        l: 0, w: 0, buchholtz: 0, seed: _idx + 1, opponents: [],
+        buchholtzBreakdown: [],
       }))
 
       legendResult = this.state.roundTeams[5];

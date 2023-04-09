@@ -17,7 +17,7 @@ export const ChallengerResults = [
       "spir",
       "ence"
     ],
-    "buchholz": 5,
+    "buchholtz": 5,
     "code": "g2",
     "name": "G2 Esports",
     "seed": 10,
@@ -42,7 +42,7 @@ export const ChallengerResults = [
       "astr",
       "forz"
     ],
-    "buchholz": -4,
+    "buchholtz": -4,
     "code": "vita",
     "name": "Team Vitality",
     "seed": 13,
@@ -68,7 +68,7 @@ export const ChallengerResults = [
       "g2",
       "bne"
     ],
-    "buchholz": 3,
+    "buchholtz": 3,
     "code": "ence",
     "name": "ENCE",
     "seed": 9,
@@ -94,7 +94,7 @@ export const ChallengerResults = [
       "eter",
       "astr"
     ],
-    "buchholz": 1,
+    "buchholtz": 1,
     "code": "spir",
     "name": "Team Spirit",
     "seed": 18,
@@ -120,7 +120,7 @@ export const ChallengerResults = [
       "cplx",
       "forz"
     ],
-    "buchholz": -2,
+    "buchholtz": -2,
     "code": "out",
     "name": "Outsiders",
     "seed": 19,
@@ -147,7 +147,7 @@ export const ChallengerResults = [
       "ihc",
       "forz"
     ],
-    "buchholz": 1,
+    "buchholtz": 1,
     "code": "imp",
     "name": "Imperial Esports",
     "seed": 15,
@@ -174,7 +174,7 @@ export const ChallengerResults = [
       "ence",
       "mibr"
     ],
-    "buchholz": -1,
+    "buchholtz": -1,
     "code": "bne",
     "name": "Bad News Eagles",
     "seed": 16,
@@ -201,7 +201,7 @@ export const ChallengerResults = [
       "cplx",
       "astr"
     ],
-    "buchholz": -2,
+    "buchholtz": -2,
     "code": "liq",
     "name": "Team Liquid",
     "seed": 23,
@@ -228,7 +228,7 @@ export const ChallengerResults = [
       "out",
       "imp"
     ],
-    "buchholz": 4,
+    "buchholtz": 4,
     "code": "forz",
     "name": "forZe",
     "seed": 11,
@@ -255,7 +255,7 @@ export const ChallengerResults = [
       "spir",
       "liq"
     ],
-    "buchholz": 3,
+    "buchholtz": 3,
     "code": "astr",
     "name": "Astralis",
     "seed": 12,
@@ -282,7 +282,7 @@ export const ChallengerResults = [
       "eter",
       "bne"
     ],
-    "buchholz": -3,
+    "buchholtz": -3,
     "code": "mibr",
     "name": "MIBR",
     "seed": 14,
@@ -308,7 +308,7 @@ export const ChallengerResults = [
       "out",
       "liq"
     ],
-    "buchholz": 4,
+    "buchholtz": 4,
     "code": "cplx",
     "name": "Complexity Gaming",
     "seed": 20,
@@ -334,7 +334,7 @@ export const ChallengerResults = [
       "spir",
       "mibr"
     ],
-    "buchholz": -1,
+    "buchholtz": -1,
     "code": "eter",
     "name": "Eternal Fire",
     "seed": 17,
@@ -360,7 +360,7 @@ export const ChallengerResults = [
       "ren",
       "imp"
     ],
-    "buchholz": -5,
+    "buchholtz": -5,
     "code": "ihc",
     "name": "IHC Esports",
     "seed": 21,
@@ -385,7 +385,7 @@ export const ChallengerResults = [
       "mibr",
       "liq"
     ],
-    "buchholz": 2,
+    "buchholtz": 2,
     "code": "nine",
     "name": "9z Team",
     "seed": 24,
@@ -410,7 +410,7 @@ export const ChallengerResults = [
       "eter",
       "ihc"
     ],
-    "buchholz": -5,
+    "buchholtz": -5,
     "code": "ren",
     "name": "Renegades",
     "seed": 22,
@@ -438,7 +438,7 @@ export const LegendResults = [
       "hero",
       "cope"
     ],
-    "buchholz": 3,
+    "buchholtz": 3,
     "code": "spir",
     "name": "Team Spirit",
     "seed": 12,
@@ -463,7 +463,7 @@ export const LegendResults = [
       "big",
       "nip"
     ],
-    "buchholz": -1,
+    "buchholtz": -1,
     "code": "navi",
     "name": "Natus Vincere",
     "seed": 8,
@@ -489,7 +489,7 @@ export const LegendResults = [
       "out",
       "hero"
     ],
-    "buchholz": 2,
+    "buchholtz": 2,
     "code": "ence",
     "name": "ENCE",
     "seed": 11,
@@ -515,7 +515,7 @@ export const LegendResults = [
       "navi",
       "furi"
     ],
-    "buchholz": 1,
+    "buchholtz": 1,
     "code": "nip",
     "name": "Ninjas in Pyjamas",
     "seed": 7,
@@ -541,7 +541,7 @@ export const LegendResults = [
       "c9",
       "cope"
     ],
-    "buchholz": -2,
+    "buchholtz": -2,
     "code": "faze",
     "name": "FaZe Clan",
     "seed": 6,
@@ -568,7 +568,7 @@ export const LegendResults = [
       "faze",
       "imp"
     ],
-    "buchholz": 3,
+    "buchholtz": 3,
     "code": "cope",
     "name": "Copenhagen Flames",
     "seed": 2,
@@ -595,7 +595,7 @@ export const LegendResults = [
       "ence",
       "vita"
     ],
-    "buchholz": 0,
+    "buchholtz": 0,
     "code": "hero",
     "name": "Heroic",
     "seed": 1,
@@ -622,7 +622,7 @@ export const LegendResults = [
       "nip",
       "g2"
     ],
-    "buchholz": -1,
+    "buchholtz": -1,
     "code": "furi",
     "name": "FURIA Esports",
     "seed": 5,
@@ -649,7 +649,7 @@ export const LegendResults = [
       "out",
       "furi"
     ],
-    "buchholz": 2,
+    "buchholtz": 2,
     "code": "g2",
     "name": "G2 Esports",
     "seed": 9,
@@ -676,7 +676,7 @@ export const LegendResults = [
       "big",
       "hero"
     ],
-    "buchholz": -4,
+    "buchholtz": -4,
     "code": "vita",
     "name": "Team Vitality",
     "seed": 10,
@@ -703,7 +703,7 @@ export const LegendResults = [
       "c9",
       "cope"
     ],
-    "buchholz": -7,
+    "buchholtz": -7,
     "code": "imp",
     "name": "Imperial Esports",
     "seed": 14,
@@ -729,7 +729,7 @@ export const LegendResults = [
       "furi",
       "vita"
     ],
-    "buchholz": 2,
+    "buchholtz": 2,
     "code": "big",
     "name": "BIG",
     "seed": 3,
@@ -755,7 +755,7 @@ export const LegendResults = [
       "faze",
       "imp"
     ],
-    "buchholz": 1,
+    "buchholtz": 1,
     "code": "c9",
     "name": "Cloud9",
     "seed": 4,
@@ -781,7 +781,7 @@ export const LegendResults = [
       "ence",
       "g2"
     ],
-    "buchholz": -2,
+    "buchholtz": -2,
     "code": "out",
     "name": "Outsiders",
     "seed": 13,
@@ -806,7 +806,7 @@ export const LegendResults = [
       "faze",
       "imp"
     ],
-    "buchholz": 2,
+    "buchholtz": 2,
     "code": "bne",
     "name": "Bad News Eagles",
     "seed": 15,
@@ -831,7 +831,7 @@ export const LegendResults = [
       "furi",
       "vita"
     ],
-    "buchholz": 1,
+    "buchholtz": 1,
     "code": "liq",
     "name": "Team Liquid",
     "seed": 16,
