@@ -89,8 +89,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu1#14",
-    "name": "EUA #6",
+    "code": "apek",
+    "name": "Apeks",
     seed: 13,
     region: "EU",
     description: "EUA #6",

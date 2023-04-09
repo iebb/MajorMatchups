@@ -13,7 +13,7 @@ import {Knockout28} from "../../libs/common/formats/Knockout28";
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe-A",
     seeds: EUA,
     seats: [
       { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
@@ -36,7 +36,7 @@ const Regions = [
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe-B",
     seeds: EUB,
     seats: [
       { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
@@ -98,7 +98,7 @@ const Regions = [
   },
   {
     id: 4,
-    name: "European Decider",
+    name: "European-Decider",
     seeds: EUTB,
     seats: [
       { status: "contenders", until: 1, abbrev: "L", statusPositioned: true },
@@ -203,6 +203,7 @@ export default class Paris2023RMR extends React.PureComponent {
     const hash = this.props.history?.location?.hash?.slice(1);
 
     for(const h of Regions) {
+      console.log("init", h.name, h, hash)
       if (h.name === hash) {
         this.init(h.id);
         return;

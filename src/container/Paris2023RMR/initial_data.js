@@ -382,12 +382,12 @@ export const EUTB = [
     "buchholtz_offset": 0,
   },
   {
-    "code": "eu1#11",
-    "name": "EUA #11",
+    "code": "b8",
+    "name": "B8",
     "seed": 5,
     "description": "EUA #11",
-    "buchholtz": 0,
-    "buchholtz_offset": 0,
+    "buchholtz": 5,
+    "buchholtz_offset": 5,
   },
   {
     "code": "eu2#11",
