@@ -260,9 +260,6 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               }
             }
 
-            console.log(tbr);
-
-
             const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
             const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
             const lostTeam = tbr[0] === x.code ? otherTeam : x;
