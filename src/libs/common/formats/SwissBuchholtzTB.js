@@ -242,23 +242,25 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               if (`${t1.code}-${t2.code}#1` in gamescores) {
                 const gs = gamescores[`${t1.code}-${t2.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
-                tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                tbr = tiebreakerResults[tbs.id] = (
                   winner > 0 ?
                     [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
                     [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
-                ) : [t1.code, t2.code, [], [], true];
+                );
               } else if (`${t2.code}-${t1.code}#1` in gamescores) {
                 const gs = gamescores[`${t2.code}-${t1.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
-                tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                tbr = tiebreakerResults[tbs.id] = (
                   winner < 0 ?
                     [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false] :
                     [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false]
-                ) : [t1.code, t2.code, [], [], true];
+                );
               } else {
                 tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true];
               }
             }
+
+            console.log(tbr);
 
 
             const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
