@@ -360,6 +360,12 @@ h3.title {
   line-height: 30px;
 }
 
+.team-box-text-sm {
+  font-size: 12px;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
 .team-box-text.win {
   color: #3dd94a;
 }
