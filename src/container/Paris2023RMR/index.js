@@ -98,7 +98,7 @@ const Regions = [
   },
   {
     id: 4,
-    name: "Europe Tiebreaker",
+    name: "European Decider",
     seeds: EUTB,
     seats: [
       { status: "contenders", until: 1, abbrev: "L", statusPositioned: true },

@@ -94,7 +94,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
       }
       for (const team of teamsT) {
         if (!team.buchholtzLocked) {
-          team.buchholtz = team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
+          const initialB = team.buchholtz_offset || 0;
+          team.buchholtz = initialB + team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
           team.buchholtzBreakdown = team.opponents.map(x => ({
             code: x,
             b: buchholtzScore[x],

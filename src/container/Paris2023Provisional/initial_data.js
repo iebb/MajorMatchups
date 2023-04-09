@@ -89,7 +89,7 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu1#12",
+    "code": "eu1#14",
     "name": "EUA #6",
     seed: 13,
     region: "EU",
@@ -103,8 +103,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu1#14",
-    "name": "EUA #7",
+    "code": "og",
+    "name": "OG",
     seed: 15,
     description: "EUA #7",
     region: "EU",
@@ -124,8 +124,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu1#16",
-    "name": "EUA #8",
+    "code": "mouz",
+    "name": "MOUZ",
     seed: 18,
     description: "EUA #8",
     region: "EU",
