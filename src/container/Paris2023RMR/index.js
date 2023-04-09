@@ -226,7 +226,13 @@ export default class Paris2023RMR extends React.PureComponent {
                     key={region.id}
                     name={region.name}
                     active={this.state.regionId === region.id}
-                    onClick={() => this.init(region.id)}
+                    onClick={
+                      () => {
+                        this.props.history.push("#" + region.name);
+                        document.location.reload();
+                        // this.init(region.id)
+                      }
+                    }
                   />
                 ))
               }
