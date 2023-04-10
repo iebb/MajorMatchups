@@ -10,7 +10,6 @@ import {BrowserRouter as Router, NavLink} from 'react-router-dom';
 import GoogleAd from "./libs/GoogleAd";
 import {SettingsCtx} from "./libs/Context";
 
-
 const Editions = [
   ['23 Paris', [
     ['23 Paris [Provisional]', '/23paris'],
@@ -37,12 +36,10 @@ const Editions = [
 const Footer = () => (
   <div style={{ margin: 10, userSelect: 'text' }}>
     <p style={{ fontSize: 15, marginTop: 0 }}>
-      <a href="https://discord.gg/KYNbRYrZGe">discord</a>
-      <span style={{ margin: 10 }}>·</span>
-      <a href="https://twitter.com/CyberHono">
-        twitter
-      </a> | by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2023 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
-      <br/>Email: ieb &lt;at&gt; outlook.lv | Discord: ieb#4368 | Feel free to use ad-blockers :D
+      <a href="https://discord.gg/KYNbRYrZGe">
+        <img src="https://i.postimg.cc/Fzj7T05w/discord.png" alt="discord" style={{ height: 35 }}/>
+      </a> by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2023 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
+      <br/>Email: ieb &lt;at&gt; outlook.lv | Discord: ieb#4368
     </p>
   </div>
 )
