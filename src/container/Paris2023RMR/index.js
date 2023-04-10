@@ -101,7 +101,7 @@ const Regions = [
     name: "European-Decider",
     seeds: EUTB,
     seats: [
-      { status: "contenders", until: 1, abbrev: "L", statusPositioned: true },
+      { status: "contenders", until: 1, abbrev: "Co", statusPositioned: true },
       { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {

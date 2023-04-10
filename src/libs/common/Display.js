@@ -1,7 +1,8 @@
 import { ordinal } from '../plural';
 import { Header, Image, Label, Popup, Table } from 'semantic-ui-react';
 import { plus_minus } from '../plus_minus';
-import React from 'react';
+import React, {useContext} from 'react';
+import {SettingsCtx} from "../Context";
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -10,6 +11,7 @@ function getCookie(name) {
 }
 
 export const getMatchupDisplay = (state, stage) => {
+
   const stateMatches = state.matches;
   const stateRoundTeams = state.roundTeams;
   const statePickemTags = state.pickemTags;
@@ -127,7 +129,6 @@ export const getMatchupDisplay = (state, stage) => {
   return (
     <div key={stage}>
       {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
-        console.log(team.tiebreaker, team.tiebreakerScores);
         return (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up" style={

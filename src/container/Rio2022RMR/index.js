@@ -15,7 +15,7 @@ import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe-A",
     seeds: EUA,
     seats: [
       { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
@@ -36,7 +36,7 @@ const Regions = [
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe-B",
     seeds: EUB,
     seats: [
       { status: "legends", until: 3, abbrev: "L", statusPositioned: true },

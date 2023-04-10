@@ -37,16 +37,12 @@ const Editions = [
 const Footer = () => (
   <div style={{ margin: 10, userSelect: 'text' }}>
     <p style={{ fontSize: 15, marginTop: 0 }}>
-      <a href="https://discord.gg/KYNbRYrZGe">
-        feedback(discord)
-      </a>
+      <a href="https://discord.gg/KYNbRYrZGe">discord</a>
       <span style={{ margin: 10 }}>·</span>
       <a href="https://twitter.com/CyberHono">
         twitter
-      </a>
-      <br/>
-      by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
-      <br/>Email: ieb &lt;at&gt; outlook.my | Discord: ieb#4368
+      </a> | by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2023 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
+      <br/>Email: ieb &lt;at&gt; outlook.lv | Discord: ieb#4368 | Feel free to use ad-blockers :D
     </p>
   </div>
 )
@@ -157,6 +153,16 @@ export const ResponsiveContainer = ({ children }) => {
         {children}
       </div>
       <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
+      {
+        adType === "google" && (
+          <GoogleAd
+            style={{ display: 'block' }}
+            googleAdId="ca-pub-3253159471656308"
+            format="autorelaxed"
+            slot="1398483557"
+          />
+        )
+      }
       <div className="dynamic-padding" />
       <div className="bottom-desktop">
         {
