@@ -127,6 +127,7 @@ export const getMatchupDisplay = (state, stage) => {
   return (
     <div key={stage}>
       {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
+        console.log(team.tiebreaker, team.tiebreakerScores);
         return (
           <div key={team.code} className={`team one ${team.status}`}>
             <div className="team-box up" style={
