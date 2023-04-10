@@ -19,6 +19,7 @@ import {BasicUI} from '../../libs/common/BasicUI';
 import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
+import Title from "../../libs/BannerInsertion";
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -386,32 +387,9 @@ export default class Paris2023Provisional extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">Blast.tv Paris Major 2023 Matchup Calculator (Provisional)</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
-            </p>
-            <h2 style={{ color: 'yellow' }}>
-              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
-            </h2>
-          </div>
-          <p>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://weibo.com/u/1940682383">
-              weibo
-            </a>
-          </p>
+          <Title
+            title="BLAST.tv Paris 2023 Major Matchup Calc (Provisional)"
+          />
           <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
             {
               TournamentStages.map(ts => (
