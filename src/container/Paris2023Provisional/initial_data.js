@@ -68,18 +68,18 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu2#5",
-    "name": "EUB #5",
-    "seed": 10,
-    description: "EUB #5",
-    region: "EU",
-  },
-  {
     "code": "pain",
     "name": "paiN Gaming",
-    seed: 11,
+    seed: 10,
     description: "AM #2",
     region: "AM",
+  },
+  {
+    "code": "eu2#5",
+    "name": "EUB #5",
+    "seed": 11,
+    description: "EUB #5",
+    region: "EU",
   },
   {
     "code": "gl",
