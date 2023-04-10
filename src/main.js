@@ -175,7 +175,7 @@ export const ResponsiveContainer = ({ children }) => {
             </div>
           ) : null
         }
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1 }} className="hide-on-mobile">
           <Footer />
         </div>
         {
