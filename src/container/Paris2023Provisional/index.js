@@ -387,7 +387,7 @@ export default class Paris2023Provisional extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">IEM Rio Major 2022 Matchup Calculator (Provisional)</h1>
+            <h1 className="title">Blast.tv Paris Major 2023 Matchup Calculator (Provisional)</h1>
             <p style={{ fontSize: 18, marginTop: -16 }}>
               Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
             </p>
