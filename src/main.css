@@ -479,15 +479,30 @@ iframe {
   color: white;
 }
 
-.ui.inverted.segment .ui.secondary.inverted.pointing.menu .active.item {
+.ui.inverted.segment .region-selector .active.item {
   border-color: #1f1f1f;
   color: white!important;
 }
 
-.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item {
+.ui.inverted.segment .region-selector .item {
   color: #cccccc!important;
 }
 
-.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item:hover {
+.ui.inverted.segment .region-selector .item:hover {
   color: white!important;
+}
+
+.region-selector .active.item {
+  border-color: #fff;
+  border-width: 4px!important;
+  color: #fff;
+}
+
+.region-selector {
+  overflow: scroll auto;
+  max-width: 100%;
+}
+
+.region-selector::-webkit-scrollbar {
+  display: none;
 }

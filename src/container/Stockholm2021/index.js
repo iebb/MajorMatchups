@@ -216,7 +216,7 @@ export default class Stockholm2021 extends React.PureComponent {
             ]}
           />
           <div style={{ marginTop: 20 }}>
-            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflow: 'scroll hidden', maxWidth: '100%' }}>
+            <Menu pointing secondary inverted compact size="huge" className="region-selector">
               <Menu.Item
                 name="Challengers"
                 active={this.state.tournament === TournamentChallenger}

@@ -390,7 +390,7 @@ export default class Paris2023Provisional extends React.PureComponent {
           <Title
             title="BLAST.tv Paris 2023 Major Matchup Calc (Provisional)"
           />
-          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+          <Menu pointing secondary inverted compact size="huge" className="region-selector">
             {
               TournamentStages.map(ts => (
                 <Menu.Item
