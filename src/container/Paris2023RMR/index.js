@@ -203,13 +203,12 @@ export default class Paris2023RMR extends React.PureComponent {
     const hash = this.props.history?.location?.hash?.slice(1);
 
     for(const h of Regions) {
-      console.log("init", h.name, h, hash)
       if (h.name === hash) {
         this.init(h.id);
         return;
       }
     }
-    this.init(0);
+    this.init(1);
 
   }
   render() {
