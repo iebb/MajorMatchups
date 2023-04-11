@@ -479,6 +479,19 @@ iframe {
   color: white;
 }
 
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .active.item {
+  border-color: #1f1f1f;
+  color: white!important;
+}
+
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item {
+  color: #cccccc!important;
+}
+
+.ui.inverted.segment .ui.secondary.inverted.pointing.menu .item:hover {
+  color: white!important;
+}
+
 .ui.inverted.segment .region-selector .active.item {
   border-color: #1f1f1f;
   color: white!important;
