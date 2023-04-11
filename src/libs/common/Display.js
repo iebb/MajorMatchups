@@ -1,8 +1,7 @@
 import { ordinal } from '../plural';
 import { Header, Image, Label, Popup, Table } from 'semantic-ui-react';
 import { plus_minus } from '../plus_minus';
-import React, {useContext} from 'react';
-import {SettingsCtx} from "../Context";
+import React from 'react';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;

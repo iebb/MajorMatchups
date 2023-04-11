@@ -203,13 +203,12 @@ export default class Paris2023RMR extends React.PureComponent {
     const hash = this.props.history?.location?.hash?.slice(1);
 
     for(const h of Regions) {
-      console.log("init", h.name, h, hash)
       if (h.name === hash) {
         this.init(h.id);
         return;
       }
     }
-    this.init(0);
+    this.init(1);
 
   }
   render() {
@@ -220,7 +219,7 @@ export default class Paris2023RMR extends React.PureComponent {
             title="BLAST.tv Paris 2023 RMR Matchup Calc"
           />
           <div style={{ marginTop: 20 }}>
-            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflow: 'scroll hidden', maxWidth: '100%' }}>
               {
                 Regions.map(region => (
                   <Menu.Item

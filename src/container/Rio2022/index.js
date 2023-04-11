@@ -398,7 +398,7 @@ export default class Rio2022 extends React.PureComponent {
             title="IEM Rio Major 2022 Matchup Calc"
             isMajor
           />
-          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflow: 'scroll hidden', maxWidth: '100%' }}>
             {
               TournamentStages.map(ts => (
                 <Menu.Item
