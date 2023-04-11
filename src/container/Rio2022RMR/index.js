@@ -208,7 +208,7 @@ export default class Rio2022RMR extends React.PureComponent {
             </a>
           </p>
           <div style={{ marginTop: 20 }}>
-            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflowX: 'scroll', overflowY: 'hidden' }}>
               {
                 Regions.map(region => (
                   <Menu.Item

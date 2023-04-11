@@ -192,7 +192,7 @@ export default class Paris2023RMR extends React.PureComponent {
             title="BLAST.tv Paris 2023 RMR Matchup Calc"
           />
           <div style={{ marginTop: 20 }}>
-            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+            <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflowX: 'scroll', overflowY: 'hidden' }}>
               {
                 Regions.map(region => (
                   <Menu.Item

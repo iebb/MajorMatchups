@@ -409,7 +409,7 @@ export default class Rio2022Provisional extends React.PureComponent {
               weibo
             </a>
           </p>
-          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none' }}>
+          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflowX: 'scroll', overflowY: 'hidden' }}>
             {
               TournamentStages.map(ts => (
                 <Menu.Item
