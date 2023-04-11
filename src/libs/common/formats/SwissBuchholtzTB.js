@@ -14,9 +14,13 @@ export function SwissBuchholtzTB(fromStage, toStage) {
   } = state;
 
   let { losesToEliminate } = state;
+  let { buchholtzLockIns } = state;
 
   if (!losesToEliminate) {
     losesToEliminate = winsToAdvance;
+  }
+  if (!buchholtzLockIns) {
+    buchholtzLockIns = [];
   }
 
   const gamescores = state.scores || {};
@@ -61,8 +65,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         }
 
       }
-
-      if (y.buchholz - x.buchholz) return y.buchholz - x.buchholz;
+      if (stage > 0)
+      if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
       return x.seed - y.seed;
     };
 
@@ -84,16 +88,22 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         }
       }
 
-      const buchholzScore = {};
+      const buchholtzScore = {};
       for (const team of teamsT) {
-        buchholzScore[team.code] = team.w - team.l;
+        buchholtzScore[team.code] = team.w - team.l;
       }
       for (const team of teamsT) {
-        team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
-        team.buchholzBreakdown = team.opponents.map(x => ({
-          code: x,
-          b: buchholzScore[x],
-        }))
+        if (!team.buchholtzLocked) {
+          const initialB = team.buchholtz_offset || 0;
+          team.buchholtz = initialB + team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
+          team.buchholtzBreakdown = team.opponents.map(x => ({
+            code: x,
+            b: buchholtzScore[x],
+          }))
+          if (buchholtzLockIns.indexOf(`${team.w}-${team.l}`) !== -1) {
+            team.buchholtzLocked = 1;
+          }
+        }
       }
       stateTeams[stage] = teamsT;
     }
@@ -233,24 +243,23 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               if (`${t1.code}-${t2.code}#1` in gamescores) {
                 const gs = gamescores[`${t1.code}-${t2.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
-                tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                tbr = tiebreakerResults[tbs.id] = (
                   winner > 0 ?
                     [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
                     [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
-                ) : [t1.code, t2.code, [], [], true];
+                );
               } else if (`${t2.code}-${t1.code}#1` in gamescores) {
                 const gs = gamescores[`${t2.code}-${t1.code}#1`];
                 const [winner, ] = getWinnerFromScore(gs);
-                tbr = tiebreakerResults[tbs.id] = winner !== 0 ? (
+                tbr = tiebreakerResults[tbs.id] = (
                   winner < 0 ?
                     [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false] :
                     [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false]
-                ) : [t1.code, t2.code, [], [], true];
+                );
               } else {
                 tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true];
               }
             }
-
 
             const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
             const otherTeam = tbs.teams === idx + 1 ? t2 : t1;

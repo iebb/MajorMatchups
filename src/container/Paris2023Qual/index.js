@@ -12,7 +12,7 @@ import Title from "../../libs/BannerInsertion";
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe-A",
     seeds: EUA,
     seats: [
       { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
@@ -29,7 +29,7 @@ const Regions = [
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe-B",
     seeds: EUB,
     seats: [
       { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },

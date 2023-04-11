@@ -55,7 +55,7 @@ export function SwissBuchholtzDup(fromStage, toStage) {
 
       }
 
-      if (y.buchholz - x.buchholz) return y.buchholz - x.buchholz;
+      if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
       return x.seed - y.seed;
     };
 
@@ -77,15 +77,15 @@ export function SwissBuchholtzDup(fromStage, toStage) {
         }
       }
 
-      const buchholzScore = {};
+      const buchholtzScore = {};
       for (const team of teamsT) {
-        buchholzScore[team.code] = team.w - team.l;
+        buchholtzScore[team.code] = team.w - team.l;
       }
       for (const team of teamsT) {
-        team.buchholz = team.opponents.map(x => buchholzScore[x]).reduce((x, y) => x+y, 0);
-        team.buchholzBreakdown = team.opponents.map(x => ({
+        team.buchholtz = team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
+        team.buchholtzBreakdown = team.opponents.map(x => ({
           code: x,
-          b: buchholzScore[x],
+          b: buchholtzScore[x],
         }))
       }
       stateTeams[stage] = teamsT;

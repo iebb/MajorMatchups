@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Menu} from 'semantic-ui-react';
-import {AME, AP, EUA, EUB} from './initial_data';
+import {AME, AP, EUA, EUB, EUTB} from './initial_data';
 import {Scores} from './scores';
 import {SwissBuchholtzTB} from '../../libs/common/formats/SwissBuchholtzTB';
 import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
@@ -13,7 +13,7 @@ import {Knockout28} from "../../libs/common/formats/Knockout28";
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe-A",
     seeds: EUA,
     seats: [
       { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
@@ -22,20 +22,21 @@ const Regions = [
       { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
-    rounds: 6,
+    rounds: 5,
+    buchholtzLockIns: [`3-1`],
     tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
     winsToAdvance: 3,
     losesToEliminate: 3,
     nonDeciderBestOf: 1,
-    deciderBestOf: 3,
+    deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe-B",
     seeds: EUB,
     seats: [
       { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
@@ -44,11 +45,12 @@ const Regions = [
       { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
+    buchholtzLockIns: [`3-1`],
     tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
-      "6": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "5": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
     },
-    rounds: 7,
+    rounds: 6,
     winsToAdvance: 3,
     losesToEliminate: 3,
     nonDeciderBestOf: 1,
@@ -67,9 +69,9 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {
-      "4": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}],
+      "3": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}],
     },
-    rounds: 5,
+    rounds: 4,
     winsToAdvance: 3,
     losesToEliminate: 2,
     nonDeciderBestOf: 1,
@@ -94,9 +96,34 @@ const Regions = [
     tournamentFormat: "KNOCKOUT2",
     allowDups: false,
   },
+  {
+    id: 4,
+    name: "European-Decider",
+    seeds: EUTB,
+    seats: [
+      { status: "contenders", until: 1, abbrev: "Co", statusPositioned: true },
+      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "1": [{teams: 2, id: "2/3", name: "3rd Decider"}],
+      "2": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}],
+    },
+    rounds: 3,
+    winsToAdvance: 1,
+    losesToEliminate: 1,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
 ];
 
-const teamLogo = (code) => `https://majors.im/images/paris2023_rmr/${code}.png?v=2`;
+const teamLogo = (code) => {
+  return code.indexOf("#") !== -1 ?
+    `https://majors.im/images/regions/${code.split("#")[0]}.png?r=2`
+    :
+    `https://majors.im/images/paris2023_rmr/${code}.png`;
+}
 
 export default class Paris2023RMR extends React.PureComponent {
   state = {
@@ -176,6 +203,7 @@ export default class Paris2023RMR extends React.PureComponent {
     const hash = this.props.history?.location?.hash?.slice(1);
 
     for(const h of Regions) {
+      console.log("init", h.name, h, hash)
       if (h.name === hash) {
         this.init(h.id);
         return;
@@ -199,7 +227,13 @@ export default class Paris2023RMR extends React.PureComponent {
                     key={region.id}
                     name={region.name}
                     active={this.state.regionId === region.id}
-                    onClick={() => this.init(region.id)}
+                    onClick={
+                      () => {
+                        this.props.history.push("#" + region.name);
+                        document.location.reload();
+                        // this.init(region.id)
+                      }
+                    }
                   />
                 ))
               }

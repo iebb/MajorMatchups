@@ -27,7 +27,7 @@ export default class GraphBuilder extends React.PureComponent {
     const metro_d = 10;
 
     const round_width = 200;
-    const tbo_round_width = 120;
+    // const tbo_round_width = 120;
     const level_padding_initial = 100;
     const level_padding_delta = 40;
 
@@ -459,6 +459,9 @@ export default class GraphBuilder extends React.PureComponent {
         }
         .graph:hover .link:not(:hover) {
           opacity: 0.2
+        }
+        .link {
+          opacity: 0.5
         }
         .node {
           stroke-linecap: round;

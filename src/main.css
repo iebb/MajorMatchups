@@ -84,6 +84,9 @@ h1, h2, h3, h4, h5, .ui.button {
 
 /* mobile site */
 @media only screen and (max-width: 800px) {
+  .hide-on-mobile {
+    display: none;
+  }
   .bottom-desktop {
     flex-direction: column;
   }
@@ -356,6 +359,12 @@ h3.title {
 .team-box-text {
   font-weight: 600;
   font-size: 16px;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+.team-box-text-sm {
+  font-size: 12px;
   vertical-align: middle;
   line-height: 30px;
 }

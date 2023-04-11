@@ -346,3 +346,55 @@ export const EUB = [
      "description": "Seed #7"
    }
  ]
+
+
+export const EUTB = [
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 1,
+    "description": "EUA #9",
+    "buchholtz": 8,
+    "buchholtz_offset": 8,
+  },
+  {
+    "code": "eu2#9",
+    "name": "EUB #9",
+    "seed": 2,
+    "description": "EUB #9",
+    "buchholtz": 0,
+    "buchholtz_offset": 0,
+  },
+  {
+    "code": "falc",
+    "name": "Team Falcons",
+    "seed": 3,
+    "description": "EUA #10",
+    "buchholtz": 5,
+    "buchholtz_offset": 5,
+  },
+  {
+    "code": "eu2#10",
+    "name": "EUB #10",
+    "seed": 4,
+    "description": "EUB #10",
+    "buchholtz": 0,
+    "buchholtz_offset": 0,
+  },
+  {
+    "code": "b8",
+    "name": "B8",
+    "seed": 5,
+    "description": "EUA #11",
+    "buchholtz": 5,
+    "buchholtz_offset": 5,
+  },
+  {
+    "code": "eu2#11",
+    "name": "EUB #11",
+    "seed": 6,
+    "description": "EUB #11",
+    "buchholtz": 0,
+    "buchholtz_offset": 0,
+  }
+];

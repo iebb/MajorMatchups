@@ -40,6 +40,14 @@ function Title({ title, isMajor = false, classNames = "", extras=[] }) {
             </h3>
           )
         }
+        {
+          (
+            <h3>
+              {/* eslint-disable-next-line */}
+              <a href="/23paris" target="_blank" style={{color: 'yellow'}}>Provisional Paris Major Matchups Here</a>
+            </h3>
+          )
+        }
       </div>
       <p>
         <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">

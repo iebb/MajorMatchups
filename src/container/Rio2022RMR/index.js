@@ -4,7 +4,6 @@ import React from 'react';
 import {Menu} from 'semantic-ui-react';
 import {AME, AP, EUA, EUB} from './initial_data';
 import {Scores} from './scores';
-import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
 import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
 import {BasicUI} from '../../libs/common/BasicUI';
 import {Knockout} from "../../libs/common/formats/Knockout";
@@ -16,7 +15,7 @@ import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
 const Regions = [
   {
     id: 0,
-    name: "Europe A",
+    name: "Europe-A",
     seeds: EUA,
     seats: [
       { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
@@ -25,18 +24,19 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (Legend)"}],
     },
+    buchholtzLockIns: [`3-1`],
     rounds: 6,
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
     id: 1,
-    name: "Europe B",
+    name: "Europe-B",
     seeds: EUB,
     seats: [
       { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
@@ -52,7 +52,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -75,7 +75,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderBestOf: 1,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_TB",
+    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -166,8 +166,6 @@ export default class Rio2022RMR extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_TB") {
       this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT2") {
       this.setState(Knockout2.bind(this)(s, e));

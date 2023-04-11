@@ -1,7 +1,8 @@
 import { ordinal } from '../plural';
 import { Header, Image, Label, Popup, Table } from 'semantic-ui-react';
 import { plus_minus } from '../plus_minus';
-import React from 'react';
+import React, {useContext} from 'react';
+import {SettingsCtx} from "../Context";
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -10,6 +11,7 @@ function getCookie(name) {
 }
 
 export const getMatchupDisplay = (state, stage) => {
+
   const stateMatches = state.matches;
   const stateRoundTeams = state.roundTeams;
   const statePickemTags = state.pickemTags;
@@ -46,7 +48,7 @@ export const getMatchupDisplay = (state, stage) => {
     return (
       <Popup
         inverted
-        trigger={<span className="team-box-text">/ {plus_minus(team.buchholz)}</span>}
+        trigger={<span className="team-box-text">/ {team.buchholtzLocked ? "🔒" : plus_minus(team.buchholtz)}</span>}
         content={
           <Table basic='very' celled inverted>
             <Table.Header>
@@ -57,7 +59,7 @@ export const getMatchupDisplay = (state, stage) => {
             </Table.Header>
             <Table.Body>
               {
-                (team.buchholzBreakdown || []).map((opp, _idx) => teams[opp.code] &&
+                (team.buchholtzBreakdown || []).map((opp, _idx) => teams[opp.code] &&
                   <Table.Row key={_idx}>
                     <Table.Cell>
                       <Header as='h4' image>
@@ -74,7 +76,7 @@ export const getMatchupDisplay = (state, stage) => {
               }
               <Table.Row>
                 <Table.Cell><b>Total Buchholtz</b></Table.Cell>
-                <Table.Cell>{team.buchholz}</Table.Cell>
+                <Table.Cell>{team.buchholtz}</Table.Cell>
               </Table.Row>
             </Table.Body>
           </Table>
@@ -180,6 +182,15 @@ export const getMatchupDisplay = (state, stage) => {
                 </span>
               </div>
             </div>
+            {
+              (state.showDescription || stage === 0) && (
+                <div className="team-box down">
+                  <div className="team-box-split b">
+                    <span className="team-box-text-sm">{team.description}</span>
+                  </div>
+                </div>
+              )
+            }
           </div>
         )
       })}
@@ -233,6 +244,15 @@ export const getMatchupDisplay = (state, stage) => {
                   </span>
                 </div>
               </div>
+              {
+                (state.showDescription || stage === 0) && (
+                  <div className="team-box down">
+                    <div className="team-box-split b">
+                      <span className="team-box-text-sm">{x.team1.description}</span>
+                    </div>
+                  </div>
+                )
+              }
             </div>
           );
         }
@@ -287,6 +307,18 @@ export const getMatchupDisplay = (state, stage) => {
                   </span>
               </div>
             </div>
+            {
+              (state.showDescription || stage === 0) && (
+                <div className="team-box down">
+                  <div className="team-box-split b">
+                    <span className="team-box-text-sm">{x.team1.description}</span>
+                  </div>
+                  <div className="team-box-split b">
+                    <span className="team-box-text-sm">{x.team2.description}</span>
+                  </div>
+                </div>
+              )
+            }
           </div>
         );
       })}
@@ -319,6 +351,15 @@ export const getMatchupDisplay = (state, stage) => {
                 </span>
             </div>
           </div>
+          {
+            (state.showDescription || stage === 0) && (
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <span className="team-box-text-sm">{team.description}</span>
+                </div>
+              </div>
+            )
+          }
         </div>
       ))}
       {
