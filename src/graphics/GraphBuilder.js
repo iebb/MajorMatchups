@@ -457,11 +457,11 @@ export default class GraphBuilder extends React.PureComponent {
           font-family: Inter;
           font-size: 12px;
         }
-        .graph:hover .link:not(:hover) {
-          opacity: 0.2
+        .graph:hover .link:hover {
+          opacity: 0.8
         }
         .link {
-          opacity: 0.5
+          opacity: 0.2
         }
         .node {
           stroke-linecap: round;
