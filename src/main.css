@@ -131,7 +131,6 @@ a:hover {
 }
 
 .outer {
-  max-width: 97%;
   margin: 0 auto;
   display: flex;
   min-height: 100%;

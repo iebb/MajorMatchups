@@ -1,9 +1,7 @@
-import {Button, Form, Label, Radio} from 'semantic-ui-react';
+import { Button, Form, Label, Radio } from 'semantic-ui-react';
 import { getMatchupDisplay } from './Display';
 import GraphBuilder from '../../graphics/GraphBuilder';
-import React, {useContext} from 'react';
-import GoogleAd from "../GoogleAd";
-import {SettingsCtx} from "../Context";
+import React from 'react';
 
 export class BasicUI extends React.Component {
 
