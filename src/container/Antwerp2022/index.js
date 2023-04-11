@@ -407,7 +407,7 @@ export default class Antwerp2022 extends React.PureComponent {
           <Title
             title="PGL Antwerp Major 2022 Matchup Calc"
           />
-          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflowX: 'scroll', overflowY: 'hidden' }}>
+          <Menu pointing secondary inverted compact size="huge" style={{ border: 'none', overflow: 'scroll hidden', maxWidth: '100%' }}>
             {
               TournamentStages.map(ts => (
                 <Menu.Item
