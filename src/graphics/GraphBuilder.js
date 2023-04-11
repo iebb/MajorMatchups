@@ -460,6 +460,9 @@ export default class GraphBuilder extends React.PureComponent {
         .graph:hover .link:not(:hover) {
           opacity: 0.2
         }
+        .link {
+          opacity: 0.5
+        }
         .node {
           stroke-linecap: round;
           cursor: grab;
