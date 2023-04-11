@@ -168,7 +168,7 @@ export const ResponsiveContainer = ({ children }) => {
               <img className="adv-img-img" src={ad.banner} alt={ad.name} />
             </a>
           ) : adType === "google" ? (
-            <div className="adv-img">
+            <div className="adv-img google-adv-img">
               <GoogleAd
                 style={{ display: 'block', width: 768 }}
                 googleAdId="ca-pub-3253159471656308"
@@ -187,7 +187,7 @@ export const ResponsiveContainer = ({ children }) => {
               <img className="adv-img-img" src={ad.banner} alt={ad.name} />
             </a>
           ) : adType === "google" ? (
-            <div className="alt-ads adv-img">
+            <div className="alt-ads adv-img google-adv-img">
               <GoogleAd
                 style={{ display: 'block' }}
                 googleAdId="ca-pub-3253159471656308"

@@ -84,6 +84,9 @@ h1, h2, h3, h4, h5, .ui.button {
 
 /* mobile site */
 @media only screen and (max-width: 800px) {
+  .google-adv-img {
+    display: none;
+  }
   .hide-on-mobile {
     display: none;
   }
