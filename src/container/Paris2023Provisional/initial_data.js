@@ -9,8 +9,8 @@ export const initialDataLegends = [
     region: "EU",
   },
   {
-    "code": "fnat",
-    "name": "Fnatic",
+    "code": "eu2#fnat",
+    "name": "EUB #1",
     seed: 2,
     description: "EUB #1",
     region: "EU",
