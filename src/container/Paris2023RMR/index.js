@@ -9,6 +9,7 @@ import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/c
 import {BasicUI} from '../../libs/common/BasicUI';
 import Title from "../../libs/BannerInsertion";
 import {Knockout28} from "../../libs/common/formats/Knockout28";
+import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
 
 const Regions = [
   {
@@ -33,6 +34,7 @@ const Regions = [
     deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
+    defaultSuffix: "",
   },
   {
     id: 1,
@@ -57,6 +59,7 @@ const Regions = [
     deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
+    defaultSuffix: "",
   },
   {
     id: 2,
@@ -78,6 +81,7 @@ const Regions = [
     deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
+    defaultSuffix: "",
   },
   {
     id: 3,
@@ -95,6 +99,7 @@ const Regions = [
     deciderBestOf: 2,
     tournamentFormat: "KNOCKOUT2",
     allowDups: false,
+    defaultSuffix: "",
   },
   {
     id: 4,
@@ -115,6 +120,7 @@ const Regions = [
     deciderBestOf: 2,
     tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
+    defaultSuffix: "#1",
   },
 ];
 

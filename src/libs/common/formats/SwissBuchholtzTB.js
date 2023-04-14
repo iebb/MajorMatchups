@@ -10,17 +10,21 @@ export function SwissBuchholtzTB(fromStage, toStage) {
     pickResults, lockResults,
     winsToAdvance,
     nonDeciderBestOf, deciderBestOf,
-    tiebreakers
+    tiebreakers,
   } = state;
 
   let { losesToEliminate } = state;
   let { buchholtzLockIns } = state;
+  let { defaultSuffix } = state;
 
   if (!losesToEliminate) {
     losesToEliminate = winsToAdvance;
   }
   if (!buchholtzLockIns) {
     buchholtzLockIns = [];
+  }
+  if (!defaultSuffix) {
+    defaultSuffix = "";
   }
 
   const gamescores = state.scores || {};
@@ -144,8 +148,9 @@ export function SwissBuchholtzTB(fromStage, toStage) {
         let result = 0;
 
         let score = [[], []];
-        const suffix = ""
         let undetermined = false;
+
+        const suffix = defaultSuffix;
 
         if (`${team1.code}-${team2.code}` + suffix in gamescores) {
           const gs = gamescores[`${team1.code}-${team2.code}` + suffix];
