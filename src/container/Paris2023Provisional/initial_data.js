@@ -75,8 +75,8 @@ export const initialDataChallenger = [
     region: "AM",
   },
   {
-    "code": "eu2#5",
-    "name": "EUB #5",
+    "code": "g2",
+    "name": "G2 Esports",
     "seed": 11,
     description: "EUB #5",
     region: "EU",
@@ -89,8 +89,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu2#11",
-    "name": "EUB #6",
+    "code": "forz",
+    "name": "forZe",
     seed: 13,
     description: "EUB #6",
     region: "EU",
@@ -103,8 +103,8 @@ export const initialDataChallenger = [
     description: "EUA #6",
   },
   {
-    "code": "eu2#13",
-    "name": "EUB #7",
+    "code": "nip",
+    "name": "Ninjas in Pyjamas",
     seed: 15,
     description: "EUB #7",
     region: "EU",
@@ -117,8 +117,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "eu2#15",
-    "name": "EUB #8",
+    "code": "ence",
+    "name": "ENCE",
     seed: 17,
     description: "EUB #8",
     region: "EU",

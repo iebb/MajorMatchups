@@ -358,8 +358,8 @@ export const EUTB = [
     "buchholtz_offset": 8,
   },
   {
-    "code": "eu2#9",
-    "name": "EUB #9",
+    "code": "c9",
+    "name": "Cloud9",
     "seed": 2,
     "description": "EUB #9",
     "buchholtz": 0,
@@ -374,12 +374,12 @@ export const EUTB = [
     "buchholtz_offset": 5,
   },
   {
-    "code": "eu2#10",
-    "name": "EUB #10",
+    "code": "big",
+    "name": "BIG",
     "seed": 4,
     "description": "EUB #10",
-    "buchholtz": 0,
-    "buchholtz_offset": 0,
+    "buchholtz": 1,
+    "buchholtz_offset": 1,
   },
   {
     "code": "b8",
@@ -390,11 +390,11 @@ export const EUTB = [
     "buchholtz_offset": 5,
   },
   {
-    "code": "eu2#11",
-    "name": "EUB #11",
+    "code": "auro",
+    "name": "Aurora Gaming",
     "seed": 6,
     "description": "EUB #11",
-    "buchholtz": 0,
-    "buchholtz_offset": 0,
+    "buchholtz": 1,
+    "buchholtz_offset": 1,
   }
 ];
