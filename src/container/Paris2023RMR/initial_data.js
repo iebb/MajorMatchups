@@ -362,8 +362,8 @@ export const EUTB = [
     "name": "Cloud9",
     "seed": 2,
     "description": "EUB #9",
-    "buchholtz": 0,
-    "buchholtz_offset": 0,
+    "buchholtz": 4,
+    "buchholtz_offset": 4,
   },
   {
     "code": "falc",
