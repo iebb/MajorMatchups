@@ -84,14 +84,32 @@ export const ChallengerResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": ["liq","spir","ence"],
-    "buchholtz": 5,
-    "code": "g2",
-    "name": "G2 Esports",
-    "seed": 10,
-    "description": "EUB #5",
+    "opponents": [
+      "out",
+      "evl",
+      "fntc"
+    ],
+    "buchholtz": 1,
+    "buchholtzBreakdown": [
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "evl",
+        "b": -2
+      },
+      {
+        "code": "fntc",
+        "b": 1
+      }
+    ],
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 15,
+    "description": "EUB #7",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/g2_large.png",
+    "logo": "https://majors.im/images/rio2022/mouz_glitter_large.png",
     "standing": 1,
     "status": "advanced",
     "until": 8,
@@ -105,14 +123,32 @@ export const ChallengerResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": ["cplx","astr","forz"],
-    "buchholtz": -4,
-    "code": "vita",
-    "name": "Team Vitality",
-    "seed": 13,
-    "description": "EUA #6",
+    "opponents": [
+      "zzn",
+      "big",
+      "gl"
+    ],
+    "buchholtz": -2,
+    "buchholtzBreakdown": [
+      {
+        "code": "zzn",
+        "b": -3
+      },
+      {
+        "code": "big",
+        "b": 2
+      },
+      {
+        "code": "gl",
+        "b": -1
+      }
+    ],
+    "code": "bne",
+    "name": "Bad News Eagles",
+    "seed": 14,
+    "description": "EUA #7",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/vita_large.png",
+    "logo": "https://majors.im/images/rio2022/bne_glitter_large.png",
     "standing": 2,
     "status": "advanced",
     "until": 8,
@@ -126,14 +162,37 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["nine","out","g2","bne"],
+    "opponents": [
+      "mouz",
+      "ihc",
+      "vita",
+      "fntc"
+    ],
     "buchholtz": 3,
-    "code": "ence",
-    "name": "ENCE",
-    "seed": 9,
-    "description": "EUB #4",
+    "buchholtzBreakdown": [
+      {
+        "code": "mouz",
+        "b": 3
+      },
+      {
+        "code": "ihc",
+        "b": -2
+      },
+      {
+        "code": "vita",
+        "b": 1
+      },
+      {
+        "code": "fntc",
+        "b": 1
+      }
+    ],
+    "code": "out",
+    "name": "Outsiders",
+    "seed": 18,
+    "description": "EUB #8",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/ence_large.png",
+    "logo": "https://majors.im/images/rio2022/out_glitter_large.png",
     "standing": 3,
     "status": "advanced",
     "until": 8,
@@ -147,14 +206,37 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["imp","g2","eter","astr"],
-    "buchholtz": 1,
-    "code": "spir",
-    "name": "Team Spirit",
-    "seed": 18,
-    "description": "EUB #8",
+    "opponents": [
+      "furi",
+      "bne",
+      "gray",
+      "nine"
+    ],
+    "buchholtz": 2,
+    "buchholtzBreakdown": [
+      {
+        "code": "furi",
+        "b": 2
+      },
+      {
+        "code": "bne",
+        "b": 3
+      },
+      {
+        "code": "gray",
+        "b": -2
+      },
+      {
+        "code": "nine",
+        "b": -1
+      }
+    ],
+    "code": "big",
+    "name": "BIG",
+    "seed": 13,
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/spir_large.png",
+    "description": "EUB #6",
+    "logo": "https://majors.im/images/rio2022/big_glitter_large.png",
     "standing": 4,
     "status": "advanced",
     "until": 8,
@@ -168,14 +250,37 @@ export const ChallengerResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["mibr","ence","cplx","forz"],
-    "buchholtz": -2,
-    "code": "out",
-    "name": "Outsiders",
-    "seed": 19,
-    "description": "EUA #8",
-    "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/out_large.png",
+    "opponents": [
+      "big",
+      "zzn",
+      "og",
+      "gl"
+    ],
+    "buchholtz": -3,
+    "buchholtzBreakdown": [
+      {
+        "code": "big",
+        "b": 2
+      },
+      {
+        "code": "zzn",
+        "b": -3
+      },
+      {
+        "code": "og",
+        "b": -1
+      },
+      {
+        "code": "gl",
+        "b": -1
+      }
+    ],
+    "code": "furi",
+    "name": "FURIA Esports",
+    "seed": 20,
+    "description": "AM #5",
+    "region": "AM",
+    "logo": "https://majors.im/images/rio2022/furi_glitter_large.png",
     "standing": 5,
     "status": "advanced",
     "until": 8,
@@ -189,14 +294,42 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["spir","liq","bne","ihc","forz"],
-    "buchholtz": 1,
-    "code": "imp",
-    "name": "Imperial Esports",
-    "seed": 15,
-    "description": "AM #3",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/imp_large.png",
+    "opponents": [
+      "c9",
+      "og",
+      "mouz",
+      "out",
+      "nine"
+    ],
+    "buchholtz": 4,
+    "buchholtzBreakdown": [
+      {
+        "code": "c9",
+        "b": 1
+      },
+      {
+        "code": "og",
+        "b": -1
+      },
+      {
+        "code": "mouz",
+        "b": 3
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "nine",
+        "b": -1
+      }
+    ],
+    "code": "fntc",
+    "name": "Fnatic",
+    "seed": 21,
+    "description": "EUA #8",
+    "region": "EU",
+    "logo": "https://majors.im/images/rio2022/fntc_glitter_large.png",
     "standing": 6,
     "status": "advanced",
     "until": 8,
@@ -210,14 +343,42 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["eter","forz","imp","ence","mibr"],
-    "buchholtz": -1,
-    "code": "bne",
-    "name": "Bad News Eagles",
-    "seed": 16,
-    "description": "EUB #7",
+    "opponents": [
+      "imp",
+      "gl",
+      "out",
+      "gray",
+      "og"
+    ],
+    "buchholtz": -5,
+    "buchholtzBreakdown": [
+      {
+        "code": "imp",
+        "b": -3
+      },
+      {
+        "code": "gl",
+        "b": -1
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "gray",
+        "b": -2
+      },
+      {
+        "code": "og",
+        "b": -1
+      }
+    ],
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 10,
+    "description": "EUB #5",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/bne_large.png",
+    "logo": "https://majors.im/images/rio2022/vita_glitter_large.png",
     "standing": 7,
     "status": "advanced",
     "until": 8,
@@ -231,14 +392,42 @@ export const ChallengerResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["g2","imp","nine","cplx","astr"],
-    "buchholtz": -2,
-    "code": "liq",
-    "name": "Team Liquid",
-    "seed": 23,
-    "description": "AM #5",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/liq_large.png",
+    "opponents": [
+      "fntc",
+      "gray",
+      "imp",
+      "evl",
+      "gl"
+    ],
+    "buchholtz": -7,
+    "buchholtzBreakdown": [
+      {
+        "code": "fntc",
+        "b": 1
+      },
+      {
+        "code": "gray",
+        "b": -2
+      },
+      {
+        "code": "imp",
+        "b": -3
+      },
+      {
+        "code": "evl",
+        "b": -2
+      },
+      {
+        "code": "gl",
+        "b": -1
+      }
+    ],
+    "code": "c9",
+    "name": "Cloud9",
+    "seed": 12,
+    "description": "EUA #5",
+    "region": "EU",
+    "logo": "https://majors.im/images/rio2022/c9_glitter_large.png",
     "standing": 8,
     "status": "advanced",
     "until": 8,
@@ -252,14 +441,42 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["ren","bne","vita","out","imp"],
-    "buchholtz": 4,
-    "code": "forz",
-    "name": "forZe",
-    "seed": 11,
-    "description": "EUA #5",
+    "opponents": [
+      "nine",
+      "vita",
+      "bne",
+      "furi",
+      "c9"
+    ],
+    "buchholtz": 6,
+    "buchholtzBreakdown": [
+      {
+        "code": "nine",
+        "b": -1
+      },
+      {
+        "code": "vita",
+        "b": 1
+      },
+      {
+        "code": "bne",
+        "b": 3
+      },
+      {
+        "code": "furi",
+        "b": 2
+      },
+      {
+        "code": "c9",
+        "b": 1
+      }
+    ],
+    "code": "gl",
+    "name": "Team GamerLegion",
+    "seed": 17,
+    "description": "EUA #7",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/forz_large.png",
+    "logo": "https://majors.im/images/rio2022/gl_glitter_large.png",
     "standing": 9,
     "status": "eliminated",
     "until": 16,
@@ -273,14 +490,42 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["ihc","vita","mibr","spir","liq"],
-    "buchholtz": 3,
-    "code": "astr",
-    "name": "Astralis",
-    "seed": 12,
-    "description": "EUB #6",
+    "opponents": [
+      "gray",
+      "fntc",
+      "furi",
+      "ihc",
+      "vita"
+    ],
+    "buchholtz": 0,
+    "buchholtzBreakdown": [
+      {
+        "code": "gray",
+        "b": -2
+      },
+      {
+        "code": "fntc",
+        "b": 1
+      },
+      {
+        "code": "furi",
+        "b": 2
+      },
+      {
+        "code": "ihc",
+        "b": -2
+      },
+      {
+        "code": "vita",
+        "b": 1
+      }
+    ],
+    "code": "og",
+    "name": "OG",
+    "seed": 9,
+    "description": "EUB #4",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/astr_large.png",
+    "logo": "https://majors.im/images/rio2022/og_glitter_large.png",
     "standing": 10,
     "status": "eliminated",
     "until": 16,
@@ -294,14 +539,42 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["out","nine","astr","eter","bne"],
+    "opponents": [
+      "gl",
+      "imp",
+      "evl",
+      "big",
+      "fntc"
+    ],
     "buchholtz": -3,
-    "code": "mibr",
-    "name": "MIBR",
-    "seed": 14,
-    "description": "AM #2",
+    "buchholtzBreakdown": [
+      {
+        "code": "gl",
+        "b": -1
+      },
+      {
+        "code": "imp",
+        "b": -3
+      },
+      {
+        "code": "evl",
+        "b": -2
+      },
+      {
+        "code": "big",
+        "b": 2
+      },
+      {
+        "code": "fntc",
+        "b": 1
+      }
+    ],
+    "code": "nine",
+    "name": "9z Team",
+    "seed": 16,
+    "description": "AM #3",
     "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/mibr_large.png",
+    "logo": "https://majors.im/images/rio2022/nine_glitter_large.png",
     "standing": 11,
     "status": "eliminated",
     "until": 16,
@@ -315,14 +588,37 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["vita","ihc","out","liq"],
-    "buchholtz": 4,
-    "code": "cplx",
-    "name": "Complexity Gaming",
-    "seed": 20,
-    "description": "AM #4",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/cplx_large.png",
+    "opponents": [
+      "og",
+      "c9",
+      "big",
+      "vita"
+    ],
+    "buchholtz": 3,
+    "buchholtzBreakdown": [
+      {
+        "code": "og",
+        "b": -1
+      },
+      {
+        "code": "c9",
+        "b": 1
+      },
+      {
+        "code": "big",
+        "b": 2
+      },
+      {
+        "code": "vita",
+        "b": 1
+      }
+    ],
+    "code": "gray",
+    "name": "Grayhound Gaming",
+    "seed": 24,
+    "description": "AP #2",
+    "region": "AP",
+    "logo": "https://majors.im/images/rio2022/gray_glitter_large.png",
     "standing": 12,
     "status": "eliminated",
     "until": 16,
@@ -336,14 +632,37 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["bne","ren","spir","mibr"],
-    "buchholtz": -1,
-    "code": "eter",
-    "name": "Eternal Fire",
-    "seed": 17,
-    "description": "EUA #7",
-    "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/eter_large.png",
+    "opponents": [
+      "ihc",
+      "mouz",
+      "nine",
+      "c9"
+    ],
+    "buchholtz": 1,
+    "buchholtzBreakdown": [
+      {
+        "code": "ihc",
+        "b": -2
+      },
+      {
+        "code": "mouz",
+        "b": 3
+      },
+      {
+        "code": "nine",
+        "b": -1
+      },
+      {
+        "code": "c9",
+        "b": 1
+      }
+    ],
+    "code": "evl",
+    "name": "Evil Geniuses",
+    "seed": 11,
+    "description": "AM #2",
+    "region": "AM",
+    "logo": "https://majors.im/images/rio2022/evl_glitter_large.png",
     "standing": 13,
     "status": "eliminated",
     "until": 16,
@@ -357,14 +676,37 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["astr","cplx","ren","imp"],
-    "buchholtz": -5,
+    "opponents": [
+      "evl",
+      "out",
+      "zzn",
+      "og"
+    ],
+    "buchholtz": -4,
+    "buchholtzBreakdown": [
+      {
+        "code": "evl",
+        "b": -2
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "zzn",
+        "b": -3
+      },
+      {
+        "code": "og",
+        "b": -1
+      }
+    ],
     "code": "ihc",
     "name": "IHC Esports",
-    "seed": 21,
+    "seed": 22,
     "description": "AP #1",
     "region": "AP",
-    "logo": "https://majors.im/images/antwerp2022/ihc_large.png",
+    "logo": "https://majors.im/images/rio2022/ihc_glitter_large.png",
     "standing": 14,
     "status": "eliminated",
     "until": 16,
@@ -378,14 +720,32 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": ["ence","mibr","liq"],
-    "buchholtz": 2,
-    "code": "nine",
-    "name": "9z Team",
-    "seed": 24,
-    "description": "AM #6",
+    "opponents": [
+      "bne",
+      "furi",
+      "ihc"
+    ],
+    "buchholtz": 3,
+    "buchholtzBreakdown": [
+      {
+        "code": "bne",
+        "b": 3
+      },
+      {
+        "code": "furi",
+        "b": 2
+      },
+      {
+        "code": "ihc",
+        "b": -2
+      }
+    ],
+    "code": "zzn",
+    "name": "00 Nation",
+    "seed": 19,
+    "description": "AM #4",
     "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/nine_large.png",
+    "logo": "https://majors.im/images/rio2022/zzn_glitter_large.png",
     "standing": 15,
     "status": "eliminated",
     "until": 16,
@@ -399,14 +759,32 @@ export const ChallengerResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": ["forz","eter","ihc"],
-    "buchholtz": -5,
-    "code": "ren",
-    "name": "Renegades",
-    "seed": 22,
-    "description": "AP #2",
-    "region": "AP",
-    "logo": "https://majors.im/images/antwerp2022/ren_large.png",
+    "opponents": [
+      "vita",
+      "nine",
+      "c9"
+    ],
+    "buchholtz": 1,
+    "buchholtzBreakdown": [
+      {
+        "code": "vita",
+        "b": 1
+      },
+      {
+        "code": "nine",
+        "b": -1
+      },
+      {
+        "code": "c9",
+        "b": 1
+      }
+    ],
+    "code": "imp",
+    "name": "Imperial Esports",
+    "seed": 23,
+    "description": "AM #6",
+    "region": "AM",
+    "logo": "https://majors.im/images/rio2022/imp_glitter_large.png",
     "standing": 16,
     "status": "eliminated",
     "until": 16,
@@ -423,14 +801,32 @@ export const LegendResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": ["furi","hero","cope"],
-    "buchholtz": 3,
-    "code": "spir",
-    "name": "Team Spirit",
-    "seed": 12,
-    "description": "3-1, +1",
+    "opponents": [
+      "faze",
+      "navi",
+      "hero"
+    ],
+    "buchholtz": 0,
+    "buchholtzBreakdown": [
+      {
+        "code": "faze",
+        "b": -3
+      },
+      {
+        "code": "navi",
+        "b": 1
+      },
+      {
+        "code": "hero",
+        "b": 2
+      }
+    ],
+    "code": "c9",
+    "name": "Cloud9",
+    "seed": 16,
+    "description": "3-2, -7",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/spir_large.png",
+    "logo": "https://majors.im/images/rio2022/c9_glitter_large.png",
     "standing": 1,
     "status": "advanced",
     "until": 8,
@@ -444,14 +840,32 @@ export const LegendResults = [
   {
     "l": 0,
     "w": 3,
-    "opponents": ["g2","big","nip"],
+    "opponents": [
+      "ence",
+      "spir",
+      "big"
+    ],
     "buchholtz": -1,
-    "code": "navi",
-    "name": "Natus Vincere",
-    "seed": 8,
-    "description": "EUA #4",
-    "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/navi_large.png",
+    "buchholtzBreakdown": [
+      {
+        "code": "ence",
+        "b": -1
+      },
+      {
+        "code": "spir",
+        "b": 1
+      },
+      {
+        "code": "big",
+        "b": -1
+      }
+    ],
+    "code": "furi",
+    "name": "FURIA Esports",
+    "seed": 13,
+    "description": "3-1, -3",
+    "region": "AM",
+    "logo": "https://majors.im/images/rio2022/furi_glitter_large.png",
     "standing": 2,
     "status": "advanced",
     "until": 8,
@@ -465,14 +879,37 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["faze","cope","out","hero"],
-    "buchholtz": 2,
-    "code": "ence",
-    "name": "ENCE",
-    "seed": 11,
-    "description": "3-1, +3",
+    "opponents": [
+      "out",
+      "fntc",
+      "c9",
+      "liq"
+    ],
+    "buchholtz": 6,
+    "buchholtzBreakdown": [
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "fntc",
+        "b": 2
+      },
+      {
+        "code": "c9",
+        "b": 3
+      },
+      {
+        "code": "liq",
+        "b": -1
+      }
+    ],
+    "code": "hero",
+    "name": "Heroic",
+    "seed": 6,
+    "description": "EUB #3",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/ence_large.png",
+    "logo": "https://majors.im/images/rio2022/hero_glitter_large.png",
     "standing": 3,
     "status": "advanced",
     "until": 8,
@@ -486,14 +923,37 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["vita","c9","navi","furi"],
+    "opponents": [
+      "hero",
+      "nip",
+      "spir",
+      "mouz"
+    ],
     "buchholtz": 1,
-    "code": "nip",
-    "name": "Ninjas in Pyjamas",
-    "seed": 7,
-    "description": "EUB #3",
+    "buchholtzBreakdown": [
+      {
+        "code": "hero",
+        "b": 2
+      },
+      {
+        "code": "nip",
+        "b": -3
+      },
+      {
+        "code": "spir",
+        "b": 1
+      },
+      {
+        "code": "mouz",
+        "b": 1
+      }
+    ],
+    "code": "out",
+    "name": "Outsiders",
+    "seed": 11,
+    "description": "3-1, +3",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/nip_large.png",
+    "logo": "https://majors.im/images/rio2022/out_glitter_large.png",
     "standing": 4,
     "status": "advanced",
     "until": 8,
@@ -507,14 +967,37 @@ export const LegendResults = [
   {
     "l": 1,
     "w": 3,
-    "opponents": ["ence","bne","c9","cope"],
-    "buchholtz": -2,
-    "code": "faze",
-    "name": "FaZe Clan",
-    "seed": 6,
-    "description": "EUA #3",
+    "opponents": [
+      "nip",
+      "hero",
+      "ence",
+      "big"
+    ],
+    "buchholtz": -3,
+    "buchholtzBreakdown": [
+      {
+        "code": "nip",
+        "b": -3
+      },
+      {
+        "code": "hero",
+        "b": 2
+      },
+      {
+        "code": "ence",
+        "b": -1
+      },
+      {
+        "code": "big",
+        "b": -1
+      }
+    ],
+    "code": "fntc",
+    "name": "Fnatic",
+    "seed": 14,
+    "description": "3-2, +4",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/faze_large.png",
+    "logo": "https://majors.im/images/rio2022/fntc_glitter_large.png",
     "standing": 5,
     "status": "advanced",
     "until": 8,
@@ -528,14 +1011,42 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["bne","ence","spir","faze","imp"],
-    "buchholtz": 3,
-    "code": "cope",
-    "name": "Copenhagen Flames",
-    "seed": 2,
-    "description": "EUB #1",
+    "opponents": [
+      "bne",
+      "furi",
+      "out",
+      "spr",
+      "liq"
+    ],
+    "buchholtz": 0,
+    "buchholtzBreakdown": [
+      {
+        "code": "bne",
+        "b": -2
+      },
+      {
+        "code": "furi",
+        "b": 3
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "spr",
+        "b": -2
+      },
+      {
+        "code": "liq",
+        "b": -1
+      }
+    ],
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 7,
+    "description": "EUA #4",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/cope_large.png",
+    "logo": "https://majors.im/images/rio2022/spir_glitter_large.png",
     "standing": 6,
     "status": "advanced",
     "until": 8,
@@ -549,14 +1060,42 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["liq","spir","g2","ence","vita"],
-    "buchholtz": 0,
-    "code": "hero",
-    "name": "Heroic",
-    "seed": 1,
-    "description": "EUA #1",
+    "opponents": [
+      "vita",
+      "c9",
+      "liq",
+      "bne",
+      "big"
+    ],
+    "buchholtz": -3,
+    "buchholtzBreakdown": [
+      {
+        "code": "vita",
+        "b": -2
+      },
+      {
+        "code": "c9",
+        "b": 3
+      },
+      {
+        "code": "liq",
+        "b": -1
+      },
+      {
+        "code": "bne",
+        "b": -2
+      },
+      {
+        "code": "big",
+        "b": -1
+      }
+    ],
+    "code": "navi",
+    "name": "Natus Vincere",
+    "seed": 2,
+    "description": "EUB #1",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/hero_large.png",
+    "logo": "https://majors.im/images/rio2022/navi_glitter_large.png",
     "standing": 7,
     "status": "advanced",
     "until": 8,
@@ -570,14 +1109,42 @@ export const LegendResults = [
   {
     "l": 2,
     "w": 3,
-    "opponents": ["spir","liq","big","nip","g2"],
-    "buchholtz": -1,
-    "code": "furi",
-    "name": "FURIA Esports",
-    "seed": 5,
-    "description": "AM #1",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/furi_large.png",
+    "opponents": [
+      "liq",
+      "big",
+      "vita",
+      "out",
+      "ence"
+    ],
+    "buchholtz": -3,
+    "buchholtzBreakdown": [
+      {
+        "code": "liq",
+        "b": -1
+      },
+      {
+        "code": "big",
+        "b": -1
+      },
+      {
+        "code": "vita",
+        "b": -2
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "ence",
+        "b": -1
+      }
+    ],
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 9,
+    "description": "3-0, +1",
+    "region": "EU",
+    "logo": "https://majors.im/images/rio2022/mouz_glitter_large.png",
     "standing": 8,
     "status": "advanced",
     "until": 8,
@@ -591,14 +1158,42 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["navi","imp","hero","out","furi"],
-    "buchholtz": 2,
-    "code": "g2",
-    "name": "G2 Esports",
-    "seed": 9,
-    "description": "3-0, +5",
+    "opponents": [
+      "spr",
+      "mouz",
+      "furi",
+      "fntc",
+      "navi"
+    ],
+    "buchholtz": 5,
+    "buchholtzBreakdown": [
+      {
+        "code": "spr",
+        "b": -2
+      },
+      {
+        "code": "mouz",
+        "b": 1
+      },
+      {
+        "code": "furi",
+        "b": 3
+      },
+      {
+        "code": "fntc",
+        "b": 2
+      },
+      {
+        "code": "navi",
+        "b": 1
+      }
+    ],
+    "code": "big",
+    "name": "BIG",
+    "seed": 12,
+    "description": "3-1, +2",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/g2_large.png",
+    "logo": "https://majors.im/images/rio2022/big_glitter_large.png",
     "standing": 9,
     "status": "eliminated",
     "until": 16,
@@ -612,14 +1207,42 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["nip","out","liq","big","hero"],
-    "buchholtz": -4,
-    "code": "vita",
-    "name": "Team Vitality",
-    "seed": 10,
-    "description": "3-0, -4",
-    "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/vita_large.png",
+    "opponents": [
+      "mouz",
+      "spr",
+      "navi",
+      "hero",
+      "spir"
+    ],
+    "buchholtz": 3,
+    "buchholtzBreakdown": [
+      {
+        "code": "mouz",
+        "b": 1
+      },
+      {
+        "code": "spr",
+        "b": -2
+      },
+      {
+        "code": "navi",
+        "b": 1
+      },
+      {
+        "code": "hero",
+        "b": 2
+      },
+      {
+        "code": "spir",
+        "b": 1
+      }
+    ],
+    "code": "liq",
+    "name": "Team Liquid",
+    "seed": 8,
+    "description": "AM #1",
+    "region": "AM",
+    "logo": "https://majors.im/images/rio2022/liq_glitter_large.png",
     "standing": 10,
     "status": "eliminated",
     "until": 16,
@@ -633,14 +1256,42 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 2,
-    "opponents": ["big","g2","bne","c9","cope"],
-    "buchholtz": -7,
-    "code": "imp",
-    "name": "Imperial Esports",
-    "seed": 14,
-    "description": "3-2, +1",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/imp_large.png",
+    "opponents": [
+      "furi",
+      "bne",
+      "fntc",
+      "vita",
+      "mouz"
+    ],
+    "buchholtz": 2,
+    "buchholtzBreakdown": [
+      {
+        "code": "furi",
+        "b": 3
+      },
+      {
+        "code": "bne",
+        "b": -2
+      },
+      {
+        "code": "fntc",
+        "b": 2
+      },
+      {
+        "code": "vita",
+        "b": -2
+      },
+      {
+        "code": "mouz",
+        "b": 1
+      }
+    ],
+    "code": "ence",
+    "name": "ENCE",
+    "seed": 4,
+    "description": "EUB #2",
+    "region": "EU",
+    "logo": "https://majors.im/images/rio2022/ence_glitter_large.png",
     "standing": 11,
     "status": "eliminated",
     "until": 16,
@@ -654,14 +1305,37 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["imp","navi","furi","vita"],
-    "buchholtz": 2,
-    "code": "big",
-    "name": "BIG",
-    "seed": 3,
-    "description": "EUA #2",
+    "opponents": [
+      "spir",
+      "ence",
+      "faze",
+      "navi"
+    ],
+    "buchholtz": -2,
+    "buchholtzBreakdown": [
+      {
+        "code": "spir",
+        "b": 1
+      },
+      {
+        "code": "ence",
+        "b": -1
+      },
+      {
+        "code": "faze",
+        "b": -3
+      },
+      {
+        "code": "navi",
+        "b": 1
+      }
+    ],
+    "code": "bne",
+    "name": "Bad News Eagles",
+    "seed": 10,
+    "description": "3-0, -2",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/big_large.png",
+    "logo": "https://majors.im/images/rio2022/bne_glitter_large.png",
     "standing": 12,
     "status": "eliminated",
     "until": 16,
@@ -675,14 +1349,37 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["out","nip","faze","imp"],
-    "buchholtz": 1,
-    "code": "c9",
-    "name": "Cloud9",
-    "seed": 4,
-    "description": "EUB #2",
+    "opponents": [
+      "navi",
+      "faze",
+      "mouz",
+      "ence"
+    ],
+    "buchholtz": -2,
+    "buchholtzBreakdown": [
+      {
+        "code": "navi",
+        "b": 1
+      },
+      {
+        "code": "faze",
+        "b": -3
+      },
+      {
+        "code": "mouz",
+        "b": 1
+      },
+      {
+        "code": "ence",
+        "b": -1
+      }
+    ],
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 15,
+    "description": "3-2, -5",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/c9_large.png",
+    "logo": "https://majors.im/images/rio2022/vita_glitter_large.png",
     "standing": 13,
     "status": "eliminated",
     "until": 16,
@@ -696,14 +1393,37 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 1,
-    "opponents": ["c9","vita","ence","g2"],
-    "buchholtz": -2,
-    "code": "out",
-    "name": "Outsiders",
-    "seed": 13,
-    "description": "3-1, -2",
+    "opponents": [
+      "big",
+      "liq",
+      "nip",
+      "spir"
+    ],
+    "buchholtz": -4,
+    "buchholtzBreakdown": [
+      {
+        "code": "big",
+        "b": -1
+      },
+      {
+        "code": "liq",
+        "b": -1
+      },
+      {
+        "code": "nip",
+        "b": -3
+      },
+      {
+        "code": "spir",
+        "b": 1
+      }
+    ],
+    "code": "spr",
+    "name": "Sprout",
+    "seed": 5,
+    "description": "EUA #3",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/out_large.png",
+    "logo": "https://majors.im/images/rio2022/spr_glitter_large.png",
     "standing": 14,
     "status": "eliminated",
     "until": 16,
@@ -717,14 +1437,32 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": ["cope","faze","imp"],
+    "opponents": [
+      "fntc",
+      "out",
+      "spr"
+    ],
     "buchholtz": 2,
-    "code": "bne",
-    "name": "Bad News Eagles",
-    "seed": 15,
-    "description": "3-2, -1",
+    "buchholtzBreakdown": [
+      {
+        "code": "fntc",
+        "b": 2
+      },
+      {
+        "code": "out",
+        "b": 2
+      },
+      {
+        "code": "spr",
+        "b": -2
+      }
+    ],
+    "code": "nip",
+    "name": "Ninjas in Pyjamas",
+    "seed": 3,
+    "description": "EUA #2",
     "region": "EU",
-    "logo": "https://majors.im/images/antwerp2022/bne_large.png",
+    "logo": "https://majors.im/images/rio2022/nip_glitter_large.png",
     "standing": 15,
     "status": "eliminated",
     "until": 16,
@@ -738,14 +1476,32 @@ export const LegendResults = [
   {
     "l": 3,
     "w": 0,
-    "opponents": ["hero","furi","vita"],
-    "buchholtz": 1,
-    "code": "liq",
-    "name": "Team Liquid",
-    "seed": 16,
-    "description": "3-2, -2",
-    "region": "AM",
-    "logo": "https://majors.im/images/antwerp2022/liq_large.png",
+    "opponents": [
+      "c9",
+      "vita",
+      "bne"
+    ],
+    "buchholtz": -1,
+    "buchholtzBreakdown": [
+      {
+        "code": "c9",
+        "b": 3
+      },
+      {
+        "code": "vita",
+        "b": -2
+      },
+      {
+        "code": "bne",
+        "b": -2
+      }
+    ],
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 1,
+    "description": "EUA #1",
+    "region": "EU",
+    "logo": "https://majors.im/images/rio2022/faze_glitter_large.png",
     "standing": 16,
     "status": "eliminated",
     "until": 16,

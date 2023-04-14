@@ -248,7 +248,7 @@ export const finalDataChampions = [
     code: "furi",
     name: "FURIA Esports",
     description: "3-0, -1",
-    region: "EU",
+    region: "AM",
   },
   {
     code: "hero",
