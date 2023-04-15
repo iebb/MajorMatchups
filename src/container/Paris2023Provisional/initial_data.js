@@ -44,8 +44,8 @@ export const initialDataLegends = [
     region: "EU",
   },
   {
-    "code": "eu2#hero",
-    "name": "EUB #3",
+    "code": "vita",
+    "name": "Team Vitality",
     seed: 7,
     description: "EUB #3",
     region: "EU",
@@ -61,8 +61,8 @@ export const initialDataLegends = [
 
 export const initialDataChallenger = [
   {
-    "code": "eu2#4",
-    "name": "EUB #4",
+    "code": "mont",
+    "name": "Monte",
     seed: 9,
     description: "EUB #4",
     region: "EU",
@@ -166,8 +166,8 @@ export const initialDataChallenger = [
     region: "AM",
   },
   {
-    "code": "eu3#17",
-    "name": "EU-TB",
+    "code": "faze",
+    "name": "FaZe Clan",
     seed: 24,
     description: "EU-TB",
     region: "EU",
