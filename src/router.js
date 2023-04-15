@@ -47,7 +47,7 @@ export default function Routes() {
         <Paris2023Provisional history={h} />
       </Route>
       <Route path="/">
-        <Redirect to="/23rmr_paris" />
+        <Redirect to="/23paris" />
       </Route>
     </Switch>
   );
