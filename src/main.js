@@ -3,6 +3,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {Container, Dropdown, Icon, Menu, Segment, Sidebar, Visibility} from 'semantic-ui-react';
+import ComplexNavbar from "./libs/Navbar";
 import Routes from './router';
 
 import './main.css';
@@ -35,6 +36,7 @@ const Editions = [
 
 const Footer = () => (
   <div style={{ margin: 10, userSelect: 'text' }}>
+    <ComplexNavbar />
     <p style={{ fontSize: 15, marginTop: 0 }}>
       by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2023 | Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
       <br/><a href="https://discord.gg/KYNbRYrZGe">

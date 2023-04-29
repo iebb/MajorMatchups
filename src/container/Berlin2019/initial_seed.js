@@ -1,4 +1,14 @@
-import { std, mean } from 'mathjs';
+const mean = (arr) => {
+  return arr.reduce((acc, val) => acc + val, 0) / arr.length;
+};
+
+const stdMean = (arr) => {
+  const mean = arr.reduce((acc, val) => acc + val, 0) / arr.length;
+  return [Math.sqrt(
+    arr.reduce((acc, val) => acc.concat((val - mean) ** 2), []).reduce((acc, val) => acc + val, 0) /
+    (arr.length)
+  ), mean];
+};
 
 export const rankingSeed = [
   ['g2', [16, 17, 15, 13, 13, 14, 14, 13, 13, 13, 15, 15, 15, 13, 14, 15, 8, 8, 9, 9, 8, 8, 8, 8]],
@@ -42,8 +52,7 @@ export const getRelativeSeed = (seeds) => {
     }
   }
   for (const team of seeds) {
-    const stddev = std(results[team[0]]);
-    const avg = mean(results[team[0]]);
+    const [stddev, avg] = stdMean(results[team[0]]);
     const filtered = results[team[0]].filter((x) => x >= Math.ceil(avg - stddev) && x <= Math.floor(avg + stddev));
     results[team[0]] = mean(filtered);
   }

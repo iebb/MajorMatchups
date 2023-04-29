@@ -6,7 +6,7 @@ function Title({ title, isMajor = false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
 
   return (
-    <div className={classNames}>
+    <div className={classNames + " title-outer-container"}>
       <div className="title-container">
         {
           ctx.adType === "custom" ? (
