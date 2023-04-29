@@ -49,6 +49,20 @@ export const getWinnerFromScore = (scores) => {
   }
   return [teamA - teamB, Math.max(teamA, teamB)]
 }
+export const getWinnerFromScoreGeneric = (scores) => {
+  let teamA = 0;
+  let teamB = 0;
+  for(const sco of scores) {
+    if (sco[0] !== sco[1]) {
+      if (sco[0] > sco[1]) {
+        teamA ++;
+      } else if (sco[1] < sco[0]) {
+        teamB ++;
+      }
+    }
+  }
+  return [teamA - teamB, Math.max(teamA, teamB)]
+}
 
 export const AdvanceElimSeats = [
   { status: "advanced", until: 8, abbrev: "A", statusPositioned: true },

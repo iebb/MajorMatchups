@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
+import {SwissBuchholtzForR6} from "../../libs/common/formats/SwissBuchholtzForR6";
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
@@ -84,7 +85,7 @@ export default class R6CPH23 extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
+      this.setState(SwissBuchholtzForR6.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {
