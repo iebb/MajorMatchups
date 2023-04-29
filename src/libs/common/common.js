@@ -56,7 +56,7 @@ export const getWinnerFromScoreGeneric = (scores) => {
     if (sco[0] !== sco[1]) {
       if (sco[0] > sco[1]) {
         teamA ++;
-      } else if (sco[1] < sco[0]) {
+      } else if (sco[0] < sco[1]) {
         teamB ++;
       }
     }
