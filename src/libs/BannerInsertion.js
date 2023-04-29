@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import {Helmet} from "react-helmet";
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "./Context";
 
@@ -7,6 +8,9 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
 
   return (
     <div className={classNames + " title-outer-container"}>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <div className="title-container">
         {
           sponsorLess ? (
