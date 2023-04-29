@@ -2,4 +2,5 @@
 /api/event      https://analytics.nekoko.it/api/event 200
 /api/*          https://major-api.ieb.im/:splat  200
 /config         https://ads.badasstemple.eu/api.php 200
+/r6_scores         https://matches.im/api/scores?id=644c15a6f00fad11b00c0c69 200
 /*              /index.html   200
