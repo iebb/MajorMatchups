@@ -450,7 +450,8 @@ export default class GraphBuilder extends React.PureComponent {
           width={layout.width}
           height={layout.height}
           style={{
-            backgroundColor: background_color
+            backgroundColor: background_color,
+            fill: "rgba(255, 255, 255, 0.7)",
           }}>
           <style>{`
         text {
@@ -518,7 +519,7 @@ export default class GraphBuilder extends React.PureComponent {
                     <>
                       <image x={n.x + 4} y={n.y - n.height / 2 + 16 - 10} width={12} height={12} href={n.logo1} />
                       <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 16}
-                            style={n.picked === 1 ? {color: "rgb(82, 246, 103)"} : null}>{n.name1}
+                            style={n.picked === 1 ? {fill: "rgb(82, 246, 103)"} : null}>{n.name1}
                         {n.picked === 1 ? " ✅" : null}
                       </text>
                     </>
@@ -529,7 +530,7 @@ export default class GraphBuilder extends React.PureComponent {
                     <>
                       <image x={n.x + 4} y={n.y - n.height / 2 + 42 - 10} width={12} height={12} href={n.logo2} />
                       <text key={"_4" + n.id} x={n.x + 4 + 16} y={n.y - n.height / 2 + 42}
-                            style={n.picked === -1 ? {color: "rgb(82, 246, 103)"} : null}>{n.name2}
+                            style={n.picked === -1 ? {fill: "rgb(82, 246, 103)"} : null}>{n.name2}
                         {n.picked === -1 ? " ✅" : null}
                       </text>
                     </>

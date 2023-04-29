@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Berlin2019 from './container/Berlin2019';
+import R6CPH23 from "./container/R6CPH23";
 import Stockholm2021 from './container/Stockholm2021';
 import Katowice2019 from './container/Katowice2019';
 import Antwerp2022RMR from "./container/Antwerp2022RMR";
@@ -45,6 +46,9 @@ export default function Routes() {
       </Route>
       <Route path="/23paris">
         <Paris2023Provisional history={h} />
+      </Route>
+      <Route path="/r6_23majorcph">
+        <R6CPH23 history={h} />
       </Route>
       <Route path="/">
         <Redirect to="/23paris" />

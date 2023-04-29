@@ -2,34 +2,39 @@ import React, {useContext} from 'react';
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "./Context";
 
-function Title({ title, isMajor = false, classNames = "", extras=[] }) {
+function Title({ title, isMajor = false, sponsorLess=false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
 
   return (
     <div className={classNames + " title-outer-container"}>
       <div className="title-container">
         {
-          ctx.adType === "custom" ? (
-            <div className="adv-logo-inline">
-              <div className="adv-logo-inline-left">
-                <a href="https://redirect.badasstemple.eu/br7lju">
-                  <img src={sponsorLogo} alt={ctx.adProvider} />
-                </a>
-              </div>
-              <div className="adv-logo-inline-right">
-                <h1 className="title">{title}</h1>
-              </div>
-            </div>
+          sponsorLess ? (
+            <h1 className="title">{title}</h1>
           ) : (
-            <>
-              <h1 className="title">{title}</h1>
-              <p style={{fontSize: 18, marginTop: 16}}>
-                Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
-                <img src={sponsorLogo} alt={ctx.adProvider}
-                     style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>
-              </a>
-              </p>
-            </>
+
+            ctx.adType === "custom" ? (
+              <div className="adv-logo-inline">
+                <div className="adv-logo-inline-left">
+                  <a href="https://redirect.badasstemple.eu/br7lju">
+                    <img src={sponsorLogo} alt={ctx.adProvider} />
+                  </a>
+                </div>
+                <div className="adv-logo-inline-right">
+                  <h1 className="title">{title}</h1>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h1 className="title">{title}</h1>
+                <p style={{fontSize: 18, marginTop: 16}}>
+                  Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
+                  <img src={sponsorLogo} alt={ctx.adProvider}
+                       style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>
+                </a>
+                </p>
+              </>
+            )
           )
         }
         {
@@ -41,12 +46,12 @@ function Title({ title, isMajor = false, classNames = "", extras=[] }) {
           )
         }
         {
-          (
-            <h3>
-              {/* eslint-disable-next-line */}
-              <a href="/23paris" target="_blank" style={{color: 'yellow'}}>Provisional Paris Major Matchups Here</a>
-            </h3>
-          )
+          // (
+          //   <h3>
+          //     {/* eslint-disable-next-line */}
+          //     <a href="/23paris" target="_blank" style={{color: 'yellow'}}>Provisional Paris Major Matchups Here</a>
+          //   </h3>
+          // )
         }
       </div>
       <p>

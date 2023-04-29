@@ -23,34 +23,35 @@ const Editions = [
     edition: "2023",
     icon: RocketLaunchIcon,
     items: [
-      ['2023 Paris Major [Provisional]', '/23paris'],
-      ['2023 Paris RMR', '/23rmr_paris'],
-      ['2023 Paris RMR Closed Qualifier', '/23qual_paris'],
+      ['2023 Paris Major [Provisional]', 'May 8 - 21', '/23paris'],
+      ['2023 Paris RMR', 'Apr 6 - 15', '/23rmr_paris'],
+      ['2023 Paris RMR Closed Qualifier', 'Feb 16 - 20', '/23qual_paris'],
+      ['2023 R6 BLAST Major Copenhagen', '', '/r6_23majorcph'],
     ]
   },
   {
     edition: "2022",
     icon: StarIcon,
     items: [
-      ['2022 Rio Major', '/22rio'],
-      ['2022 Rio RMR', '/22rmr_rio'],
-      ['2022 Antwerp Major', '/22antwerp'],
-      ['2022 Antwerp RMR', '/22rmr_antwerp'],
+      ['2022 Rio Major', '', '/22rio'],
+      ['2022 Rio RMR', '', '/22rmr_rio'],
+      ['2022 Antwerp Major','',  '/22antwerp'],
+      ['2022 Antwerp RMR', '', '/22rmr_antwerp'],
     ]
   },
   {
     edition: "2021",
     icon: GlobeEuropeAfricaIcon,
     items: [
-      ['2021 Stockholm Major', '/21stockholm'],
+      ['2021 Stockholm Major', '', '/21stockholm'],
     ]
   },
   {
     edition: "2019",
     icon: FolderArrowDownIcon,
     items: [
-      ['2019 Berlin', '/19berlin'],
-      ['2019 Katowice', '/19katowice'],
+      ['2019 Berlin', '', '/19berlin'],
+      ['2019 Katowice', '', '/19katowice'],
     ]
   },
 ]
@@ -66,14 +67,14 @@ function NavListMenu({ edition }) {
   const { icon, items } = edition;
   const Icon = icon;
 
-  const renderItems = items.map(([title, path]) => (
+  const renderItems = items.map(([title, description, path]) => (
     <a href={path} key={title}>
       <MenuItem>
         <Typography variant="h6" color="blue-gray" className="mb-1">
           {title}
         </Typography>
         <Typography variant="small" color="gray" className="font-normal">
-          {path}
+          {description}
         </Typography>
       </MenuItem>
     </a>
@@ -100,7 +101,7 @@ function NavListMenu({ edition }) {
         </MenuHandler>
         <MenuList
           {...triggers}
-          className="hidden w-[18rem] grid-cols-4 gap-3 overflow-visible md:grid"
+          className="hidden w-[24rem] grid-cols-4 gap-3 overflow-visible md:grid"
         >
           <ul className="col-span-4 flex w-full flex-col gap-1">
             {renderItems}
