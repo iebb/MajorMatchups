@@ -1,20 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-
-const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'),
-);
-
 module.exports = {
-  extends: ['react-app', 'prettier'],
-  plugins: ['prettier'],
-  rules: {
-    'prettier/prettier': ['error', prettierOptions],
-  },
-  overrides: [
-    {
-      files: ['**/*.ts?(x)'],
-      rules: { 'prettier/prettier': ['warn', prettierOptions] },
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-  ],
-};
+    "extends": [],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+    }
+}

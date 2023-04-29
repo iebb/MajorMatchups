@@ -22,9 +22,7 @@
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "yarn run eslint src",
     "lint:fix": "yarn run eslint --fix src",
-    "prettify": "prettier --write",
-    "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' yarn build && gh-pages -d build",
-    "changelog": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-changelog.script.ts"
+    "prettify": "prettier --write"
   },
   "dependencies": {
     "@heroicons/react": "2.0.17",
@@ -39,9 +37,6 @@
     "semantic-ui-react": "^2.1.2"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "prettier": "^2.8.8",
     "react-scripts": "^5.0.1",
     "tailwindcss": "^3.3.2"
   },

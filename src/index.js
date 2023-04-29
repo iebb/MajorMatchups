@@ -6,7 +6,6 @@
  */
 
 import { createRoot } from 'react-dom/client';
-import 'sanitize.css/sanitize.css';
 import './main.css';
 
 import App from './main';
