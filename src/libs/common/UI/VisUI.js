@@ -1,5 +1,4 @@
-import { Button, Form, Label, Radio } from 'semantic-ui-react';
-import { getMatchupDisplay } from '../Display';
+import { Form, Radio } from 'semantic-ui-react';
 import GraphBuilder from '../../../graphics/GraphBuilder';
 import React from 'react';
 

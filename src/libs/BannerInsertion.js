@@ -23,10 +23,10 @@ function Title({ title, isMajor = false, classNames = "", extras=[] }) {
           ) : (
             <>
               <h1 className="title">{title}</h1>
-              <p style={{fontSize: 18, marginTop: -16}}>
+              <p style={{fontSize: 18, marginTop: 16}}>
                 Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
                 <img src={sponsorLogo} alt={ctx.adProvider}
-                     style={{maxHeight: 20, marginLeft: 10}}/>
+                     style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>
               </a>
               </p>
             </>

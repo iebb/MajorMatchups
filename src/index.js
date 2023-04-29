@@ -5,18 +5,13 @@
  * code.
  */
 
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
-
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-
-// Use consistent styling
+import { createRoot } from 'react-dom/client';
 import 'sanitize.css/sanitize.css';
-import 'semantic-ui-css/semantic.min.css';
+import './main.css';
 
-import HomepageLayout from './main';
+import App from './main';
 
-const MOUNT_NODE = document.getElementById('root');
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-ReactDOM.render(<HomepageLayout />, MOUNT_NODE);
+root.render(<App />);

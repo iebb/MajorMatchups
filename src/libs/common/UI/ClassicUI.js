@@ -1,21 +1,16 @@
-import { Button, Form, Label, Radio } from 'semantic-ui-react';
+import { Form, Radio } from 'semantic-ui-react';
 import { getMatchupDisplay } from '../Display';
-import GraphBuilder from '../../../graphics/GraphBuilder';
 import React from 'react';
 
 export class ClassicUI extends React.Component {
 
   state = {
-    hideMatchUI: (localStorage.hideMatchUI || "false") === "true",
-    hideVisualizationUI: (localStorage.hideVisualizationUI || "false") === "true",
     matchOnly: (localStorage.matchOnly || "false") === "true",
     trackPickems: (localStorage.matchOnly || "true") === "true",
     eliminatedOnVisualization: (localStorage.dash || "true") === "true",
     dash: (localStorage.dash || "true") === "true",
     tight: (localStorage.tight || "false") === "true",
     straightCorner: (localStorage.straightCorner || "false") === "true",
-    interactiveMode: false, // (localStorage.interactiveMode || "true") === "true",
-    iRound: 0,
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -25,8 +20,8 @@ export class ClassicUI extends React.Component {
   }
 
   render() {
-    const { trackPickems, matchOnly, interactiveMode, iRound, hideMatchUI, hideVisualizationUI } = this.state;
-    const { state, shuffle, advance } = this.props;
+    const { trackPickems, matchOnly } = this.state;
+    const { state, shuffle } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     return (

@@ -26,25 +26,12 @@
     "publish:github": "cross-env PUBLIC_URL='/react-boilerplate-cra-template' yarn build && gh-pages -d build",
     "changelog": "ts-node --project=./internals/ts-node.tsconfig.json ./internals/scripts/create-changelog.script.ts"
   },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:eslint:fix",
-      "git add --force"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add --force"
-    ]
-  },
-  "pre-commit": "lint:staged",
   "dependencies": {
     "@heroicons/react": "2.0.17",
-    "@material-tailwind/react": "1.4.2",
+    "@material-tailwind/react": "^1.4.2",
     "d3": "7.8.2",
-    "framer-motion": "4.1.17",
-    "react": "~17.0.2",
-    "react-dom": "~17.0.2",
-    "react-helmet": "~6.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-redux": "~7.2.5",
     "react-router-dom": "~5.3.0",
     "sanitize.css": "~13.0.0",
@@ -52,11 +39,11 @@
     "semantic-ui-react": "^2.1.2"
   },
   "devDependencies": {
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "prettier": "2.3.2",
-    "react-scripts": "^4.0.3",
-    "tailwindcss": "3.3.2"
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "prettier": "^2.8.8",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.3.2"
   },
   "browserslist": {
     "production": [

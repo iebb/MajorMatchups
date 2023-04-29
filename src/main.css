@@ -1,6 +1,32 @@
+@import "semantic-ui-css/semantic.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+  min-height: 1rem;
+  font-size: 2rem
+}
+
+h2 {
+  font-size: 1.71428571rem;
+  line-height: 2.0;
+}
+
+h3 {
+  font-size: 1.28571429rem;
+  line-height: 2.0;
+}
+
+h4 {
+  font-size: 1.07142857rem;
+  line-height: 2.0;
+}
+
+h5 {
+  font-size: 1rem
+}
 
 body {
   background: #232a33;
@@ -179,7 +205,7 @@ h3.title {
 }
 
 .round-title {
-  margin-top: 15px;
+  margin: 15px 0;
   border-bottom: 1px solid #6d72ac;
   text-align: left;
 }

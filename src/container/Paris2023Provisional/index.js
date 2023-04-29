@@ -441,7 +441,7 @@ export default class Paris2023Provisional extends React.PureComponent {
             }
           </div>
           <p style={{ fontSize: 18, marginTop: 36 }}>
-            Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            Sponsored by <a href="https://redirect.badasstemple.eu/br7lju"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/></a>
           </p>
         </div>
       </div>

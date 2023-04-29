@@ -385,11 +385,11 @@ export default class Rio2022Provisional extends React.PureComponent {
         <div className="page-container">
           <div className="title-container">
             <h1 className="title">IEM Rio Major 2022 Matchup Calculator (Provisional)</h1>
-            <p style={{ fontSize: 18, marginTop: -16 }}>
-              Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            <p style={{ fontSize: 18, marginTop: 16 }}>
+              Sponsored by <a href="https://redirect.badasstemple.eu/br7lju"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/></a>
             </p>
             <h2 style={{ color: 'yellow' }}>
-              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank">pick.ieb.im</a>
+              Place and share Pick'ems: <a href="https://pick.ieb.im/" target="_blank" rel="noreferrer">pick.ieb.im</a>
             </h2>
           </div>
           <p>
@@ -460,7 +460,7 @@ export default class Rio2022Provisional extends React.PureComponent {
             }
           </div>
           <p style={{ fontSize: 18, marginTop: 36 }}>
-            Sponsored by <a href="https://cutt.ly/eBejmLo"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10 }}/></a>
+            Sponsored by <a href="https://redirect.badasstemple.eu/br7lju"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/></a>
           </p>
         </div>
       </div>
