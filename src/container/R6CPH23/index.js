@@ -97,18 +97,18 @@ export default class R6CPH23 extends React.PureComponent {
     this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.init();
-    window.fetchInterval = setInterval(() => {
-      fetch('/r6_scores')
-        .then((resp) => resp.json())
-        .then((resp) => {
-          this._scores = {
-            0: resp.results
-          };
-          this.setState({scores: this._scores[this.state.tournament]}, () => {
-            this.calculateMatchups(0, this.state.rounds + 1)
-          });
-        })
-    }, 30000)
+
+    return fetch('/r6_scores')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          ...TournamentStages[TournamentChallenger],
+          ...pack(initialDataChallenger, teamLogo),
+          scores: resp.results,
+        }, () => {
+          this.calculateMatchups(0, this.state.rounds + 1)
+        });
+      });
   }
 
 
