@@ -19,9 +19,6 @@
     "test": "react-scripts test",
     "start:prod": "yarn run build && serve -s build",
     "checkTs": "tsc --noEmit",
-    "eslint": "eslint --ext js,ts,tsx",
-    "lint": "yarn run eslint src",
-    "lint:fix": "yarn run eslint --fix src",
     "prettify": "prettier --write"
   },
   "dependencies": {
