@@ -123,6 +123,9 @@ export class BracketUI extends React.Component {
             <div className={`${styles.bracket} `}>
               <div className={styles.rounds}>
                 {rounds.map((round, _idx) => {
+                  if (matchOnly && _idx === rounds.length - 1) {
+                    return null;
+                  }
                   const matches = state.matches[round];
                   const roundTeams = state.roundTeams[round] || [];
                   const teamMatched = new Set();
