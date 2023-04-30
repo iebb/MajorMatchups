@@ -4,10 +4,10 @@ import styles from './bracket.module.css';
 
 
 const colors = (result, deterministic) => {
-  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "200" : "300"}`;
-  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-600 bg-red-900
-  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-600 bg-green-900
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-600 bg-blue-900
+  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "50" : "100"}`;
+  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50
+  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50
 };
 
 export class BracketUI extends React.Component {
@@ -58,7 +58,7 @@ export class BracketUI extends React.Component {
               <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
             </div>
             <span className={`${styles.teamName} `}>{match.team1.name}</span>
-            <span className={`${styles.scores} bg-${colors(match.result, 1)}`}>
+            <span className={`${styles.scores} ${colors(match.result, 1)}`}>
             {match.score[0] && match.score[0].map((x, _idx) => (
               <span className={`${styles.score} ${x > match.score[1][_idx] && "font-bold"}`} key={_idx}>
                 {x}
@@ -76,7 +76,7 @@ export class BracketUI extends React.Component {
               <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
             </div>
             <span className={`${styles.teamName} `}>{match.team2.name}</span>
-            <span className={`${styles.scores} bg-${colors(-match.result, 1)}`}>
+            <span className={`${styles.scores} ${colors(-match.result, 1)}`}>
           {match.score[1] && match.score[1].map((x, _idx) => (
             <span className={`${styles.score} ${x > match.score[0][_idx] && "font-bold"}`} key={_idx}>
               {x}
@@ -118,12 +118,11 @@ export class BracketUI extends React.Component {
               <div className={styles.rounds}>
                 {rounds.map((round, _idx) => {
                   const matches = state.matches[round];
-                  const roundTeams = state.roundTeams[round];
+                  const roundTeams = state.roundTeams[round] || [];
                   const teamMatched = new Set();
                   const pools = {};
 
                   if (!matches) return null;
-
                   for(const team of roundTeams) {
                     pools[`${team.w}-${team.l}`] = {
                       order: team.w * 100 - team.l,
@@ -164,7 +163,13 @@ export class BracketUI extends React.Component {
 
                   return (
                   <div key={_idx} className={styles.round}>
-                    <div className="text-xl font-semibold  mb-2">Round {_idx + 1}</div>
+                    <div className="text-xl font-semibold  mb-2">{
+                      _idx < rounds.length - 1 ? (
+                        `Round ${_idx + 1}`
+                      ) : (
+                        "Final Result"
+                      )
+                    }</div>
                     {sortedPools.map((bracket, index) => {
                       if (pools[bracket].matches.length || pools[bracket].teams.length) {
                         return (

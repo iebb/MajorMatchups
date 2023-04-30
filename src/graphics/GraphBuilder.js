@@ -456,7 +456,7 @@ export default class GraphBuilder extends React.PureComponent {
           }}>
           <style>{`
         text {
-          font-family: Inter;
+          font-family: Nunito;
           font-size: 12px;
         }
         .graph:hover .link:hover {

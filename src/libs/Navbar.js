@@ -16,6 +16,7 @@ import {
   RocketLaunchIcon,
   StarIcon,
 } from '@heroicons/react/24/outline';
+import { Image } from 'semantic-ui-react';
 
 
 const Editions = [
@@ -23,35 +24,92 @@ const Editions = [
     edition: "2023",
     icon: RocketLaunchIcon,
     items: [
-      ['2023 Paris Major [Provisional]', 'May 8 - 21', '/23paris'],
-      ['2023 Paris RMR', 'Apr 6 - 15', '/23rmr_paris'],
-      ['2023 Paris RMR Closed Qualifier', 'Feb 16 - 20', '/23qual_paris'],
-      ['2023 R6 BLAST Major Copenhagen', '', '/r6_23majorcph'],
+      {
+        title: '2023 Paris',
+        icon: require("../images/logos/blast23.png"),
+        description: '2023.05.08 - 2023.05.21',
+        path: '/23paris',
+      },
+      {
+        title: '2023 Paris RMR',
+        icon: require("../images/logos/blast.png"),
+        description: '2023.04.06 - 2023.04.15',
+        path: '/23rmr_paris',
+      },
+      {
+        title: '2023 Paris RMR Closed Qualifier',
+        icon: require("../images/logos/blast.png"),
+        description: '2023.02.16 - 2023.02.20',
+        path: '/23qual_paris',
+      },
+      {
+        title: '2023 R6 BLAST Major Copenhagen',
+        icon: require("../images/logos/r6.png"),
+        description: '2023.04.24 - 2023.05.07',
+        path: '/r6_23majorcph',
+      },
     ]
   },
   {
     edition: "2022",
     icon: StarIcon,
     items: [
-      ['2022 Rio Major', '', '/22rio'],
-      ['2022 Rio RMR', '', '/22rmr_rio'],
-      ['2022 Antwerp Major','',  '/22antwerp'],
-      ['2022 Antwerp RMR', '', '/22rmr_antwerp'],
+      {
+        title: '2022 Rio',
+        icon: require("../images/logos/iemrio22.png"),
+        description: '2022.10.31 - 2022.11.13',
+        path: '/22rio',
+      },
+      {
+        title: '2022 Rio RMR',
+        icon: require("../images/logos/iem22_generic.png"),
+        description: '2022.10.04 - 2022.10.09',
+        path: '/22rmr_rio',
+      },
+      {
+        title: '2022 Antwerp',
+        icon: require("../images/logos/pgl22.png"),
+        description: '2022.10.31 - 2022.11.13',
+        path: '/22antwerp',
+      },
+      {
+        title: '2022 Antwerp RMR',
+        icon: require("../images/logos/pgl.png"),
+        description: '2022.10.31 - 2022.11.13',
+        path: '/22rmr_antwerp',
+      },
     ]
   },
   {
     edition: "2021",
     icon: GlobeEuropeAfricaIcon,
     items: [
-      ['2021 Stockholm Major', '', '/21stockholm'],
+      {
+        title: '2021 Stockholm',
+        icon: require("../images/logos/pgl21.png"),
+        description: '2023.05.08 - 2023.05.21',
+        path: '/21stockholm',
+      },
     ]
   },
   {
     edition: "2019",
     icon: FolderArrowDownIcon,
     items: [
-      ['2019 Berlin', '', '/19berlin'],
-      ['2019 Katowice', '', '/19katowice'],
+      {
+        title: '2019 Berlin',
+        icon: require("../images/logos/sl.png"),
+        subtitle: 'Starladder Berlin Major',
+        description: '2023.05.08 - 2023.05.21',
+        path: '/19berlin',
+      },
+      {
+        title: '2019 Katowice',
+        icon: require("../images/logos/iem.png"),
+        subtitle: 'IEM Season 13 - Katowice Major',
+        description: '2019.02.13 - 2019.03.03',
+        path: '/19katowice',
+      },
     ]
   },
 ]
@@ -64,18 +122,26 @@ function NavListMenu({ edition }) {
     onMouseLeave: () => setIsMenuOpen(false),
   };
 
-  const { icon, items } = edition;
-  const Icon = icon;
+  const { items } = edition;
+  const Icon = edition.icon;
 
-  const renderItems = items.map(([title, description, path]) => (
+  const renderItems = items.map(({title, description, path, subtitle, icon}) => (
     <a href={path} key={title}>
       <MenuItem>
-        <Typography variant="h6" color="blue-gray" className="mb-1">
-          {title}
-        </Typography>
-        <Typography variant="small" color="gray" className="font-normal">
-          {description}
-        </Typography>
+        <div className="h-[32px] w-[32px] inline-block mr-3 content-center">
+          <img className="w-[32px]" src={icon} alt={title} />
+        </div>
+        <div className="inline-block">
+          <Typography variant="h6" color="blue-gray" className="mb-1">
+            {title}
+          </Typography>
+          <Typography variant="small" color="gray" className="font-normal">
+            {subtitle}
+          </Typography>
+          <Typography variant="small" color="gray" className="font-normal">
+            {description}
+          </Typography>
+        </div>
       </MenuItem>
     </a>
   ));
@@ -101,7 +167,7 @@ function NavListMenu({ edition }) {
         </MenuHandler>
         <MenuList
           {...triggers}
-          className="hidden w-[24rem] grid-cols-4 gap-3 overflow-visible md:grid"
+          className="hidden w-[28rem] grid-cols-4 gap-3 overflow-visible md:grid"
         >
           <ul className="col-span-4 flex w-full flex-col gap-1">
             {renderItems}
