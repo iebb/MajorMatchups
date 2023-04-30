@@ -1,8 +1,9 @@
 import { ordinal } from '../../plural';
-import { copy, getStatus, getWinnerFromScore } from '../common';
+import { copy, getStatus, getWinnerFromScore, setTiebreakerWinner } from '../common';
 
-export function SwissBuchholtzTB(fromStage, toStage) {
+export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore) {
   const {state} = this;
+  const setTiebreakerWinnerThis = setTiebreakerWinner.bind(this);
   const stateMatches = state.matches;
   const stateTeams = state.teams;
   const stateRoundTeams = copy(state.roundTeams);
@@ -34,6 +35,12 @@ export function SwissBuchholtzTB(fromStage, toStage) {
   let teams;
   let remaining;
   let stageMatches;
+  let globalID = 0;
+
+  if (fromStage > 0) {
+    const s = stateMatches[fromStage - 1];
+    globalID = s[s.length - 1].id;
+  }
 
   const previouslyMatchedUp = (stage, tA, tB) => {
     for (let i = 0; i < stage; i += 1) {
@@ -80,6 +87,9 @@ export function SwissBuchholtzTB(fromStage, toStage) {
 
 
       for (const match of stateMatches[stage - 1]) {
+        if (match.is_tiebreaker) {
+          continue;
+        }
         const opponents1 = [...match.team1.opponents, match.team2.code];
         const opponents2 = [...match.team2.opponents, match.team1.code];
 
@@ -156,7 +166,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           const gs = gamescores[`${team1.code}-${team2.code}` + suffix];
           score[0] = gs.map(x => x[0])
           score[1] = gs.map(x => x[1])
-          const [winner, maxW] = getWinnerFromScore(gs);
+          const [winner, maxW] = winnerFn(gs);
           if (winner) {
             picked = winner > 0 ? 1 : -1;
             if (
@@ -172,7 +182,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           const gs = gamescores[`${team2.code}-${team1.code}` + suffix];
           score[1] = gs.map(x => x[0])
           score[0] = gs.map(x => x[1])
-          const [winner, maxW] = getWinnerFromScore(gs);
+          const [winner, maxW] = winnerFn(gs);
           if (winner) {
             picked = winner < 0 ? 1 : -1;
             if (
@@ -202,6 +212,7 @@ export function SwissBuchholtzTB(fromStage, toStage) {
 
         const _match = {
           pool,
+          id: ++globalID,
           match: m.length,
           team1, team2,
           picked, locked, result,
@@ -240,6 +251,8 @@ export function SwissBuchholtzTB(fromStage, toStage) {
           const tb = tbs.teams === idx + 1 || tbs.teams === idx;
           if (tb) {
             let tbr = tiebreakerResults[tbs.id];
+            console.log("after set, tbr is", tbr);
+            // winner, loser, winner score, loser score, determined
             const t1 = teamsSorted[tbs.teams - 1];
             const t2 = teamsSorted[tbs.teams];
             if (
@@ -247,22 +260,22 @@ export function SwissBuchholtzTB(fromStage, toStage) {
             ) {
               if (`${t1.code}-${t2.code}#1` in gamescores) {
                 const gs = gamescores[`${t1.code}-${t2.code}#1`];
-                const [winner, ] = getWinnerFromScore(gs);
+                const [winner, ] = winnerFn(gs);
                 tbr = tiebreakerResults[tbs.id] = (
                   winner > 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false]
+                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false, winner] :
+                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false, winner]
                 );
               } else if (`${t2.code}-${t1.code}#1` in gamescores) {
                 const gs = gamescores[`${t2.code}-${t1.code}#1`];
-                const [winner, ] = getWinnerFromScore(gs);
+                const [winner, ] = winnerFn(gs);
                 tbr = tiebreakerResults[tbs.id] = (
                   winner < 0 ?
-                    [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false] :
-                    [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false]
+                    [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false, -winner] :
+                    [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false, -winner]
                 );
               } else {
-                tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true];
+                tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true, 0];
               }
             }
 
@@ -270,6 +283,40 @@ export function SwissBuchholtzTB(fromStage, toStage) {
             const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
             const lostTeam = tbr[0] === x.code ? otherTeam : x;
             const winTeam = tbr[0] === x.code ? x : otherTeam;
+
+            if (tbs.teams === idx + 1) {
+              const picked = tbr[0] === x.code ? 1 : -1;
+
+              const result = Math.sign(tbr[5]);
+              stateMatches[stage].push({
+                pool: tbs.name || `${x.w}-${x.l} Tiebreaker`,
+                poolOrder: x.w * 100 - x.l + (tbs.offset || 0),
+                id: ++globalID,
+                match: -1,
+                is_tiebreaker: true,
+                team1: x,
+                team2: otherTeam,
+                picked,
+                locked: 0,
+                result,
+                score: tbr[0] === x.code ? [tbr[2], tbr[3]] : [tbr[3], tbr[2]],
+                stage,
+                suffix: "",
+                setWinner: (pick) => {
+                  if (pick !== picked) {
+                    setTiebreakerWinnerThis({
+                      ...lostTeam,
+                      tiebreakerConfig: tbs,
+                    }, winTeam)
+                  }
+                },
+                toggle: () => setTiebreakerWinnerThis({
+                  ...lostTeam,
+                  tiebreakerConfig: tbs,
+                }, winTeam),
+              })
+            }
+
             return ({
               ...x,
               standing: idx + 1,
@@ -285,11 +332,11 @@ export function SwissBuchholtzTB(fromStage, toStage) {
               elim: x.l >= losesToEliminate,
               adv: x.w === winsToAdvance,
               currentRound: true,
-              setTiebreakerWin: () => this.setTiebreakerWinner({
+              setTiebreakerWin: () => setTiebreakerWinnerThis({
                 ...x,
                 tiebreakerConfig: tbs,
               }, otherTeam),
-              toggle: () => this.setTiebreakerWinner({
+              toggle: () => setTiebreakerWinnerThis({
                 ...lostTeam,
                 tiebreakerConfig: tbs,
               }, winTeam),

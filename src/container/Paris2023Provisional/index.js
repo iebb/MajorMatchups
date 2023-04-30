@@ -20,6 +20,7 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {ordinal} from "../../libs/plural";
 import sponsorLogo from "../../images/sponsor/rio_sb.svg";
 import Title from "../../libs/BannerInsertion";
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -101,7 +102,7 @@ export default class Paris2023Provisional extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {

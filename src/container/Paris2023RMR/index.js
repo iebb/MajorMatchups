@@ -1,15 +1,14 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Menu} from 'semantic-ui-react';
-import {AME, AP, EUA, EUB, EUTB} from './initial_data';
-import {Scores} from './scores';
-import {SwissBuchholtzTB} from '../../libs/common/formats/SwissBuchholtzTB';
-import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
-import {BasicUI} from '../../libs/common/BasicUI';
-import Title from "../../libs/BannerInsertion";
-import {Knockout28} from "../../libs/common/formats/Knockout28";
-import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
+import { Menu } from 'semantic-ui-react';
+import { AME, AP, EUA, EUB, EUTB } from './initial_data';
+import { Scores } from './scores';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
+import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
+import { BasicUI } from '../../libs/common/BasicUI';
+import Title from '../../libs/BannerInsertion';
+import { Knockout28 } from '../../libs/common/formats/Knockout28';
 
 const Regions = [
   {
@@ -49,8 +48,8 @@ const Regions = [
     ],
     buchholtzLockIns: [`3-1`],
     tiebreakers: {
-      "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
-      "5": [{teams: 3, id: "3/4", name: "3rd/4th Decider"}],
+      "4": [{teams: 4, offset: -0.1, id: "4/5", name: "4/5th Decider"}],
+      "5": [{teams: 3, offset: 0.1, id: "3/4", name: "3rd/4th Decider"}],
     },
     rounds: 6,
     winsToAdvance: 3,

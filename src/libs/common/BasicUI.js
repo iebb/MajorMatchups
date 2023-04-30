@@ -2,9 +2,11 @@ import React from 'react';
 import {Button, Dropdown} from 'semantic-ui-react';
 import {ClassicUI} from "./UI/ClassicUI";
 import {VisUI} from "./UI/VisUI";
+import { BracketUI } from './UI/BracketUI';
 
 const UIEnums = [
   ClassicUI,
+  BracketUI,
   VisUI,
 ]
 
@@ -25,7 +27,8 @@ export class BasicUI extends React.Component {
             value={this.state.UIType}
             options={[
               { key: 0, text: 'Classic UI', value: 0 },
-              { key: 1, text: 'Vis UI', value: 1 },
+              { key: 1, text: 'Bracket UI', value: 1 },
+              { key: 2, text: 'Vis UI', value: 2 },
             ]}
             onChange={(e, {value}) => {
               this.setState({ UIType: value })

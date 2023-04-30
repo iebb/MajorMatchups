@@ -76,8 +76,9 @@ export default class GraphBuilder extends React.PureComponent {
     })
 
     let x = 0;
-    const roundMatches = matches.map((round, round_idx) => {
-      if (!round) return [];
+    const roundMatches = matches.map((_round, round_idx) => {
+      if (!_round) return [];
+      const round = _round.filter(x => !x.is_tiebreaker);
       const level_delta = level_padding_delta * Math.min(round_idx, 3) / 2;
       let nodeY = level_padding_initial - level_delta;
 

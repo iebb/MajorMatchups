@@ -5,7 +5,6 @@ import { Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
-import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { Knockout } from '../../libs/common/formats/Knockout';
 import {
   AdvanceElimSeats,
@@ -15,7 +14,8 @@ import {
   setWinner,
   shuffle,
 } from '../../libs/common/common';
-import Title from "../../libs/BannerInsertion";
+import Title from '../../libs/BannerInsertion';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -98,7 +98,7 @@ export default class Stockholm2021 extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {

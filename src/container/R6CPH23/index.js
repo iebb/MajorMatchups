@@ -2,27 +2,27 @@
 
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import {SwissBuchholtzForR6} from "../../libs/common/formats/SwissBuchholtzForR6";
-import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { finalDataChampions, initialDataChallenger } from './initial_data';
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
-import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { Knockout } from '../../libs/common/formats/Knockout';
 import {
   AdvanceElimSeats,
   ChampionSeats,
+  getWinnerFromScoreGeneric,
   pack,
   setTiebreakerWinner,
   setWinner,
   shuffle,
 } from '../../libs/common/common';
-import Title from "../../libs/BannerInsertion";
+import Title from '../../libs/BannerInsertion';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 const TournamentChallenger = 0;
 const TournamentChampions = 1;
 
 const teamLogo = (code) => `https://sox.pm/logos/${code}.png`;
-const scores = { 0: FinalResultsChallenger, 1: FinalResultsLegends, 2: FinalResultsChampions };
+const scores = { 0: { }, 1: { } };
 
 const TournamentStages = [
   {
@@ -85,7 +85,7 @@ export default class R6CPH23 extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtzForR6.bind(this)(s, e));
+      this.setState(SwissBuchholtzTB.bind(this)(s, e, getWinnerFromScoreGeneric));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {

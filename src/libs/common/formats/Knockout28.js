@@ -18,6 +18,12 @@ export function Knockout28(fromStage, toStage) {
   let teams;
   let remaining;
   let stageMatches;
+  let globalID = 0;
+
+  if (fromStage > 0) {
+    const s = stateMatches[fromStage - 1];
+    globalID = s[s.length - 1].id;
+  }
   let counter = {};
 
   for(let stage = 0; stage < fromStage; stage++) {
@@ -92,7 +98,8 @@ export function Knockout28(fromStage, toStage) {
 
       if (team2.code === null) {
         return {
-          match: idx++,
+          is_bye: true,
+          id: 0,
           team1,
           team2,
           counter: 0,
@@ -168,7 +175,7 @@ export function Knockout28(fromStage, toStage) {
       }
 
       return {
-        match: idx++,
+        id: ++globalID,
         team1, team2,
         counter: ctr,
         picked, locked, result,

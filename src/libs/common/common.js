@@ -121,16 +121,16 @@ export function setTiebreakerWinner(t1, t2) {
   if (`${t1.code}-${t2.code}#1` in gamescores) {
     const gs = gamescores[`${t1.code}-${t2.code}#1`];
     const [winner, ] = getWinnerFromScore(gs);
-    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), winner < 0]; // not winner
+    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), winner < 0, winner]; // not winner
   } else if (`${t2.code}-${t1.code}#1` in gamescores) {
     const gs = gamescores[`${t2.code}-${t1.code}#1`];
     const [winner, ] = getWinnerFromScore(gs);
-    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), winner > 0]; // is winner
+    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), winner > 0, -winner]; // is winner
   } else {
-    tbr[tbc.id] = [t1.code, t2.code, [], [], true];
+    tbr[tbc.id] = [t1.code, t2.code, [], [], true, 0];
   }
 
-  this.setState({ tiebreakerResults: tbr}, () => {
+  this.setState({ tiebreakerResults: tbr }, () => {
     this.calculateMatchups(0, this.state.rounds + 1)
   });
 }

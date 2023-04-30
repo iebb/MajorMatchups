@@ -4,9 +4,10 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { AME, AP, EUA, EUB } from './initial_data';
 import { Scores } from './scores';
-import { SwissBuchholtz } from '../../libs/common/formats/SwissBuchholtz';
 import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
+import { Knockout28 } from '../../libs/common/formats/Knockout28';
 
 const Regions = [
   {
@@ -87,7 +88,7 @@ const Regions = [
     winsToAdvance: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
-    tournamentFormat: "SWISS_BUCHHOLTZ_DUP",
+    tournamentFormat: "KNOCKOUT2",
     allowDups: true,
   },
 ];
@@ -145,7 +146,11 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtz.bind(this)(s, e));
+    if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
+    } else if (this.state.tournamentFormat === "KNOCKOUT2") {
+      this.setState(Knockout28.bind(this)(s, e));
+    }
   };
 
   componentDidMount() {

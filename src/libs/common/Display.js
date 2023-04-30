@@ -194,6 +194,9 @@ export const getMatchupDisplay = (state, stage) => {
         )
       })}
       {stageMatches.map((x) => {
+        if (x.is_tiebreaker) {
+          return null;
+        }
         let pickA, pickB, resultA, resultB;
         if (x.picked === 1) {
           pickA = 'win';

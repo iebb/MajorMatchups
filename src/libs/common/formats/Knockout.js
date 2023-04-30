@@ -17,6 +17,12 @@ export function Knockout(fromStage, toStage) {
   let teams;
   let remaining;
   let stageMatches;
+  let globalID = 0;
+
+  if (fromStage > 0) {
+    const s = stateMatches[fromStage - 1];
+    globalID = s[s.length - 1].id;
+  }
 
   for(let stage = fromStage; stage < toStage; stage++) {
     const teamCompare = (x, y) => {
@@ -32,6 +38,7 @@ export function Knockout(fromStage, toStage) {
 
 
     if (stage > 0) {
+
       const teamsT = stateTeams[stage - 1].filter((team) => team.w === winsToAdvance || team.l === loseToEliminate);
 
       for (const match of stateMatches[stage - 1]) {
@@ -122,6 +129,7 @@ export function Knockout(fromStage, toStage) {
       }
 
       return {
+        id: ++globalID,
         match: idx++,
         team1, team2,
         picked, locked, result,

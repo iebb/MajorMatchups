@@ -7,16 +7,6 @@ export class ClassicUI extends React.Component {
   state = {
     matchOnly: (localStorage.matchOnly || "false") === "true",
     trackPickems: (localStorage.matchOnly || "true") === "true",
-    eliminatedOnVisualization: (localStorage.dash || "true") === "true",
-    dash: (localStorage.dash || "true") === "true",
-    tight: (localStorage.tight || "false") === "true",
-    straightCorner: (localStorage.straightCorner || "false") === "true",
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.stage !== this.props.stage) {
-      this.setState({ iRound: 0 });
-    }
   }
 
   render() {

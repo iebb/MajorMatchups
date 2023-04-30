@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Image, Menu} from 'semantic-ui-react';
+import { Image, Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { ChallengerResults, LegendResults, Scores } from './scores';
 import {
@@ -13,13 +13,12 @@ import {
   setWinner,
   shuffle,
 } from '../../libs/common/common';
-import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
-import {Knockout} from '../../libs/common/formats/Knockout';
-import {BasicUI} from '../../libs/common/BasicUI';
-import {getPickResults, setPickResults} from "../../libs/common/storage";
-import {SwissBuchholtzDup} from "../../libs/common/formats/SwissBuchholtzDup";
-import {ordinal} from "../../libs/plural";
-import Title from "../../libs/BannerInsertion";
+import { Knockout } from '../../libs/common/formats/Knockout';
+import { BasicUI } from '../../libs/common/BasicUI';
+import { getPickResults, setPickResults } from '../../libs/common/storage';
+import { ordinal } from '../../libs/plural';
+import Title from '../../libs/BannerInsertion';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -95,9 +94,7 @@ export default class Antwerp2022 extends React.PureComponent {
 
   calculateMatchups = (s, e) => {
     if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ") {
-      this.setState(SwissBuchholtz.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "SWISS_BUCHHOLTZ_DUP") {
-      this.setState(SwissBuchholtzDup.bind(this)(s, e));
+      this.setState(SwissBuchholtzTB.bind(this)(s, e));
     } else if (this.state.tournamentFormat === "KNOCKOUT") {
       this.setState(Knockout.bind(this)(s, e));
     } else {
