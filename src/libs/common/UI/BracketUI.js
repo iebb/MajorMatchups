@@ -19,23 +19,29 @@ export class BracketUI extends React.Component {
 
   render() {
     const { trackPickems, matchOnly } = this.state;
-    const { state, shuffle } = this.props;
+    const { state } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
-    const renderTeams = (bracket) => {
+    const renderTeams = (bracket, isFinal=false) => {
       if (bracket.teams.length === 0) return null;
       return (
-        <div key={bracket.pool} className={`${styles.noMatch} dark:bg-gray-800 rounded-md border-2 dark:border-blue-700 border-blue-500 shadow-md`}>
+        <div key={bracket.pool} className={`${styles.noMatch} rounded-md border-2 border-blue-500 shadow-md`}>
           {bracket.teams.map((team, index) => (
             <div className={styles.teamNomatch} key={index}>
-              <span className={`${styles.teamRanking} dark:text-white`}>#{team.ranking}</span>
+              <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
               <div className={`${styles.team} hover:bg-blue-100`}>
                 <div className={styles.teamLogo}>
                   <img alt={team.code} src={team.logo} className="transfer-team-logo" />
                 </div>
-                <span className={`${styles.teamName} dark:text-white`}>{team.name}</span>
+                <span className={`${styles.teamName} `}>{team.name}</span>
                 <span className={styles.scores}>
-                <span className={`${styles.score} dark:text-white`}>{team.buchholtz}</span>
+                  <span className={``}>
+                    {team.buchholtz > 0 ? "+" : ""}
+                    {team.buchholtz}
+                    {
+                      isFinal && (" " + team.status)
+                    }
+                  </span>
               </span>
               </div>
             </div>
@@ -114,7 +120,7 @@ export class BracketUI extends React.Component {
 
         <div className="main-container">
           <div className={styles.bracketWrapper}>
-            <div className={`${styles.bracket} dark:bg-gray-900`}>
+            <div className={`${styles.bracket} `}>
               <div className={styles.rounds}>
                 {rounds.map((round, _idx) => {
                   const matches = state.matches[round];
@@ -163,7 +169,7 @@ export class BracketUI extends React.Component {
 
                   return (
                   <div key={_idx} className={styles.round}>
-                    <div className="text-xl font-semibold  mb-2">{
+                    <div className="text-xl font-semibold mb-2">{
                       _idx < rounds.length - 1 ? (
                         `Round ${_idx + 1}`
                       ) : (
@@ -176,7 +182,7 @@ export class BracketUI extends React.Component {
                           <div key={index} className={styles.bracket}>
                             <div className="text-lg font-semibold  mb-2">{bracket}</div>
                             {renderMatches(pools[bracket].matches)}
-                            {renderTeams(pools[bracket])}
+                            {renderTeams(pools[bracket], _idx === rounds.length - 1)}
                           </div>
                         );
                       }

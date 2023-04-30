@@ -17,7 +17,7 @@ const Regions = [
     seats: [
       { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
       { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
-      { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     rounds: 5,
@@ -34,7 +34,7 @@ const Regions = [
     seats: [
       { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
       { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
-      { status: "rmr-decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     rounds: 5,

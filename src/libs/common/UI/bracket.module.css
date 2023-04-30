@@ -1,113 +1,115 @@
 .bracketWrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 2rem;
-    box-sizing: border-box;
-    flex-direction: column;
-    font-family: var(--font-inter);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  flex-direction: column;
+  font-family: var(--font-inter);
+  overflow: auto;
 }
 
 .bracket {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .rounds {
-    display: flex;
-    align-items: center; /* Add this line to center-align rounds vertically */
+  display: flex;
+  align-items: center; /* Add this line to center-align rounds vertically */
 }
 
 .round {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 1.5rem;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1.5rem;
+  position: relative;
 }
 
 .team {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 20px 1fr auto;
-    gap: 5px;
-    align-items: center;
-    text-align: left;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20px 1fr auto;
+  gap: 5px;
+  align-items: center;
+  text-align: left;
 }
 
 .teamNomatch {
-    display: grid;
-    grid-template-columns: 15px 2fr;
-    gap: 5px;
-    padding: 0 0 0 5px;
-    align-items: center;
-    text-align: left;
+  display: grid;
+  grid-template-columns: 15px 2fr;
+  gap: 5px;
+  padding: 0 0 0 5px;
+  align-items: center;
+  text-align: left;
 }
 
 .teamName {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .teamLogo {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .teamLogo img {
-    max-width: 20px;
-    max-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .bracket {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .match {
-    display: grid;
-    grid-template-columns: 25px auto;
-    font-size: 12px;
-    position: relative;
-    margin-bottom: 0.3rem;
-    width: 200px;
-    user-select: none;
+  display: grid;
+  grid-template-columns: 25px auto;
+  font-size: 12px;
+  position: relative;
+  margin-bottom: 0.3rem;
+  width: 200px;
+  user-select: none;
 }
 
 .noMatch {
-    display: grid;
-    font-size: 12px;
-    position: relative;
-    gap: 0.1rem;
-    margin-bottom: 0.2rem;
-    width: 200px;
-    user-select: none;
+  display: grid;
+  font-size: 12px;
+  position: relative;
+  gap: 0.1rem;
+  margin-bottom: 0.2rem;
+  width: 200px;
+  user-select: none;
 }
 
 .matchNumber {
-    text-align: center;
-    grid-row: 1 / span 2;
-    align-self: center;
-    justify-self: center;
+  text-align: center;
+  grid-row: 1 / span 2;
+  align-self: center;
+  justify-self: center;
 
 }
 
 .teamRanking {
-    text-align: center;
-    align-self: center;
-    justify-self: center;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
 }
 
 .scores {
-    display: flex;
+  display: flex;
 }
 
 .score {
-    flex: 1;
-    text-align: center;
-    width: 18px;
+  flex: 1;
+  text-align: center;
+  width: 18px;
 }
