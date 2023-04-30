@@ -12,7 +12,7 @@ const UIEnums = [
 
 export class BasicUI extends React.Component {
   state = {
-    UIType: 0,
+    UIType: Number(localStorage.ui) || 0,
   }
   render() {
     const { UIType } = this.state;
@@ -32,6 +32,7 @@ export class BasicUI extends React.Component {
             ]}
             onChange={(e, {value}) => {
               this.setState({ UIType: value })
+              localStorage.ui = value;
             }}
             selection
           />

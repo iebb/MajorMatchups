@@ -46,7 +46,7 @@ export class BracketUI extends React.Component {
 
     const renderMatches = (roundMatches) => {
       return roundMatches.map((match, index) => (
-        <div key={index} className={`${styles.match} rounded-md border-2 border-blue-500 shadow-md`}>
+        <div key={index} className={`${styles.match} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
           <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
           <div
             className={`${styles.team} hover:bg-blue-100 ${colors(match.picked, match.result)}`}
