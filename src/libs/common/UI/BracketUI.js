@@ -29,7 +29,7 @@ export class BracketUI extends React.Component {
           {bracket.teams.map((team, index) => (
             <div className={styles.teamNomatch} key={index}>
               <span className={`${styles.teamRanking} dark:text-white`}>#{team.ranking}</span>
-              <div className={`${styles.team} dark:hover:bg-blue-900 hover:bg-blue-100`}>
+              <div className={`${styles.team} hover:bg-blue-100`}>
                 <div className={styles.teamLogo}>
                   <img alt={team.code} src={team.logo} className="transfer-team-logo" />
                 </div>
@@ -49,7 +49,7 @@ export class BracketUI extends React.Component {
         <div key={index} className={`${styles.match} rounded-md border-2 border-blue-500 shadow-md`}>
           <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
           <div
-            className={`${styles.team} dark:hover:bg-blue-900 hover:bg-blue-100 ${colors(match.picked, match.result)}`}
+            className={`${styles.team} hover:bg-blue-100 ${colors(match.picked, match.result)}`}
             onClick={() => {
               match.setWinner(1);
             }}
@@ -67,7 +67,7 @@ export class BracketUI extends React.Component {
           </span>
           </div>
           <div
-            className={`${styles.team} hover:bg-blue-900 ${colors(-match.picked, match.result)}`}
+            className={`${styles.team} hover:bg-blue-100 ${colors(-match.picked, match.result)}`}
             onClick={() => {
               match.setWinner(-1);
             }}
