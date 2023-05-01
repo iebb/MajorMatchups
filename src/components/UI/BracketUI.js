@@ -39,7 +39,7 @@ export function BracketUI({ preferences, state, shuffle }) {
                 <span className={`${styles.teamName} `}>{team.name}</span>
                 <span className={styles.scores}>
                   <span className={``}>
-                    {plus_minus(team.buchholtz)}
+                    {format === Formats.SwissBuchholtz && plus_minus(team.buchholtz)}
                     {
                       isFinal && (", " + team.status)
                     }

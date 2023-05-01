@@ -30,6 +30,7 @@ const TournamentStages = [
     tournament: TournamentChallenger,
     tournamentType: 0,
     tournamentFormat: "SWISS_BUCHHOLTZ",
+    seats: AdvanceElimSeats,
     winsToAdvance: 3,
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
@@ -92,7 +93,7 @@ export default class R6CPH23 extends React.PureComponent {
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    // this.init();
+    this.init();
 
     return fetch('/r6_scores')
       .then((resp) => resp.json())

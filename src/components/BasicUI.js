@@ -40,12 +40,12 @@ const UIEnums = {
     ],
   },
   vis: {
-    name: 'Vis UI',
+    name: 'Visualization UI',
     component: VisUI,
     options: [
-      { name: "Matches Only", key: "matchOnly", default: false },
+      { name: "Show Elimiated Teams", key: "eliminatedOnVisualization", default: true },
       { name: "Straight Corner Edges", key: "straightCorner", default: false },
-      { name: "Overlapping Corners", key: "tight", default: false },
+      { name: "Overlapping Corners", key: "tight", default: true },
       { name: "Dashed Line for Undetermined", key: "dash", default: false },
     ],
   },
