@@ -47,7 +47,7 @@ export const getWinnerFromScore = (scores) => {
       }
     }
   }
-  return [teamA - teamB, Math.max(teamA, teamB)]
+  return [Math.sign(teamA - teamB), Math.max(teamA, teamB)]
 }
 export const getWinnerFromScoreGeneric = (scores) => {
   let teamA = 0;
@@ -61,7 +61,7 @@ export const getWinnerFromScoreGeneric = (scores) => {
       }
     }
   }
-  return [teamA - teamB, Math.max(teamA, teamB)]
+  return [Math.sign(teamA - teamB), Math.max(teamA, teamB)]
 }
 
 export const AdvanceElimSeats = [
@@ -111,28 +111,6 @@ export function setWinner(match, picked)  {
   this.setState({ pickResults }, () => {
     this.calculateMatchups(currentRound, this.state.rounds + 1)
   })
-}
-
-export function setTiebreakerWinner(t1, t2) {
-  const tbc = t1.tiebreakerConfig;
-  const tbr = this.state.tiebreakerResults;
-  const gamescores = this.state.scores || [];
-
-  if (`${t1.code}-${t2.code}#1` in gamescores) {
-    const gs = gamescores[`${t1.code}-${t2.code}#1`];
-    const [winner, ] = getWinnerFromScore(gs);
-    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), winner < 0, winner]; // not winner
-  } else if (`${t2.code}-${t1.code}#1` in gamescores) {
-    const gs = gamescores[`${t2.code}-${t1.code}#1`];
-    const [winner, ] = getWinnerFromScore(gs);
-    tbr[tbc.id] = [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), winner > 0, -winner]; // is winner
-  } else {
-    tbr[tbc.id] = [t1.code, t2.code, [], [], true, 0];
-  }
-
-  this.setState({ tiebreakerResults: tbr }, () => {
-    this.calculateMatchups(0, this.state.rounds + 1)
-  });
 }
 
 export function shuffle(currentRound) {

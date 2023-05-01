@@ -405,7 +405,6 @@ export default class Katowice2019 extends React.PureComponent {
                 reddit thread
               </a>
             </p>
-            <p>Tip: Match outcomes can be changed by clicking on the Losing Team</p>
           </div>
           <div style={{ marginTop: 20 }}>
             <Menu pointing secondary inverted compact size="huge" className="region-selector">

@@ -1,5 +1,5 @@
 import { Form, Radio } from 'semantic-ui-react';
-import { getMatchupDisplay } from '../Display';
+import { getMatchupDisplay } from './ClassicDisplay';
 import React from 'react';
 
 export class ClassicUI extends React.Component {

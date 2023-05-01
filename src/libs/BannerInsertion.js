@@ -61,7 +61,6 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
       <p>
         {
           extras.map((x, _idx) => <>
-            <span style={{margin: 10}} key={_idx}>·</span>
             <a href={x.link} key={_idx + "@"}>{x.title}</a>
           </>)
         }

@@ -1,25 +1,16 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Image, Menu} from 'semantic-ui-react';
-import {initialDataChallenger, initialDataLegends} from './initial_data';
-import {ChallengerResults, LegendResults, Scores} from './scores';
-import {
-  AdvanceElimSeats,
-  ChampionSeats,
-  copy,
-  pack,
-  setTiebreakerWinner,
-  setWinner,
-  shuffle,
-} from '../../libs/common/common';
-import {SwissBuchholtz} from '../../libs/common/formats/SwissBuchholtz';
-import {Knockout} from '../../libs/common/formats/Knockout';
-import {BasicUI} from '../../libs/common/BasicUI';
-import {getPickResults, setPickResults} from "../../libs/common/storage";
-import {ordinal} from "../../libs/plural";
-import sponsorLogo from "../../images/sponsor/rio_sb.svg";
-import Title from "../../libs/BannerInsertion";
+import { Image, Menu } from 'semantic-ui-react';
+import { initialDataChallenger, initialDataLegends } from './initial_data';
+import { ChallengerResults, LegendResults, Scores } from './scores';
+import { AdvanceElimSeats, ChampionSeats, copy, pack, setWinner, shuffle } from '../../libs/common/common';
+import { Knockout } from '../../libs/common/formats/Knockout';
+import { BasicUI } from '../../libs/common/BasicUI';
+import { getPickResults, setPickResults } from '../../libs/common/storage';
+import { ordinal } from '../../libs/plural';
+import sponsorLogo from '../../images/sponsor/rio_sb.svg';
+import Title from '../../libs/BannerInsertion';
 import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 const TournamentChallenger = 0;
@@ -112,7 +103,6 @@ export default class Paris2023Provisional extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.init(0);
 

@@ -1,15 +1,15 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Menu} from 'semantic-ui-react';
-import {AME, AP, EUA, EUB} from './initial_data';
-import {Scores} from './scores';
-import {pack, setTiebreakerWinner, setWinner, shuffle} from '../../libs/common/common';
-import {BasicUI} from '../../libs/common/BasicUI';
-import {Knockout} from "../../libs/common/formats/Knockout";
+import { Menu } from 'semantic-ui-react';
+import { AME, AP, EUA, EUB } from './initial_data';
+import { Scores } from './scores';
+import { pack, setWinner, shuffle } from '../../libs/common/common';
+import { BasicUI } from '../../libs/common/BasicUI';
+import { Knockout } from '../../libs/common/formats/Knockout';
 import sponsorLogo from '../../images/sponsor/rio_sb.svg';
-import {Knockout2} from "../../libs/common/formats/Knockout2";
-import {SwissBuchholtzTB} from "../../libs/common/formats/SwissBuchholtzTB";
+import { Knockout2 } from '../../libs/common/formats/Knockout2';
+import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
 
 const Regions = [
@@ -178,8 +178,14 @@ export default class Rio2022RMR extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
+    const hash = this.props.history?.location?.hash?.slice(1);
+    for(const h of Regions) {
+      if (h.name === hash) {
+        this.init(h.id);
+        return;
+      }
+    }
     this.init(0);
   }
   render() {
@@ -213,7 +219,13 @@ export default class Rio2022RMR extends React.PureComponent {
                     key={region.id}
                     name={region.name}
                     active={this.state.regionId === region.id}
-                    onClick={() => this.init(region.id)}
+                    onClick={
+                      () => {
+                        this.props.history.push("#" + region.name);
+                        document.location.reload();
+                        // this.init(region.id)
+                      }
+                    }
                   />
                 ))
               }

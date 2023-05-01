@@ -4,15 +4,7 @@ import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { ChallengerResults, LegendResults, Scores } from './scores';
-import {
-  AdvanceElimSeats,
-  ChampionSeats,
-  copy,
-  pack,
-  setTiebreakerWinner,
-  setWinner,
-  shuffle,
-} from '../../libs/common/common';
+import { AdvanceElimSeats, ChampionSeats, copy, pack, setWinner, shuffle } from '../../libs/common/common';
 import { Knockout } from '../../libs/common/formats/Knockout';
 import { BasicUI } from '../../libs/common/BasicUI';
 import { getPickResults, setPickResults } from '../../libs/common/storage';
@@ -104,7 +96,6 @@ export default class Antwerp2022 extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.init(2);
 

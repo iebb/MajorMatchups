@@ -1,9 +1,8 @@
 import { ordinal } from '../../plural';
-import { copy, getStatus, getWinnerFromScore, setTiebreakerWinner } from '../common';
+import { copy, getStatus, getWinnerFromScore } from '../common';
 
 export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore) {
   const {state} = this;
-  const setTiebreakerWinnerThis = setTiebreakerWinner.bind(this);
   const stateMatches = state.matches;
   const stateTeams = state.teams;
   const stateRoundTeams = copy(state.roundTeams);
@@ -65,11 +64,11 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           if (parseInt(s, 10) < stage) {
             for(const tb of tiebreakers[s]) {
               const tbr = tiebreakerResults[tb.id];
-              if (tbr[0] === x.code && tbr[1] === y.code) {
-                return -1;
+              if (tbr.team1 === x.code && tbr.team2 === y.code) {
+                return -tbr.picked;
               }
-              if (tbr[0] === y.code && tbr[1] === x.code) {
-                return 1;
+              if (tbr.team2 === x.code && tbr.team1 === y.code) {
+                return tbr.picked;
               }
             }
           }
@@ -248,7 +247,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
       if (tiebreakers[stage]) {
         for (const tbs of tiebreakers[stage]) {
           // tbs.teams is the 1-based index
-          const tb = tbs.teams === idx + 1 || tbs.teams === idx;
+          const tb = tbs.teams - 1 === idx || tbs.teams === idx;
           if (tb) {
             let tbr = tiebreakerResults[tbs.id];
             console.log("after set, tbr is", tbr);
@@ -256,38 +255,62 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
             const t1 = teamsSorted[tbs.teams - 1];
             const t2 = teamsSorted[tbs.teams];
             if (
-              !tbr || !((tbr[0] === t1.code && tbr[1] === t2.code) || (tbr[0] === t2.code && tbr[1] === t1.code))
+              !tbr
+              || !((tbr.team1 === t1.code && tbr.team2 === t2.code)
+                || (tbr.team1 === t2.code && tbr.team2 === t1.code))
             ) {
               if (`${t1.code}-${t2.code}#1` in gamescores) {
                 const gs = gamescores[`${t1.code}-${t2.code}#1`];
                 const [winner, ] = winnerFn(gs);
-                tbr = tiebreakerResults[tbs.id] = (
-                  winner > 0 ?
-                    [t1.code, t2.code, gs.map(x => x[0]), gs.map(x => x[1]), false, winner] :
-                    [t2.code, t1.code, gs.map(x => x[1]), gs.map(x => x[0]), false, winner]
-                );
+                tbr = tiebreakerResults[tbs.id] = {
+                  team1: t1.code,
+                  team2: t2.code,
+                  scores: [gs.map(x => x[0]), gs.map(x => x[1])],
+                  determined: 1,
+                  result: winner,
+                  picked: winner,
+                }
               } else if (`${t2.code}-${t1.code}#1` in gamescores) {
                 const gs = gamescores[`${t2.code}-${t1.code}#1`];
                 const [winner, ] = winnerFn(gs);
-                tbr = tiebreakerResults[tbs.id] = (
-                  winner < 0 ?
-                    [t1.code, t2.code, gs.map(x => x[1]), gs.map(x => x[0]), false, -winner] :
-                    [t2.code, t1.code, gs.map(x => x[0]), gs.map(x => x[1]), false, -winner]
-                );
+                tbr = tiebreakerResults[tbs.id] = {
+                  team1: t1.code,
+                  team2: t2.code,
+                  scores: [gs.map(x => x[1]), gs.map(x => x[0])],
+                  determined: 1,
+                  result: -winner,
+                  picked: -winner,
+                }
               } else {
-                tbr = tiebreakerResults[tbs.id] = [t1.code, t2.code, [], [], true, 0];
+                tbr = tiebreakerResults[tbs.id] = {
+                  team1: t1.code,
+                  team2: t2.code,
+                  scores: [[], []],
+                  determined: 0,
+                  result: 0,
+                  picked: 1,
+                };
               }
             }
 
-            const otherTeamId = tbs.teams === idx + 1 ? idx + 2 : idx;
-            const otherTeam = tbs.teams === idx + 1 ? t2 : t1;
-            const lostTeam = tbr[0] === x.code ? otherTeam : x;
-            const winTeam = tbr[0] === x.code ? x : otherTeam;
+            const { picked, result, determined, scores } = tbr;
 
-            if (tbs.teams === idx + 1) {
-              const picked = tbr[0] === x.code ? 1 : -1;
+            const teamIdx = idx - (tbs.teams - 1); // 0 or 1
+            const teamNegIdx = teamIdx === 0 ? 1 : -1; // 0 or 1
 
-              const result = Math.sign(tbr[5]);
+            const otherTeamId = teamIdx === 0 ? idx + 1 : idx;
+
+            const setWinner = (pick) => {
+              const tbrs = tiebreakerResults;
+              tbrs[tbs.id].picked = pick;
+              this.setState({ tiebreakerResults: tbrs }, () => {
+                this.calculateMatchups(0, this.state.rounds + 1)
+              });
+            }
+
+            if (teamIdx === 0) {
+              // console.log(tbr);
+              // console.log("picked, result", picked, result, "t1", x.code, "t2", otherTeam.code);
               stateMatches[stage].push({
                 pool: tbs.name || `${x.w}-${x.l} Tiebreaker`,
                 poolOrder: x.w * 100 - x.l + (tbs.offset || 0),
@@ -295,25 +318,17 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
                 match: -1,
                 is_tiebreaker: true,
                 team1: x,
-                team2: otherTeam,
+                team2: t2,
                 picked,
                 locked: 0,
                 result,
-                score: tbr[0] === x.code ? [tbr[2], tbr[3]] : [tbr[3], tbr[2]],
+                score: scores,
                 stage,
                 suffix: "",
-                setWinner: (pick) => {
-                  if (pick !== picked) {
-                    setTiebreakerWinnerThis({
-                      ...lostTeam,
-                      tiebreakerConfig: tbs,
-                    }, winTeam)
-                  }
+                setWinner,
+                toggle: () => {
+                  setWinner(-picked);
                 },
-                toggle: () => setTiebreakerWinnerThis({
-                  ...lostTeam,
-                  tiebreakerConfig: tbs,
-                }, winTeam),
               })
             }
 
@@ -323,23 +338,19 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
               ...getStatus(idx+1, state.seats),
               ordinalStanding: ordinal(idx+1),
               tiebreaker: true,
-              tiebreakerStats: tbr[0] === x.code ? 1 : -1,
-              tiebreakerScores: tbr[0] === x.code ? tbr[2]: tbr[3],
-              tiebreakerOtherScores: tbr[0] === x.code ? tbr[3]: tbr[2],
-              tiebreakerUndetermined: tbr[4],
+              tiebreakerStats: teamNegIdx === picked, // 1 for win
+              tiebreakerScores: scores[teamIdx],
+              tiebreakerOtherScores: scores[1 - teamIdx],
+              tiebreakerUndetermined: !determined,
               tiebreakerOtherTeam: otherTeamId,
               tiebreakerConfig: tbs,
               elim: x.l >= losesToEliminate,
               adv: x.w === winsToAdvance,
               currentRound: true,
-              setTiebreakerWin: () => setTiebreakerWinnerThis({
-                ...x,
-                tiebreakerConfig: tbs,
-              }, otherTeam),
-              toggle: () => setTiebreakerWinnerThis({
-                ...lostTeam,
-                tiebreakerConfig: tbs,
-              }, winTeam),
+              setTiebreakerWin: () => setWinner(teamNegIdx),
+              toggle: () => {
+                setWinner(-picked);
+              },
             })
           }
         }

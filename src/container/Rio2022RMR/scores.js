@@ -107,5 +107,7 @@ export const Scores = {
   "eu/vita-eu/fant": [[16,6]],
   "eu/vita-eu/hero#1": [[5,16],[22,19],[5,16]],
   "eu/vita-eu/mont": [[16,7]],
+  "am/impe-am/pain#1": [[16,14],[19,16]],
+  "am/impe-am/col#1": [[16,13],[11,16],[22,20]],
   "key": "rio22rmr"
 }

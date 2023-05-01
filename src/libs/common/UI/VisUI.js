@@ -111,7 +111,7 @@ export default class GraphBuilder extends React.PureComponent {
 
         relPos += tightness;
 
-        if (t.tiebreakerOtherTeam > t.standing) {
+        if (t.tiebreakerOtherTeam >= t.standing) {
           teamPaths[t.code + teamSuffixes[t.code]].push({x, y: y + 15, pos: relPos})
           if (t.tiebreakerUndetermined) {
             if (teamSuffixes[t.code] === "") {
@@ -119,7 +119,7 @@ export default class GraphBuilder extends React.PureComponent {
               teamPaths[t.code + "_"] = [{x, y: y + 15, pos: relPos}];
             }
           }
-          const team2 = teams[t.tiebreakerOtherTeam - 1];
+          const team2 = teams[t.tiebreakerOtherTeam];
           return ({
             id: t.code,
             ...t,
@@ -275,7 +275,7 @@ export default class GraphBuilder extends React.PureComponent {
               teamPaths[t.code + "_"] = [{x, y: y + node_height / 4, pos: relPos}];
             }
           }
-          const team2 = teams[t.tiebreakerOtherTeam - 1];
+          const team2 = teams[t.tiebreakerOtherTeam];
           return ({
             id: t.code,
             ...t,

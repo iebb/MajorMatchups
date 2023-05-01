@@ -6,14 +6,7 @@ import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDat
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
 import { Knockout } from '../../libs/common/formats/Knockout';
-import {
-  AdvanceElimSeats,
-  ChampionSeats,
-  pack,
-  setTiebreakerWinner,
-  setWinner,
-  shuffle,
-} from '../../libs/common/common';
+import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../libs/common/common';
 import Title from '../../libs/BannerInsertion';
 import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
 
@@ -108,7 +101,6 @@ export default class Stockholm2021 extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.initChampions();
   }

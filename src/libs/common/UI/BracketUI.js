@@ -39,7 +39,7 @@ export class BracketUI extends React.Component {
                     {team.buchholtz > 0 ? "+" : ""}
                     {team.buchholtz}
                     {
-                      isFinal && (" " + team.status)
+                      isFinal && (", " + team.status)
                     }
                   </span>
               </span>

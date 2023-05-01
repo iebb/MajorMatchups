@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import {EUA, EUB, NAM, SAM} from './initial_data';
+import { EUA, EUB, NAM, SAM } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
-import { pack, setTiebreakerWinner, setWinner, shuffle } from '../../libs/common/common';
+import { pack, setWinner, shuffle } from '../../libs/common/common';
 import { BasicUI } from '../../libs/common/BasicUI';
-import Title from "../../libs/BannerInsertion";
+import Title from '../../libs/BannerInsertion';
 
 const Regions = [
   {
@@ -151,8 +151,14 @@ export default class Paris2023Qual extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
+    const hash = this.props.history?.location?.hash?.slice(1);
+    for(const h of Regions) {
+      if (h.name === hash) {
+        this.init(h.id);
+        return;
+      }
+    }
     this.init(0);
   }
   render() {
@@ -170,7 +176,13 @@ export default class Paris2023Qual extends React.PureComponent {
                     key={region.id}
                     name={region.name}
                     active={this.state.regionId === region.id}
-                    onClick={() => this.init(region.id)}
+                    onClick={
+                      () => {
+                        this.props.history.push("#" + region.name);
+                        document.location.reload();
+                        // this.init(region.id)
+                      }
+                    }
                   />
                 ))
               }

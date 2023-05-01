@@ -3,7 +3,6 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { finalDataChampions, initialDataChallenger } from './initial_data';
-import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../libs/common/BasicUI';
 import { Knockout } from '../../libs/common/formats/Knockout';
 import {
@@ -11,7 +10,6 @@ import {
   ChampionSeats,
   getWinnerFromScoreGeneric,
   pack,
-  setTiebreakerWinner,
   setWinner,
   shuffle,
 } from '../../libs/common/common';
@@ -95,7 +93,6 @@ export default class R6CPH23 extends React.PureComponent {
 
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
-    this.setTiebreakerWinner = setTiebreakerWinner.bind(this);
     this.shuffle = shuffle.bind(this);
     this.init();
 

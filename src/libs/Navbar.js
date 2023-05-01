@@ -10,32 +10,19 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import {
-  Bars2Icon, BookOpenIcon, ChatBubbleBottomCenterIcon,
-  ChevronDownIcon, CogIcon, CreditCardIcon, CurrencyDollarIcon, FolderArrowDownIcon,
-  GlobeEuropeAfricaIcon, InboxIcon, NewspaperIcon,
+  Bars2Icon,
+  BookOpenIcon,
+  ChatBubbleBottomCenterIcon,
+  ChevronDownIcon,
+  CogIcon,
+  CurrencyDollarIcon,
+  FolderArrowDownIcon,
+  GlobeEuropeAfricaIcon,
+  InboxIcon,
+  NewspaperIcon,
   RocketLaunchIcon,
   StarIcon,
 } from '@heroicons/react/24/outline';
-import { Image } from 'semantic-ui-react';
-
-/*
-
-        <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da">
-          tutorial
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="">
-          feedback(discord)
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://twitter.com/CyberHono">
-          twitter
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://steamcommunity.com/id/iebbbb">
-          steam profile
-        </a>
- */
 
 const Editions = [
   {
@@ -80,24 +67,28 @@ const Editions = [
     items: [
       {
         title: '2023 Paris',
+        subtitle: 'BLAST.tv Paris Major 2023',
         img: require("../images/logos/blast23.png"),
         description: '2023.05.08 - 2023.05.21',
         path: '/23paris',
       },
       {
         title: '2023 Paris RMR',
+        subtitle: '',
         img: require("../images/logos/blast.png"),
         description: '2023.04.06 - 2023.04.15',
         path: '/23rmr_paris',
       },
       {
         title: '2023 Paris RMR Closed Qualifier',
+        subtitle: 'Europe A/B and Americas',
         img: require("../images/logos/blast.png"),
         description: '2023.02.16 - 2023.02.20',
         path: '/23qual_paris',
       },
       {
         title: '2023 R6 BLAST Major Copenhagen',
+        subtitle: '',
         img: require("../images/logos/r6.png"),
         description: '2023.04.24 - 2023.05.07',
         path: '/r6_23majorcph',
@@ -110,24 +101,28 @@ const Editions = [
     items: [
       {
         title: '2022 Rio',
+        subtitle: 'IEM Rio Major 2022',
         img: require("../images/logos/iemrio22.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22rio',
       },
       {
         title: '2022 Rio RMR',
+        subtitle: '',
         img: require("../images/logos/iem22_generic.png"),
         description: '2022.10.04 - 2022.10.09',
         path: '/22rmr_rio',
       },
       {
         title: '2022 Antwerp',
+        subtitle: 'PGL Major Antwerp 2022',
         img: require("../images/logos/pgl22.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22antwerp',
       },
       {
         title: '2022 Antwerp RMR',
+        subtitle: '',
         img: require("../images/logos/pgl.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22rmr_antwerp',
@@ -140,6 +135,7 @@ const Editions = [
     items: [
       {
         title: '2021 Stockholm',
+        subtitle: 'PGL Major Stockholm 2021',
         img: require("../images/logos/pgl21.png"),
         description: '2023.05.08 - 2023.05.21',
         path: '/21stockholm',
@@ -153,7 +149,7 @@ const Editions = [
       {
         title: '2019 Berlin',
         img: require("../images/logos/sl.png"),
-        subtitle: 'Starladder Berlin Major',
+        subtitle: 'StarLadder Berlin Major 2019',
         description: '2023.05.08 - 2023.05.21',
         path: '/19berlin',
       },

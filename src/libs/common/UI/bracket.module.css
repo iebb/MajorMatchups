@@ -71,7 +71,7 @@
 }
 
 .roundWidth {
-  width: 200px;
+  width: 190px;
 }
 
 .finalWidth {
@@ -88,11 +88,12 @@
 }
 
 .noMatch {
+  padding: 0 2px;
   display: grid;
   font-size: 12px;
   position: relative;
   gap: 0.1rem;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.1rem;
   user-select: none;
 }
 

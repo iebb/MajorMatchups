@@ -1,6 +1,6 @@
-import { ordinal } from '../plural';
+import { ordinal } from '../../plural';
 import { Header, Image, Label, Popup, Table } from 'semantic-ui-react';
-import { plus_minus } from '../plus_minus';
+import { plus_minus } from '../../plus_minus';
 import React from 'react';
 
 function getCookie(name) {
@@ -160,7 +160,7 @@ export const getMatchupDisplay = (state, stage) => {
               {
                 (team.tiebreaker) ? (
                   <div className={
-                    `team-box-split b tb-${tiebreakerResults[team.tiebreakerConfig.id][0] === team.code ? "win" : "lose"}`
+                    `team-box-split b tb-${team.tiebreakerStats ? "win" : "lose"}`
                   } onClick={() => team.setTiebreakerWin()}>
                     {teamLogo(team)}
                   </div>
