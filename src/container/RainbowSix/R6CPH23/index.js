@@ -3,7 +3,14 @@
 import React from 'react';
 import { finalDataChampions, initialDataChallenger } from './initial_data';
 import { BasicUI } from '../../../components/BasicUI';
-import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../../libs/common/common';
+import {
+  AdvanceElimSeats,
+  ChampionSeats,
+  getWinnerFromScoreGeneric,
+  pack,
+  setWinner,
+  shuffle,
+} from '../../../libs/common/common';
 import Title from '../../../components/BannerInsertion';
 import { TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
 import { FormatBinder } from '../../../libs/common/formats/formats';
@@ -79,7 +86,7 @@ export default class R6CPH23 extends React.PureComponent {
   };
 
   calculateMatchups = (s, e) => {
-    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e));
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreGeneric));
   };
 
   componentDidMount() {
