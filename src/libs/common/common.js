@@ -1,5 +1,17 @@
 import { setPickResults } from './storage';
 
+export const AdvanceElimSeats = [
+  { status: "advanced", until: 8, abbrev: "A", statusPositioned: true },
+  { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+];
+
+export const ChampionSeats = [
+  { status: "champion", until: 1, abbrev: "C", statusPositioned: true },
+  { status: "runner-up", until: 2, abbrev: "R", statusPositioned: true },
+  { status: "semifinalist", until: 4, abbrev: "SF", statusPositioned: false, statusDisplay: "SF" },
+  { status: "quarterfinalist", until: 8, abbrev: "QF", statusPositioned: false, statusDisplay: "QF" },
+];
+
 export const pack = (teams, teamLogo) => {
   return {
     teams: [
@@ -63,18 +75,6 @@ export const getWinnerFromScoreGeneric = (scores) => {
   }
   return [Math.sign(teamA - teamB), Math.max(teamA, teamB)]
 }
-
-export const AdvanceElimSeats = [
-  { status: "advanced", until: 8, abbrev: "A", statusPositioned: true },
-  { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
-];
-
-export const ChampionSeats = [
-  { status: "champion", until: 1, abbrev: "C", statusPositioned: true },
-  { status: "runner-up", until: 2, abbrev: "R", statusPositioned: true },
-  { status: "semifinalist", until: 4, abbrev: "SF", statusPositioned: false, statusDisplay: "SF" },
-  { status: "quarterfinalist", until: 8, abbrev: "QF", statusPositioned: false, statusDisplay: "QF" },
-];
 
 export const getStatus = (standing, seats=AdvanceElimSeats) => {
   for(const seat of seats) {

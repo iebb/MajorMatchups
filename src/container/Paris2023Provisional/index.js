@@ -12,6 +12,7 @@ import { ordinal } from '../../libs/plural';
 import sponsorLogo from '../../images/sponsor/rio_sb.svg';
 import Title from '../../libs/BannerInsertion';
 import { SwissBuchholtzTB } from '../../libs/common/formats/SwissBuchholtzTB';
+import { Tab, Tabs, TabsHeader } from '@material-tailwind/react';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -375,44 +376,61 @@ export default class Paris2023Provisional extends React.PureComponent {
 
 
   render() {
+
+    const tabs = [
+      ...TournamentStages.map(ts => (
+        {
+          value: ts.id,
+          label: ts.name,
+          active: this.state.tournament === ts.id,
+          onClick:() => this.init(ts.id)
+        }
+      )),
+      ...(
+        this.state.tournament < 0 ? [] : [
+          {
+            value: 1,
+            label: "Legends",
+            active: this.state.tournament === 1,
+            onClick: () => this.advance()
+          }
+        ]
+      ),
+      ...(
+        this.state.tournament < 1 ? [] : [
+          {
+            value: 2,
+            label: "Champions",
+            active: this.state.tournament === 2,
+            onClick: () => this.advance2()
+          }
+        ]
+      )
+    ]
+
     return (
       <div className="outer">
         <div className="page-container">
           <Title
             title="BLAST.tv Paris 2023 Major Matchup Calc (Provisional)"
           />
-          <Menu pointing secondary inverted compact size="huge" className="region-selector">
-            {
-              TournamentStages.map(ts => (
-                <Menu.Item
-                  key={ts.id}
-                  name={ts.name}
-                  active={this.state.tournament === ts.id}
-                  onClick={() => this.init(ts.id)}
-                />
-              ))
-            }
-            {
-              this.state.tournament >= 0 && (
-                <Menu.Item
-                  key="adv-2"
-                  name="Legends"
-                  active={this.state.tournament === 1}
-                  onClick={() => this.advance()}
-                />
-              )
-            }
-            {
-              this.state.tournament >= 1 && (
-                <Menu.Item
-                  key="adv-2"
-                  name="Champions"
-                  active={this.state.tournament === 2}
-                  onClick={() => this.advance2()}
-                />
-              )
-            }
-          </Menu>
+
+          <Tabs
+            value={this.state.tournament}
+            id="tab"
+            className="w-auto max-w-[40rem] m-auto"
+          >
+            <TabsHeader>
+              {tabs.map(({ label, value, icon, onClick }) => (
+                <Tab key={value} value={value} onClick={onClick}>
+                  <div className="flex items-center gap-2">
+                    {/*{React.createElement(icon, { className: "w-5 h-5" })}*/}
+                    {label}
+                  </div>
+                </Tab>
+              ))}
+            </TabsHeader>
+          </Tabs>
           <BasicUI
             state={this.state}
             stage={this.getStage()}

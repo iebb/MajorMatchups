@@ -16,27 +16,6 @@ export class ClassicUI extends React.Component {
 
     return (
       <div style={{ marginTop: 20 }}>
-        <Form style={{ marginTop: 20 }} inverted>
-          <Form.Field>
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ trackPickems: checked });
-                  localStorage.trackPickems = checked;
-                }
-              } label='Track Pick`em' checked={trackPickems} />
-            </div>
-            <div style={{ margin: 10, display: 'inline-block' }}>
-              <Radio toggle onChange={
-                (e, { checked }) => {
-                  this.setState({ matchOnly: checked });
-                  localStorage.matchOnly = checked;
-                }
-              } label='Matches Only' checked={matchOnly} />
-            </div>
-          </Form.Field>
-        </Form>
-
         <div className="main-container">
           {
             rounds.map((round) => (
