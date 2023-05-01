@@ -1,17 +1,17 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import {Redirect, Route, Switch} from 'react-router-dom';
-import Berlin2019 from './container/Berlin2019';
-import R6CPH23 from "./container/R6CPH23";
-import Stockholm2021 from './container/Stockholm2021';
-import Katowice2019 from './container/Katowice2019';
-import Antwerp2022RMR from "./container/Antwerp2022RMR";
-import Antwerp2022 from "./container/Antwerp2022";
-import Rio2022RMR from "./container/Rio2022RMR";
-import Rio2022 from "./container/Rio2022";
-import Paris2023Qual from "./container/Paris2023Qual";
-import Paris2023RMR from "./container/Paris2023RMR";
-import Paris2023Provisional from "./container/Paris2023Provisional";
+import Berlin2019 from './container/CSGO/Berlin2019';
+import R6CPH23 from "./container/RainbowSix/R6CPH23";
+import Stockholm2021 from './container/CSGO/Stockholm2021';
+import Katowice2019 from './container/CSGO/Katowice2019';
+import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
+import Antwerp2022 from "./container/CSGO/Antwerp2022";
+import Rio2022RMR from "./container/CSGO/Rio2022RMR";
+import Rio2022 from "./container/CSGO/Rio2022";
+import Paris2023Qual from "./container/CSGO/Paris2023Qual";
+import Paris2023RMR from "./container/CSGO/Paris2023RMR";
+import Paris2023Provisional from "./container/CSGO/Paris2023Provisional";
 
 export default function Routes() {
   const h = useHistory();

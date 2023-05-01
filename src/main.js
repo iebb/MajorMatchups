@@ -2,11 +2,11 @@
 /* eslint-disable react/no-multi-comp */
 
 import React, { useEffect, useState } from 'react';
-import ComplexNavbar from './libs/Navbar';
+import ComplexNavbar from './components/Navbar';
 import Routes from './router';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import GoogleAd from './libs/GoogleAd';
+import GoogleAd from './components/GoogleAd';
 import { SettingsCtx } from './libs/Context';
 
 const Footer = () => (
