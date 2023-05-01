@@ -6,10 +6,10 @@ import { Formats } from '../../libs/common/formats/formats';
 
 
 const colors = (result, deterministic) => {
-  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "50" : "100"}`;
-  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50
-  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50
+  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "50" : "30"}`;
+  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30
+  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30
 };
 
 export function BracketUI({ preferences, state, shuffle }) {
@@ -32,7 +32,7 @@ export function BracketUI({ preferences, state, shuffle }) {
               teams={bracket.allTeams}
               key={index}
             >
-              <div className={`${styles.team} hover:bg-blue-100`}>
+              <div className={`${styles.team} hover:bg-blue-50`}>
                 <div className={styles.teamLogo}>
                   <img alt={team.code} src={team.logo} className="transfer-team-logo" />
                 </div>
@@ -66,7 +66,7 @@ export function BracketUI({ preferences, state, shuffle }) {
           teams={round.allTeams}
         >
           <div
-            className={`${styles.team} hover:bg-blue-100 ${colors(match.picked, match.result)}`}
+            className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
             onClick={() => {
               match.setWinner(1);
             }}
@@ -90,7 +90,7 @@ export function BracketUI({ preferences, state, shuffle }) {
           teams={round.allTeams}
         >
           <div
-            className={`${styles.team} hover:bg-blue-100 ${colors(-match.picked, match.result)}`}
+            className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
             onClick={() => {
               match.setWinner(-1);
             }}
