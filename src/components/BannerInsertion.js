@@ -31,7 +31,7 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
             ) : (
               <>
                 <h1 className="title">{title}</h1>
-                <p style={{fontSize: 18, marginTop: 16}}>
+                <p className="text-xl mt-2 text-blue-gray-300">
                   Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
                   <img src={sponsorLogo} alt={ctx.adProvider}
                        style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>

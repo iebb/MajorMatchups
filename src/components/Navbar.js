@@ -266,7 +266,7 @@ export default function ComplexNavbar() {
   }, []);
 
   return (
-    <Navbar className="md:sticky inset-0 z-10 h-max max-w-full rounded-none p-2 md:pl-6">
+    <Navbar className="md:sticky inset-0 z-40 h-max max-w-full rounded-none p-2 md:pl-6">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <Typography
           as="a"

@@ -187,7 +187,7 @@ export default class R6CPH23 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="BLAST R6 Major Copenhagen 2023 Matchup Calc"
+            title="BLAST R6 Major Copenhagen 2023 Simulator"
             sponsorLess
           />
           <BasicUI

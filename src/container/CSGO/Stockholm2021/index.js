@@ -201,7 +201,7 @@ export default class Stockholm2021 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="PGL Stockholm Major 2021 Matchup Calc"
+            title="PGL Stockholm Major 2021 Simulator"
             isMajor
             extras={[
               {

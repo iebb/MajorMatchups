@@ -9,7 +9,6 @@ import { Knockout } from '../../../libs/common/formats/Knockout';
 import { BasicUI } from '../../../components/BasicUI';
 import { getPickResults, setPickResults } from '../../../libs/common/storage';
 import { ordinal } from '../../../libs/plural';
-import sponsorLogo from '../../../images/sponsor/rio_sb.svg';
 import Title from '../../../components/BannerInsertion';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
 
@@ -390,7 +389,7 @@ export default class Rio2022 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="IEM Rio Major 2022 Matchup Calc"
+            title="IEM Rio Major 2022 Simulator"
             isMajor
           />
           <Menu pointing secondary inverted compact size="huge" className="region-selector">

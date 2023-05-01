@@ -3,7 +3,7 @@ import { plus_minus } from '../libs/plus_minus';
 import React from 'react';
 
 export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) => {
-  if (!enabled) {
+  if (!enabled || !team.buchholtzBreakdown || team.buchholtzBreakdown.length === 0) {
     return children;
   }
   return (
@@ -24,7 +24,7 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
               <tr key={_idx}>
                 <td className="w-[24px]">
                   <div className="h-[24px] w-[24px] inline-block mr-3 content-center">
-                    <img className="w-[24px]"
+                    <img className="max-w-[24px]"
                          src={teams[opp.code].logo}
                          alt={opp.code}
                          title={opp.code}
@@ -40,7 +40,7 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
               </tr>
             )
           }
-          <tr>
+          <tr className="border-t-2 border-t-blue-gray-400 pt-4">
             <td colSpan={3}><b>Total Buchholtz</b></td>
             <td className="text-center">{team.buchholtz}</td>
           </tr>

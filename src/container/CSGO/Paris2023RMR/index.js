@@ -105,12 +105,11 @@ const Regions = [
     deciderBestOf: 2,
     tournamentType: 4,
     tournamentFormat: "KNOCKOUT2",
-    allowDups: false,
     defaultSuffix: "",
   },
   {
     id: 4,
-    name: "European-Decider",
+    name: "EU-Decider",
     icon: GlobeEuropeAfricaIcon,
     seeds: EUTB,
     seats: [
@@ -229,7 +228,7 @@ export default class Paris2023RMR extends React.PureComponent {
       active: this.state.regionId === region.id,
       icon: region.icon,
       onClick:  () => {
-        // this.props.history.push("#" + region.name);
+        this.props.history.push("#" + region.name);
         // document.location.reload();
         this.init(region.id)
       }
@@ -238,7 +237,7 @@ export default class Paris2023RMR extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="BLAST.tv Paris 2023 RMR Matchup Calc"
+            title="BLAST.tv Paris 2023 RMR Simulator"
           />
           <div className="pt-4">
             <BasicUI

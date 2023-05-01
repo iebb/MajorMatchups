@@ -346,7 +346,7 @@ export default class Paris2023Provisional extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="BLAST.tv Paris 2023 Major Matchup Calc (Provisional)"
+            title="BLAST.tv Paris 2023 Major Simulator (Provisional)"
           />
           <BasicUI
             tabs={tabs}

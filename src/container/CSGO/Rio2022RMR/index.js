@@ -194,7 +194,7 @@ export default class Rio2022RMR extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="IEM Rio RMR 2022 Matchup Calculator"
+            title="IEM Rio RMR 2022 Simulatorulator"
           />
           <div className="pt-4">
             <Menu pointing secondary inverted compact size="huge" className="region-selector">

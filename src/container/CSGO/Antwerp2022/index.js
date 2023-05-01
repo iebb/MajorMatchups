@@ -399,7 +399,7 @@ export default class Antwerp2022 extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <Title
-            title="PGL Antwerp Major 2022 Matchup Calc"
+            title="PGL Antwerp Major 2022 Simulator"
           />
           <Menu pointing secondary inverted compact size="huge" className="region-selector">
             {

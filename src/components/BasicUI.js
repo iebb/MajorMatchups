@@ -162,6 +162,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
         tabs && (
           <div style={{ overflowX: "auto" }}>
             <Tabs
+              key={stage}
               value={stage}
               id="tab"
               className="w-auto m-auto inline-block"

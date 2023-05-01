@@ -1,18 +1,19 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
-import { EUA, EUB, NAM, SAM } from './initial_data';
+import { EUA, EUB, EUTB, NAM, SAM } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
 import { pack, setWinner, shuffle } from '../../../libs/common/common';
 import { BasicUI } from '../../../components/BasicUI';
 import Title from '../../../components/BannerInsertion';
+import { GlobeAmericasIcon, GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline';
 
 const Regions = [
   {
     id: 0,
     name: "Europe-A",
+    icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
       { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
@@ -31,6 +32,7 @@ const Regions = [
   {
     id: 1,
     name: "Europe-B",
+    icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
       { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
@@ -48,7 +50,29 @@ const Regions = [
   },
   {
     id: 2,
-    name: "North Am",
+    name: "EU-Decider",
+    icon: GlobeEuropeAfricaIcon,
+    seeds: EUTB,
+    seats: [
+      { status: "rmr-b", until: 1, abbrev: "R", statusPositioned: true },
+      { status: "rmr-a", until: 2, abbrev: "R", statusPositioned: true },
+      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
+    },
+    rounds: 2,
+    winsToAdvance: 1,
+    nonDeciderBestOf: 1,
+    deciderBestOf: 2,
+    tournamentType: 0,
+    tournamentFormat: "SWISS_BUCHHOLTZ",
+    allowDups: false,
+  },
+  {
+    id: 3,
+    name: "North-Am",
+    icon: GlobeAmericasIcon,
     seeds: NAM,
     seats: [
       { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
@@ -66,8 +90,9 @@ const Regions = [
     allowDups: false,
   },
   {
-    id: 3,
-    name: "South Am",
+    id: 4,
+    name: "South-Am",
+    icon: GlobeAmericasIcon,
     seeds: SAM,
     seats: [
       { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
@@ -166,32 +191,30 @@ export default class Paris2023Qual extends React.PureComponent {
     this.init(0);
   }
   render() {
+    const tabs = Regions.map(region => ({
+      value: region.id,
+      label: region.name,
+      active: this.state.regionId === region.id,
+      icon: region.icon,
+      onClick:  () => {
+        this.props.history.push("#" + region.name);
+        // document.location.reload();
+        this.init(region.id)
+      }
+    }));
     return (
       <div className="outer">
         <div className="page-container">
           <Title
-            title="BLAST.tv Paris 2023 RMR Matchup Calc"
+            title="BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
           />
           <div className="pt-4">
-            <Menu pointing secondary inverted compact size="huge" className="region-selector">
-              {
-                Regions.map(region => (
-                  <Menu.Item
-                    key={region.id}
-                    name={region.name}
-                    active={this.state.regionId === region.id}
-                    onClick={
-                      () => {
-                        this.props.history.push("#" + region.name);
-                        document.location.reload();
-                        // this.init(region.id)
-                      }
-                    }
-                  />
-                ))
-              }
-            </Menu>
-            <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
+            <BasicUI
+              tabs={tabs}
+              state={this.state}
+              stage={this.getStage()}
+              shuffle={this.shuffle}
+            />
           </div>
         </div>
       </div>

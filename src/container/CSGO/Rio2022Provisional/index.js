@@ -378,7 +378,7 @@ export default class Rio2022Provisional extends React.PureComponent {
       <div className="outer">
         <div className="page-container">
           <div className="title-container">
-            <h1 className="title">IEM Rio Major 2022 Matchup Calculator (Provisional)</h1>
+            <h1 className="title">IEM Rio Major 2022 Simulatorulator (Provisional)</h1>
             <p style={{ fontSize: 18, marginTop: 16 }}>
               Sponsored by <a href="https://redirect.badasstemple.eu/br7lju"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/></a>
             </p>
