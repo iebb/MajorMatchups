@@ -19,13 +19,13 @@ export class BracketUI extends React.Component {
 
   render() {
     const { trackPickems, matchOnly } = this.state;
-    const { state } = this.props;
+    const { state, shuffle } = this.props;
     const rounds = Array.from(Array(state.rounds + 1).keys());
 
     const renderTeams = (bracket, isFinal=false) => {
       if (bracket.teams.length === 0) return null;
       return (
-        <div key={bracket.pool} className={`${styles.noMatch} rounded-md border-2 border-blue-500 shadow-md`}>
+        <div key={bracket.pool} className={`${styles.noMatch} ${isFinal ? styles.finalWidth : styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
           {bracket.teams.map((team, index) => (
             <div className={styles.teamNomatch} key={index}>
               <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
@@ -52,7 +52,7 @@ export class BracketUI extends React.Component {
 
     const renderMatches = (roundMatches) => {
       return roundMatches.map((match, index) => (
-        <div key={index} className={`${styles.match} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
+        <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
           <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
           <div
             className={`${styles.team} hover:bg-blue-100 ${colors(match.picked, match.result)}`}
@@ -172,7 +172,7 @@ export class BracketUI extends React.Component {
 
                   return (
                   <div key={_idx} className={styles.round}>
-                    <div className="text-xl font-semibold mb-2">{
+                    <div className="text-xl font-semibold mb-2" onClick={() => shuffle(_idx)}>{
                       _idx < rounds.length - 1 ? (
                         `Round ${_idx + 1}`
                       ) : (

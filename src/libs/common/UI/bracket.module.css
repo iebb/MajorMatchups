@@ -70,13 +70,20 @@
   margin-bottom: 1rem;
 }
 
+.roundWidth {
+  width: 200px;
+}
+
+.finalWidth {
+  width: 240px;
+}
+
 .match {
   display: grid;
   grid-template-columns: 25px auto;
   font-size: 12px;
   position: relative;
   margin-bottom: 0.3rem;
-  width: 200px;
   user-select: none;
 }
 
@@ -86,7 +93,6 @@
   position: relative;
   gap: 0.1rem;
   margin-bottom: 0.2rem;
-  width: 200px;
   user-select: none;
 }
 

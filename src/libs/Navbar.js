@@ -10,41 +10,95 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import {
-  Bars2Icon,
-  ChevronDownIcon, FolderArrowDownIcon,
-  GlobeEuropeAfricaIcon,
+  Bars2Icon, BookOpenIcon, ChatBubbleBottomCenterIcon,
+  ChevronDownIcon, CogIcon, CreditCardIcon, CurrencyDollarIcon, FolderArrowDownIcon,
+  GlobeEuropeAfricaIcon, InboxIcon, NewspaperIcon,
   RocketLaunchIcon,
   StarIcon,
 } from '@heroicons/react/24/outline';
 import { Image } from 'semantic-ui-react';
 
+/*
+
+        <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da">
+          tutorial
+        </a>
+        <span style={{margin: 10}}>·</span>
+        <a href="">
+          feedback(discord)
+        </a>
+        <span style={{margin: 10}}>·</span>
+        <a href="https://twitter.com/CyberHono">
+          twitter
+        </a>
+        <span style={{margin: 10}}>·</span>
+        <a href="https://steamcommunity.com/id/iebbbb">
+          steam profile
+        </a>
+ */
 
 const Editions = [
+  {
+    edition: "About",
+    icon: InboxIcon,
+    items: [
+      {
+        title: 'Major Rulebook',
+        subtitle: 'The Valve Rulebook',
+        icon: BookOpenIcon,
+        path: "https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major",
+      },
+      {
+        title: 'Discord',
+        subtitle: 'Feedbacks, or just random chat',
+        icon: ChatBubbleBottomCenterIcon,
+        path: "https://discord.gg/KYNbRYrZGe",
+      },
+      {
+        title: 'Ko-fi Page',
+        subtitle: 'Donate to this site :D',
+        icon: CurrencyDollarIcon,
+        path: "https://ko-fi.com/ieb233",
+      },
+      {
+        title: 'Tutorial',
+        subtitle: 'A simple guide on how to use this site',
+        icon: NewspaperIcon,
+        path: "https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da",
+      },
+      {
+        title: 'Steam Profile',
+        subtitle: 'Comment / Give Profile Awards',
+        icon: CogIcon,
+        path: "https://steamcommunity.com/id/iebbbb",
+      },
+    ]
+  },
   {
     edition: "2023",
     icon: RocketLaunchIcon,
     items: [
       {
         title: '2023 Paris',
-        icon: require("../images/logos/blast23.png"),
+        img: require("../images/logos/blast23.png"),
         description: '2023.05.08 - 2023.05.21',
         path: '/23paris',
       },
       {
         title: '2023 Paris RMR',
-        icon: require("../images/logos/blast.png"),
+        img: require("../images/logos/blast.png"),
         description: '2023.04.06 - 2023.04.15',
         path: '/23rmr_paris',
       },
       {
         title: '2023 Paris RMR Closed Qualifier',
-        icon: require("../images/logos/blast.png"),
+        img: require("../images/logos/blast.png"),
         description: '2023.02.16 - 2023.02.20',
         path: '/23qual_paris',
       },
       {
         title: '2023 R6 BLAST Major Copenhagen',
-        icon: require("../images/logos/r6.png"),
+        img: require("../images/logos/r6.png"),
         description: '2023.04.24 - 2023.05.07',
         path: '/r6_23majorcph',
       },
@@ -56,25 +110,25 @@ const Editions = [
     items: [
       {
         title: '2022 Rio',
-        icon: require("../images/logos/iemrio22.png"),
+        img: require("../images/logos/iemrio22.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22rio',
       },
       {
         title: '2022 Rio RMR',
-        icon: require("../images/logos/iem22_generic.png"),
+        img: require("../images/logos/iem22_generic.png"),
         description: '2022.10.04 - 2022.10.09',
         path: '/22rmr_rio',
       },
       {
         title: '2022 Antwerp',
-        icon: require("../images/logos/pgl22.png"),
+        img: require("../images/logos/pgl22.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22antwerp',
       },
       {
         title: '2022 Antwerp RMR',
-        icon: require("../images/logos/pgl.png"),
+        img: require("../images/logos/pgl.png"),
         description: '2022.10.31 - 2022.11.13',
         path: '/22rmr_antwerp',
       },
@@ -86,7 +140,7 @@ const Editions = [
     items: [
       {
         title: '2021 Stockholm',
-        icon: require("../images/logos/pgl21.png"),
+        img: require("../images/logos/pgl21.png"),
         description: '2023.05.08 - 2023.05.21',
         path: '/21stockholm',
       },
@@ -98,14 +152,14 @@ const Editions = [
     items: [
       {
         title: '2019 Berlin',
-        icon: require("../images/logos/sl.png"),
+        img: require("../images/logos/sl.png"),
         subtitle: 'Starladder Berlin Major',
         description: '2023.05.08 - 2023.05.21',
         path: '/19berlin',
       },
       {
         title: '2019 Katowice',
-        icon: require("../images/logos/iem.png"),
+        img: require("../images/logos/iem.png"),
         subtitle: 'IEM Season 13 - Katowice Major',
         description: '2019.02.13 - 2019.03.03',
         path: '/19katowice',
@@ -123,13 +177,19 @@ function NavListMenu({ edition }) {
   };
 
   const { items } = edition;
-  const Icon = edition.icon;
+  const EditionIcon = edition.icon;
 
-  const renderItems = items.map(({title, description, path, subtitle, icon}) => (
+  const renderItems = items.map(({title, description, path, subtitle, icon: ItemIcon, img}) => (
     <a href={path} key={title}>
       <MenuItem>
         <div className="h-[32px] w-[32px] inline-block mr-3 content-center">
-          <img className="w-[32px]" src={icon} alt={title} />
+          {
+            ItemIcon ? (
+              <ItemIcon className="w-[32px]" />
+            ) : (
+              <img className="w-[32px]" src={img} alt={title} />
+            )
+          }
         </div>
         <div className="inline-block">
           <Typography variant="h6" color="blue-gray" className="mb-1">
@@ -155,7 +215,7 @@ function NavListMenu({ edition }) {
               {...triggers}
               className="hidden items-center gap-2 text-blue-gray-900 md:flex md:rounded-full"
             >
-              <Icon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
+              <EditionIcon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
               <ChevronDownIcon
                 strokeWidth={2}
                 className={`h-3 w-3 transition-transform ${
@@ -169,13 +229,13 @@ function NavListMenu({ edition }) {
           {...triggers}
           className="hidden w-[28rem] grid-cols-4 gap-3 overflow-visible md:grid"
         >
-          <ul className="col-span-4 flex w-full flex-col gap-1">
+          <ul className="col-span-4 flex w-full flex-col gap-1 !outline-none">
             {renderItems}
           </ul>
         </MenuList>
       </Menu>
       <MenuItem className="flex items-center gap-2 text-blue-gray-900 md:hidden">
-        <Icon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
+        <EditionIcon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
       </MenuItem>
       <ul className="ml-6 flex w-full flex-col gap-1 md:hidden">
         {renderItems}
@@ -210,7 +270,7 @@ export default function ComplexNavbar() {
   }, []);
 
   return (
-    <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none p-2 md:pl-6">
+    <Navbar className="md:sticky inset-0 z-10 h-max max-w-full rounded-none p-2 md:pl-6">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
         <Typography
           as="a"
@@ -232,7 +292,7 @@ export default function ComplexNavbar() {
           <Bars2Icon className="h-6 w-6" />
         </IconButton>
       </div>
-      <MobileNav open={isNavOpen} className="overflow-scroll">
+      <MobileNav open={isNavOpen}>
         <NavList />
       </MobileNav>
     </Navbar>

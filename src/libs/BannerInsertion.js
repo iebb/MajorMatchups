@@ -59,25 +59,6 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
         }
       </div>
       <p>
-        <a href="https://counter-strike.net/csgo_major_supplemental_rulebook/#Final-Rankings-Major">
-          rulebook
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da">
-          tutorial
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://discord.gg/KYNbRYrZGe">
-          feedback(discord)
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://twitter.com/CyberHono">
-          twitter
-        </a>
-        <span style={{margin: 10}}>·</span>
-        <a href="https://steamcommunity.com/id/iebbbb">
-          steam profile
-        </a>
         {
           extras.map((x, _idx) => <>
             <span style={{margin: 10}} key={_idx}>·</span>
