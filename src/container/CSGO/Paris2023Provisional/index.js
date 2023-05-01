@@ -4,13 +4,10 @@ import React from 'react';
 import { initialDataChallenger, initialDataLegends } from './initial_data';
 import { ChallengerResults, LegendResults, Scores } from './scores';
 import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../../libs/common/common';
-import { Knockout } from '../../../libs/common/formats/Knockout';
 import { BasicUI } from '../../../components/BasicUI';
 import { getPickResults, setPickResults } from '../../../libs/common/storage';
 import { ordinal } from '../../../libs/plural';
 import Title from '../../../components/BannerInsertion';
-import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
-import { Tab, Tabs, TabsHeader } from '@material-tailwind/react';
 import { PaperAirplaneIcon, TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
 import { FormatBinder, Formats } from '../../../libs/common/formats/formats';
 
