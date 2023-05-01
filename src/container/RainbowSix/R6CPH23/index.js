@@ -37,6 +37,7 @@ const TournamentStages = [
     name: "Finals",
     tournament: TournamentChampions,
     advanceMode: 2,
+    tournamentType: 2,
     tournamentFormat: "KNOCKOUT",
     seats: ChampionSeats,
     winsToAdvance: 3,
@@ -56,6 +57,7 @@ export default class R6CPH23 extends React.PureComponent {
     roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
     tournament: TournamentChallenger,
+    tournamentType: 0,
     scores: {},
     tiebreakers: {},
     tiebreakerResults: {},
@@ -83,7 +85,7 @@ export default class R6CPH23 extends React.PureComponent {
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.init();
+    // this.init();
 
     return fetch('/r6_scores')
       .then((resp) => resp.json())
@@ -96,7 +98,7 @@ export default class R6CPH23 extends React.PureComponent {
           this.calculateMatchups(0, this.state.rounds + 1)
         });
       });
-  }
+  }k
 
 
   init = (_) => {

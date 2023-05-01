@@ -166,11 +166,11 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
               id="tab"
               className="w-auto m-auto inline-block"
             >
-              <TabsHeader>
+              <TabsHeader className="whitespace-nowrap">
                 {tabs.map(({ label, value, icon, onClick }) => (
-                  <Tab key={value} value={value} onClick={onClick} className="w-auto mx-2">
-                    <div className="flex items-center gap-2">
-                      {React.createElement(icon, { className: "w-5 h-5" })}
+                  <Tab key={value} value={value} onClick={onClick} className="w-auto">
+                    <div className="flex items-center px-2">
+                      {React.createElement(icon, { className: "w-5 h-5 mr-1" })}
                       {label}
                     </div>
                   </Tab>
