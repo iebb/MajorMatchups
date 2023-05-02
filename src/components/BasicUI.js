@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button as SUIButton } from 'semantic-ui-react';
 import { ClassicUI } from './UI/ClassicUI';
 import { VisUI } from './UI/VisUI';
 import { BracketUI } from './UI/BracketUI';
@@ -11,12 +10,16 @@ import {
   DialogHeader,
   Option,
   Select,
-  Switch, Tab, Tabs, TabsHeader,
+  Switch,
+  Tab,
+  Tabs,
+  TabsHeader,
 } from '@material-tailwind/react';
+import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
 
 const commonOptions = [
   { name: "Disable Google Ads", key: "disableAds", default: false },
-  { name: "Pink Background", key: "pinkBackground", default: false },
+  { name: "Alternative Background", key: "altBackground", default: false },
 ]
 
 const UIEnums = {
@@ -215,16 +218,15 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       />
       {
         advance && (
-          <div style={{ marginTop: 50 }}>
-            <SUIButton
-              basic
+          <div className="m-10 items-center flex flex-row content-center place-content-center">
+            <Button
               onClick={advance}
-              inverted
-              content="Next Stage"
-              icon='right arrow'
-              labelPosition='right'
-              size="huge"
-            />
+              color="blue-gray"
+              variant="outlined"
+              className="normal-case text-black font-normal text-2xl py-4 px-12 my-0 flex items-center gap-2"
+            >
+              Next Stage <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+            </Button>
           </div>
         )
       }

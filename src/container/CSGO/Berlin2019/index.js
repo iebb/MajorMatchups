@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image, Menu } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { getRelativeSeed, rankingSeed } from './initial_seed';
 import { FinalChallengers, FinalLegends, FinalResults } from './final_results';
 import Title from '../../../components/BannerInsertion';
@@ -15,7 +15,7 @@ const teams = [];
 let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `https://majors.im/images/berlin2019/${code}.png`;
+const teamLogo = (code) => `https://majors.im/imgs/berlin2019/${code}.png`;
 
 export default class Berlin2019 extends React.PureComponent {
   state = {
@@ -248,8 +248,8 @@ export default class Berlin2019 extends React.PureComponent {
         picked === 1
           ? this.calculateDeltaElo(match.team1, match.team2)
           : picked === -1
-          ? -this.calculateDeltaElo(match.team2, match.team1)
-          : 0;
+            ? -this.calculateDeltaElo(match.team2, match.team1)
+            : 0;
 
       stageMatches = stageMatches.map((y) =>
         y.match !== match.match || y.pool !== match.pool ? y : { ...y, picked, deltaElo },
@@ -275,7 +275,7 @@ export default class Berlin2019 extends React.PureComponent {
             </div>
             <div className="team-box med">
               <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
+                <img className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
               </div>
             </div>
             <div className="team-box down">
@@ -337,10 +337,10 @@ export default class Berlin2019 extends React.PureComponent {
               ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
-                  <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
+                  <img className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
                 </div>
                 <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => setWinner(x, -1)}>
-                  <Image className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
+                  <img className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
                 </div>
               </div>
               <div className="team-box down">
@@ -378,7 +378,7 @@ export default class Berlin2019 extends React.PureComponent {
             </div>
             <div className="team-box med">
               <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
+                <img className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
               </div>
             </div>
             <div className="team-box down">
@@ -399,33 +399,31 @@ export default class Berlin2019 extends React.PureComponent {
 
   render() {
     return (
-      <div className="outer">
-        <div className="page-container">
-          <Title
-            title="StarLadder Berlin Major 2019 Simulator"
-            sponsorLess
-          />
-          {/* Seeding: Live-Elo based on HLTV Ranking */}
-          <div className="pt-4">
-            <Menu pointing secondary inverted compact size="huge" className="region-selector">
-              <Menu.Item name="Challengers Stage" active={this.state.tournament === 1} onClick={() => this.init(1)} />
-              <Menu.Item
-                name="Legends Stage"
-                active={this.state.tournament === 2}
-                onClick={() => this.init(2) /* this.advance() */}
-              />
-            </Menu>
-          </div>
-          <div className="main-container">
-            {[0, 1, 2, 3, 4, 5].map((round) => (
-              <>
-                <h1 className="round-title" key={round}>
-                  {round === 5 ? `Final Results` : `Round ${round + 1}`}
-                </h1>
-                <div>{this.getMatchUps(round)}</div>
-              </>
-            ))}
-          </div>
+      <div className="page-container">
+        <Title
+          title="StarLadder Berlin Major 2019 Simulator"
+          sponsorLess
+        />
+        {/* Seeding: Live-Elo based on HLTV Ranking */}
+        <div className="pt-4">
+          <Menu pointing secondary inverted compact size="huge" className="region-selector">
+            <Menu.Item name="Challengers Stage" active={this.state.tournament === 1} onClick={() => this.init(1)} />
+            <Menu.Item
+              name="Legends Stage"
+              active={this.state.tournament === 2}
+              onClick={() => this.init(2) /* this.advance() */}
+            />
+          </Menu>
+        </div>
+        <div className="main-container">
+          {[0, 1, 2, 3, 4, 5].map((round) => (
+            <>
+              <h1 className="round-title" key={round}>
+                {round === 5 ? `Final Results` : `Round ${round + 1}`}
+              </h1>
+              <div>{this.getMatchUps(round)}</div>
+            </>
+          ))}
         </div>
       </div>
     );

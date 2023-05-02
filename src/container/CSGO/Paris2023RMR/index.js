@@ -234,7 +234,7 @@ export default class Paris2023RMR extends React.PureComponent {
       }
     }));
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="BLAST.tv Paris 2023 RMR Simulator"
@@ -245,7 +245,6 @@ export default class Paris2023RMR extends React.PureComponent {
             stage={this.state.regionId}
             shuffle={this.shuffle}
           />
-        </div>
       </div>
     );
   }

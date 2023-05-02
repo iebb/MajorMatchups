@@ -202,7 +202,7 @@ export default class Rio2022RMR extends React.PureComponent {
       }
     }));
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="IEM Rio RMR 2022 Simulator"
@@ -213,7 +213,6 @@ export default class Rio2022RMR extends React.PureComponent {
             stage={this.getStage()}
             shuffle={this.shuffle}
           />
-        </div>
       </div>
     );
   }

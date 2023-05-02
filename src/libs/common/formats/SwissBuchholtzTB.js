@@ -257,7 +257,6 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           const tb = tbs.teams - 1 === idx || tbs.teams === idx;
           if (tb) {
             let tbr = tiebreakerResults[tbs.id];
-            console.log("after set, tbr is", tbr);
             // winner, loser, winner score, loser score, determined
             const t1 = teamsSorted[tbs.teams - 1];
             const t2 = teamsSorted[tbs.teams];

@@ -186,7 +186,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
     }));
 
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="PGL Antwerp RMR 2022 Simulator"
@@ -198,7 +198,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
             stage={this.getStage()}
             shuffle={this.shuffle}
           />
-        </div>
       </div>
     );
   }

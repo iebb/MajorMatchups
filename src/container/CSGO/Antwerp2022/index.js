@@ -236,7 +236,7 @@ export default class Antwerp2022 extends React.PureComponent {
       )),
     ]
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="PGL Antwerp Major 2022 Simulator"
@@ -255,7 +255,6 @@ export default class Antwerp2022 extends React.PureComponent {
               <NextMajorSlot state={this.state} />
             )
           }
-        </div>
       </div>
     );
   }

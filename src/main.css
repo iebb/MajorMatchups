@@ -46,11 +46,6 @@ h1, h2, h3, h4, h5, .ui.button {
   border-top-left-radius: 15px;
 }
 
-h1, h2, h3, h4, h5, .ui.button {
-  font-family: Inter, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
 .bottom-desktop {
   display: flex;
   position: fixed;
@@ -410,7 +405,7 @@ h3.title {
 .team-box-text.lose {
   color: #ed293f;
 }
-img.ui.image.team-logo {
+.team-logo {
   vertical-align: middle;
   display: inline-block;
   max-height: 64px;
@@ -429,7 +424,7 @@ img.ui.image.team-logo {
   border-top-left-radius: 16px;
 }
 
-img.ui.image.team-logo-bg {
+.team-logo-bg {
   width: 32px;
   max-height: 32px;
   position: absolute;
@@ -439,7 +434,7 @@ img.ui.image.team-logo-bg {
   display: inline-block;
 }
 
-img.ui.image.team-logo-small {
+.team-logo-small {
   vertical-align: middle;
   display: inline-block;
   max-width: 18px;
@@ -551,4 +546,15 @@ iframe {
 
 .region-selector::-webkit-scrollbar {
   display: none;
+}
+
+img.ui {
+  display: block;
+}
+.ui-image {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  background-color: transparent;
 }

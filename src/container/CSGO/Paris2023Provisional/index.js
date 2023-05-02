@@ -240,7 +240,7 @@ export default class Paris2023Provisional extends React.PureComponent {
     ]
 
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="BLAST.tv Paris 2023 Major Simulator (Provisional)"
@@ -255,7 +255,6 @@ export default class Paris2023Provisional extends React.PureComponent {
             }
           />
           <NextMajorSlot state={this.state} />
-        </div>
       </div>
     );
   }

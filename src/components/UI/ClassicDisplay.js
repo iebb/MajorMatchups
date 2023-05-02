@@ -1,7 +1,7 @@
 import { ordinal } from '../../libs/plural';
-import { Image, Label } from 'semantic-ui-react';
 import React from 'react';
 import { BuchholtzPopup } from '../BuchholtzPopup';
+import { Chip } from '@material-tailwind/react';
 
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -27,7 +27,7 @@ export const getMatchupDisplay = (state, stage) => {
   }
 
 
-  let { trackPickems, matchOnly, tiebreakerResults } = state;
+  let { trackPickems, matchOnly } = state;
 
   if (stage === state.rounds) matchOnly = false;
 
@@ -48,32 +48,38 @@ export const getMatchupDisplay = (state, stage) => {
     const pick = picked[team.code];
 
     if (typeof pick === 'undefined' || !trackPickems) return (
-      <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+      <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
     );
 
     if (pick === 0) return (
       <>
-        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
-          3-0
-        </Label>
+        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Chip
+          color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'}
+          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          value="3-0"
+        />
       </>
     );
     if (pick === 8) return (
       <>
-        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
-          0-3
-        </Label>
+        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Chip
+          color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'}
+          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          value="0-3"
+        />
       </>
     );
 
     return (
       <>
-        <Image className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Label color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'} style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}>
-          Adv
-        </Label>
+        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+        <Chip
+          color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'}
+          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          value="Adv"
+        />
       </>
     );
   }

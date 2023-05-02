@@ -85,7 +85,7 @@ export const NextMajorSlot = ({state}) => {
 
 
   return (
-    <div className='main-container'>
+    <div className='main-container mt-4'>
       <h1 className='round-title'>
         Next Major Slot Allocations
       </h1>

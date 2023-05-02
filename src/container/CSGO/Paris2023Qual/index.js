@@ -205,7 +205,7 @@ export default class Paris2023Qual extends React.PureComponent {
       }
     }));
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
@@ -216,7 +216,6 @@ export default class Paris2023Qual extends React.PureComponent {
             stage={this.getStage()}
             shuffle={this.shuffle}
           />
-        </div>
       </div>
     );
   }

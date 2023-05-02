@@ -52,24 +52,26 @@ export const ResponsiveContainer = ({ children }) => {
       adType, ad, adProvider: ad.name || "",
     }}>
       <ComplexNavbar />
-      {children}
-      <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
-      {
-        adType === "google" && (
-          <GoogleAd
-            style={{ display: 'block' }}
-            googleAdId="ca-pub-3253159471656308"
-            format="autorelaxed"
-            slot="1398483557"
-          />
-        )
-      }
-      <div className="dynamic-padding" />
+      <div className="outer">
+        {children}
+        <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
+        {
+          (adType === "google") && (localStorage.disableAds !== "true") && (
+            <GoogleAd
+              style={{ display: 'block' }}
+              googleAdId="ca-pub-3253159471656308"
+              format="autorelaxed"
+              slot="1398483557"
+            />
+          )
+        }
+      </div>
       {
         (adType !== "custom") && (localStorage.disableAds === "true") ? (
           <Footer />
         ) : (
           <div className="bottom-desktop">
+            <div className="dynamic-padding" />
             {
               adType === "custom" ? (
                 <a href={ad.link} className="adv-img">

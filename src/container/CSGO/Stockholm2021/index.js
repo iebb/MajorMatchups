@@ -181,7 +181,7 @@ export default class Stockholm2021 extends React.PureComponent {
       )),
     ]
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="PGL Stockholm Major 2021 Simulator"
@@ -202,7 +202,6 @@ export default class Stockholm2021 extends React.PureComponent {
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null
             }
           />
-        </div>
       </div>
     );
   }

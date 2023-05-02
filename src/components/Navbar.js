@@ -81,7 +81,7 @@ const Editions = [
       },
       {
         title: '2023 Paris RMR Closed Qualifier',
-        subtitle: 'Europe A/B and Americas',
+        subtitle: 'Europe and Americas',
         img: require("../images/logos/blast.png"),
         description: '2023.02.16 - 2023.02.20',
         path: '/23qual_paris',

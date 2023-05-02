@@ -185,7 +185,7 @@ export default class R6CPH23 extends React.PureComponent {
     ]
 
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="BLAST R6 Major Copenhagen 2023 Simulator"
@@ -200,7 +200,6 @@ export default class R6CPH23 extends React.PureComponent {
               this.state.tournament === 0 ? this.advance2 : null
             }
           />
-        </div>
       </div>
     );
   }

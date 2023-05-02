@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image, Menu } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { FinalResults } from './final_results';
 import Title from '../../../components/BannerInsertion';
 
@@ -267,7 +267,7 @@ export default class Katowice2019 extends React.PureComponent {
             </div>
             <div className="team-box med">
               <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
+                <img className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
               </div>
             </div>
             <div className="team-box down">
@@ -329,10 +329,10 @@ export default class Katowice2019 extends React.PureComponent {
               ))}
               <div className="team-box med">
                 <div className={`team-box-split b ${pickA} ${resultA}`} onClick={() => setWinner(x, 1)}>
-                  <Image className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
+                  <img className="team-logo" src={teamLogo(x.team1.code)} alt={x.team1.name} title={x.team1.name} />
                 </div>
                 <div className={`team-box-split b ${pickB} ${resultB}`} onClick={() => setWinner(x, -1)}>
-                  <Image className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
+                  <img className="team-logo" src={teamLogo(x.team2.code)} alt={x.team2.name} title={x.team2.name} />
                 </div>
               </div>
               <div className="team-box down">
@@ -370,7 +370,7 @@ export default class Katowice2019 extends React.PureComponent {
             </div>
             <div className="team-box med">
               <div className="team-box-split b">
-                <Image className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
+                <img className="team-logo" src={teamLogo(team.code)} alt={team.name} title={team.name} />
               </div>
             </div>
             <div className="team-box down">
@@ -392,7 +392,7 @@ export default class Katowice2019 extends React.PureComponent {
 
   render() {
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="IEM Katowice Major 2019 Simulator"
@@ -421,7 +421,6 @@ export default class Katowice2019 extends React.PureComponent {
               </>
             ))}
           </div>
-        </div>
       </div>
     );
   }

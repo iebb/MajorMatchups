@@ -226,7 +226,7 @@ export default class Rio2022 extends React.PureComponent {
       )),
     ]
     return (
-      <div className="outer">
+
         <div className="page-container">
           <Title
             title="IEM Rio Major 2022 Simulator"
@@ -243,7 +243,6 @@ export default class Rio2022 extends React.PureComponent {
             }
           />
           <NextMajorSlot state={this.state} />
-        </div>
       </div>
     );
   }
