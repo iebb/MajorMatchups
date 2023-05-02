@@ -144,8 +144,8 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
         </DialogBody>
         <DialogFooter>
           <Button
-            variant="gradient"
             color="blue-gray"
+            className="normal-case text-black font-normal text-md py-2 my-0"
             onClick={() => {
               handleOpen(null)
               // document.location.reload();
