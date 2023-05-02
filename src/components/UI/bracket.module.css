@@ -46,15 +46,6 @@
   text-align: left;
 }
 
-.teamNomatch {
-  display: grid;
-  grid-template-columns: 15px 2fr;
-  gap: 5px;
-  padding: 0 0 0 5px;
-  align-items: center;
-  text-align: left;
-}
-
 .teamName {
   white-space: nowrap;
   overflow: hidden;
@@ -86,6 +77,16 @@
   width: 240px;
 }
 
+.teamNomatch {
+  display: grid;
+  grid-template-columns: 15px 2fr;
+  gap: 5px;
+  padding: 0 0 0 5px;
+  align-items: center;
+  text-align: left;
+  background: #232833;
+}
+
 .match {
   display: grid;
   grid-template-columns: 25px auto;
@@ -93,6 +94,7 @@
   position: relative;
   margin-bottom: 0.3rem;
   user-select: none;
+  background: #232833;
 }
 
 .noMatch {

@@ -14,6 +14,11 @@ import {
   Switch, Tab, Tabs, TabsHeader,
 } from '@material-tailwind/react';
 
+const commonOptions = [
+  { name: "Disable Google Ads", key: "disableAds", default: false },
+  { name: "Pink Background", key: "pinkBackground", default: false },
+]
+
 const UIEnums = {
   classic: {
     name: 'Classic UI',
@@ -101,7 +106,27 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
                     key={opt.key}
                     id={opt.key}
                     label={" " + opt.name}
+                    className="w-full"
                     checked={getValue(opt)}
+                    labelProps={{
+                      className: "ml-6"
+                    }}
+                    onChange={(e) => {
+                      setValue(opt, e.target.checked)
+                    }}
+                  />
+                )
+              )
+            }
+            {
+            commonOptions.map(
+                opt => (
+                  <Switch
+                    key={opt.key}
+                    id={opt.key}
+                    label={" " + opt.name}
+                    checked={getValue(opt)}
+                    className="w-full"
                     labelProps={{
                       className: "ml-6"
                     }}
