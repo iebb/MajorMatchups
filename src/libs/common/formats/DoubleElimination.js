@@ -82,6 +82,7 @@ export function DoubleElimination(fromStage, toStage) {
 
 
     teams = stateTeams[stage].sort(teamCompare);
+
     remaining = teams.filter((x) => x.w < winsToAdvance && x.l < loseToEliminate);
 
     const remainingTeams = copy(remaining);
@@ -124,7 +125,6 @@ export function DoubleElimination(fromStage, toStage) {
 
       let ctr = (counter[`${team1.code}-${team2.code}`] || 0) + 1;
       counter[`${team1.code}-${team2.code}`] = counter[`${team2.code}-${team1.code}`] = ctr;
-      // console.log(ctr, `${team1.code}-${team2.code}#${ctr}`);
 
       if (`${team1.code}-${team2.code}#${ctr}` in gamescores) {
         const gs = gamescores[`${team1.code}-${team2.code}#${ctr}`];
@@ -214,7 +214,6 @@ export function DoubleElimination(fromStage, toStage) {
       }
 
     }
-
 
     stageMatches = matchups;
     stateMatches[stage] = stageMatches;

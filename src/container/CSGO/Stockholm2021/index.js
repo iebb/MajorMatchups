@@ -1,14 +1,13 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { FinalResultsChallenger, FinalResultsChampions, FinalResultsLegends } from './final_results';
 import { BasicUI } from '../../../components/BasicUI';
-import { Knockout } from '../../../libs/common/formats/Knockout';
 import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../../libs/common/common';
 import Title from '../../../components/BannerInsertion';
-import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
+import { FormatBinder } from '../../../libs/common/formats/formats';
+import { UserGroupIcon } from '@heroicons/react/24/outline';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -93,49 +92,22 @@ export default class Stockholm2021 extends React.PureComponent {
   };
 
   calculateMatchups = (s, e) => {
-    if (this.state.tournamentType === 0) {
-      this.setState(SwissBuchholtzTB.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "KNOCKOUT") {
-      this.setState(Knockout.bind(this)(s, e));
-    } else {
-
-    }
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e));
   };
 
+  init = (tStage) => {
+    this.setState({
+      ...TournamentStages[tStage],
+      // pickResults: getPickResults('pickResults', tStage, this.event),
+    }, () => {
+      this.calculateMatchups(0, this.state.rounds + 1)
+    });
+  };
   componentDidMount() {
     this.setWinner = setWinner.bind(this);
     this.shuffle = shuffle.bind(this);
-    this.initChampions();
+    this.init(2);
   }
-
-
-  init = (_) => {
-    this.setState({
-      ...TournamentStages[TournamentChallenger],
-      ...pack(initialDataChallenger, teamLogo),
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-  };
-
-  initLegends = (_) => {
-    this.setState({
-      ...TournamentStages[TournamentLegends],
-      ...pack(finalDataLegends, teamLogo),
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-
-  };
-  initChampions = (_) => {
-    this.setState({
-      ...TournamentStages[TournamentChampions],
-      ...pack(finalDataChampions, teamLogo),
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-
-  };
 
   advance = (_) => {
     if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {
@@ -197,6 +169,17 @@ export default class Stockholm2021 extends React.PureComponent {
   };
 
   render() {
+    const tabs = [
+      ...TournamentStages.map(ts => (
+        {
+          value: ts.id,
+          label: ts.name,
+          active: this.state.tournament === ts.id,
+          icon: UserGroupIcon,
+          onClick:() => this.init(ts.id)
+        }
+      )),
+    ]
     return (
       <div className="outer">
         <div className="page-container">
@@ -210,26 +193,8 @@ export default class Stockholm2021 extends React.PureComponent {
               }
             ]}
           />
-          <div className="pt-4">
-            <Menu pointing secondary inverted compact size="huge" className="region-selector">
-              <Menu.Item
-                name="Challengers"
-                active={this.state.tournament === TournamentChallenger}
-                onClick={() => this.init(TournamentChallenger)}
-              />
-              <Menu.Item
-                name={"Legends"}
-                active={this.state.tournament === TournamentLegends}
-                onClick={() => this.initLegends()}
-              />
-              <Menu.Item
-                name="Champions"
-                active={this.state.tournament === TournamentChampions}
-                onClick={() => this.initChampions()}
-              />
-            </Menu>
-          </div>
           <BasicUI
+            tabs={tabs}
             state={this.state}
             stage={this.getStage()}
             shuffle={this.shuffle}

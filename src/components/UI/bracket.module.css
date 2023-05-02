@@ -38,6 +38,15 @@
   text-align: left;
 }
 
+.teamWithBuchholtz {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 20px 1fr auto 20px;
+  gap: 5px;
+  align-items: center;
+  text-align: left;
+}
+
 .teamNomatch {
   display: grid;
   grid-template-columns: 15px 2fr;
@@ -71,7 +80,7 @@
 }
 
 .roundWidth {
-  width: 190px;
+  width: 200px;
 }
 
 .finalWidth {
@@ -119,4 +128,8 @@
   flex: 1;
   text-align: center;
   width: 18px;
+}
+
+.buchholtz {
+  text-align: center;
 }

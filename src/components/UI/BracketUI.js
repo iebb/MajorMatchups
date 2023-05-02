@@ -26,30 +26,30 @@ export function BracketUI({ preferences, state, shuffle }) {
 
           <div className={styles.teamNomatch} key={index}>
             <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
-            <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
-              team={team}
-              teams={bracket.allTeams}
-              key={index}
-            >
-              <div className={`${styles.team} hover:bg-blue-50`}>
-                <div className={styles.teamLogo}>
-                  <img alt={team.code} src={team.logo} className="transfer-team-logo" />
-                </div>
-                <span className={`${styles.teamName} `}>{team.name}</span>
+            <div className={`${styles.team} hover:bg-blue-50`}>
+              <div className={styles.teamLogo}>
+                <img alt={team.code} src={team.logo} className="transfer-team-logo" />
+              </div>
+              <span className={`${styles.teamName} `}>{team.name}</span>
+              <BuchholtzPopup
+                enabled={format === Formats.SwissBuchholtz}
+                team={team}
+                teams={bracket.allTeams}
+                key={index}
+              >
                 <span className={styles.scores}>
                   <span className={``}>
                     {format === Formats.SwissBuchholtz && plus_minus(team.buchholtz)}
                     {
                       isFinal && (
                         (format === Formats.SwissBuchholtz ? ", " : "")
-                          + team.status
+                        + team.status
                       )
                     }
                   </span>
               </span>
-              </div>
-            </BuchholtzPopup>
+              </BuchholtzPopup>
+            </div>
           </div>
         ))}
       </div>
@@ -60,54 +60,64 @@ export function BracketUI({ preferences, state, shuffle }) {
     return round.matches.map((match, index) => (
       <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
         <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
-        <BuchholtzPopup
-          enabled={format === Formats.SwissBuchholtz}
-          team={match.team1}
-          teams={round.allTeams}
+        <div
+          className={`${format === Formats.SwissBuchholtz ? styles.teamWithBuchholtz : styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
+          onClick={() => {
+            match.setWinner(1);
+          }}
         >
-          <div
-            className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
-            onClick={() => {
-              match.setWinner(1);
-            }}
-          >
-            <div className={styles.teamLogo}>
-              <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
-            </div>
-            <span className={`${styles.teamName} `}>{match.team1.name}</span>
-            <span className={`${styles.scores} ${colors(match.result, 1)}`}>
+          <div className={styles.teamLogo}>
+            <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
+          </div>
+          <span className={`${styles.teamName} `}>{match.team1.name}</span>
+          <span className={`${styles.scores} ${colors(match.result, 1)}`}>
             {match.score[0] && match.score[0].map((x, _idx) => (
               <span className={`${styles.score} ${x > match.score[1][_idx] && "font-bold"}`} key={_idx}>
                 {x}
               </span>
             ))}
           </span>
-          </div>
-        </BuchholtzPopup>
-        <BuchholtzPopup
-          enabled={format === Formats.SwissBuchholtz}
-          team={match.team2}
-          teams={round.allTeams}
+          {format === Formats.SwissBuchholtz && (
+            <BuchholtzPopup
+              enabled={format === Formats.SwissBuchholtz}
+              team={match.team1}
+              teams={round.allTeams}
+            >
+              <span className={`${styles.buchholtz}`}>{plus_minus(match.team1.buchholtz)}</span>
+            </BuchholtzPopup>
+          )}
+        </div>
+        <div
+          className={`${format === Formats.SwissBuchholtz ? styles.teamWithBuchholtz : styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
+          onClick={() => {
+            match.setWinner(-1);
+          }}
         >
-          <div
-            className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
-            onClick={() => {
-              match.setWinner(-1);
-            }}
-          >
-            <div className={styles.teamLogo}>
-              <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
-            </div>
-            <span className={`${styles.teamName} `}>{match.team2.name}</span>
-            <span className={`${styles.scores} ${colors(-match.result, 1)}`}>
-          {match.score[1] && match.score[1].map((x, _idx) => (
-            <span className={`${styles.score} ${x > match.score[0][_idx] && "font-bold"}`} key={_idx}>
-              {x}
-            </span>
-          ))}
-        </span>
+          <div className={styles.teamLogo}>
+            <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
           </div>
-        </BuchholtzPopup>
+          <span className={`${styles.teamName} `}>{match.team2.name}</span>
+
+          <span className={`${styles.scores} ${colors(-match.result, 1)}`}>
+          {
+            match.score[1] && match.score[1].map((x, _idx) => (
+              <span className={`${styles.score} ${x > match.score[0][_idx] && "font-bold"}`} key={_idx}>
+                {x}
+              </span>
+            ))
+          }
+          </span>
+
+          {format === Formats.SwissBuchholtz && (
+            <BuchholtzPopup
+              enabled={format === Formats.SwissBuchholtz}
+              team={match.team2}
+              teams={round.allTeams}
+            >
+              <span className={`${styles.buchholtz}`}>{plus_minus(match.team2.buchholtz)}</span>
+            </BuchholtzPopup>
+          )}
+        </div>
 
       </div>
     ));

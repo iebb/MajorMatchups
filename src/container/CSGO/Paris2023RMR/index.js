@@ -239,14 +239,12 @@ export default class Paris2023RMR extends React.PureComponent {
           <Title
             title="BLAST.tv Paris 2023 RMR Simulator"
           />
-          <div className="pt-4">
-            <BasicUI
-              tabs={tabs}
-              state={this.state}
-              stage={this.state.regionId}
-              shuffle={this.shuffle}
-            />
-          </div>
+          <BasicUI
+            tabs={tabs}
+            state={this.state}
+            stage={this.state.regionId}
+            shuffle={this.shuffle}
+          />
         </div>
       </div>
     );

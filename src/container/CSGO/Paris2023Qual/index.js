@@ -210,14 +210,12 @@ export default class Paris2023Qual extends React.PureComponent {
           <Title
             title="BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
           />
-          <div className="pt-4">
-            <BasicUI
-              tabs={tabs}
-              state={this.state}
-              stage={this.getStage()}
-              shuffle={this.shuffle}
-            />
-          </div>
+          <BasicUI
+            tabs={tabs}
+            state={this.state}
+            stage={this.getStage()}
+            shuffle={this.shuffle}
+          />
         </div>
       </div>
     );

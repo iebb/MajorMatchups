@@ -3,6 +3,7 @@
 import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { FinalResults } from './final_results';
+import Title from '../../../components/BannerInsertion';
 
 const teamLogo = (code) => `https://majors.im/images/katowice2019/${code}.png`;
 
@@ -393,19 +394,11 @@ export default class Katowice2019 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">IEM Katowice Major 2019</h1>
-            <h3>
-              Seeding: Teams rank each other | <a href="https://iebb.medium.com/how-to-use-the-matchup-site-in-2022-18366c9e60da" style={{ color: "#ffcd00" }}>
-              How to use this site
-            </a>
-            </h3>
-            <p>
-              <a href="https://www.reddit.com/r/GlobalOffensive/comments/asf1sc/made_a_katowice_matchup_simulator_based_on_my/">
-                reddit thread
-              </a>
-            </p>
-          </div>
+          <Title
+            title="IEM Katowice Major 2019 Simulator"
+            sponsorLess
+          />
+          {/* Seeding: Teams rank each other */}
           <div className="pt-4">
             <Menu pointing secondary inverted compact size="huge" className="region-selector">
               <Menu.Item

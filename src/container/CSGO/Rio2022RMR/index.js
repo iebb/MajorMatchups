@@ -1,7 +1,6 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
 import { AME, AP, EUA, EUB } from './initial_data';
 import { Scores } from './scores';
 import { pack, setWinner, shuffle } from '../../../libs/common/common';
@@ -9,6 +8,7 @@ import { BasicUI } from '../../../components/BasicUI';
 import { DoubleElimination } from '../../../libs/common/formats/DoubleElimination';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
 import Title from '../../../components/BannerInsertion';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 
 
 const Regions = [
@@ -190,37 +190,29 @@ export default class Rio2022RMR extends React.PureComponent {
     this.init(0);
   }
   render() {
+    const tabs = Regions.map(region => ({
+      value: region.id,
+      label: region.name,
+      active: this.state.regionId === region.id,
+      icon: GlobeAltIcon,
+      onClick:  () => {
+        this.props.history.push("#" + region.name);
+        // document.location.reload();
+        this.init(region.id)
+      }
+    }));
     return (
       <div className="outer">
         <div className="page-container">
           <Title
-            title="IEM Rio RMR 2022 Simulatorulator"
+            title="IEM Rio RMR 2022 Simulator"
           />
-          <div className="pt-4">
-            <Menu pointing secondary inverted compact size="huge" className="region-selector">
-              {
-                Regions.map(region => (
-                  <Menu.Item
-                    key={region.id}
-                    name={region.name}
-                    active={this.state.regionId === region.id}
-                    onClick={
-                      () => {
-                        this.props.history.push("#" + region.name);
-                        document.location.reload();
-                        // this.init(region.id)
-                      }
-                    }
-                  />
-                ))
-              }
-            </Menu>
-            <BasicUI
-              state={this.state}
-              stage={this.getStage()}
-              shuffle={this.shuffle}
-            />
-          </div>
+          <BasicUI
+            tabs={tabs}
+            state={this.state}
+            stage={this.getStage()}
+            shuffle={this.shuffle}
+          />
         </div>
       </div>
     );

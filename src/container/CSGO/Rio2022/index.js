@@ -1,16 +1,16 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Image, Menu } from 'semantic-ui-react';
 import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
 import { ChallengerResults, LegendResults, Scores } from './scores';
-import { AdvanceElimSeats, ChampionSeats, copy, pack, setWinner, shuffle } from '../../../libs/common/common';
+import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../../libs/common/common';
 import { Knockout } from '../../../libs/common/formats/Knockout';
 import { BasicUI } from '../../../components/BasicUI';
 import { getPickResults, setPickResults } from '../../../libs/common/storage';
-import { ordinal } from '../../../libs/plural';
 import Title from '../../../components/BannerInsertion';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
+import { NextMajorSlot } from '../../../components/NextMajorSlot';
+import { UserGroupIcon } from '@heroicons/react/24/outline';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -213,178 +213,18 @@ export default class Rio2022 extends React.PureComponent {
 
   };
 
-  renderNMS = () => {
-    let legendResult, championResult;
-    if (this.state.tournament === 1) {
-      legendResult = this.state.roundTeams[5];
-      if (!legendResult) return null;
-      championResult = legendResult.filter(x => x.adv).map(x => ({...x, standings: "1st-8th"}))
-    } else if (this.state.tournament === 2) {
-      championResult = this.state.roundTeams[3];
-      if (!championResult) return null;
-      legendResult = this.state.legendResult;
-    }
-
-
-    const challengerResult = this.state.challengerResult;
-    if (!legendResult || !championResult || !challengerResult) return null;
-
-
-
-    const counters = {EU: 0, AM: 0, AP: 0};
-
-    championResult = championResult.map(x => ({...x, status: "legends", regionCounter: ++counters[x.region]}));
-    legendResult = legendResult.filter(
-      x => x.elim
-    ).map(x => ({...x, status: "challengers", regionCounter: ++counters[x.region]}));
-
-    const losingTeamsinChallenger = this.state.challengerResult.filter(
-      x => x.elim
-    ).map(x => ({...x, status: "contenders"}));
-    const challengerSlots = {EU:3, AM:3, AP:2}
-    const regionOrders = ["EU", "AM", "AP"];
-    for(const team of losingTeamsinChallenger) {
-      if (challengerSlots[team.region] === 0) {
-        for(const otherRegion of regionOrders) {
-          if (challengerSlots[otherRegion] > 0) {
-            team.region = otherRegion
-            team.name += " / Slot Transferred to " + otherRegion
-            break;
-          }
-        }
-      }
-      --challengerSlots[team.region];
-      team.cont = true;
-      team.standing += 8;
-      team.regionCounter = ++counters[team.region]
-    }
-
-    const slots = losingTeamsinChallenger;
-
-    const regions = {
-      EU: { name: "EU", icon: "https://majors.im/images/regions/eu1.png" },
-      AM: { name: "AM", icon: "https://majors.im/images/regions/am.png" },
-      AP: { name: "AP", icon: "https://majors.im/images/regions/asia.png" },
-    }
-
-    const m = (team, _) => {
-      const r = regions[team.region];
-      const status = team.status;
-      return (
-        <div key={team.code} className={`team one ${status}`}>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text">
-                  {team.standings || ordinal(team.standing)}
-                </span>
-            </div>
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text">
-                  {r.name} #{team.regionCounter}
-                </span>
-            </div>
-          </div>
-          <div className="team-box med">
-            <div className="team-box-split b stacked-logo">
-              <Image className="team-logo" src={r.icon} />
-              <div className="team-logo-bg-container">
-                <Image className="team-logo-bg" src={team.logo} alt={team.name} title={team.name} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    };
-
-
-    return (
-      <div className='main-container'>
-        <h1 className='round-title'>
-          Next Major Slot Allocations
-        </h1>
-        <div>
-          {championResult.map(m)}
-        </div>
-        <div>
-          {legendResult.map(m)}
-        </div>
-        <div>
-          {slots.map(m)}
-        </div>
-      </div>
-    )
-  }
-
-  renderPickStats = () => {
-    const { pickStats } = this.state;
-    if (!this.state.pickStats || !this.state.roundTeams[this.state.rounds]) {
-      return null;
-    }
-    const rt = copy(this.state.roundTeams[this.state.rounds]);
-    const s = this.getStage();
-    if (s >= 2) return null;
-    const groupId = 206 + s;
-
-    const { stats, total } = pickStats;
-
-    const tournamentPickTotal = total[groupId];
-    if (!tournamentPickTotal) return null;
-    const tournamentPickStats = stats[groupId];
-
-    const advance = {}
-    const threeZero = {}
-    const zeroThree = {}
-
-    for (const k of Object.keys(tournamentPickStats)) {
-      advance[k] = tournamentPickStats[k]['Adv'] / tournamentPickTotal;
-      threeZero[k] = tournamentPickStats[k]['3-0'] / tournamentPickTotal;
-      zeroThree[k] = tournamentPickStats[k]['0-3'] / tournamentPickTotal;
-    }
-
-    const m = (team, _) => {
-      return (
-        <div key={team.code} className={`team one`}>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text" title="3-0" style={{ color: "#ffc40a" }}>{(threeZero[team.code] * 100.0).toFixed(1)}%</span>
-            </div>
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text" title="Remaining 7 Advancing Teams" style={{ color: "#5eb1f6" }}>{(advance[team.code] * 100.0).toFixed(1)}%</span>
-            </div>
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text" title="0-3" style={{ color: "#8e8e8e" }}>{(zeroThree[team.code] * 100.0).toFixed(1)}%</span>
-            </div>
-          </div>
-          <div className="team-box med">
-            <div className="team-box-split b">
-              <Image className="team-logo" src={team.logo} />
-            </div>
-          </div>
-        </div>
-      )
-    };
-
-
-    return (
-      <div className='main-container'>
-        <h1 className='round-title'>
-          Pick'em Stats (Detail: <a href="https://pick.ieb.im/stats">https://pick.ieb.im/stats</a>)
-        </h1>
-        <div>
-          {rt.sort((y, x) => advance[x.code] - advance[y.code]).map(m)}
-        </div>
-      </div>
-    )
-  }
-
-
   render() {
+    const tabs = [
+      ...TournamentStages.map(ts => (
+        {
+          value: ts.id,
+          label: ts.name,
+          active: this.state.tournament === ts.id,
+          icon: UserGroupIcon,
+          onClick:() => this.init(ts.id)
+        }
+      )),
+    ]
     return (
       <div className="outer">
         <div className="page-container">
@@ -392,41 +232,8 @@ export default class Rio2022 extends React.PureComponent {
             title="IEM Rio Major 2022 Simulator"
             isMajor
           />
-          <Menu pointing secondary inverted compact size="huge" className="region-selector">
-            {
-              TournamentStages.map(ts => (
-                <Menu.Item
-                  key={ts.id}
-                  name={ts.name}
-                  active={this.state.tournament === ts.id}
-                  onClick={() => this.init(ts.id)}
-                />
-              ))
-            }
-            {
-              /*
-              this.state.tournament >= 0 && (
-                <Menu.Item
-                  key="adv-2"
-                  name="Legends"
-                  active={this.state.tournament === 1}
-                  onClick={() => this.advance()}
-                />
-              )*/
-            }
-            {
-              /*
-              this.state.tournament >= 1 && (
-                <Menu.Item
-                  key="adv-2"
-                  name="Champions"
-                  active={this.state.tournament === 2}
-                  onClick={() => this.advance2()}
-                />
-              )*/
-            }
-          </Menu>
           <BasicUI
+            tabs={tabs}
             state={this.state}
             stage={this.getStage()}
             pickemTags={this.state.pickemTags}
@@ -435,16 +242,7 @@ export default class Rio2022 extends React.PureComponent {
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null
             }
           />
-          <div className="pt-4">
-            {
-              this.renderPickStats()
-            }
-          </div>
-          <div className="pt-4">
-            {
-              this.state.tournament >= 1 && this.renderNMS()
-            }
-          </div>
+          <NextMajorSlot state={this.state} />
         </div>
       </div>
     );

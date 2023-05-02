@@ -4,6 +4,7 @@ import React from 'react';
 import { Image, Menu } from 'semantic-ui-react';
 import { getRelativeSeed, rankingSeed } from './initial_seed';
 import { FinalChallengers, FinalLegends, FinalResults } from './final_results';
+import Title from '../../../components/BannerInsertion';
 
 const copy = (x) => JSON.parse(JSON.stringify(x));
 
@@ -400,21 +401,11 @@ export default class Berlin2019 extends React.PureComponent {
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">StarLadder Berlin Major 2019 Matchups</h1>
-            <h3>
-              Seeding: Live-Elo based on HLTV Ranking
-            </h3>
-            <p>
-              <a href="https://www.reddit.com/r/GlobalOffensive/comments/ctaz3j/the_starladder_berlin_majors_matchup_simulator/">
-                reddit thread
-              </a>
-              <span style={{ margin: 10 }}>·</span>
-              <a href="https://twitter.com/CyberHono">
-                twitter
-              </a>
-            </p>
-          </div>
+          <Title
+            title="StarLadder Berlin Major 2019 Simulator"
+            sponsorLess
+          />
+          {/* Seeding: Live-Elo based on HLTV Ranking */}
           <div className="pt-4">
             <Menu pointing secondary inverted compact size="huge" className="region-selector">
               <Menu.Item name="Challengers Stage" active={this.state.tournament === 1} onClick={() => this.init(1)} />

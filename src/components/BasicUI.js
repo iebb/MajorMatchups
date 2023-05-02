@@ -52,8 +52,8 @@ const UIEnums = {
 }
 
 export function BasicUI({ tabs, state, stage, shuffle, advance }) {
-  const uiType = localStorage.ui || 'classic';
-  const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'classic');
+  const uiType = localStorage.ui || 'bracket';
+  const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'bracket');
   const [open, handleOpen] = useState(false);
   const [values, setValues] = useState({});
 
@@ -93,28 +93,6 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       >
         <DialogHeader>Customize</DialogHeader>
         <DialogBody divider>
-          <div className="gap-4 p-2 flex-col">
-            <Select
-              variant="static"
-              value={UIType}
-              onChange={(value) => {
-                setUIType(value);
-                localStorage.ui = value;
-              }}
-              label="Choose UI Type"
-            >
-              {
-                ['bracket', 'classic', 'vis'].map(
-                  ui => (
-                    <Option
-                      key={ui}
-                      value={ui}
-                    >{UIEnums[ui].name}</Option>
-                  )
-                )
-              }
-            </Select>
-          </div>
           <div className="gap-4 p-2 flex-col text-left">
             {
               UIOptions.options.map(
@@ -149,14 +127,37 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           </Button>
         </DialogFooter>
       </Dialog>
-      <div className="pb-4">
-        <Button
-          onClick={() => handleOpen(true)}
-          color="blue-gray"
-          className="normal-case text-black font-normal text-md py-2 my-0"
-        >
-          Customize
-        </Button>
+      <div className="pb-4 gap-2 flex flex-row content-center place-content-center">
+        <div>
+          <Select
+            value={UIType}
+            onChange={(value) => {
+              setUIType(value);
+              localStorage.ui = value;
+            }}
+            label="Choose UI Type"
+          >
+            {
+              ['bracket', 'classic', 'vis'].map(
+                ui => (
+                  <Option
+                    key={ui}
+                    value={ui}
+                  >{UIEnums[ui].name}</Option>
+                )
+              )
+            }
+          </Select>
+        </div>
+        <div>
+          <Button
+            onClick={() => handleOpen(true)}
+            color="blue-gray"
+            className="normal-case text-black font-normal text-md py-2 my-0"
+          >
+            Customize
+          </Button>
+        </div>
       </div>
       {
         tabs && (

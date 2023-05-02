@@ -1,13 +1,14 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
 import { AME, AP, EUA, EUB } from './initial_data';
 import { Scores } from './scores';
 import { pack, setWinner, shuffle } from '../../../libs/common/common';
 import { BasicUI } from '../../../components/BasicUI';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
 import { DoubleElimination } from '../../../libs/common/formats/DoubleElimination';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
+import Title from '../../../components/BannerInsertion';
 
 const Regions = [
   {
@@ -64,8 +65,8 @@ const Regions = [
     ],
     tiebreakers: {
       "3": [{teams: 1, id: "1/2", name: "1st/2nd Decider"}], // after round 3, 1st place and 2nd place,
-      "5": [{teams: 7, id: "6/7/8", name: "8th Decider"}], // after round 5, 7th place and 8th place,
-      "6": [{teams: 6, id: "6/7", name: "6th/7th Decider"}], // after round 6, 6th place and 7th place,
+      "5": [{teams: 7, offset: -0.1, id: "6/7/8", name: "8th Decider"}], // after round 5, 7th place and 8th place,
+      "6": [{teams: 6, offset: 0.1, id: "6/7", name: "6th/7th Decider"}], // after round 6, 6th place and 7th place,
     },
     tiebreakerResults: {},
     rounds: 7,
@@ -89,6 +90,7 @@ const Regions = [
     tiebreakers: {},
     rounds: 3,
     winsToAdvance: 2,
+    loseToEliminate: 2,
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     tournamentType: 4,
@@ -170,46 +172,32 @@ export default class Antwerp2022RMR extends React.PureComponent {
     this.init(0);
   }
   render() {
+
+    const tabs = Regions.map(region => ({
+      value: region.id,
+      label: region.name,
+      active: this.state.regionId === region.id,
+      icon: GlobeAltIcon,
+      onClick:  () => {
+        this.props.history.push("#" + region.name);
+        // document.location.reload();
+        this.init(region.id)
+      }
+    }));
+
     return (
       <div className="outer">
         <div className="page-container">
-          <div className="title-container">
-            <h1 className="title">PGL Antwerp RMR 2022 Simulatorulator</h1>
-          </div>
-          <p>
-            <a href="https://discord.gg/KYNbRYrZGe">
-              feedback(discord)
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://twitter.com/CyberHono">
-              twitter
-            </a>
-            <span style={{ margin: 10 }}>·</span>
-            <a href="https://steamcommunity.com/id/iebbbb">
-              steam profile
-            </a>
-          </p>
-          <div className="pt-4">
-            <Menu pointing secondary inverted compact size="huge" className="region-selector">
-              {
-                Regions.map(region => (
-                  <Menu.Item
-                    key={region.id}
-                    name={region.name}
-                    active={this.state.regionId === region.id}
-                    onClick={
-                      () => {
-                        this.props.history.push("#" + region.name);
-                        document.location.reload();
-                        // this.init(region.id)
-                      }
-                    }
-                  />
-                ))
-              }
-            </Menu>
-            <BasicUI state={this.state} stage={this.getStage()} shuffle={this.shuffle} />
-          </div>
+          <Title
+            title="PGL Antwerp RMR 2022 Simulator"
+            sponsorLess
+          />
+          <BasicUI
+            tabs={tabs}
+            state={this.state}
+            stage={this.getStage()}
+            shuffle={this.shuffle}
+          />
         </div>
       </div>
     );
