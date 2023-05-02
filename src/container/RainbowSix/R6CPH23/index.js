@@ -34,9 +34,10 @@ const TournamentStages = [
     winsToAdvance: 3,
     loseToEliminate: 3,
     nonDeciderBestOf: 1,
+    advancerBestOf: 2,
     deciderBestOf: 2,
     rounds: 5,
-    scores: scores[TournamentChallenger],
+    // scores: scores[TournamentChallenger],
   },
   {
     id: 1,
@@ -53,7 +54,7 @@ const TournamentStages = [
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     rounds: 3,
-    scores: scores[TournamentChampions],
+    // scores: scores[TournamentChampions],
   },
 ];
 
