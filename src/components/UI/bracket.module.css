@@ -5,7 +5,6 @@
   padding: 2rem;
   box-sizing: border-box;
   flex-direction: column;
-  font-family: var(--font-inter);
   overflow: auto;
 }
 

@@ -14,6 +14,6 @@ export const Formats = {
 
 export const FormatBinder = {
   [Formats.SwissBuchholtz]: SwissBuchholtzTB,
-  [Formats.Knockout]: Knockout,
+  [Formats.SingleElimination]: Knockout,
   [Formats.DoubleElimination]: DoubleElimination,
 }
