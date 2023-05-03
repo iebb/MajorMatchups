@@ -6,10 +6,10 @@ import { Formats } from '../../libs/common/formats/formats';
 
 
 const colors = (result, deterministic) => {
-  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "30" : "50"}`;
-  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30
-  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30
+  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "c10" : "c7"}`;
+  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
+  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
 export function BracketUI({ preferences, state, shuffle }) {
@@ -61,13 +61,19 @@ export function BracketUI({ preferences, state, shuffle }) {
       <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
         <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
         <div
-          className={`${format === Formats.SwissBuchholtz ? styles.teamWithBuchholtz : styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
+          className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
         >
           <div className={styles.teamLogo}>
-            <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
+            <BuchholtzPopup
+              enabled={format === Formats.SwissBuchholtz}
+              team={match.team1}
+              teams={round.allTeams}
+            >
+              <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
+            </BuchholtzPopup>
           </div>
           <span className={`${styles.teamName} `}>{match.team1.name}</span>
           <span className={`${styles.scores} ${colors(match.result, 1)}`}>
@@ -77,24 +83,21 @@ export function BracketUI({ preferences, state, shuffle }) {
               </span>
             ))}
           </span>
-          {format === Formats.SwissBuchholtz && (
-            <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
-              team={match.team1}
-              teams={round.allTeams}
-            >
-              <span className={`${styles.buchholtz}`}>{plus_minus(match.team1.buchholtz)}</span>
-            </BuchholtzPopup>
-          )}
         </div>
         <div
-          className={`${format === Formats.SwissBuchholtz ? styles.teamWithBuchholtz : styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
+          className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
         >
           <div className={styles.teamLogo}>
-            <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
+            <BuchholtzPopup
+              enabled={format === Formats.SwissBuchholtz}
+              team={match.team2}
+              teams={round.allTeams}
+            >
+              <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
+            </BuchholtzPopup>
           </div>
           <span className={`${styles.teamName} `}>{match.team2.name}</span>
 
@@ -107,16 +110,6 @@ export function BracketUI({ preferences, state, shuffle }) {
             ))
           }
           </span>
-
-          {format === Formats.SwissBuchholtz && (
-            <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
-              team={match.team2}
-              teams={round.allTeams}
-            >
-              <span className={`${styles.buchholtz}`}>{plus_minus(match.team2.buchholtz)}</span>
-            </BuchholtzPopup>
-          )}
         </div>
 
       </div>

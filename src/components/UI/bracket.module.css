@@ -40,7 +40,7 @@
 .teamWithBuchholtz {
   width: 100%;
   display: grid;
-  grid-template-columns: 20px 1fr auto 20px;
+  grid-template-columns: 20px 1fr auto 16px;
   gap: 5px;
   align-items: center;
   text-align: left;
@@ -128,7 +128,7 @@
 .score {
   flex: 1;
   text-align: center;
-  width: 18px;
+  width: 16px;
 }
 
 .buchholtz {
