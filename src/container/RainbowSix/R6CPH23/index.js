@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {FinalResultsPlayoff} from "./final_results";
 import { finalDataChampions, initialDataChallenger } from './initial_data';
 import { BasicUI } from '../../../components/BasicUI';
 import {
@@ -37,7 +38,7 @@ const TournamentStages = [
     advancerBestOf: 1,
     deciderBestOf: 2,
     rounds: 5,
-    // scores: scores[TournamentChallenger],
+    scores: FinalResultsPlayoff,
   },
   {
     id: 1,
@@ -54,6 +55,7 @@ const TournamentStages = [
     nonDeciderBestOf: 2,
     deciderBestOf: 2,
     rounds: 3,
+    scores: {},
     // scores: scores[TournamentChampions],
   },
 ];
@@ -96,18 +98,18 @@ export default class R6CPH23 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init();
 
-    return fetch('/r6_scores')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...TournamentStages[TournamentChallenger],
-          ...pack(initialDataChallenger, teamLogo),
-          scores: resp.results,
-        }, () => {
-          this.calculateMatchups(0, this.state.rounds + 1)
-        });
-      });
-  }k
+    // return fetch('/r6_scores')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       ...TournamentStages[TournamentChallenger],
+    //       ...pack(initialDataChallenger, teamLogo),
+    //       scores: resp.results,
+    //     }, () => {
+    //       this.calculateMatchups(0, this.state.rounds + 1)
+    //     });
+    //   });
+  }
 
 
   init = (_) => {
