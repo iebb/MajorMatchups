@@ -5,7 +5,7 @@ import { Menu } from 'semantic-ui-react';
 import { FinalResults } from './final_results';
 import Title from '../../../components/BannerInsertion';
 
-const teamLogo = (code) => `https://majors.im/images/katowice2019/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/go/katowice2019/${code}.png`;
 
 
 const copy = x => JSON.parse(JSON.stringify(x));

@@ -16,7 +16,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
-const teamLogo = (code) => `https://majors.im/images/antwerp2022/${code}_large.png`;
+const teamLogo = (code) => `https://img.majors.im/go/antwerp2022/${code}_large.png`;
 
 
 const TournamentStages = [

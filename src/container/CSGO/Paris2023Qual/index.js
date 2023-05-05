@@ -113,7 +113,7 @@ const Regions = [
   },
 ];
 
-const teamLogo = (code) => `https://majors.im/images/paris2023_qual/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/rmr/paris2023_qual/${code}.png`;
 
 export default class Paris2023Qual extends React.PureComponent {
   state = {
