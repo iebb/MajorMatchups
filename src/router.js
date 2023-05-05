@@ -1,17 +1,16 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
-import {Redirect, Route, Switch} from 'react-router-dom';
-import Berlin2019 from './container/CSGO/Berlin2019';
-import R6CPH23 from "./container/RainbowSix/R6CPH23";
-import Stockholm2021 from './container/CSGO/Stockholm2021';
-import Katowice2019 from './container/CSGO/Katowice2019';
-import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
+import {Redirect, Route, Switch, useHistory} from "react-router-dom";
 import Antwerp2022 from "./container/CSGO/Antwerp2022";
-import Rio2022RMR from "./container/CSGO/Rio2022RMR";
-import Rio2022 from "./container/CSGO/Rio2022";
+import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
+import Berlin2019 from './container/CSGO/Berlin2019';
+import Katowice2019 from './container/CSGO/Katowice2019';
+import Paris2023 from "./container/CSGO/Paris2023";
 import Paris2023Qual from "./container/CSGO/Paris2023Qual";
 import Paris2023RMR from "./container/CSGO/Paris2023RMR";
-import Paris2023Provisional from "./container/CSGO/Paris2023Provisional";
+import Rio2022 from "./container/CSGO/Rio2022";
+import Rio2022RMR from "./container/CSGO/Rio2022RMR";
+import Stockholm2021 from './container/CSGO/Stockholm2021';
+import R6CPH23 from "./container/RainbowSix/R6CPH23";
 
 export default function Routes() {
   const h = useHistory();
@@ -45,7 +44,7 @@ export default function Routes() {
         <Paris2023RMR history={h} />
       </Route>
       <Route path="/23paris">
-        <Paris2023Provisional history={h} />
+        <Paris2023 history={h} />
       </Route>
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />

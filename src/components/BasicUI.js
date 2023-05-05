@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { ClassicUI } from './UI/ClassicUI';
 import { VisUI } from './UI/VisUI';
 import { BracketUI } from './UI/BracketUI';
@@ -69,6 +69,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
     return null;
   }
 
+
   const getValue = (opt) => {
     if (!localStorage[opt.key]) {
       localStorage[opt.key] = opt.default;
@@ -85,16 +86,19 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
 
   const UIOptions = UIEnums[UIType];
   const UI = UIOptions.component;
-  const preferences = {};
 
-  for(const p of UIOptions.options) {
-    preferences[p.key] = getValue(p.key);
-  }
+  useEffect(() => {
+    const preferences = {};
+    for(const p of UIOptions.options) {
+      preferences[p.key] = getValue(p);
+    }
+    setValues(preferences);
+  }, [UIType]);
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={Boolean(open)}
         size="md"
         className="max-w-[90%] w-[24rem] min-w-[12rem]"
         handler={handleOpen}

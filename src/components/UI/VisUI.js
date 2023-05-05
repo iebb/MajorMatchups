@@ -175,6 +175,10 @@ export default class GraphBuilder extends React.PureComponent {
 
       if (advanced.length) lastPool = "*";
 
+      if (round_idx > 0) {
+        nodeY += padSpace;
+      }
+
 
       const matches = round.map(match => {
         if (match) {
@@ -261,6 +265,9 @@ export default class GraphBuilder extends React.PureComponent {
         nodeY += padSpace * 2;
       }
 
+      if (round_idx > 0) {
+        nodeY -= padSpace;
+      }
 
       const eliminated = eliminatedOnVisualization ? teams.filter(t => t.elim).map(t => {
         const y = nodeY;
@@ -445,7 +452,7 @@ export default class GraphBuilder extends React.PureComponent {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${layout.width} ${layout.height}`}
-        style={{ height: _teams.length * 30 + 200, maxHeight: "80vh" }}
+        style={{ height: _teams.length * 35 + 300, maxHeight: "90vh" }}
       >
         <svg
           width={layout.width}
@@ -553,26 +560,12 @@ export default class GraphBuilder extends React.PureComponent {
 }
 
 export function VisUI({ preferences, state }) {
-  const {
-    eliminatedOnVisualization,
-    straightCorner,
-    dash,
-    tight
-  } = preferences;
-
   return (
-    <div className="pt-4">
-      <div className='main-container'>
-        <div className='main-container' style={{ overflowX: 'scroll' }}>
-          <GraphBuilder
-            data={state}
-            eliminatedOnVisualization={eliminatedOnVisualization}
-            straightCorner={straightCorner}
-            tight={tight}
-            dash={dash}
-          />
-        </div>
-      </div>
+    <div className='main-container pt-4' style={{ overflowX: 'scroll' }}>
+      <GraphBuilder
+        data={state}
+        {...preferences}
+      />
     </div>
   );
 }
