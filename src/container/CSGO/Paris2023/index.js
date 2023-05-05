@@ -243,7 +243,7 @@ export default class Paris2023 extends React.PureComponent {
 
         <div className="page-container">
           <Title
-            title="IEM Rio Major 2022 Simulator"
+            title="BLAST.tv Paris 2023 Major Simulator"
             isMajor
           />
           <BasicUI
