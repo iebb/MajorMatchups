@@ -9,12 +9,12 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
   const {
     pickResults, lockResults,
     winsToAdvance,
-    nonDeciderBestOf,
-    deciderBestOf,
+    nonDeciderToWin,
+    deciderToWin,
     tiebreakers,
   } = state;
 
-  let { advancerBestOf } = state;
+  let { advancerToWin } = state;
   let { losesToEliminate } = state;
   let { buchholtzLockIns } = state;
   let { defaultSuffix } = state;
@@ -22,8 +22,8 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
   if (!losesToEliminate) {
     losesToEliminate = winsToAdvance;
   }
-  if (!advancerBestOf) {
-    advancerBestOf = deciderBestOf;
+  if (!advancerToWin) {
+    advancerToWin = deciderToWin;
   }
   if (!buchholtzLockIns) {
     buchholtzLockIns = [];
@@ -164,6 +164,13 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
         let score = [[], []];
         let undetermined = false;
 
+        let matchToWin = nonDeciderToWin;
+        if (team1.l === losesToEliminate - 1) {
+          matchToWin = deciderToWin
+        } else if (team1.w === winsToAdvance - 1) {
+          matchToWin = advancerToWin
+        }
+
         const suffix = defaultSuffix;
 
         if (`${team1.code}-${team2.code}` + suffix in gamescores) {
@@ -173,11 +180,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           const [winner, maxW] = winnerFn(gs);
           if (winner) {
             picked = winner > 0 ? 1 : -1;
-            if (
-              ((team1.l === losesToEliminate - 1) && maxW === deciderBestOf) ||
-              ((team1.w === winsToAdvance - 1) && maxW === advancerBestOf) ||
-              (team1.w < winsToAdvance - 1 && team1.l < losesToEliminate - 1 && maxW === nonDeciderBestOf)
-            ) {
+            if (maxW >= matchToWin) {
               result = picked
             }
           } else {
@@ -190,11 +193,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           const [winner, maxW] = winnerFn(gs);
           if (winner) {
             picked = winner < 0 ? 1 : -1;
-            if (
-              ((team1.l === losesToEliminate - 1) && maxW === deciderBestOf) ||
-              ((team1.w === winsToAdvance - 1) && maxW === advancerBestOf) ||
-              (team1.w < winsToAdvance - 1 && team1.l < losesToEliminate - 1 && maxW === nonDeciderBestOf)
-            ) {
+            if (maxW >= matchToWin) {
               result = picked
             }
           } else {
@@ -220,6 +219,8 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           pool,
           id: ++globalID,
           match: m.length,
+          matchToWin,
+          bestOf: matchToWin * 2 - 1,
           team1, team2,
           picked, locked, result,
           score, stage, suffix,
@@ -313,6 +314,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
                 this.calculateMatchups(0, this.state.rounds + 1)
               });
             }
+            const matchToWin = deciderToWin;
 
             if (teamIdx === 0) {
               // console.log(tbr);
@@ -323,6 +325,8 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
                 id: ++globalID,
                 match: -1,
                 is_tiebreaker: true,
+                matchToWin,
+                bestOf: matchToWin * 2 - 1,
                 team1: x,
                 team2: t2,
                 picked,

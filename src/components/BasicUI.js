@@ -36,7 +36,7 @@ const UIEnums = {
     component: ClassicUI,
     options: [
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
-      { name: "Matches Only", key: "matchOnly", default: false },
+      { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
   bracket: {
@@ -44,7 +44,8 @@ const UIEnums = {
     component: BracketUI,
     options: [
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
-      { name: "Matches Only", key: "matchOnly", default: false },
+      { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
+      { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
   vis: {

@@ -9,9 +9,9 @@ export function DoubleElimination(fromStage, toStage) {
   const stateRoundTeams = copy(state.roundTeams);
   const {
     pickResults, lockResults,
-    winsToAdvance, loseToEliminate,
-    nonDeciderBestOf,
-    deciderBestOf, rounds
+    winsToAdvance, losesToEliminate,
+    nonDeciderToWin,
+    deciderToWin, rounds
   } = state; //   allowDups, tiebreakers
   const gamescores = state.scores || {};
 
@@ -37,7 +37,7 @@ export function DoubleElimination(fromStage, toStage) {
     const teamCompare = (x, y) => {
       if (y.l - x.l) return x.l - y.l;
       if (y.w - x.w) return y.w - x.w;
-      if (y.l < loseToEliminate) {
+      if (y.l < losesToEliminate) {
         if (!y._seed) y._seed = y.seed;
         if (!x._seed) x._seed = x.seed;
         if (x._seed - y._seed) return x._seed - y._seed;
@@ -48,7 +48,7 @@ export function DoubleElimination(fromStage, toStage) {
 
     if (stage > 0) {
       const teamsT = stateTeams[stage - 1].filter(
-        (team) => team.w === winsToAdvance || team.l === loseToEliminate
+        (team) => team.w === winsToAdvance || team.l === losesToEliminate
       );
 
       for (const match of stateMatches[stage - 1]) {
@@ -83,7 +83,7 @@ export function DoubleElimination(fromStage, toStage) {
 
     teams = stateTeams[stage].sort(teamCompare);
 
-    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < loseToEliminate);
+    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < losesToEliminate);
 
     const remainingTeams = copy(remaining);
     const pools = Array.from(new Set(remainingTeams.map((t) => `${t.w}-${t.l}`))).sort((x, y) => {
@@ -123,6 +123,11 @@ export function DoubleElimination(fromStage, toStage) {
       let score = [[], []];
       let undetermined = false;
 
+      let matchToWin = nonDeciderToWin;
+      if (team1.l === losesToEliminate - 1 || team1.w === winsToAdvance - 1) {
+        matchToWin = deciderToWin
+      }
+
       let ctr = (counter[`${team1.code}-${team2.code}`] || 0) + 1;
       counter[`${team1.code}-${team2.code}`] = counter[`${team2.code}-${team1.code}`] = ctr;
 
@@ -133,10 +138,7 @@ export function DoubleElimination(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner > 0 ? 1 : -1;
-          if (
-            ((team1.w === winsToAdvance - 1 || team1.l === loseToEliminate - 1) && maxW >= deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < loseToEliminate - 1 && maxW >= nonDeciderBestOf)
-          ) {
+          if (maxW >= matchToWin) {
             result = picked
           }
         } else {
@@ -149,10 +151,7 @@ export function DoubleElimination(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner < 0 ? 1 : -1;
-          if (
-            ((team1.w === winsToAdvance - 1 || team1.l === loseToEliminate - 1) && maxW >= deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < loseToEliminate - 1 && maxW >= nonDeciderBestOf)
-          ) {
+          if (maxW >= matchToWin) {
             result = picked
           }
         } else {
@@ -177,6 +176,8 @@ export function DoubleElimination(fromStage, toStage) {
       return {
         id: ++globalID,
         team1, team2,
+        matchToWin,
+        bestOf: matchToWin * 2 - 1,
         counter: ctr,
         picked, locked, result,
         score, stage,
@@ -225,7 +226,7 @@ export function DoubleElimination(fromStage, toStage) {
         standing: idx + 1,
         ordinalStanding: ordinal(idx+1),
         ...getStatus(idx+1, state.seats),
-        elim: x.l === loseToEliminate,
+        elim: x.l === losesToEliminate,
         adv: x.w === winsToAdvance,
         currentRound: x.w + x.l === stage,
       })

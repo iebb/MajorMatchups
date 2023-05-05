@@ -1,4 +1,5 @@
-import {Chip} from "@material-tailwind/react";
+import {ArrowPathIcon} from "@heroicons/react/24/outline";
+import {Button, Chip, IconButton} from "@material-tailwind/react";
 import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
@@ -22,7 +23,7 @@ function getCookie(name) {
 
 
 export function BracketUI({ preferences, state, shuffle }) {
-  const { trackPickems, matchOnly } = preferences;
+  const { trackPickems, matchOnly, bestOfIndicator } = preferences;
   const rounds = Array.from(Array(state.rounds + 1).keys());
 
   const format = state.tournamentType;
@@ -56,7 +57,7 @@ export function BracketUI({ preferences, state, shuffle }) {
     return (
       <Chip
         color={condition}
-        className="text-md rounded-r-none p-0 w-[12px] left-[-38px] h-[20px] text-center relative"
+        className="text-md rounded-l-none p-0 w-[12px] right-[-2px] h-[20px] text-center relative"
         value={text}
       />
     );
@@ -71,9 +72,6 @@ export function BracketUI({ preferences, state, shuffle }) {
           <div className={styles.teamNomatch} key={index}>
             <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
-              <div className={styles.pickChip}>
-                {pickChip(team)}
-              </div>
               <div className={styles.teamLogo}>
                 <img alt={team.code} src={team.logo} className="transfer-team-logo" />
               </div>
@@ -96,6 +94,9 @@ export function BracketUI({ preferences, state, shuffle }) {
                   </span>
               </span>
               </BuchholtzPopup>
+              <div className={styles.pickChip}>
+                {pickChip(team)}
+              </div>
             </div>
           </div>
         ))}
@@ -113,9 +114,6 @@ export function BracketUI({ preferences, state, shuffle }) {
             match.setWinner(1);
           }}
         >
-          <div className={styles.pickChip}>
-            {pickChip(match.team1)}
-          </div>
           <div className={styles.teamLogo}>
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
@@ -126,13 +124,18 @@ export function BracketUI({ preferences, state, shuffle }) {
             </BuchholtzPopup>
           </div>
           <span className={`${styles.teamName} `}>{match.team1.name}</span>
-          <span className={`${styles.scores} ${colors(match.result, 1)}`}>
-            {match.score[0] && match.score[0].map((x, _idx) => (
+          <span className={`${styles.scores} ${match.score[0]?.length > 0 ? colors(match.result, 1) : ""}`}>
+            {match.score[0].length ? match.score[0].map((x, _idx) => (
               <span className={`${styles.score} ${x > match.score[1][_idx] && "font-bold"}`} key={_idx}>
                 {x}
               </span>
-            ))}
+            )): (
+              <span className={styles.score}>{match.picked === 1 ? "▲" : "▼"}</span>
+            )}
           </span>
+          <div className={styles.pickChip}>
+            {pickChip(match.team1)}
+          </div>
         </div>
         <div
           className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
@@ -140,9 +143,6 @@ export function BracketUI({ preferences, state, shuffle }) {
             match.setWinner(-1);
           }}
         >
-          <div className={styles.pickChip}>
-            {pickChip(match.team2)}
-          </div>
           <div className={styles.teamLogo}>
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
@@ -154,15 +154,20 @@ export function BracketUI({ preferences, state, shuffle }) {
           </div>
           <span className={`${styles.teamName} `}>{match.team2.name}</span>
 
-          <span className={`${styles.scores} ${colors(-match.result, 1)}`}>
+          <span className={`${styles.scores} ${match.score[1]?.length > 0 ? colors(-match.result, 1) : ""}`}>
           {
-            match.score[1] && match.score[1].map((x, _idx) => (
+            match.score[1]?.length ? match.score[1].map((x, _idx) => (
               <span className={`${styles.score} ${x > match.score[0][_idx] && "font-bold"}`} key={_idx}>
                 {x}
               </span>
-            ))
+            )) : (
+              <span className={styles.score}>{match.picked === -1 ? "▲" : "▼"}</span>
+            )
           }
           </span>
+          <div className={styles.pickChip}>
+            {pickChip(match.team2)}
+          </div>
         </div>
 
       </div>
@@ -204,6 +209,7 @@ export function BracketUI({ preferences, state, shuffle }) {
                 for(const match of matches) {
                   pools[match.pool] = {
                     order: match.poolOrder || match.team1.w * 100 - match.team1.l,
+                    bestOf: match.bestOf,
                     matches: [], teams: [], allTeams
                   };
                   if (!match.is_bye) {
@@ -235,18 +241,25 @@ export function BracketUI({ preferences, state, shuffle }) {
 
                 return (
                   <div key={_idx} className={styles.round}>
-                    <div className="text-xl font-semibold mb-2" onClick={() => shuffle(_idx)}>{
-                      _idx < rounds.length - 1 ? (
-                        `Round ${_idx + 1}`
-                      ) : (
-                        "Final Result"
-                      )
-                    }</div>
+                    <div className="text-xl font-semibold mb-2" onClick={() => shuffle(_idx)}>
+                      {
+                        _idx < rounds.length - 1 ? (
+                          <>
+                            Round {_idx + 1}
+                            <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7">
+                              <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
+                            </IconButton>
+                          </>
+                        ) : (
+                          "Final Result"
+                        )
+                      }
+                    </div>
                     {sortedPools.map((bracket, index) => {
                       if (pools[bracket].matches.length || pools[bracket].teams.length) {
                         return (
                           <div key={index} className={styles.bracket}>
-                            <div className="text-lg font-semibold  mb-2">{bracket}</div>
+                            <div className="text-lg mb-2">{bracket}{(bestOfIndicator && pools[bracket].bestOf) && (` (Bo${pools[bracket].bestOf})`)}</div>
                             {renderMatches(pools[bracket])}
                             {renderTeams(pools[bracket], _idx === rounds.length - 1)}
                           </div>

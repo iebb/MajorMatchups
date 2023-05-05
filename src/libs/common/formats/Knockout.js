@@ -9,8 +9,8 @@ export function Knockout(fromStage, toStage) {
   const stateRoundTeams = copy(state.roundTeams);
   const {
     pickResults, lockResults,
-    winsToAdvance, loseToEliminate,
-    deciderBestOf,
+    winsToAdvance, losesToEliminate, // should be 1 so
+    deciderToWin,
   } = state; //   allowDups, tiebreakers
   const gamescores = state.scores || {};
 
@@ -28,7 +28,7 @@ export function Knockout(fromStage, toStage) {
     const teamCompare = (x, y) => {
       if (y.l - x.l) return x.l - y.l;
       if (y.w - x.w) return y.w - x.w;
-      if (y.l < loseToEliminate) {
+      if (y.l < losesToEliminate) {
         if (!y._seed) y._seed = y.seed;
         if (!x._seed) x._seed = x.seed;
         if (x._seed - y._seed) return x._seed - y._seed;
@@ -39,7 +39,7 @@ export function Knockout(fromStage, toStage) {
 
     if (stage > 0) {
 
-      const teamsT = stateTeams[stage - 1].filter((team) => team.w === winsToAdvance || team.l === loseToEliminate);
+      const teamsT = stateTeams[stage - 1].filter((team) => team.w === winsToAdvance || team.l === losesToEliminate);
 
       for (const match of stateMatches[stage - 1]) {
         const opponents1 = [...match.team1.opponents, match.team2.code];
@@ -61,7 +61,7 @@ export function Knockout(fromStage, toStage) {
 
     teams = stateTeams[stage].sort(teamCompare);
 
-    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < loseToEliminate);
+    remaining = teams.filter((x) => x.w < winsToAdvance && x.l < losesToEliminate);
 
     const remainingTeams = copy(remaining);
     const pools = Array.from(new Set(remainingTeams.map((t) => `${t.w}-${t.l}`))).sort((x, y) => {
@@ -80,6 +80,8 @@ export function Knockout(fromStage, toStage) {
       let score = [[], []];
       let undetermined = false;
 
+      let matchToWin = deciderToWin;
+
       if (`${team1.code}-${team2.code}` in gamescores) {
         const gs = gamescores[`${team1.code}-${team2.code}`];
         score[0] = gs.map(x => x[0])
@@ -87,10 +89,7 @@ export function Knockout(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner > 0 ? 1 : -1;
-          if (
-            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW >= deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW >= deciderBestOf)
-          ) {
+          if (maxW >= matchToWin) {
             result = picked
           }
         } else {
@@ -103,10 +102,7 @@ export function Knockout(fromStage, toStage) {
         const [winner, maxW] = getWinnerFromScore(gs);
         if (winner) {
           picked = winner < 0 ? 1 : -1;
-          if (
-            ((team1.w === winsToAdvance - 1 || team1.l === winsToAdvance - 1) && maxW >= deciderBestOf) ||
-            (team1.w < winsToAdvance - 1 && team1.l < winsToAdvance - 1 && maxW >= deciderBestOf)
-          ) {
+          if (maxW >= matchToWin) {
             result = picked
           }
         } else {
@@ -131,6 +127,8 @@ export function Knockout(fromStage, toStage) {
       return {
         id: ++globalID,
         match: idx++,
+        matchToWin,
+        bestOf: matchToWin * 2 - 1,
         team1, team2,
         picked, locked, result,
         score, stage,
@@ -165,7 +163,7 @@ export function Knockout(fromStage, toStage) {
         standing: idx + 1,
         ordinalStanding: ordinal(idx+1),
         ...getStatus(idx+1, state.seats),
-        elim: x.l === loseToEliminate,
+        elim: x.l === losesToEliminate,
         adv: x.w === winsToAdvance,
         currentRound: x.w + x.l === stage,
       })
