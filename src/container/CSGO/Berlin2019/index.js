@@ -15,7 +15,7 @@ const teams = [];
 let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `https://majors.im/imgs/berlin2019/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/go/berlin2019/${code}.png`;
 
 export default class Berlin2019 extends React.PureComponent {
   state = {
