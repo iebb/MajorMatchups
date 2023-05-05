@@ -19,7 +19,7 @@ import { FormatBinder } from '../../../libs/common/formats/formats';
 const TournamentChallenger = 0;
 const TournamentChampions = 1;
 
-const teamLogo = (code) => `https://sox.pm/logos/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/r6/cph23/${code}.png`;
 // const scores = { 0: FinalResultsPlayoff, 1: FinalResultsChampions };
 
 const TournamentStages = [

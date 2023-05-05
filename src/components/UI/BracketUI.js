@@ -8,7 +8,7 @@ import { Formats } from '../../libs/common/formats/formats';
 
 
 const colors = (result, deterministic) => {
-  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "c10" : "c7"}`;
+  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "c7" : "c10"}`;
   // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
   // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
   // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
