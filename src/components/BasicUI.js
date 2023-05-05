@@ -61,7 +61,7 @@ const UIEnums = {
 
 export function BasicUI({ tabs, state, stage, shuffle, advance }) {
   const uiType = localStorage.ui || 'bracket';
-  const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'classic');
+  const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'bracket');
   const [open, handleOpen] = useState(false);
   const [values, setValues] = useState({});
 
