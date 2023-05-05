@@ -57,6 +57,7 @@ const TournamentStages = [
     seats: ChampionSeats,
     loseToEliminate: 1,
     rounds: 3,
+    pickemTags: [],
   },
 ];
 
@@ -158,12 +159,12 @@ export default class Paris2023 extends React.PureComponent {
         matches: [false, false, false, false, false, false],
         tournament: TournamentLegends,
         tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
+        tournamentFormat: "SWISS_BUCHHOLTZ",
         scores: this._scores[TournamentLegends],
         seats: AdvanceElimSeats,
         loseToEliminate: 3,
         rounds: 5,
-        pickemTags: ["picks_216"],
+        pickemTags: [],
         pickResults: getPickResults('pickResults', 1, this.event),
       }, () => {
         this.calculateMatchups(0, this.state.rounds + 1)

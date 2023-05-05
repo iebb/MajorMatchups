@@ -12,7 +12,7 @@ import {
 import {
   Bars2Icon,
   BookOpenIcon,
-  ChatBubbleBottomCenterIcon,
+  ChatBubbleBottomCenterIcon, CheckBadgeIcon,
   ChevronDownIcon,
   CogIcon,
   CurrencyDollarIcon,
@@ -159,6 +159,18 @@ const Editions = [
         subtitle: 'IEM Season 13 - Katowice Major',
         description: '2019.02.13 - 2019.03.03',
         path: '/19katowice',
+      },
+    ]
+  },
+  {
+    edition: "Pick'em",
+    icon: CheckBadgeIcon,
+    items: [
+      {
+        title: 'Place Pick\'em Online',
+        icon: CheckBadgeIcon,
+        description: 'at pick.majors.im',
+        path: 'https://pick.majors.im/',
       },
     ]
   },
