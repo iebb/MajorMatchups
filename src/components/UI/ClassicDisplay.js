@@ -15,16 +15,6 @@ export const getMatchupDisplay = (state, stage) => {
   const stateRoundTeams = state.roundTeams;
   const statePickemTags = state.pickemTags;
 
-  const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
-  const picked = {};
-  try {
-    for (const pick of pickEms.split("|")) {
-      const pickSplit = pick.split(":");
-      picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
-    }
-  } catch (e) {
-
-  }
 
 
   let { trackPickems, matchOnly } = state;
@@ -44,6 +34,16 @@ export const getMatchupDisplay = (state, stage) => {
 
   const altTimeline = stageMatches.filter((x) => x.result && x.picked !== x.result).length;
 
+  const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
+  const picked = {};
+  try {
+    for (const pick of pickEms.split("|")) {
+      const pickSplit = pick.split(":");
+      picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
+    }
+  } catch (e) {
+
+  }
   const teamLogo = team => {
     const pick = picked[team.code];
 

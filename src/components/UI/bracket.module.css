@@ -24,14 +24,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 1.5rem;
+  margin-right: 3rem;
   position: relative;
 }
 
 .team {
   width: 100%;
   display: grid;
-  grid-template-columns: 20px 1fr auto;
+  grid-template-columns: 0 20px 1fr auto;
   gap: 5px;
   align-items: center;
   text-align: left;
@@ -40,7 +40,7 @@
 .teamWithBuchholtz {
   width: 100%;
   display: grid;
-  grid-template-columns: 20px 1fr auto 16px;
+  grid-template-columns: 0 20px 1fr auto 16px;
   gap: 5px;
   align-items: center;
   text-align: left;
@@ -53,16 +53,17 @@
 }
 
 .teamLogo {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: -2px;
 }
 
 .teamLogo img {
-  max-width: 20px;
-  max-height: 20px;
+  max-width: 28px;
+  max-height: 24px;
 }
 
 .bracket {
@@ -70,16 +71,16 @@
 }
 
 .roundWidth {
-  width: 200px;
+  width: 220px;
 }
 
 .finalWidth {
-  width: 240px;
+  width: 260px;
 }
 
 .teamNomatch {
   display: grid;
-  grid-template-columns: 15px 2fr;
+  grid-template-columns: 13px 2fr;
   gap: 5px;
   padding: 0 0 0 5px;
   align-items: center;
@@ -90,7 +91,7 @@
 .match {
   display: grid;
   grid-template-columns: 25px auto;
-  font-size: 12px;
+  font-size: 13px;
   position: relative;
   margin-bottom: 0.3rem;
   user-select: none;
@@ -100,7 +101,7 @@
 .noMatch {
   padding: 0 2px;
   display: grid;
-  font-size: 12px;
+  font-size: 13px;
   position: relative;
   gap: 0.1rem;
   margin-bottom: 0.1rem;
@@ -128,9 +129,13 @@
 .score {
   flex: 1;
   text-align: center;
-  width: 16px;
+  width: 18px;
 }
 
 .buchholtz {
   text-align: center;
+}
+
+.pickChip {
+  width: 0;
 }

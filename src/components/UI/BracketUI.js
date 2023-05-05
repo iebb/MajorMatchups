@@ -1,3 +1,4 @@
+import {Chip} from "@material-tailwind/react";
 import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
@@ -12,11 +13,54 @@ const colors = (result, deterministic) => {
   // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
+
 export function BracketUI({ preferences, state, shuffle }) {
   const { trackPickems, matchOnly } = preferences;
   const rounds = Array.from(Array(state.rounds + 1).keys());
 
   const format = state.tournamentType;
+  const pickemTags = state.pickemTags;
+  const pickEms = pickemTags && pickemTags.length ? getCookie(pickemTags[0]) : "";
+  const picked = {};
+  try {
+    for (const pick of pickEms.split("|")) {
+      const pickSplit = pick.split(":");
+      picked[pickSplit[1]] = parseInt(pickSplit[0], 10);
+    }
+  } catch (e) {
+
+  }
+
+  const pickChip = team => {
+    if (!trackPickems) return null;
+    const pick = picked[team.code];
+
+    if (typeof pick === 'undefined' || !trackPickems) return null;
+    let condition = team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red';
+    let text = "A";
+    if (pick === 0) {
+      condition = team.l === 0 ? team.w === 3 ?  'green' : 'blue' : 'red';
+      text = "3";
+    } else if (pick === 8) {
+      condition = team.w === 0 ? team.l === 3 ?  'green' : 'blue' : 'red';
+      text = "0";
+    }
+
+    return (
+      <Chip
+        color={condition}
+        className="text-md rounded-r-none p-0 w-[12px] left-[-38px] h-[20px] text-center relative"
+        value={text}
+      />
+    );
+  }
 
   const renderTeams = (bracket, isFinal=false) => {
     if (bracket.teams.length === 0) return null;
@@ -27,6 +71,9 @@ export function BracketUI({ preferences, state, shuffle }) {
           <div className={styles.teamNomatch} key={index}>
             <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
+              <div className={styles.pickChip}>
+                {pickChip(team)}
+              </div>
               <div className={styles.teamLogo}>
                 <img alt={team.code} src={team.logo} className="transfer-team-logo" />
               </div>
@@ -66,6 +113,9 @@ export function BracketUI({ preferences, state, shuffle }) {
             match.setWinner(1);
           }}
         >
+          <div className={styles.pickChip}>
+            {pickChip(match.team1)}
+          </div>
           <div className={styles.teamLogo}>
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
@@ -90,6 +140,9 @@ export function BracketUI({ preferences, state, shuffle }) {
             match.setWinner(-1);
           }}
         >
+          <div className={styles.pickChip}>
+            {pickChip(match.team2)}
+          </div>
           <div className={styles.teamLogo}>
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
