@@ -239,7 +239,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       />
       {
         advance && (
-          <div className="m-10 items-center flex flex-row content-center place-content-center">
+          <div className="m-4 items-center flex flex-row content-center place-content-center">
             <Button
               onClick={advance}
               color="blue-gray"

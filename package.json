@@ -1,8 +1,8 @@
 {
-  "name": "katowice2019-elo-calc",
-  "version": "1.1.4",
+  "name": "majorsim-site",
+  "version": "2.0.0",
   "homepage": "./",
-  "description": "Katowice 2019 Elo Calc",
+  "description": "MajorSim Site",
   "repository": {
     "type": "git",
     "url": "git://github.com/react-boilerplate/react-boilerplate.git"
@@ -30,9 +30,7 @@
     "react-helmet": "^6.1.0",
     "react-redux": "~7.2.5",
     "react-router-dom": "~5.3.0",
-    "sanitize.css": "~13.0.0",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.1.2"
+    "sanitize.css": "~13.0.0"
   },
   "devDependencies": {
     "react-scripts": "^5.0.1",
