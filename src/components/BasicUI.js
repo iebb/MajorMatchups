@@ -7,7 +7,7 @@ import {
   Dialog,
   DialogBody,
   DialogFooter,
-  DialogHeader,
+  DialogHeader, IconButton,
   Option,
   Select,
   Switch,
@@ -15,7 +15,7 @@ import {
   Tabs,
   TabsHeader,
 } from '@material-tailwind/react';
-import { ArrowLongRightIcon } from '@heroicons/react/24/outline';
+import {ArrowLongRightIcon, ChatBubbleLeftEllipsisIcon, HeartIcon} from '@heroicons/react/24/outline';
 
 const commonOptions = [
   { name: "Disable Google Ads", key: "disableAds", default: false },
@@ -188,9 +188,23 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           <Button
             onClick={() => handleOpen(true)}
             color="blue-gray"
-            className="normal-case text-black font-normal text-md py-2 my-0"
+            className="normal-case text-black font-normal text-md py-2 my-0 mx-2"
           >
             Customize
+          </Button>
+          <Button
+            onClick={() => window.open("https://discord.gg/KYNbRYrZGe", "_blank")}
+            color="purple"
+            className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
+          >
+            <ChatBubbleLeftEllipsisIcon strokeWidth={2} className="h-5 w-5" /> Discord
+          </Button>
+          <Button
+            onClick={() => window.open("https://ko-fi.com/ieb233", "_blank")}
+            color="pink"
+            className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
+          >
+            <HeartIcon strokeWidth={2} className="h-5 w-5" /> Donate
           </Button>
         </div>
       </div>
@@ -217,7 +231,6 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           </div>
         )
       }
-      <div className="clear-both" />
       <UI
         state={state}
         shuffle={shuffle}
