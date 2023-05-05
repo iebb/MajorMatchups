@@ -2,7 +2,7 @@ import { ordinal } from '../../plural';
 import { copy, getStatus, getWinnerFromScore } from '../common';
 
 
-export function Knockout(fromStage, toStage) {
+export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScore) {
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
@@ -86,7 +86,7 @@ export function Knockout(fromStage, toStage) {
         const gs = gamescores[`${team1.code}-${team2.code}`];
         score[0] = gs.map(x => x[0])
         score[1] = gs.map(x => x[1])
-        const [winner, maxW] = getWinnerFromScore(gs);
+        const [winner, maxW] = winnerFn(gs);
         if (winner) {
           picked = winner > 0 ? 1 : -1;
           if (maxW >= matchToWin) {
@@ -99,7 +99,7 @@ export function Knockout(fromStage, toStage) {
         const gs = gamescores[`${team2.code}-${team1.code}`];
         score[1] = gs.map(x => x[0])
         score[0] = gs.map(x => x[1])
-        const [winner, maxW] = getWinnerFromScore(gs);
+        const [winner, maxW] = winnerFn(gs);
         if (winner) {
           picked = winner < 0 ? 1 : -1;
           if (maxW >= matchToWin) {

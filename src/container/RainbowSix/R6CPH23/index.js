@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {FinalResultsPlayoff} from "./final_results";
+import {FinalResultsChampions, FinalResultsPlayoff} from "./final_results";
 import { finalDataChampions, initialDataChallenger } from './initial_data';
 import { BasicUI } from '../../../components/BasicUI';
 import {
@@ -20,7 +20,7 @@ const TournamentChallenger = 0;
 const TournamentChampions = 1;
 
 const teamLogo = (code) => `https://sox.pm/logos/${code}.png`;
-const scores = { 0: { }, 1: { } };
+// const scores = { 0: FinalResultsPlayoff, 1: FinalResultsChampions };
 
 const TournamentStages = [
   {
@@ -55,8 +55,7 @@ const TournamentStages = [
     nonDeciderToWin: 2,
     deciderToWin: 2,
     rounds: 3,
-    scores: {},
-    // scores: scores[TournamentChampions],
+    scores: FinalResultsChampions,
   },
 ];
 
