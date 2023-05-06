@@ -1,10 +1,11 @@
-import {ArrowPathIcon} from "@heroicons/react/24/outline";
-import {Button, Chip, IconButton} from "@material-tailwind/react";
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
+import { Chip, IconButton } from '@material-tailwind/react';
 import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
+import { CalendarDaysIcon, CheckCircleIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 
 
 const colors = (result, deterministic) => {
@@ -72,9 +73,16 @@ export function BracketUI({ preferences, state, shuffle }) {
           <div className={styles.teamNomatch} key={index}>
             <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
-              <div className={styles.teamLogo}>
-                <img alt={team.code} src={team.logo} className="transfer-team-logo" />
-              </div>
+              <BuchholtzPopup
+                enabled={format === Formats.SwissBuchholtz}
+                team={team}
+                teams={bracket.allTeams}
+                key={index}
+              >
+                <div className={styles.teamLogo}>
+                  <img alt={team.code} src={team.logo} className="transfer-team-logo" />
+                </div>
+              </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{team.name}</span>
               <BuchholtzPopup
                 enabled={format === Formats.SwissBuchholtz}
@@ -106,8 +114,16 @@ export function BracketUI({ preferences, state, shuffle }) {
 
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
-      <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 ${match.result ? "":"border-dashed "} shadow-md`}>
-        <div className={`${styles.matchNumber} p-1 `}>M<br />{match.id}</div>
+      <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
+        <div className={`${styles.matchNumber} p-1 `}>{
+          match.result ?
+            <CheckCircleIcon className="w-5 h-5 text-green-500" title="finished match" /> :
+            (
+              match.scores && match.scores[0]?.length ?
+                  <PlayCircleIcon className="w-5 h-5 text-pink-500" title="ongoing match" /> :
+                <CalendarDaysIcon className="w-5 h-5 text-blue-500" title="future match" />
+            )
+        }<p>{match.id}</p></div>
         <div
           className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
           onClick={() => {
