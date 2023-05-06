@@ -5,7 +5,7 @@ import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
-import { CalendarDaysIcon, CheckCircleIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { CalendarDaysIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 
 
 const colors = (result, deterministic) => {
@@ -121,7 +121,7 @@ export function BracketUI({ preferences, state, shuffle }) {
             (
               match.scores && match.scores[0]?.length ?
                   <PlayCircleIcon className="w-5 h-5 text-pink-500" title="ongoing match" /> :
-                <CalendarDaysIcon className="w-5 h-5 text-blue-500" title="future match" />
+                <ClockIcon className="w-5 h-5 text-blue-500" title="future match" />
             )
         }<p>{match.id}</p></div>
         <div
