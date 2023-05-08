@@ -66,47 +66,29 @@ export const ResponsiveContainer = ({ children }) => {
         }
       </div>
       {
-        (adType !== "custom") && (localStorage.disableAds === "true") ? (
-          <Footer />
+        (adType !== "custom") ? (
+          <>
+            <Footer />
+            <GoogleAd
+              style={{ display: 'block', width: 768 }}
+              googleAdId="ca-pub-3253159471656308"
+              format="horizontal"
+              slot="8397184946"
+            />
+          </>
         ) : (
           <>
             <div className="dynamic-padding" />
             <div className="bottom-desktop">
-              {
-                adType === "custom" ? (
-                  <a href={ad.link} className="adv-img">
-                    <img className="adv-img-img" src={ad.banner} alt={ad.name} />
-                  </a>
-                ) : adType === "google" ? (
-                  <div className="adv-img google-adv-img">
-                    <GoogleAd
-                      style={{ display: 'block', width: 768 }}
-                      googleAdId="ca-pub-3253159471656308"
-                      format="horizontal"
-                      slot="8397184946"
-                    />
-                  </div>
-                ) : null
-              }
+              <a href={ad.link} className="adv-img">
+                <img className="adv-img-img" src={ad.banner} alt={ad.name} />
+              </a>
               <div style={{ flex: 1 }} className="hide-on-mobile">
                 <Footer />
               </div>
-              {
-                adType === "custom" ? (
-                  <a href={ad.link} className="alt-ads adv-img">
-                    <img className="adv-img-img" src={ad.banner} alt={ad.name} />
-                  </a>
-                ) : adType === "google" ? (
-                  <div className="alt-ads adv-img google-adv-img">
-                    <GoogleAd
-                      style={{ display: 'block' }}
-                      googleAdId="ca-pub-3253159471656308"
-                      format="horizontal"
-                      slot="8397184946"
-                    />
-                  </div>
-                ) : null
-              }
+              <a href={ad.link} className="alt-ads adv-img">
+                <img className="adv-img-img" src={ad.banner} alt={ad.name} />
+              </a>
             </div>
           </>
         )
