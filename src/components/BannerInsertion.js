@@ -43,10 +43,10 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
         }
         {
           isMajor && (
-            <h3 style={{color: 'yellow'}}>
+            <p className="text-yellow-300 text-xl mt-2">
               {/* eslint-disable-next-line */}
               Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
-            </h3>
+            </p>
           )
         }
         {
