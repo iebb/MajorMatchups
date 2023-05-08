@@ -113,18 +113,18 @@ export default class Paris2023 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init(0);
 
-    // fetch('https://result-api.majors.im/event_20.json')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this._scores = {
-    //       0: resp[1],
-    //       1: resp[2],
-    //       2: resp[3],
-    //     };
-    //     this.setState({scores: this._scores[this.state.tournament]}, () => {
-    //       this.calculateMatchups(0, this.state.rounds + 1)
-    //     });
-    //   });
+    fetch('https://result-api.majors.im/event_21.json')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this._scores = {
+          0: resp[1],
+          1: resp[2],
+          2: resp[3],
+        };
+        this.setState({scores: this._scores[this.state.tournament]}, () => {
+          this.calculateMatchups(0, this.state.rounds + 1)
+        });
+      });
   }
 
   init = (tStage) => {

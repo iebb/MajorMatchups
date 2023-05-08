@@ -119,7 +119,7 @@ export function BracketUI({ preferences, state, shuffle }) {
           match.result ?
             <CheckCircleIcon className="w-5 h-5 text-green-500" title="finished match" /> :
             (
-              match.scores && match.scores[0]?.length ?
+              match.score && match.score[0]?.length ?
                   <PlayCircleIcon className="w-5 h-5 text-pink-500" title="ongoing match" /> :
                 <ClockIcon className="w-5 h-5 text-blue-500" title="future match" />
             )
