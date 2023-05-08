@@ -33,16 +33,20 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
                 </td>
                 <td className="min-w-[10rem] text-left">
                   <b>{teams[opp.code].name}</b>
-                  <p><sub>{teams[opp.code].description}</sub></p>
+                  <p>{teams[opp.code].description}</p>
                 </td>
                 <td className="text-center">{teams[opp.code].w}-{teams[opp.code].l}</td>
                 <td className="text-center">{plus_minus(opp.b)}</td>
               </tr>
             )
           }
-          <tr className="border-t-2 border-t-blue-gray-400 pt-4">
-            <td colSpan={3}><b>Total Buchholtz</b></td>
-            <td className="text-center">{team.buchholtz}</td>
+          <tr className="border-t-2 border-t-blue-gray-400">
+            <td colSpan={3} className="py-2"><b>Total Buchholtz</b></td>
+            <td className="text-center py-2">{team.buchholtz}</td>
+          </tr>
+          <tr className="border-t-2 border-t-blue-gray-400">
+            <td colSpan={3} className="py-2"><b>Team Seeding</b></td>
+            <td className="text-center py-2">{team.seed}</td>
           </tr>
           </tbody>
         </table>
