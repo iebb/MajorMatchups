@@ -195,18 +195,22 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           </Button>
           <Button
             onClick={() => window.open("https://discord.gg/KYNbRYrZGe", "_blank")}
-            color="purple"
+            color="indigo"
             className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
           >
             <ChatBubbleLeftEllipsisIcon strokeWidth={2} className="h-5 w-5" /> Discord
           </Button>
-          <Button
-            onClick={() => window.open("https://ko-fi.com/ieb233", "_blank")}
-            color="pink"
-            className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
-          >
-            <HeartIcon strokeWidth={2} className="h-5 w-5" /> Donate
-          </Button>
+          {
+            (localStorage.disableAds === true) && (
+              <Button
+                onClick={() => window.open("https://ko-fi.com/ieb233", "_blank")}
+                color="pink"
+                className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
+              >
+                <HeartIcon strokeWidth={2} className="h-5 w-5" /> Donate
+              </Button>
+            )
+          }
         </div>
       </div>
       {
