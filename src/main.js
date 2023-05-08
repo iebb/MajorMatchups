@@ -1,15 +1,13 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-multi-comp */
 
-import {ChatBubbleLeftEllipsisIcon} from "@heroicons/react/24/outline";
-import {Button} from "@material-tailwind/react";
-import React, { useEffect, useState } from 'react';
-import ComplexNavbar from './components/Navbar';
-import Routes from './router';
+import React, {useEffect, useState} from 'react';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
 import GoogleAd from './components/GoogleAd';
-import { SettingsCtx } from './libs/Context';
+import ComplexNavbar from './components/Navbar';
+import {SettingsCtx} from './libs/Context';
+import Routes from './router';
 
 const BaseAd = {
   banner: "",

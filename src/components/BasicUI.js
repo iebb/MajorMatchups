@@ -201,7 +201,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
             <ChatBubbleLeftEllipsisIcon strokeWidth={2} className="h-5 w-5" /> Discord
           </Button>
           {
-            (localStorage.disableAds === true) && (
+            (localStorage.disableAds === "true") && (
               <Button
                 onClick={() => window.open("https://ko-fi.com/ieb233", "_blank")}
                 color="pink"
