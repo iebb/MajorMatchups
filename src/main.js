@@ -67,19 +67,7 @@ export const ResponsiveContainer = ({ children }) => {
       </div>
       {
         (adType !== "custom") ? (
-          <>
-            <Footer />
-            <div>
-              <div style={{ margin: "0 auto" }}>
-                <GoogleAd
-                  style={{ display: 'block', width: 768, margin: "0 auto" }}
-                  googleAdId="ca-pub-3253159471656308"
-                  format="autorelaxed"
-                  slot="8397184946"
-                />
-              </div>
-            </div>
-          </>
+          <Footer />
         ) : (
           <>
             <div className="dynamic-padding" />
