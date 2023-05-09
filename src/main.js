@@ -55,7 +55,7 @@ export const ResponsiveContainer = ({ children }) => {
         {children}
         <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
         {
-          (adType === "google") && (
+          (localStorage.disableAds !== "true") && (adType === "google") && (
             <GoogleAd
               style={{ display: 'block' }}
               googleAdId="ca-pub-3253159471656308"
