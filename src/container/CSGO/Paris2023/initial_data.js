@@ -90,7 +90,7 @@ export const initialDataChallenger = [
   },
   {
     "code": "forz",
-    "name": "forZe",
+    "name": "forZe eSports",
     seed: 13,
     description: "EUB #6",
     region: "EU",
@@ -146,7 +146,7 @@ export const initialDataChallenger = [
   },
   {
     "code": "cplx",
-    "name": "Complexity",
+    "name": "Complexity Gaming",
     seed: 21,
     description: "AM #4",
     region: "AM",
