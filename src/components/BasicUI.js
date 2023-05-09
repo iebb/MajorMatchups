@@ -18,7 +18,7 @@ import {
 import {ArrowLongRightIcon, ChatBubbleLeftEllipsisIcon, HeartIcon} from '@heroicons/react/24/outline';
 
 const commonOptions = [
-  { name: "Disable Google Ads", key: "disableAds", default: false },
+  { name: "Disable After-content Google Ads", key: "disableAds", default: false },
   { name: "Alternative Background", key: "altBackground", default: false },
 ]
 
