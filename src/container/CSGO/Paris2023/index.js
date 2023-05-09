@@ -121,11 +121,19 @@ export default class Paris2023 extends React.PureComponent {
           1: resp[2],
           2: resp[3],
         };
+
         const pickResults = getPickResults('pickResults', this.state.tournament, this.event);
         for(const s of Object.keys(this._scores[this.state.tournament])) {
+          try {
+            const ssp = s.split("-");
+            delete pickResults[ssp[1] + "-" + ssp[0]];
+          } catch {
+
+          }
           delete pickResults[s];
         }
         setPickResults('pickResults', this.state.tournament, this.event, pickResults);
+
         this.setState({
           scores: this._scores[this.state.tournament],
           pickResults
