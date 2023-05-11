@@ -1,5 +1,8 @@
 // prettier-ignore
 
+const teamLogo = (code) => `https://img.majors.im/go/antwerp2022/${code}_glitter.png`;
+const addLogo = x => ({...x, logo: teamLogo(x.code)})
+
 export const initialDataLegends = [
   {
     code: "hero",
@@ -57,7 +60,7 @@ export const initialDataLegends = [
     description: "EUA #4",
     region: "EU",
   },
-];
+].map(addLogo);
 
 export const initialDataChallenger = [
   {
@@ -172,7 +175,7 @@ export const initialDataChallenger = [
     description: "AM #6",
     region: "AM",
   },
-];
+].map(addLogo);
 
 export const finalDataLegends = [
   ...initialDataLegends,
@@ -232,7 +235,7 @@ export const finalDataLegends = [
     description: "3-2, -2",
     region: "AM",
   },
-];
+].map(addLogo);
 
 export const finalDataChampions = [
   {
@@ -291,4 +294,4 @@ export const finalDataChampions = [
     description: "2L, -1B, #5",
     region: "AM",
   }
-]
+].map(addLogo);

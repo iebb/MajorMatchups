@@ -1,5 +1,9 @@
 // prettier-ignore
 
+const teamLogo = (code) => `https://img.majors.im/go/stockh2021/${code}.png`;
+const addLogo = x => ({...x, logo: teamLogo(x.code)})
+
+
 export const initialDataChallenger = [
   {
     code: "spir",
@@ -97,7 +101,7 @@ export const initialDataChallenger = [
     seed: 24,
     description: "EU #11",
   }
-];
+].map(addLogo);
 
 
 export const initialDataLegends = [
@@ -149,7 +153,7 @@ export const initialDataLegends = [
     seed: 8,
     description: "NA #3",
   }
-];
+].map(addLogo);
 
 export const finalDataLegends = [
   {
@@ -248,7 +252,7 @@ export const finalDataLegends = [
     "seed": 16,
     "description": "2L, -3B, #16"
   }
-];
+].map(addLogo);
 
 
 export const finalDataChampions = [
@@ -300,4 +304,4 @@ export const finalDataChampions = [
     "seed": 8,
     "description": "2L, -3B, #4"
   }
-]
+].map(addLogo);

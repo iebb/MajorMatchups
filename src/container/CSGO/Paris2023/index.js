@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-
 import React from 'react';
 import {AdvanceElimSeats, ChampionSeats} from '../../../libs/common/common';
 import {Major3Stage} from "../../Common/Major3Stage";

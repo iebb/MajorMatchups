@@ -1,7 +1,7 @@
 // prettier-ignore
 
 
-const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter_large.png`;
+const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter.png`;
 const addLogo = x => ({...x, logo: teamLogo(x.code)});
 
 export const initialDataLegends = [

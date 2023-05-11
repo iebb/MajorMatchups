@@ -84,3 +84,8 @@ export const FinalResultsChampions = {
   "hero-g2": [[16,12],[10,16],[15,19]],
 }
 
+export const Scores = {
+  "0": FinalResultsChallenger,
+  "1": FinalResultsLegends,
+  "2": FinalResultsChampions,
+}

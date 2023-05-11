@@ -15,6 +15,7 @@ const TournamentLegends = 1;
 const TournamentChampions = 2;
 
 export class Major3Stage extends React.Component {
+  nextMajorSlot = true;
 
   state = {
     teams: [[], false, false, false, false, false],
@@ -219,7 +220,11 @@ export class Major3Stage extends React.Component {
             this.advances[this.state.tournament + 1]
           }
         />
-        <NextMajorSlot state={this.state} />
+        {
+          this.nextMajorSlot && (
+            <NextMajorSlot state={this.state} />
+          )
+        }
       </div>
     );
   }

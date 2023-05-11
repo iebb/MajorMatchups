@@ -8,7 +8,6 @@ export const FinalResultsPlayoff = {
   "faze-mnm":[[7,5]],
   "m80-wolv":[[7,8]],
   "g2-spac":[[3,7]],
-  "soni-m80":[],
   "virt-ninj":[[7,4]],
   "scar-reve":[[8,6]],
   "g2-mnm":[[8,7]],
@@ -41,5 +40,8 @@ export const FinalResultsChampions = {
   "soni-ninj": [[8,6],[7,5]],
   "faze-scar": [[7,3],[4,7],[7,3]],
   "g2-liqu": [[3,7],[7,4],[2,7]],
+  "w7m-soni": [[7,4],[7,3]],
+  "faze-liqu": [[1,7],[4,7]],
+  "w7m-liqu": [[7,5],[8,6],[7,3]],
 }
 

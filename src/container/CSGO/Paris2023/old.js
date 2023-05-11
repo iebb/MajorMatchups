@@ -16,7 +16,7 @@ const TournamentChallenger = 0;
 const TournamentLegends = 1;
 const TournamentChampions = 2;
 
-const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter_large.png?w=3`;
+const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter.png?w=3`;
 
 
 const TournamentStages = [
