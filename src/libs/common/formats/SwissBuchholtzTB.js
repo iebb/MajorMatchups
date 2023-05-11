@@ -217,7 +217,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
 
         const _match = {
           pool,
-          id: ++globalID,
+          id: -1,
           match: m.length,
           matchToWin,
           bestOf: matchToWin * 2 - 1,
@@ -246,7 +246,7 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
       dfs(poolTeams, [], matchups, pool);
     }
 
-    stageMatches = matchups;
+    stageMatches = matchups.map(x => ({...x, id: ++globalID}))
     stateMatches[stage] = stageMatches;
 
     const teamsSorted = teams.sort(teamCompare).map((x, idx) => ({...x, standing: idx+1}));
