@@ -33,7 +33,7 @@ export const NextMajorSlot = ({state}) => {
       for(const otherRegion of regionOrders) {
         if (challengerSlots[otherRegion] > 0) {
           team.region = otherRegion
-          team.name += " / Slot Transferred to " + otherRegion
+          team.name = <>{team.name}<br/>{"Slot Transferred to " + otherRegion}</>
           break;
         }
       }
@@ -53,8 +53,6 @@ export const NextMajorSlot = ({state}) => {
   }
 
   const m = (team, _) => {
-    const r = regions[team.region];
-    const status = team.status;
     return (
       <div key={team.code} className={`team one ${status}`}>
         <div className="team-box down">
@@ -75,7 +73,7 @@ export const NextMajorSlot = ({state}) => {
           <div className="team-box-split b stacked-logo">
             <img className="team-logo" src={r.icon} alt={r.icon} />
             <div className="team-logo-bg-container">
-              <img className="team-logo-bg" src={team.logo} alt={team.name} title={team.name} />
+
             </div>
           </div>
         </div>
@@ -83,20 +81,50 @@ export const NextMajorSlot = ({state}) => {
     )
   };
 
+  const renderPart = (teams, title) => {
+    return (
+      <div className="border-2 rounded-md border-r-2 border-blue-500 w-full p-2 grid-cols-3">
+        <table className="table-auto w-full text-sm text-left">
+          <thead>
+          <tr>
+            <th colSpan="3" className="table-auto w-full text-lg text-center lowercase font-normal border-b-2">{title}</th>
+          </tr>
+          <tr className="text-sm">
+            <th className="pl-1">#</th>
+            <th className="py-1">Region</th>
+            <th className="pr-1">Earned By</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            teams.map(team => {
+              const r = regions[team.region];
+              return (
+                <tr className="text-sm">
+                  <td className="pl-1">{team.standings || ordinal(team.standing)}</td>
+                  <td className="py-1">{r.name} #{team.regionCounter}</td>
+                  <td className="px-0 ">
+                    <img className="w-8 h-6 inline-block" src={team.logo} alt={team.name} title={team.name} />
+                    {team.name}</td>
+                </tr>
+              )
+            })
+          }
+          </tbody>
+        </table>
+      </div>
+    )
+  }
 
   return (
     <div className='main-container mt-4'>
       <h1 className='round-title'>
         Next Major Slot Allocations
       </h1>
-      <div>
-        {championResult.map(m)}
-      </div>
-      <div>
-        {legendResult.map(m)}
-      </div>
-      <div>
-        {slots.map(m)}
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+        {renderPart(championResult, "Champions")}
+        {renderPart(legendResult, "Legends")}
+        {renderPart(slots, "Challengers")}
       </div>
     </div>
   )

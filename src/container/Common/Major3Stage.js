@@ -1,4 +1,4 @@
-import {UserGroupIcon} from "@heroicons/react/24/outline";
+import {PaperAirplaneIcon, QuestionMarkCircleIcon, TrophyIcon, UserGroupIcon} from "@heroicons/react/24/outline";
 import React from 'react';
 import Title from "../../components/BannerInsertion";
 import {BasicUI} from "../../components/BasicUI";
@@ -186,19 +186,24 @@ export class Major3Stage extends React.Component {
   }
 
   render() {
+    const icons = [
+      UserGroupIcon,
+      PaperAirplaneIcon,
+      TrophyIcon,
+      QuestionMarkCircleIcon,
+    ];
     const tabs = [
       ...this.TournamentStages.filter(x => (x.id <= this.currentStage + 1 || x.id <= this.state.tournament + 1)).map(ts => (
         {
           value: ts.id,
           label: ts.name,
           active: this.state.tournament === ts.id,
-          icon: UserGroupIcon,
+          icon: icons[ts.id],
           onClick:() => ts.id <= this.currentStage ? this.init(ts.id) : this.advances[ts.id]()
         }
       )),
     ]
     return (
-
       <div className="page-container">
         <Title
           title={this.title}

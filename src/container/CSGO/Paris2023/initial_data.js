@@ -178,5 +178,7 @@ export const initialDataChallenger = [
   },
 ].map(addLogo);
 
-export const finalDataLegends = [].map(addLogo);
+export const finalDataLegends = [
+  ...initialDataLegends,
+].map(addLogo);
 export const finalDataChampions = [].map(addLogo);
