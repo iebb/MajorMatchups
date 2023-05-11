@@ -31,7 +31,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -53,7 +52,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -77,7 +75,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -119,7 +116,7 @@ export default class Rio2022RMR extends React.PureComponent {
     ],
     matches: [false, false, false, false, false, false],
     regionId: 3,
-    advanceMode: 1,
+
     legends: false,
     scores: Scores,
     tiebreakers: {},
@@ -145,7 +142,7 @@ export default class Rio2022RMR extends React.PureComponent {
   init = (region) => {
     this.setState({
       ...pack(Regions[region].seeds, teamLogo),
-      advanceMode: 1,
+
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, Regions[region].rounds + 1));
@@ -156,7 +153,7 @@ export default class Rio2022RMR extends React.PureComponent {
     //     this.setState({
     //       ...pack(Regions[region].seeds, teamLogo),
     //       scores: resp,
-    //       advanceMode: 1,
+    //
     //       regionId: region,
     //       ...Regions[region],
     //     });

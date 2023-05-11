@@ -10,9 +10,9 @@ import {getPickResults, setPickResults} from "../../libs/common/storage";
 import {ChallengerResults, LegendResults} from "../CSGO/Rio2022/scores";
 
 
-const TournamentChallenger = 0;
-const TournamentLegends = 1;
-const TournamentChampions = 2;
+export const TournamentChallenger = 0;
+export const TournamentLegends = 1;
+export const TournamentChampions = 2;
 
 export class Major3Stage extends React.Component {
   nextMajorSlot = true;
@@ -23,7 +23,6 @@ export class Major3Stage extends React.Component {
     matches: [false, false, false, false, false, false],
     tournament: 0,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     legends: false,
     scores: {},
     tiebreakers: {},

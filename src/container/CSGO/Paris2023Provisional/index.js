@@ -30,7 +30,6 @@ const TournamentStages = [
     name: "Challengers",
     tournament: TournamentChallenger,
     tournamentType: Formats.SwissBuchholtz,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     seats: AdvanceElimSeats,
     icon: UserGroupIcon,
     rounds: 5,
@@ -42,7 +41,7 @@ const TournamentStages = [
   //   tournament: TournamentLegends,
   //   tournamentType: 0,
   //  tournamentFormat: "SWISS_BUCHHOLTZ",
-  //   advanceMode: 1,
+  //
   //   icon: PaperAirplaneIcon,
   //   seats: AdvanceElimSeats,
   //   rounds: 5,
@@ -54,7 +53,7 @@ const TournamentStages = [
   //   tournament: TournamentChampions,
   //   tournamentType: 2,
   //   tournamentFormat: "KNOCKOUT",
-  //   advanceMode: 2,
+  //
   //   icon: PaperAirplaneIcon,
   //   seats: ChampionSeats,
   //   losesToEliminate: 1,

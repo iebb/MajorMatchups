@@ -30,7 +30,6 @@ const TournamentStages = [
     name: "Playoffs",
     tournament: TournamentChallenger,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
     losesToEliminate: 3,
@@ -46,7 +45,7 @@ const TournamentStages = [
     determined: false,
     name: "Finals",
     tournament: TournamentChampions,
-    advanceMode: 2,
+
     tournamentType: 2,
     tournamentFormat: "KNOCKOUT",
     seats: ChampionSeats,

@@ -1,14 +1,10 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {AdvanceElimSeats, ChampionSeats} from '../../../libs/common/common';
-import {Major3Stage} from "../../Common/Major3Stage";
-import {finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
-import {Scores} from './scores';
-
-const TournamentChallenger = 0;
-const TournamentLegends = 1;
-const TournamentChampions = 2;
+import { AdvanceElimSeats, ChampionSeats } from '../../../libs/common/common';
+import { Major3Stage } from '../../Common/Major3Stage';
+import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { Scores } from './scores';
 
 
 const TournamentStages = [
@@ -17,9 +13,8 @@ const TournamentStages = [
     initialTeams: initialDataChallenger,
     teams: initialDataChallenger,
     name: "Challengers",
-    tournament: TournamentChallenger,
+    tournament: 0,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
     losesToEliminate: 3,
@@ -31,10 +26,8 @@ const TournamentStages = [
     initialTeams: initialDataLegends,
     teams: finalDataLegends,
     name: "Legends",
-    tournament: TournamentLegends,
+    tournament: 1,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
-    advanceMode: 1,
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
     losesToEliminate: 3,
@@ -46,11 +39,11 @@ const TournamentStages = [
     initialTeams: [],
     teams: finalDataChampions,
     name: "Champions",
-    tournament: TournamentChampions,
+    tournament: 2,
     tournamentType: 2,
     tournamentFormat: "KNOCKOUT",
-    advanceMode: 2,
     seats: ChampionSeats,
+    winsToAdvance: 3,
     losesToEliminate: 1,
     rounds: 3,
   },

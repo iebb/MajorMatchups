@@ -27,7 +27,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -47,7 +46,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -68,7 +66,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -88,7 +85,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
   {
@@ -108,7 +104,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    tournamentFormat: "SWISS_BUCHHOLTZ",
     allowDups: false,
   },
 ];
@@ -130,7 +125,7 @@ export default class Paris2023Qual extends React.PureComponent {
     ],
     matches: [false, false, false, false, false, false],
     regionId: 0,
-    advanceMode: 1,
+
     legends: false,
     scores: Scores,
     tiebreakers: {},
@@ -156,7 +151,7 @@ export default class Paris2023Qual extends React.PureComponent {
   init = (region) => {
     this.setState({
       ...pack(Regions[region].seeds, teamLogo),
-      advanceMode: 1,
+
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
@@ -166,7 +161,7 @@ export default class Paris2023Qual extends React.PureComponent {
     //   .then((resp) => {
     //     this.setState({
     //       ...pack(Regions[region].seeds, teamLogo),
-    //       advanceMode: 1,
+    //
     //       scores: resp,
     //       regionId: region,
     //       ...Regions[region],
