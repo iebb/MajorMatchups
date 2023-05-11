@@ -1,5 +1,9 @@
 // prettier-ignore
 
+
+const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter_large.png`;
+const addLogo = x => ({...x, logo: teamLogo(x.code)});
+
 export const initialDataLegends = [
   {
     "code": "navi",
@@ -57,7 +61,7 @@ export const initialDataLegends = [
     description: "EUA #4",
     region: "EU",
   }
-];
+].map(addLogo);
 
 export const initialDataChallenger = [
   {
@@ -172,124 +176,7 @@ export const initialDataChallenger = [
     description: "EU-TB",
     region: "EU",
   },
-];
+].map(addLogo);
 
-export const finalDataLegends = [
-  ...initialDataLegends,
-  {
-    code: "mouz",
-    name: "MOUZ",
-    seed: 9,
-    description: "3-0, +1",
-    region: "EU",
-  },
-  {
-    code: "bne",
-    name: "Bad News Eagles",
-    seed: 10,
-    description: "3-0, -2",
-    region: "EU",
-  },
-  {
-    code: "out",
-    name: "Outsiders",
-    seed: 11,
-    description: "3-1, +3",
-    region: "EU",
-  },
-  {
-    code: "big",
-    name: "BIG",
-    seed: 12,
-    description: "3-1, +2",
-    region: "EU",
-  },
-  {
-    code: "furi",
-    name: "FURIA Esports",
-    seed: 13,
-    description: "3-1, -3",
-    region: "AM",
-  },
-  {
-    code: "fntc",
-    name: "Fnatic",
-    seed: 14,
-    description: "3-2, +4",
-    region: "EU",
-  },
-  {
-    code: "vita",
-    name: "Team Vitality",
-    seed: 15,
-    description: "3-2, -5",
-    region: "EU",
-  },
-  {
-    code: "c9",
-    name: "Cloud9",
-    seed: 16,
-    description: "3-2, -7",
-    region: "EU",
-  },
-];
-
-
-export const finalDataChampions = [
-  {
-    code: "c9",
-    name: "Cloud9",
-    seed: 1,
-    description: "3-0, 0",
-    region: "EU",
-  },
-  {
-    seed: 2,
-    code: "furi",
-    name: "FURIA Esports",
-    description: "3-0, -1",
-    region: "AM",
-  },
-  {
-    code: "hero",
-    name: "Heroic",
-    seed: 3,
-    description: "3-1, +6",
-    region: "EU",
-  },
-  {
-    code: "out",
-    name: "Outsiders",
-    seed: 4,
-    description: "3-1, +1",
-    region: "EU",
-  },
-  {
-    code: "fntc",
-    name: "Fnatic",
-    seed: 5,
-    description: "3-1, -3",
-    region: "EU",
-  },
-  {
-    code: "spir",
-    name: "Team Spirit",
-    seed: 6,
-    description: "3-2, 0",
-    region: "EU",
-  },
-  {
-    code: "navi",
-    name: "Natus Vincere",
-    seed: 7,
-    description: "3-2, -3, Seed 2",
-    region: "EU",
-  },
-  {
-    code: "mouz",
-    name: "MOUZ",
-    seed: 8,
-    description: "3-2, -3, Seed 9",
-    region: "EU",
-  }
-]
+export const finalDataLegends = [].map(addLogo);
+export const finalDataChampions = [].map(addLogo);

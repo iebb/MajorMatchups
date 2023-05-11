@@ -88,7 +88,7 @@ export function BracketUI({ preferences, state, shuffle }) {
                 enabled={format === Formats.SwissBuchholtz}
                 team={team}
                 teams={bracket.allTeams}
-                key={index}
+                key={index + "_"}
               >
                 <span className={styles.scores}>
                   <span className={``}>

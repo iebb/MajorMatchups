@@ -43,6 +43,36 @@ export const pack = (teams, teamLogo) => {
   }
 }
 
+export const packTeam = (teams) => {
+  return {
+    teams: [
+      teams.map(t => ({
+        l: 0,
+        w: 0,
+        opponents: [],
+        buchholtz: t.buchholtz || 0,
+        buchholtzBreakdown: [],
+        ...t,
+      })),
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    roundTeams: [],
+    matches: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ]
+  }
+}
+
 
 export const copy = (x) => JSON.parse(JSON.stringify(x));
 export const getWinnerFromScore = (scores) => {
