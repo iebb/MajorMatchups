@@ -113,7 +113,7 @@ export default class Paris2023 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init(0);
 
-    fetch('https://result-api.majors.im/event_21.json')
+    fetch('/major_scores_21')
       .then((resp) => resp.json())
       .then((resp) => {
         this._scores = {
@@ -121,17 +121,37 @@ export default class Paris2023 extends React.PureComponent {
           1: resp[2],
           2: resp[3],
         };
-        this.setState({scores: this._scores[this.state.tournament]}, () => {
+
+        const pickResults = getPickResults('pickResults', this.state.tournament, this.event);
+        for(const s of Object.keys(this._scores[this.state.tournament])) {
+          try {
+            const ssp = s.split("-");
+            delete pickResults[ssp[1] + "-" + ssp[0]];
+          } catch {
+
+          }
+          delete pickResults[s];
+        }
+        setPickResults('pickResults', this.state.tournament, this.event, pickResults);
+
+        this.setState({
+          scores: this._scores[this.state.tournament],
+          pickResults
+        }, () => {
           this.calculateMatchups(0, this.state.rounds + 1)
         });
       });
   }
 
   init = (tStage) => {
+    const pickResults = getPickResults('pickResults', tStage, this.event);
+    for(const s of Object.keys(this._scores[tStage])) {
+      delete pickResults[s];
+    }
     this.setState({
       ...TournamentStages[tStage],
       scores: this._scores[tStage],
-      pickResults: getPickResults('pickResults', tStage, this.event),
+      pickResults
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });

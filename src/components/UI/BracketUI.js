@@ -115,7 +115,7 @@ export function BracketUI({ preferences, state, shuffle }) {
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
       <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
-        <div className={`${styles.matchNumber} p-1 `}>{
+        <div className={`${styles.matchNumber} p-1 ${match.result && (match.picked !== match.result) && "bg-red-300"} rounded-l-md`}>{
           match.result ?
             <CheckCircleIcon className="w-5 h-5 text-green-500" title="finished match" /> :
             (
