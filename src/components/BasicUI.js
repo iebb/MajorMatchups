@@ -46,7 +46,7 @@ const UIEnums = {
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
       { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
       { name: "Show Team Standings inside Bracket", key: "teamStandings", default: true },
-      { name: "Use Valve Abbreviations", key: "abbrev", default: false },//
+      { name: "Use Abbreviations", key: "abbrev", default: false },//
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
