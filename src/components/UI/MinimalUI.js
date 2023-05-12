@@ -1,18 +1,32 @@
-import { Chip, IconButton } from '@material-tailwind/react';
 import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
-import { BeakerIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { BeakerIcon, ClockIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
+import { Chip, IconButton } from '@material-tailwind/react';
 import { dingbats } from '../../libs/plural';
 
 
-const colors = (result, deterministic) => {
-  return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-${deterministic ? "c10" : "c7"}`;
+const conflictColors = (picked, result) => {
+  if (picked < 0) return "";
+  if (result && picked !== result) {
+    return `bg-red-${result ? "c7" : "c10"}`;
+  }
+  return "";
   // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
   // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
   // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
+};
+
+const colors = (picked, result) => {
+  if (picked < 0) return "";
+  return `bg-${
+    picked ? picked < 0 ? "red" : "green" : "blue"
+  }-${result ? "c10" : "c7"} hover:bg-${picked ? picked < 0 ? "red" : "green" : "blue"}-300`;
+  // can be hover:bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
+  // can be hover:bg-green-300 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
+  // can be hover:bg-blue-300 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
 function getCookie(name) {
@@ -23,7 +37,7 @@ function getCookie(name) {
 
 
 
-export function BracketUI({ preferences, state, shuffle }) {
+export function MinimalUI({ preferences, state, shuffle }) {
   const { trackPickems, matchOnly, bestOfIndicator, teamStandings, abbrev } = preferences;
   const rounds = Array.from(Array(state.rounds + 1).keys());
 
@@ -67,10 +81,14 @@ export function BracketUI({ preferences, state, shuffle }) {
   const renderTeams = (bracket, isFinal=false) => {
     if (bracket.teams.length === 0) return null;
     return (
-      <div key={bracket.pool} className={`${styles.noMatch} ${isFinal ? styles.finalWidth : styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
+      <div key={bracket.pool} className={
+        `flex flex-col w-[200px] ${isFinal ? "w-[250px]" : "w-[200px]"} bg-blue-gray-100 text-sm rounded-md shadow-md`
+      }>
         {bracket.teams.map((team, index) => (
 
-          <div className={styles.teamNomatch} key={index}>
+          <div className={
+            `grid grid-cols-[25px_auto]`
+          } key={index}>
             <span className={`${styles.teamRanking} `}>{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
               <BuchholtzPopup
@@ -114,80 +132,77 @@ export function BracketUI({ preferences, state, shuffle }) {
 
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
-      <div key={index} className={`${styles.match} ${styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
-        <div className={`${styles.matchNumber} p-1 ${match.result && (match.picked !== match.result) && "bg-red-300"} rounded-l-md`}>{
-          match.result ?
-            <CheckCircleIcon className="w-5 h-5 text-green-500" title="finished match" /> :
-            (
-              match.score && match.score[0]?.length ?
-                  <PlayCircleIcon className="w-5 h-5 text-pink-500" title="ongoing match" /> :
-                <ClockIcon className="w-5 h-5 text-blue-500" title="future match" />
-            )
-        }<p>{match.id}</p></div>
+      <div key={index} className={
+        `flex flex-row w-[200px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
+      }>
         <div
-          className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
+          className={`flex-[5] relative text-center h-15 rounded-l-md ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
         >
-          <div className={styles.teamLogo}>
+          <div className="w-4 h-4 absolute left-0 text-sm">
+            {teamStandings && dingbats(match.team1.standing)}
+          </div>
+          <div className="w-4 h-4 absolute right-0">
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
               team={match.team1}
               teams={round.allTeams}
             >
-              <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
+              <InformationCircleIcon className="w-4 h-4" />
             </BuchholtzPopup>
           </div>
-          <span className={`${styles.teamName} `}>
-            {teamStandings && dingbats(match.team1.standing)} {abbrev ? match.team1.code.toUpperCase() : match.team1.name}
-          </span>
-          <span className={`${styles.scores} ${match.score[0]?.length > 0 ? colors(match.result, 1) : ""}`}>
+          <img alt={match.team1.code} src={match.team1.logo} className="w-12 h-10 inline-block" />
+          <p className={`text-sm px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
+            {match.team1.code.toUpperCase()}
+          </p>
+        </div>
+        <div
+          className={`flex-[5] h-15`}
+          onClick={() => {
+            match.setWinner(1);
+          }}
+        >
+          <div className={`flex-col text-sm text-center`}>
             {match.score[0].length ? match.score[0].map((x, _idx) => (
-              <span className={`${styles.score} ${x > match.score[1][_idx] && "font-bold"}`} key={_idx}>
-                {x}
-              </span>
-            )): (
-              <span className={styles.score}>{match.picked === 1 ? "▲" : "▼"}</span>
-            )}
-          </span>
-          <div className={styles.pickChip}>
-            {pickChip(match.team1)}
+              <div className="flex flex-row" key={_idx}>
+                <div className={`flex-1 text-right ${x > match.score[1][_idx] && "font-bold text-green-500"}`}>
+                  {x}
+                </div>
+                <div className={`px-1`} key={_idx}> : </div>
+                <div className={`flex-1 text-left ${x < match.score[1][_idx] && "font-bold text-green-500"}`}>
+                  {match.score[1][_idx]}
+                </div>
+              </div>
+            )) : <>
+              <p className="text-center inline-block"><ClockIcon className="w-5 h-5 text-blue-500" title="future match" /></p>
+              <p>M{match.id}</p>
+            </>}
           </div>
         </div>
         <div
-          className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, match.result)}`}
+          className={`flex-[5] relative text-center h-15 rounded-r-md ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
         >
-          <div className={styles.teamLogo}>
+          <div className="w-4 h-4 absolute left-0">
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
               team={match.team2}
               teams={round.allTeams}
             >
-              <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
+              <InformationCircleIcon className="w-4 h-4" />
             </BuchholtzPopup>
           </div>
-          <span className={`${styles.teamName} `}>
-            {teamStandings && dingbats(match.team2.standing)} {abbrev ? match.team2.code.toUpperCase() : match.team2.name}
-          </span>
-
-          <span className={`${styles.scores} ${match.score[1]?.length > 0 ? colors(-match.result, 1) : ""}`}>
-          {
-            match.score[1]?.length ? match.score[1].map((x, _idx) => (
-              <span className={`${styles.score} ${x > match.score[0][_idx] && "font-bold"}`} key={_idx}>
-                {x}
-              </span>
-            )) : (
-              <span className={styles.score}>{match.picked === -1 ? "▲" : "▼"}</span>
-            )
-          }
-          </span>
-          <div className={styles.pickChip}>
-            {pickChip(match.team2)}
+          <div className="w-4 h-4 absolute right-0 text-sm">
+            {teamStandings && dingbats(match.team2.standing)}
           </div>
+          <img alt={match.team2.code} src={match.team2.logo} className="w-12 h-10 inline-block" />
+          <p className={`text-sm text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
+            {match.team2.code.toUpperCase()}
+          </p>
         </div>
 
       </div>
@@ -279,18 +294,34 @@ export function BracketUI({ preferences, state, shuffle }) {
                         )
                       }
                     </div>
-                    {sortedPools.map((bracket, index) => {
-                      if (pools[bracket].matches.length || pools[bracket].teams.length) {
-                        return (
-                          <div key={index} className={styles.bracket}>
-                            <div className="text-lg mb-2">{bracket}{(bestOfIndicator && pools[bracket].bestOf) && (` (Bo${pools[bracket].bestOf})`)}</div>
-                            {renderMatches(pools[bracket])}
-                            {renderTeams(pools[bracket], _idx === rounds.length - 1)}
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
+                    {
+                      _idx < rounds.length - 1 ? (
+                        sortedPools.map((bracket, index) => {
+                          if (pools[bracket].matches.length || pools[bracket].teams.length) {
+                            return (
+                              <div key={index} className={styles.bracket}>
+                                <div className="text-lg mb-2">{bracket}{(bestOfIndicator && pools[bracket].bestOf) && (` (Bo${pools[bracket].bestOf})`)}</div>
+                                {renderMatches(pools[bracket])}
+                                {renderTeams(pools[bracket], _idx === rounds.length - 1)}
+                              </div>
+                            );
+                          }
+                          return null;
+                        })
+                      ) : (
+                        sortedPools.map((bracket, index) => {
+                          if (pools[bracket].teams.length) {
+                            return (
+                              <div key={index} className={styles.bracket}>
+                                <div className="text-lg mb-2">{bracket}{(bestOfIndicator && pools[bracket].bestOf) && (` (Bo${pools[bracket].bestOf})`)}</div>
+                                {renderTeams(pools[bracket], _idx === rounds.length - 1)}
+                              </div>
+                            );
+                          }
+                          return null;
+                        })
+                      )
+                    }
                   </div>
                 );})}
             </div>

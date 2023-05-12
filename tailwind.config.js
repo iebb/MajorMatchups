@@ -3,6 +3,8 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
   content: [
+    "./src/*/*/*.{js,jsx,ts,tsx}",
+    "./src/*/*/*/*.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}",
     "./src/*.{js,jsx,ts,tsx}",
   ],
@@ -11,7 +13,7 @@ module.exports = withMT({
       sans: [
         "Inter var, sans-serif",
         {
-          fontFeatureSettings: '"cv11", "cv02", "cv03", "cv04", "cv05", "cv08", "cv09", "ss01", "tnum"',
+          fontFeatureSettings: '"cv11", "cv02", "cv03", "cv04", "cv05", "cv08", "cv09", "ss01"',
         },
       ],
     },

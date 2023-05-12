@@ -16,6 +16,7 @@ import {
   TabsHeader,
 } from '@material-tailwind/react';
 import { ArrowLongRightIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline';
+import { MinimalUI } from './UI/MinimalUI';
 
 const commonOptions = [
   // { name: "Disable After-content Google Ads", key: "disableAds", default: false },
@@ -36,6 +37,17 @@ const UIEnums = {
     component: ClassicUI,
     options: [
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
+      { name: "Display Matches Only", key: "matchOnly", default: false },
+    ],
+  },
+  minimal: {
+    name: 'Minimal UI',
+    component: MinimalUI,
+    options: [
+      { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
+      { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
+      { name: "Show Team Standings inside Bracket", key: "teamStandings", default: true },
+      { name: "Use Abbreviations", key: "abbrev", default: false },//
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
@@ -176,7 +188,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
             label="Choose UI Type"
           >
             {
-              ['bracket', 'classic', 'vis'].map(
+              ['minimal', 'bracket', 'classic', 'vis'].map(
                 ui => (
                   <Option
                     key={ui}

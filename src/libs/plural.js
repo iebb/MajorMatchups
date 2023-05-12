@@ -20,6 +20,6 @@ export function ordinal(number) {
 // }
 
 export function dingbats(num) {
-  if (num <= 20) return String.fromCodePoint(0x2488 - 1 + num);
-  return `${num}.`;
+  // if (num <= 20) return String.fromCodePoint(0x2488 - 1 + num);
+  return `${num}`;
 }
