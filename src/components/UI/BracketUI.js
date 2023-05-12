@@ -1,11 +1,11 @@
-import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { Chip, IconButton } from '@material-tailwind/react';
 import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
-import { CalendarDaysIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { BeakerIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
+import { dingbats } from '../../libs/plural';
 
 
 const colors = (result, deterministic) => {
@@ -24,7 +24,7 @@ function getCookie(name) {
 
 
 export function BracketUI({ preferences, state, shuffle }) {
-  const { trackPickems, matchOnly, bestOfIndicator } = preferences;
+  const { trackPickems, matchOnly, bestOfIndicator, teamStandings, abbrev } = preferences;
   const rounds = Array.from(Array(state.rounds + 1).keys());
 
   const format = state.tournamentType;
@@ -71,7 +71,7 @@ export function BracketUI({ preferences, state, shuffle }) {
         {bracket.teams.map((team, index) => (
 
           <div className={styles.teamNomatch} key={index}>
-            <span className={`${styles.teamRanking} `}>#{team.ranking}</span>
+            <span className={`${styles.teamRanking} `}>{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
               <BuchholtzPopup
                 enabled={format === Formats.SwissBuchholtz}
@@ -139,7 +139,9 @@ export function BracketUI({ preferences, state, shuffle }) {
               <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
             </BuchholtzPopup>
           </div>
-          <span className={`${styles.teamName} `}>{match.team1.name}</span>
+          <span className={`${styles.teamName} `}>
+            {teamStandings && dingbats(match.team1.standing)} {abbrev ? match.team1.code.toUpperCase() : match.team1.name}
+          </span>
           <span className={`${styles.scores} ${match.score[0]?.length > 0 ? colors(match.result, 1) : ""}`}>
             {match.score[0].length ? match.score[0].map((x, _idx) => (
               <span className={`${styles.score} ${x > match.score[1][_idx] && "font-bold"}`} key={_idx}>
@@ -168,7 +170,9 @@ export function BracketUI({ preferences, state, shuffle }) {
               <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
             </BuchholtzPopup>
           </div>
-          <span className={`${styles.teamName} `}>{match.team2.name}</span>
+          <span className={`${styles.teamName} `}>
+            {teamStandings && dingbats(match.team2.standing)} {abbrev ? match.team2.code.toUpperCase() : match.team2.name}
+          </span>
 
           <span className={`${styles.scores} ${match.score[1]?.length > 0 ? colors(-match.result, 1) : ""}`}>
           {
@@ -235,17 +239,17 @@ export function BracketUI({ preferences, state, shuffle }) {
                 }
                 for(const match of matches) {
                   if (!match.is_bye) {
+                    match.team1.standing = allTeams[match.team1.code].standing;
+                    match.team2.standing = allTeams[match.team2.code].standing;
                     pools[match.pool].matches.push(match);
                   }
                 }
-                let idx = 0;
                 for(const team of roundTeams) {
-                  ++idx;
                   if (!teamMatched.has(team.code)) {
                     if (!matchOnly) {
                       pools[`${team.w}-${team.l}`].teams.push({
                         ...team,
-                        ranking: idx
+                        ranking: team.standing
                       });
                     }
                   }
@@ -262,9 +266,13 @@ export function BracketUI({ preferences, state, shuffle }) {
                         _idx < rounds.length - 1 ? (
                           <>
                             Round {_idx + 1}
-                            <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7">
-                              <ArrowPathIcon strokeWidth={2} className="h-5 w-5" />
-                            </IconButton>
+                            {
+                              Object.keys(pools).map(p => pools[p].matches.some(x => x.result === 0)).some(x => x) && (
+                                <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7">
+                                  <BeakerIcon strokeWidth={2} className="h-5 w-5" />
+                                </IconButton>
+                              )
+                            }
                           </>
                         ) : (
                           "Final Result"

@@ -45,10 +45,10 @@ const TournamentStages = [
     tournament: TournamentChampions,
     tournamentType: 2,
     tournamentFormat: "KNOCKOUT",
-
     seats: ChampionSeats,
     losesToEliminate: 1,
     rounds: 3,
+    pickemTags: [],
   },
 ];
 

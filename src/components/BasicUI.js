@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { ClassicUI } from './UI/ClassicUI';
 import { VisUI } from './UI/VisUI';
 import { BracketUI } from './UI/BracketUI';
@@ -7,7 +7,7 @@ import {
   Dialog,
   DialogBody,
   DialogFooter,
-  DialogHeader, IconButton,
+  DialogHeader,
   Option,
   Select,
   Switch,
@@ -15,7 +15,7 @@ import {
   Tabs,
   TabsHeader,
 } from '@material-tailwind/react';
-import {ArrowLongRightIcon, ChatBubbleLeftEllipsisIcon, HeartIcon} from '@heroicons/react/24/outline';
+import { ArrowLongRightIcon, ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline';
 
 const commonOptions = [
   // { name: "Disable After-content Google Ads", key: "disableAds", default: false },
@@ -45,6 +45,8 @@ const UIEnums = {
     options: [
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
       { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
+      { name: "Show Team Standings inside Bracket", key: "teamStandings", default: true },
+      { name: "Use Valve Abbreviations", key: "abbrev", default: false },//
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },

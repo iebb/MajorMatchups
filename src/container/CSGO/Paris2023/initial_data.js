@@ -184,48 +184,56 @@ export const finalDataLegends = [
     "code": "ence",
     "name": "ENCE",
     "seed": 9,
+    description: "3-0/+2/#17",
     "region": "EU"
   },
   {
     "code": "g2",
     "name": "G2 Esports",
     "seed": 10,
+    description: "3-0/-2/#11",
     "region": "EU"
   },
   {
     "code": "apex",
     "name": "Apeks",
     "seed": 11,
+    description: "3-1/+2/#14",
     "region": "EU"
   },
   {
     "code": "faze",
     "name": "FaZe Clan",
     "seed": 12,
+    description: "3-1/+2/#24",
     "region": "EU"
   },
   {
     "code": "nip",
     "name": "Ninjas in Pyjamas",
     "seed": 13,
+    description: "3-1/-3/#15",
     "region": "EU"
   },
   {
     "code": "mont",
     "name": "Monte",
     "seed": 14,
+    description: "3-2/-5/#9",
     "region": "EU"
   },
   {
     "code": "liq",
     "name": "Team Liquid",
     "seed": 15,
+    description: "3-2/-5/#19",
     "region": "AM"
   },
   {
     "code": "gl",
     "name": "GamerLegion",
     "seed": 16,
+    description: "3-2/-10/#12",
     "region": "EU"
   }
 ].map(addLogo);

@@ -8,7 +8,13 @@ module.exports = withMT({
   ],
   theme: {
     fontFamily: {
-      sans: ["Inter", "sans-serif"],
+      sans: [
+        "Inter var, sans-serif",
+        {
+          fontFeatureSettings: '"cv11", "cv02", "cv03", "cv04", "cv05", "cv08", "cv09", "ss01"',
+          fontVariationSettings: '"opsz" 32'
+        },
+      ],
     },
     extend: {
       colors: {
