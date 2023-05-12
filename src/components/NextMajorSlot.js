@@ -52,35 +52,6 @@ export const NextMajorSlot = ({state}) => {
     AP: { name: "AP", icon: "https://majors.im/images/regions/asia.png" },
   }
 
-  const m = (team, _) => {
-    return (
-      <div key={team.code} className={`team one ${status}`}>
-        <div className="team-box down">
-          <div className="team-box-split b">
-                <span className="team-box-text">
-                  {team.standings || ordinal(team.standing)}
-                </span>
-          </div>
-        </div>
-        <div className="team-box down">
-          <div className="team-box-split b">
-                <span className="team-box-text">
-                  {r.name} #{team.regionCounter}
-                </span>
-          </div>
-        </div>
-        <div className="team-box med">
-          <div className="team-box-split b stacked-logo">
-            <img className="team-logo" src={r.icon} alt={r.icon} />
-            <div className="team-logo-bg-container">
-
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  };
-
   const renderPart = (teams, title) => {
     return (
       <div className="border-2 rounded-md border-r-2 border-blue-500 w-full p-2 grid-cols-3">
@@ -100,7 +71,7 @@ export const NextMajorSlot = ({state}) => {
             teams.map(team => {
               const r = regions[team.region];
               return (
-                <tr className="text-sm">
+                <tr className="text-sm" key={team.code}>
                   <td className="pl-1">{team.standings || ordinal(team.standing)}</td>
                   <td className="py-1">{r.name} #{team.regionCounter}</td>
                   <td className="px-0 ">

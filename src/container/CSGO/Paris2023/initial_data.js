@@ -180,5 +180,53 @@ export const initialDataChallenger = [
 
 export const finalDataLegends = [
   ...initialDataLegends,
+  {
+    "code": "ence",
+    "name": "ENCE",
+    "seed": 9,
+    "region": "EU"
+  },
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 10,
+    "region": "EU"
+  },
+  {
+    "code": "apex",
+    "name": "Apeks",
+    "seed": 11,
+    "region": "EU"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 12,
+    "region": "EU"
+  },
+  {
+    "code": "nip",
+    "name": "Ninjas in Pyjamas",
+    "seed": 13,
+    "region": "EU"
+  },
+  {
+    "code": "mont",
+    "name": "Monte",
+    "seed": 14,
+    "region": "EU"
+  },
+  {
+    "code": "liq",
+    "name": "Team Liquid",
+    "seed": 15,
+    "region": "AM"
+  },
+  {
+    "code": "gl",
+    "name": "GamerLegion",
+    "seed": 16,
+    "region": "EU"
+  }
 ].map(addLogo);
 export const finalDataChampions = [].map(addLogo);

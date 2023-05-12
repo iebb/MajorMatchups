@@ -57,6 +57,7 @@ export class Major3Stage extends React.Component {
         l: 0, w: 0, buchholtz: 0, seed: _idx + 9, opponents: [],
         buchholtzBreakdown: [],
       }))
+      console.log(teamsAdvanced);
       challengerResult = this.state.roundTeams[5];
       finalTeams = [
         ...this.TournamentStages[1].initialTeams, // directly to legends
