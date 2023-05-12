@@ -82,7 +82,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
     if (bracket.teams.length === 0) return null;
     return (
       <div key={bracket.pool} className={
-        `flex flex-col w-[200px] ${isFinal ? "w-[250px]" : "w-[200px]"} bg-blue-gray-100 text-sm rounded-md shadow-md`
+        `flex flex-col w-[200px] ${isFinal ? "w-[250px]" : "w-[200px]"} bg-blue-gray-100 text-xs rounded-md shadow-md`
       }>
         {bracket.teams.map((team, index) => (
 
@@ -101,7 +101,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                   <img alt={team.code} src={team.logo} className="transfer-team-logo" />
                 </div>
               </BuchholtzPopup>
-              <span className={`${styles.teamName} `}>{team.name}</span>
+              <span className={`${styles.teamName} `}>{abbrev ? team.code.toUpperCase() : team.name}</span>
               <BuchholtzPopup
                 enabled={format === Formats.SwissBuchholtz}
                 team={team}
@@ -136,7 +136,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
         `flex flex-row w-[200px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
       }>
         <div
-          className={`flex-[5] relative text-center h-15 rounded-l-md ${colors(match.picked, match.result)}`}
+          className={`flex-[5] relative text-center h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
@@ -158,7 +158,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </p>
         </div>
         <div
-          className={`flex-[5] h-15`}
+          className={`flex-[5]`}
           onClick={() => {
             match.setWinner(1);
           }}
@@ -181,7 +181,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
         </div>
         <div
-          className={`flex-[5] relative text-center h-15 rounded-r-md ${colors(-match.picked, -match.result)}`}
+          className={`flex-[5] relative text-center h-[58px] rounded-r-md ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
