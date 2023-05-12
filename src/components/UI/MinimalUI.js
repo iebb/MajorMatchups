@@ -142,15 +142,14 @@ export function MinimalUI({ preferences, state, shuffle }) {
           }}
         >
           <div className="w-4 h-4 absolute left-0 text-sm">
-            {teamStandings && dingbats(match.team1.standing)}
-          </div>
-          <div className="w-4 h-4 absolute right-0">
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
               team={match.team1}
               teams={round.allTeams}
             >
-              <InformationCircleIcon className="w-4 h-4" />
+              <span>
+            {teamStandings && dingbats(match.team1.standing)}
+              </span>
             </BuchholtzPopup>
           </div>
           <img alt={match.team1.code} src={match.team1.logo} className="w-12 h-10 inline-block" />
@@ -187,17 +186,17 @@ export function MinimalUI({ preferences, state, shuffle }) {
             match.setWinner(-1);
           }}
         >
-          <div className="w-4 h-4 absolute left-0">
+          <div className="w-4 h-4 absolute right-0 text-sm">
+
             <BuchholtzPopup
               enabled={format === Formats.SwissBuchholtz}
               team={match.team2}
               teams={round.allTeams}
             >
-              <InformationCircleIcon className="w-4 h-4" />
-            </BuchholtzPopup>
-          </div>
-          <div className="w-4 h-4 absolute right-0 text-sm">
+              <span>
             {teamStandings && dingbats(match.team2.standing)}
+              </span>
+            </BuchholtzPopup>
           </div>
           <img alt={match.team2.code} src={match.team2.logo} className="w-12 h-10 inline-block" />
           <p className={`text-sm text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
