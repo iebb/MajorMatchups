@@ -3,7 +3,7 @@ import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
-import { BeakerIcon, ClockIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
+import { BeakerIcon, ClockIcon } from '@heroicons/react/20/solid';
 import { Chip, IconButton } from '@material-tailwind/react';
 import { dingbats } from '../../libs/plural';
 
@@ -153,7 +153,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
             </BuchholtzPopup>
           </div>
           <img alt={match.team1.code} src={match.team1.logo} className="w-12 h-10 inline-block" />
-          <p className={`text-sm px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
+          <p className={`text-xs px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
             {match.team1.code.toUpperCase()}
           </p>
         </div>
@@ -199,7 +199,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
             </BuchholtzPopup>
           </div>
           <img alt={match.team2.code} src={match.team2.logo} className="w-12 h-10 inline-block" />
-          <p className={`text-sm text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
+          <p className={`text-xs text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
             {match.team2.code.toUpperCase()}
           </p>
         </div>
