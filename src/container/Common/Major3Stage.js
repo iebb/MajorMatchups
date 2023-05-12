@@ -7,7 +7,6 @@ import {NextMajorSlot} from "../../components/NextMajorSlot";
 import {AdvanceElimSeats, packTeam, setWinner, shuffle} from "../../libs/common/common";
 import {FormatBinder} from "../../libs/common/formats/formats";
 import {getPickResults, setPickResults} from "../../libs/common/storage";
-import {ChallengerResults, LegendResults} from "../CSGO/Rio2022/scores";
 
 
 export const TournamentChallenger = 0;
@@ -35,8 +34,6 @@ export class Major3Stage extends React.Component {
     losesToEliminate: 3,
     nonDeciderToWin: 1,
     deciderToWin: 2,
-    challengerResult: ChallengerResults,
-    legendResult: LegendResults,
   };
 
   getStage = () => {
@@ -220,9 +217,9 @@ export class Major3Stage extends React.Component {
           }
         />
         {
-          this.nextMajorSlot && (
-            <NextMajorSlot state={this.state} />
-          )
+          // this.nextMajorSlot && (
+          //   <NextMajorSlot state={this.state} />
+          // )
         }
       </div>
     );

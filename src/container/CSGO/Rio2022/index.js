@@ -4,7 +4,7 @@ import React from 'react';
 import {AdvanceElimSeats, ChampionSeats} from '../../../libs/common/common';
 import {Major3Stage} from "../../Common/Major3Stage";
 import {finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
-import {Scores} from './scores';
+import { ChallengerResults, LegendResults, Scores } from './scores';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -46,7 +46,6 @@ const TournamentStages = [
     tournament: TournamentChampions,
     tournamentType: 2,
     tournamentFormat: "KNOCKOUT",
-
     seats: ChampionSeats,
     losesToEliminate: 1,
     rounds: 3,
@@ -59,6 +58,12 @@ export default class Rio2022 extends Major3Stage {
   title = "IEM Rio Major 2022 Simulator";
   currentStage = 2;
   _scores = Scores;
+
+  state = {
+    ...this.state,
+    challengerResult: ChallengerResults,
+    legendResult: LegendResults,
+  }
 
   // loadScores = async () => {
   //   this._scores = Scores;
