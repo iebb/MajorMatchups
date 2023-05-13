@@ -82,7 +82,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
     if (bracket.teams.length === 0) return null;
     return (
       <div key={bracket.pool} className={
-        `flex flex-col w-[200px] ${isFinal ? "w-[250px]" : "w-[200px]"} bg-blue-gray-100 text-xs rounded-md shadow-md`
+        `flex flex-col ${isFinal ? "w-[250px]" : "w-[180px]"} bg-blue-gray-100 text-xs rounded-md shadow-md`
       }>
         {bracket.teams.map((team, index) => (
 
@@ -133,10 +133,10 @@ export function MinimalUI({ preferences, state, shuffle }) {
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
       <div key={index} className={
-        `flex flex-row w-[200px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
+        `flex flex-row w-[180px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
       }>
         <div
-          className={`flex-[5] relative text-center h-[56px] rounded-l-md ${colors(match.picked, match.result)}`}
+          className={`flex-[5] relative text-center h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
@@ -152,18 +152,15 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </span>
             </BuchholtzPopup>
           </div>
-          <img alt={match.team1.code} src={match.team1.logo} className="w-12 h-10 inline-block" />
-          <p className={`text-xs px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
+          <img alt={match.team1.code} src={match.team1.logo} className="w-[56px] h-[42px] inline-block" />
+          <p className={`h-[16px] text-xs px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
             {match.team1.code.toUpperCase()}
           </p>
         </div>
         <div
-          className={`flex-[5]`}
-          onClick={() => {
-            match.setWinner(1);
-          }}
+          className={`flex-[4]`}
         >
-          <div className={`flex-col text-sm text-center`}>
+          <div className={`flex-col text-xs text-center`}>
             {match.score[0].length ? match.score[0].map((x, _idx) => (
               <div className="flex flex-row" key={_idx}>
                 <div className={`flex-1 text-right ${x > match.score[1][_idx] && "font-bold text-green-500"}`}>
@@ -181,7 +178,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
         </div>
         <div
-          className={`flex-[5] relative text-center h-[56px] rounded-r-md ${colors(-match.picked, -match.result)}`}
+          className={`flex-[5] relative text-center h-[58px] rounded-r-md ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
@@ -198,8 +195,8 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </span>
             </BuchholtzPopup>
           </div>
-          <img alt={match.team2.code} src={match.team2.logo} className="w-12 h-10 inline-block" />
-          <p className={`text-xs text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
+          <img alt={match.team2.code} src={match.team2.logo} className="w-[56px] h-[42px] inline-block" />
+          <p className={`h-[16px] text-xs text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
             {match.team2.code.toUpperCase()}
           </p>
         </div>
