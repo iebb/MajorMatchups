@@ -3,7 +3,7 @@ import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
 import { Formats } from '../../libs/common/formats/formats';
-import { BeakerIcon, ClockIcon } from '@heroicons/react/20/solid';
+import { BeakerIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import { Chip, IconButton } from '@material-tailwind/react';
 import { dingbats } from '../../libs/plural';
 
@@ -161,7 +161,19 @@ export function MinimalUI({ preferences, state, shuffle }) {
           className={`flex-[4]`}
         >
           <div className={`flex-col text-xs text-center`}>
-            {match.score[0].length ? match.score[0].map((x, _idx) => (
+            {
+              match.result === 0 && (
+                <>
+                  <p className="text-center inline-block">
+                    {
+                      match.score && match.score[0]?.length ?
+                        <PlayCircleIcon className="w-5 h-5 text-pink-500 inline-block" title="ongoing match" /> :
+                        <ClockIcon className="w-5 h-5 text-blue-500" title="future match" />
+                    } {match.id}</p>
+                </>
+              )
+            }
+            {match.score[0].map((x, _idx) => (
               <div className="flex flex-row" key={_idx}>
                 <div className={`flex-1 text-right ${x > match.score[1][_idx] && "font-bold text-green-500"}`}>
                   {x}
@@ -171,10 +183,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                   {match.score[1][_idx]}
                 </div>
               </div>
-            )) : <>
-              <p className="text-center inline-block"><ClockIcon className="w-5 h-5 text-blue-500" title="future match" /></p>
-              <p>M{match.id}</p>
-            </>}
+            ))}
           </div>
         </div>
         <div
