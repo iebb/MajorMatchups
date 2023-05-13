@@ -136,7 +136,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
         `flex flex-row w-[200px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
       }>
         <div
-          className={`flex-[5] relative text-center h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
+          className={`flex-[5] relative text-center h-[56px] rounded-l-md ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
@@ -181,7 +181,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
         </div>
         <div
-          className={`flex-[5] relative text-center h-[58px] rounded-r-md ${colors(-match.picked, -match.result)}`}
+          className={`flex-[5] relative text-center h-[56px] rounded-r-md ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
