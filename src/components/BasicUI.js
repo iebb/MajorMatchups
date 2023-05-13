@@ -47,8 +47,7 @@ const UIEnums = {
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
       { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
       { name: "Show Team Standings inside Bracket", key: "teamStandings", default: true },
-      { name: "Team Abbreviations for Standing", key: "abbrev", default: false },
-      { name: "Full Team Name for Matches", key: "fullTeam", default: false },
+      { name: "Team Abbreviations", key: "abbrev", default: false },
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
@@ -59,7 +58,7 @@ const UIEnums = {
       { name: "Track Pick'em at pick.majors.im", key: "trackPickems", default: true },
       { name: "Show [Best of X] for Brackets", key: "bestOfIndicator", default: true },
       { name: "Show Team Standings inside Bracket", key: "teamStandings", default: true },
-      { name: "Team Abbreviations for Standing", key: "abbrev", default: false },//
+      { name: "Team Abbreviations", key: "abbrev", default: false },//
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
