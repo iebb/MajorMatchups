@@ -167,9 +167,9 @@ export function MinimalUI({ preferences, state, shuffle }) {
                   <p className="text-center inline-block">
                     {
                       match.score && match.score[0]?.length ?
-                        <PlayCircleIcon className="w-5 h-5 text-pink-500 inline-block" title="ongoing match" /> :
-                        <ClockIcon className="w-5 h-5 text-blue-500" title="future match" />
-                    } {match.id}</p>
+                        <PlayCircleIcon className="w-4 h-4 text-pink-500 inline-block" title="ongoing match" /> :
+                        <ClockIcon className="w-4 h-4 text-blue-500" title="future match" />
+                    }{match.id}</p>
                 </>
               )
             }
