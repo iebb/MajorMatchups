@@ -53,7 +53,7 @@ function Title({ title, isMajor = false, sponsorLess=false, classNames = "", ext
           isMajor && (
             <p className="text-yellow-500 text-xl my-2">
               {/* eslint-disable-next-line */}
-              Wanna know how fucked up everyone's pickems are? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>
+              Wanna know how fucked up everyone's pickems are, and how much chance you have left? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>
             </p>
           )
         }
