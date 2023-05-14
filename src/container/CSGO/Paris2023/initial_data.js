@@ -238,3 +238,4 @@ export const finalDataLegends = [
   }
 ].map(addLogo);
 export const finalDataChampions = [].map(addLogo);
+console.log(finalDataLegends);
