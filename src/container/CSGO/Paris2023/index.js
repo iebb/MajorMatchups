@@ -59,13 +59,13 @@ export default class Paris2023 extends Major3Stage {
   currentStage = 1;
   _scores = Scores;
 
-  loadScores = async () => {
-    const resp = await (await fetch('https://majors.im/major_scores_21')).json();
-    this._scores = {
-      0: resp[1],
-      1: resp[2],
-      2: resp[3],
-    };
-    this.recalculate(true);
-  }
+  // loadScores = async () => {
+  //   const resp = await (await fetch('https://majors.im/major_scores_21')).json();
+  //   this._scores = {
+  //     0: resp[1],
+  //     1: resp[2],
+  //     2: resp[3],
+  //   };
+  //   this.recalculate(true);
+  // }
 }
