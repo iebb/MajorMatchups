@@ -54,6 +54,13 @@ export class Major3Stage extends React.Component {
         l: 0, w: 0, buchholtz: 0, seed: _idx + 9, opponents: [],
         buchholtzBreakdown: [],
       }))
+      // console.log(teamsAdvanced.map(x => ({
+      //   code: x.code,
+      //   name: x.name,
+      //   seed: x.seed,
+      //   region: x.region,
+      //   description: x.description,
+      // })));
       // console.log(teamsAdvanced);
       challengerResult = this.state.roundTeams[5];
       finalTeams = [
@@ -87,6 +94,14 @@ export class Major3Stage extends React.Component {
         l: 0, w: 0, buchholtz: 0, seed: _idx + 1, opponents: [],
         buchholtzBreakdown: [],
       }))
+
+      // console.log(teamsAdvanced.map(x => ({
+      //   code: x.code,
+      //   name: x.name,
+      //   seed: x.seed,
+      //   region: x.region,
+      //   description: x.description,
+      // })));
 
       legendResult = this.state.roundTeams[5];
       // setPickResults('pickResults', 1, this.event, this.state.pickResults);

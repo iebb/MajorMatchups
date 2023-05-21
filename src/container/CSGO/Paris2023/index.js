@@ -56,7 +56,7 @@ export default class Paris2023 extends Major3Stage {
   TournamentStages = TournamentStages;
   event = "23paris";
   title = "BLAST.tv Paris 2023 Major Simulator";
-  currentStage = 1;
+  currentStage = 2;
   _scores = Scores;
 
   // loadScores = async () => {
