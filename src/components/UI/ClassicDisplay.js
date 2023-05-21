@@ -56,7 +56,7 @@ export const getMatchupDisplay = (state, stage) => {
         <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
         <Chip
           color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
           value="3-0"
         />
       </>
@@ -66,7 +66,7 @@ export const getMatchupDisplay = (state, stage) => {
         <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
         <Chip
           color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
           value="0-3"
         />
       </>
@@ -77,7 +77,7 @@ export const getMatchupDisplay = (state, stage) => {
         <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
         <Chip
           color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 99, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
           value="Adv"
         />
       </>
