@@ -12,7 +12,7 @@ import {
   setWinner,
   shuffle,
 } from '../../../libs/common/common';
-import {FormatBinder} from '../../../libs/common/formats/formats';
+import {FormatBinder, Formats} from '../../../libs/common/formats/formats';
 import {FinalResultsChampions, FinalResultsPlayoff} from "./final_results";
 import {initialDataChallenger} from './initial_data';
 
@@ -29,7 +29,7 @@ const TournamentStages = [
     ...pack(initialDataChallenger, teamLogo),
     name: "Playoffs",
     tournament: TournamentChallenger,
-    tournamentType: 0,
+    tournamentType: Formats.SwissBuchholtzR1P,
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
     losesToEliminate: 3,
@@ -66,7 +66,13 @@ export default class R6ATL23 extends React.PureComponent {
     roundTeams: [[],[],[],[],[],[],[],[],[],],
     matches: [false, false, false, false, false, false],
     tournament: TournamentChallenger,
-    tournamentType: 0,
+    tournamentType: Formats.SwissBuchholtzR1P,
+    round1Preventions: {
+      'virt-wolv': 1,
+      'faze-ninj': 1,
+      'soni-dark': 1,
+      'faze-wolv': 1,
+    },
     scores: {},
     tiebreakers: {},
     tiebreakerResults: {},
