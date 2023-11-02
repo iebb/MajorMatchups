@@ -18,7 +18,9 @@ const BaseAd = {
 
 export const ResponsiveContainer = ({ children }) => {
   const [ad, setAd] = useState(BaseAd);
-  const [adType, setAdType] = useState(localStorage.adtype || "none");
+  const [adType_, setAdType] = useState(localStorage.adtype || "none");
+
+  const adType = "google";
 
   const Footer = () => (
     <div className="m-2">
