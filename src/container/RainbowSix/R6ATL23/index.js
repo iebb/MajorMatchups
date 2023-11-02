@@ -1,9 +1,9 @@
 /* eslint-disable global-require */
 
+import {TrophyIcon, UserGroupIcon} from '@heroicons/react/24/outline';
 import React from 'react';
-import {FinalResultsChampions, FinalResultsPlayoff} from "./final_results";
-import { finalDataChampions, initialDataChallenger } from './initial_data';
-import { BasicUI } from '../../../components/BasicUI';
+import Title from '../../../components/BannerInsertion';
+import {BasicUI} from '../../../components/BasicUI';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -12,9 +12,9 @@ import {
   setWinner,
   shuffle,
 } from '../../../libs/common/common';
-import Title from '../../../components/BannerInsertion';
-import { TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
-import { FormatBinder } from '../../../libs/common/formats/formats';
+import {FormatBinder} from '../../../libs/common/formats/formats';
+import {FinalResultsChampions, FinalResultsPlayoff} from "./final_results";
+import {initialDataChallenger} from './initial_data';
 
 const TournamentChallenger = 0;
 const TournamentChampions = 1;
@@ -41,7 +41,7 @@ const TournamentStages = [
   },
   {
     id: 1,
-    ...pack(finalDataChampions, teamLogo),
+    // ...pack(finalDataChampions, teamLogo),
     determined: false,
     name: "Finals",
     tournament: TournamentChampions,
@@ -118,17 +118,6 @@ export default class R6ATL23 extends React.PureComponent {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
   };
-
-  initChampions = (_) => {
-    this.setState({
-      ...TournamentStages[TournamentChampions],
-      ...pack(finalDataChampions, teamLogo),
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-
-  };
-
 
   advance2 = (_) => {
     if (this.state.tournament === TournamentChallenger && this.state.teams[5]) {

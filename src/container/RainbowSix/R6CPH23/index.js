@@ -41,7 +41,7 @@ const TournamentStages = [
   },
   {
     id: 1,
-    ...pack(finalDataChampions, teamLogo),
+    // ...pack(finalDataChampions, teamLogo),
     determined: false,
     name: "Finals",
     tournament: TournamentChampions,
@@ -117,16 +117,6 @@ export default class R6CPH23 extends React.PureComponent {
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
-  };
-
-  initChampions = (_) => {
-    this.setState({
-      ...TournamentStages[TournamentChampions],
-      ...pack(finalDataChampions, teamLogo),
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-
   };
 
 
