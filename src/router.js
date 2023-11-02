@@ -10,6 +10,7 @@ import Paris2023RMR from "./container/CSGO/Paris2023RMR";
 import Rio2022 from "./container/CSGO/Rio2022";
 import Rio2022RMR from "./container/CSGO/Rio2022RMR";
 import Stockholm2021 from './container/CSGO/Stockholm2021';
+import R6ATL23 from "./container/RainbowSix/R6ATL23";
 import R6CPH23 from "./container/RainbowSix/R6CPH23";
 
 export default function Routes() {
@@ -48,6 +49,9 @@ export default function Routes() {
       </Route>
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />
+      </Route>
+      <Route path="/r6_23majoratl">
+        <R6ATL23 history={h} />
       </Route>
       <Route path="/">
         <Redirect to="/23paris" />

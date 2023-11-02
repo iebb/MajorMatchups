@@ -93,6 +93,13 @@ const Editions = [
         description: '2023.04.24 - 2023.05.07',
         path: '/r6_23majorcph',
       },
+      {
+        title: '2023 R6 BLAST Major Atlanta',
+        subtitle: '',
+        img: require("../images/logos/r6.png"),
+        description: '2023.10.31 - 2023.11.12',
+        path: '/r6_23majoratl',
+      },
     ]
   },
   {
