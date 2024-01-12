@@ -123,7 +123,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       >
         <DialogHeader>Customize</DialogHeader>
         <DialogBody divider>
-          <div className="gap-4 p-2 flex-col text-left">
+          <div className="p-2 flex-col text-left flex">
             {
               UIOptions.options.map(
                 opt => (
@@ -153,7 +153,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
                     checked={getValue(opt)}
                     className="w-full"
                     labelProps={{
-                      className: "ml-6"
+                      className: "ml-6 mr-6"
                     }}
                     onChange={(e) => {
                       setValue(opt, e.target.checked)

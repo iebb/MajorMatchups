@@ -152,7 +152,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </span>
             </BuchholtzPopup>
           </div>
-          <img alt={match.team1.code} src={match.team1.logo} className="w-[56px] h-[42px] inline-block" />
+          <img alt={match.team1.code} src={match.team1.logo} className="w-[42px] h-[42px] inline-block" />
           <p className={`h-[16px] text-xs px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
             {match.team1.code.toUpperCase()}
           </p>
@@ -204,7 +204,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </span>
             </BuchholtzPopup>
           </div>
-          <img alt={match.team2.code} src={match.team2.logo} className="w-[56px] h-[42px] inline-block" />
+          <img alt={match.team2.code} src={match.team2.logo} className="w-[42px] h-[42px] inline-block" />
           <p className={`h-[16px] text-xs text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
             {match.team2.code.toUpperCase()}
           </p>
