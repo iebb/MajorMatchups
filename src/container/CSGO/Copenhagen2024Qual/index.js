@@ -201,7 +201,7 @@ export default class Copenhagen2024Qual extends React.PureComponent {
 
         <div className="page-container">
           <Title
-            title="PGL Major Copenhagen 2024 Americas RMR Closed Qualifier Simulator"
+            title="PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator"
           />
           <BasicUI
             tabs={tabs}

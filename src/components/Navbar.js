@@ -68,7 +68,7 @@ const Editions = [
       {
         title: '2024 Copenhagen RMR Closed Qualifier',
         subtitle: 'Europe and Americas',
-        img: require("../images/logos/blast.png"),
+        img: require("../images/logos/pglrmr24.png"),
         description: '2024.01.12 - ',
         path: '/24qual_copenhagen',
       },
