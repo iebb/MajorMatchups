@@ -62,6 +62,19 @@ const Editions = [
     ]
   },
   {
+    edition: "2024",
+    icon: RocketLaunchIcon,
+    items: [
+      {
+        title: '2024 Copenhagen RMR Closed Qualifier',
+        subtitle: 'Europe and Americas',
+        img: require("../images/logos/blast.png"),
+        description: '2024.01.12 - ',
+        path: '/24qual_copenhagen',
+      },
+    ]
+  },
+  {
     edition: "2023",
     icon: RocketLaunchIcon,
     items: [

@@ -3,6 +3,7 @@ import {Redirect, Route, Switch, useHistory} from "react-router-dom";
 import Antwerp2022 from "./container/CSGO/Antwerp2022";
 import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
 import Berlin2019 from './container/CSGO/Berlin2019';
+import Copenhagen2024Qual from "./container/CSGO/Copenhagen2024Qual";
 import Katowice2019 from './container/CSGO/Katowice2019';
 import Paris2023 from "./container/CSGO/Paris2023";
 import Paris2023Qual from "./container/CSGO/Paris2023Qual";
@@ -47,14 +48,19 @@ export default function Routes() {
       <Route path="/23paris">
         <Paris2023 history={h} />
       </Route>
+      <Route path="/24qual_copenhagen">
+        <Copenhagen2024Qual history={h} />
+      </Route>
+
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />
       </Route>
       <Route path="/r6_23majoratl">
         <R6ATL23 history={h} />
       </Route>
+
       <Route path="/">
-        <Redirect to="/23paris" />
+        <Redirect to="/24qual_copenhagen" />
       </Route>
     </Switch>
   );

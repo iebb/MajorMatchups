@@ -102,6 +102,14 @@ export default class Katowice2019 extends React.PureComponent {
 
   calculateDeltaElo = (team1, team2) => {
     const x = team1.elo - team2.elo;
+    /*
+    y_{1}\sim\frac{l}{1+ak^{x_{1}}}
+    https://www.desmos.com/calculator/pljbjjix32
+    l=4.98409
+    a=6.28829
+    k=0.793961
+    */
+
     return ((((qf * x + qe) * x + qd) * x + qc) * x + qb) * x + qa;
   };
 
