@@ -153,18 +153,18 @@ export default class Copenhagen2024Qual extends React.PureComponent {
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //
-    // return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       ...pack(Regions[region].seeds, teamLogo),
-    //
-    //       scores: resp,
-    //       regionId: region,
-    //       ...Regions[region],
-    //     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //   });
+
+    return fetch('/cs_scores')
+      .then((resp) => resp.json())
+      .then((resp) => {
+        this.setState({
+          ...pack(Regions[region].seeds, teamLogo),
+
+          scores: resp,
+          regionId: region,
+          ...Regions[region],
+        }, () => this.calculateMatchups(0, this.state.rounds + 1));
+      });
   };
 
 

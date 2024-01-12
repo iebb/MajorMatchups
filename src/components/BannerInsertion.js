@@ -3,7 +3,7 @@ import {Helmet} from "react-helmet";
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "../libs/Context";
 
-function Title({ title, isMajor = false, _sponsorLess=false, classNames = "", extras=[] }) {
+function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
   const sponsorLess = true;
 
@@ -55,6 +55,13 @@ function Title({ title, isMajor = false, _sponsorLess=false, classNames = "", ex
             <p className="text-yellow-500 text-xl my-2">
               {/* eslint-disable-next-line */}
               Wanna know how fucked up everyone's pickems are, and how much chance you have left? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>
+            </p>
+          )
+        }
+        {
+          subtitle && (
+            <p className="text-yellow-500 text-xl my-2">
+              {subtitle}
             </p>
           )
         }

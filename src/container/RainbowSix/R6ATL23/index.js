@@ -102,17 +102,17 @@ export default class R6ATL23 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init();
 
-    return fetch('/r6_scores')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...TournamentStages[TournamentChallenger],
-          ...pack(initialDataChallenger, teamLogo),
-          scores: resp.results,
-        }, () => {
-          this.calculateMatchups(0, this.state.rounds + 1)
-        });
-      });
+    // return fetch('/r6_scores')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       ...TournamentStages[TournamentChallenger],
+    //       ...pack(initialDataChallenger, teamLogo),
+    //       scores: resp.results,
+    //     }, () => {
+    //       this.calculateMatchups(0, this.state.rounds + 1)
+    //     });
+    //   });
   }
 
 
