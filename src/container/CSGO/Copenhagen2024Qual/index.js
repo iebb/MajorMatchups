@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {SwissBuchholtzTB_2024} from "../../../libs/common/formats/SwissBuchholtzTB_2024";
 import { EUA, EUB, EUTB, NAM, SAM } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
@@ -169,7 +170,7 @@ export default class Copenhagen2024Qual extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtzTB.bind(this)(s, e));
+    this.setState(SwissBuchholtzTB_2024.bind(this)(s, e));
   };
 
   componentDidMount() {
