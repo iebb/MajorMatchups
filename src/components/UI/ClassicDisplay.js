@@ -1,3 +1,4 @@
+import {isSwissBuchholtzFormat} from "../../libs/common/formats/formats";
 import { ordinal } from '../../libs/plural';
 import React from 'react';
 import { BuchholtzPopup } from '../BuchholtzPopup';
@@ -134,7 +135,7 @@ export const getMatchupDisplay = (state, stage) => {
               <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed} <sub>
                 {
-                  (state.tournamentType === 0) && <BuchholtzPopup
+                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
                     team={team}
                     teams={teams}
                   />
@@ -202,7 +203,7 @@ export const getMatchupDisplay = (state, stage) => {
                 <div className="team-box-split b">
                   <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
                 {
-                  (state.tournamentType === 0) && <BuchholtzPopup
+                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
                     team={x.team1}
                     teams={teams}
                   />
@@ -260,7 +261,7 @@ export const getMatchupDisplay = (state, stage) => {
               <div className="team-box-split b">
                   <span className="team-box-text" title="Seed, Low to High" >#{x.team1.seed} <sub>
                 {
-                  (state.tournamentType === 0) && <BuchholtzPopup
+                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
                     team={x.team1}
                     teams={teams}
                   />
@@ -271,7 +272,7 @@ export const getMatchupDisplay = (state, stage) => {
               <div className="team-box-split b">
                   <span className="team-box-text" title="Seed, Low to High" >#{x.team2.seed} <sub>
                 {
-                  (state.tournamentType === 0) && <BuchholtzPopup
+                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
                     team={x.team2}
                     teams={teams}
                   />
@@ -318,7 +319,7 @@ export const getMatchupDisplay = (state, stage) => {
             <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed} <sub>
                 {
-                  (state.tournamentType === 0) && <BuchholtzPopup
+                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
                     team={team}
                     teams={teams}
                   />

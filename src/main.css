@@ -337,7 +337,7 @@ h3.title {
 }
 
 .team-box-split.win.rs-lose {
-  background: #ed293f !important;
+  background: #f58a96 !important;
 }
 
 .team-box-split.win:hover {
@@ -365,7 +365,7 @@ h3.title {
   color: #3dd94a;
 }
 .team-box-text.lose {
-  color: #ed293f;
+  color: #f58a96;
 }
 .team-logo {
   vertical-align: middle;

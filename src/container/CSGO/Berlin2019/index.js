@@ -106,7 +106,7 @@ export default class Berlin2019 extends React.PureComponent {
   formatSign = (val) => (
     <>
       {val > 0 && '+'}
-      {val.toFixed(2)}
+      {val.toFixed(3)}
     </>
   );
 
@@ -281,7 +281,7 @@ export default class Berlin2019 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">{team.elo.toFixed(2)}</span>
+                <span className="team-box-text">{team.elo.toFixed(3)}</span>
               </div>
             </div>
             <div className="team-box down">
@@ -346,10 +346,10 @@ export default class Berlin2019 extends React.PureComponent {
               </div>
               <div className="team-box down">
                 <div className="team-box-split b">
-                  <span className="team-box-text">{x.team1.elo.toFixed(2)}</span>
+                  <span className="team-box-text">{x.team1.elo.toFixed(3)}</span>
                 </div>
                 <div className="team-box-split b">
-                  <span className="team-box-text">{x.team2.elo.toFixed(2)}</span>
+                  <span className="team-box-text">{x.team2.elo.toFixed(3)}</span>
                 </div>
               </div>
               <div className="team-box down" onClick={() => this.setState({ elo: !this.state.elo })}>
@@ -384,7 +384,7 @@ export default class Berlin2019 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">{team.elo.toFixed(2)}</span>
+                <span className="team-box-text">{team.elo.toFixed(3)}</span>
               </div>
             </div>
             <div className="team-box down">

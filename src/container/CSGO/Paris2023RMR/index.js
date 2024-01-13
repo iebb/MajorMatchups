@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {Formats} from "../../../libs/common/formats/formats";
 import { AME, AP, EUA, EUB, EUTB } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
@@ -100,8 +101,7 @@ const Regions = [
     losesToEliminate: 2,
     nonDeciderToWin: 1,
     deciderToWin: 2,
-    tournamentType: 4,
-    tournamentFormat: "KNOCKOUT2",
+    tournamentType: Formats.DoubleElimination,
     defaultSuffix: "",
   },
   {
@@ -198,11 +198,7 @@ export default class Paris2023RMR extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    if (this.state.tournamentType === 0) {
-      this.setState(SwissBuchholtzTB.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "KNOCKOUT2") {
-      this.setState(DoubleElimination.bind(this)(s, e));
-    }
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO()));
   };
 
   componentDidMount() {

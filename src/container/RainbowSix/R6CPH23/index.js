@@ -14,7 +14,7 @@ import {
 } from '../../../libs/common/common';
 import Title from '../../../components/BannerInsertion';
 import { TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
-import { FormatBinder } from '../../../libs/common/formats/formats';
+import {FormatBinder, Formats} from '../../../libs/common/formats/formats';
 
 const TournamentChallenger = 0;
 const TournamentChampions = 1;
@@ -46,8 +46,7 @@ const TournamentStages = [
     name: "Finals",
     tournament: TournamentChampions,
 
-    tournamentType: 2,
-    tournamentFormat: "KNOCKOUT",
+    tournamentType: Formats.Knockout,
     seats: ChampionSeats,
     winsToAdvance: 3,
     losesToEliminate: 1,

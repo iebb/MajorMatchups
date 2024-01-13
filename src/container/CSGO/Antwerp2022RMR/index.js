@@ -1,9 +1,10 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
 import { AME, AP, EUA, EUB } from './initial_data';
 import { Scores } from './scores';
-import { pack, setWinner, shuffle } from '../../../libs/common/common';
+import {getWinnerFromScoreCSGO, pack, setWinner, shuffle} from '../../../libs/common/common';
 import { BasicUI } from '../../../components/BasicUI';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
 import { DoubleElimination } from '../../../libs/common/formats/DoubleElimination';
@@ -90,8 +91,7 @@ const Regions = [
     losesToEliminate: 2,
     nonDeciderToWin: 2,
     deciderToWin: 2,
-    tournamentType: 4,
-    tournamentFormat: "KNOCKOUT2",
+    tournamentType: Formats.DoubleElimination,
     allowDups: true,
   },
 ];
@@ -147,13 +147,8 @@ export default class Antwerp2022RMR extends React.PureComponent {
   };
 
 
-
   calculateMatchups = (s, e) => {
-    if (this.state.tournamentType === 0) {
-      this.setState(SwissBuchholtzTB.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "KNOCKOUT2") {
-      this.setState(DoubleElimination.bind(this)(s, e));
-    }
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO()));
   };
 
   componentDidMount() {

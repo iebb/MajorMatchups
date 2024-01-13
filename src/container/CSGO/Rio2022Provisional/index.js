@@ -1,9 +1,17 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
 import { initialDataChallenger, initialDataLegends } from './initial_data';
 import { ChallengerResults, LegendResults, Scores } from './scores';
-import { AdvanceElimSeats, ChampionSeats, pack, setWinner, shuffle } from '../../../libs/common/common';
+import {
+  AdvanceElimSeats,
+  ChampionSeats,
+  getWinnerFromScoreCSGO,
+  pack,
+  setWinner,
+  shuffle
+} from '../../../libs/common/common';
 import { Knockout } from '../../../libs/common/formats/Knockout';
 import { BasicUI } from '../../../components/BasicUI';
 import { getPickResults, setPickResults } from '../../../libs/common/storage';
@@ -36,7 +44,6 @@ const TournamentStages = [
   //   name: "Legends",
   //   tournament: TournamentLegends,
   //   tournamentType: 0,
-  //  tournamentFormat: "SWISS_BUCHHOLTZ",
   //
   //   seats: AdvanceElimSeats,
   //   rounds: 5,
@@ -47,8 +54,6 @@ const TournamentStages = [
   //   name: "Champions",
   //   tournament: TournamentChampions,
   //   tournamentType: 2,
-  //   tournamentFormat: "KNOCKOUT",
-  //
   //   seats: ChampionSeats,
   //   losesToEliminate: 1,
   //   rounds: 3,
@@ -88,13 +93,7 @@ export default class Rio2022Provisional extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    if (this.state.tournamentType === 0) {
-      this.setState(SwissBuchholtzTB.bind(this)(s, e));
-    } else if (this.state.tournamentFormat === "KNOCKOUT") {
-      this.setState(Knockout.bind(this)(s, e));
-    } else {
-
-    }
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO()));
   };
 
   componentDidMount() {
@@ -186,8 +185,7 @@ export default class Rio2022Provisional extends React.PureComponent {
         matches: [false, false, false, false, false, false],
         tournament: TournamentChampions,
         scores: this._scores[TournamentChampions],
-        tournamentType: 2,
-        tournamentFormat: "KNOCKOUT",
+        tournamentType: Formats.Knockout,
         seats: ChampionSeats,
         losesToEliminate: 1,
         rounds: 3,

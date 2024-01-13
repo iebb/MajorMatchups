@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
-import { Formats } from '../../libs/common/formats/formats';
+import {Formats, isSwissBuchholtzFormat} from '../../libs/common/formats/formats';
 import { BeakerIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import { dingbats } from '../../libs/plural';
 
@@ -79,7 +79,7 @@ export function BracketUI({ preferences, state, shuffle }) {
             <span className={`${styles.teamRanking} `}>{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
               <BuchholtzPopup
-                enabled={format === Formats.SwissBuchholtz}
+                enabled={isSwissBuchholtzFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index}
@@ -90,17 +90,17 @@ export function BracketUI({ preferences, state, shuffle }) {
               </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{team.name}</span>
               <BuchholtzPopup
-                enabled={format === Formats.SwissBuchholtz}
+                enabled={isSwissBuchholtzFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index + "_"}
               >
                 <span className={styles.scores}>
                   <span className={``}>
-                    {format === Formats.SwissBuchholtz && plus_minus(team.buchholtz)}
+                    {isSwissBuchholtzFormat(format) && plus_minus(team.buchholtz)}
                     {
                       isFinal && (
-                        (format === Formats.SwissBuchholtz ? ", " : "")
+                        (isSwissBuchholtzFormat(format) ? ", " : "")
                         + team.status
                       )
                     }
@@ -137,7 +137,7 @@ export function BracketUI({ preferences, state, shuffle }) {
         >
           <div className={styles.teamLogo}>
             <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
+              enabled={isSwissBuchholtzFormat(format)}
               team={match.team1}
               teams={round.allTeams}
             >
@@ -168,7 +168,7 @@ export function BracketUI({ preferences, state, shuffle }) {
         >
           <div className={styles.teamLogo}>
             <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
+              enabled={isSwissBuchholtzFormat(format)}
               team={match.team2}
               teams={round.allTeams}
             >

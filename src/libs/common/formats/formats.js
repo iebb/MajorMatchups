@@ -17,6 +17,10 @@ export const Formats = {
   DoubleElimination: 4,
 }
 
+export const isSwissBuchholtzFormat = (f) => {
+  return f === Formats.SwissBuchholtz || f === Formats.SwissBuchholtzR1P || f === Formats.SwissBuchholtz2024;
+}
+
 export const FormatBinder = {
   [Formats.SwissBuchholtz]: SwissBuchholtzTB,
   [Formats.SwissBuchholtz2024]: SwissBuchholtzTB_2024,

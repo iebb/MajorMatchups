@@ -21,40 +21,40 @@ const qf = -0.000001256769333477871;
 
 
 const challengers = [
-  { type: 'graffiti', seed: 1, name: 'Fnatic', code: 'fntc', elo: 1.79, w: 0, l: 0 },
-  { type: 'graffiti', seed: 2, name: 'NRG Esports', code: 'nrg', elo: 2.46, w: 0, l: 0 },
-  { type: 'graffiti', seed: 3, name: 'Cloud9', code: 'c9', elo: 3.29, w: 0, l: 0 },
-  { type: 'graffiti', seed: 4, name: 'Ninjas in Pyjamas', code: 'nip', elo: 3.33, w: 0, l: 0 },
-  { type: 'graffiti', seed: 5, name: 'ENCE', code: 'ence', elo: 3.91, w: 0, l: 0 },
-  { type: 'graffiti', seed: 6, name: 'Vitality', code: 'vita', elo: 6.0, w: 0, l: 0 },
-  { type: 'graffiti', seed: 7, name: 'G2 Esports', code: 'g2', elo: 6.79, w: 0, l: 0 },
-  { type: 'graffiti', seed: 8, name: 'AVANGAR', code: 'avg', elo: 8.15, w: 0, l: 0 },
-  { type: 'graffiti', seed: 9, name: 'Renegades', code: 'ren', elo: 8.36, w: 0, l: 0 },
-  { type: 'graffiti', seed: 10, name: 'Vega Squadron', code: 'vega', elo: 9.75, w: 0, l: 0 },
-  { type: 'graffiti', seed: 11, name: 'TYLOO', code: 'tyl', elo: 9.85, w: 0, l: 0 },
-  { type: 'graffiti', seed: 12, name: 'Team Spirit', code: 'spir', elo: 10.69, w: 0, l: 0 },
-  { type: 'graffiti', seed: 13, name: 'FURIA Esports', code: 'furi', elo: 12.0, w: 0, l: 0 },
-  { type: 'graffiti', seed: 14, name: 'Grayhound', code: 'gray', elo: 13.57, w: 0, l: 0 },
-  { type: 'graffiti', seed: 15, name: 'Winstrike Team', code: 'wins', elo: 13.62, w: 0, l: 0 },
-  { type: 'graffiti', seed: 16, name: 'ViCi Gaming', code: 'vici', elo: 14.07, w: 0, l: 0 },
+  { type: 'graffiti', seed: 1, name: 'Fnatic', code: 'fntc', elo: 25/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 2, name: 'NRG Esports', code: 'nrg', elo: 32/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 3, name: 'Cloud9', code: 'c9', elo: 46/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 4, name: 'Ninjas in Pyjamas', code: 'nip', elo: 50/15, w: 0, l: 0 },
+  { type: 'graffiti', seed: 5, name: 'ENCE', code: 'ence', elo: 43/11, w: 0, l: 0 },
+  { type: 'graffiti', seed: 6, name: 'Vitality', code: 'vita', elo: 6, w: 0, l: 0 },
+  { type: 'graffiti', seed: 7, name: 'G2 Esports', code: 'g2', elo: 95/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 8, name: 'AVANGAR', code: 'avg', elo: 106/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 9, name: 'Renegades', code: 'ren', elo: 117/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 10, name: 'Vega Squadron', code: 'vega', elo: 117/12, w: 0, l: 0 },
+  { type: 'graffiti', seed: 11, name: 'TYLOO', code: 'tyl', elo: 128/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 12, name: 'Team Spirit', code: 'spir', elo: 139/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 13, name: 'FURIA Esports', code: 'furi', elo: 12, w: 0, l: 0 },
+  { type: 'graffiti', seed: 14, name: 'Grayhound', code: 'gray', elo: 190/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 15, name: 'Winstrike Team', code: 'wins', elo: 177/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 16, name: 'ViCi Gaming', code: 'vici', elo: 197/14, w: 0, l: 0 },
 ];
 
 const legends = [
   { type: 'foil', seed: 1, name: 'Astralis', code: 'astr', elo: 1, w: 0, l: 0 },
   { type: 'foil', seed: 2, name: 'Team Liquid', code: 'liq', elo: 2, w: 0, l: 0 },
   { type: 'foil', seed: 3, name: 'Natus Vincere', code: 'navi', elo: 3.5, w: 0, l: 0 },
-  { type: 'foil', seed: 4, name: 'MIBR', code: 'mibr', elo: 3.67, w: 0, l: 0 },
-  { type: 'foil', seed: 5, name: 'FaZe Clan', code: 'faze', elo: 3.79, w: 0, l: 0 },
-  { type: 'foil', seed: 6, name: 'NRG Esports', code: 'nrg', elo: 5.31, w: 0, l: 0 },
+  { type: 'foil', seed: 4, name: 'MIBR', code: 'mibr', elo: 55/15, w: 0, l: 0 },
+  { type: 'foil', seed: 5, name: 'FaZe Clan', code: 'faze', elo: 53/14, w: 0, l: 0 },
+  { type: 'foil', seed: 6, name: 'NRG Esports', code: 'nrg', elo: 69/13, w: 0, l: 0 },
   { type: 'foil', seed: 7, name: 'BIG', code: 'big', elo: 7.5, w: 0, l: 0 },
-  { type: 'foil', seed: 8, name: 'ENCE eSports', code: 'ence', elo: 7.64, w: 0, l: 0 },
-  { type: 'foil', seed: 9, name: 'Renegades', code: 'ren', elo: 9.62, w: 0, l: 0 },
+  { type: 'foil', seed: 8, name: 'ENCE eSports', code: 'ence', elo: 107/14, w: 0, l: 0 },
+  { type: 'foil', seed: 9, name: 'Renegades', code: 'ren', elo: 125/13, w: 0, l: 0 },
   { type: 'foil', seed: 10, name: 'Team Vitality', code: 'vita', elo: 10, w: 0, l: 0 },
-  { type: 'foil', seed: 11, name: 'Ninjas in Pyjamas', code: 'nip', elo: 10.67, w: 0, l: 0 },
-  { type: 'foil', seed: 12, name: 'HellRaisers', code: 'hlr', elo: 11.62, w: 0, l: 0 },
-  { type: 'foil', seed: 13, name: 'Cloud9', code: 'c9', elo: 11.71, w: 0, l: 0 },
-  { type: 'foil', seed: 14, name: 'G2 Esports', code: 'g2', elo: 12.36, w: 0, l: 0 },
-  { type: 'foil', seed: 15, name: 'AVANGAR', code: 'avg', elo: 13.15, w: 0, l: 0 },
+  { type: 'foil', seed: 11, name: 'Ninjas in Pyjamas', code: 'nip', elo: 160/15, w: 0, l: 0 },
+  { type: 'foil', seed: 12, name: 'HellRaisers', code: 'hlr', elo: 151/13, w: 0, l: 0 },
+  { type: 'foil', seed: 13, name: 'Cloud9', code: 'c9', elo: 164/14, w: 0, l: 0 },
+  { type: 'foil', seed: 14, name: 'G2 Esports', code: 'g2', elo: 173/14, w: 0, l: 0 },
+  { type: 'foil', seed: 15, name: 'AVANGAR', code: 'avg', elo: 171/13, w: 0, l: 0 },
   { type: 'foil', seed: 16, name: 'compLexity Gaming', code: 'col', elo: 15, w: 0, l: 0 },
 ];
 
@@ -100,8 +100,7 @@ export default class Katowice2019 extends React.PureComponent {
     return false;
   }
 
-  calculateDeltaElo = (team1, team2) => {
-    const x = team1.elo - team2.elo;
+  calculateDeltaEloX = (x) => {
     /*
     y_{1}\sim\frac{l}{1+ak^{x_{1}}}
     https://www.desmos.com/calculator/pljbjjix32
@@ -109,18 +108,20 @@ export default class Katowice2019 extends React.PureComponent {
     a=6.28829
     k=0.793961
     */
-
-    return ((((qf * x + qe) * x + qd) * x + qc) * x + qb) * x + qa;
+    const l= 5;
+    const a= 6.3;
+    const k= 0.794;
+    return l / (1 + a * Math.pow(k, x));
   };
 
-  calculateDeltaEloX = (x) => {
-    return ((((qf * x + qe) * x + qd) * x + qc) * x + qb) * x + qa;
+  calculateDeltaElo = (team1, team2) => {
+    return this.calculateDeltaEloX(team1.elo - team2.elo);
   };
 
   formatSign = (val) => (
     <>
       {val > 0 && '+'}
-      {val.toFixed(2)}
+      {val.toFixed(3)}
     </>
   );
 
@@ -281,7 +282,7 @@ export default class Katowice2019 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">{team.elo.toFixed(2)}</span>
+                <span className="team-box-text">{team.elo.toFixed(3)}</span>
               </div>
             </div>
             <div className="team-box down">
@@ -346,10 +347,10 @@ export default class Katowice2019 extends React.PureComponent {
               </div>
               <div className="team-box down">
                 <div className="team-box-split b">
-                  <span className="team-box-text">{x.team1.elo.toFixed(2)}</span>
+                  <span className="team-box-text">{x.team1.elo.toFixed(3)}</span>
                 </div>
                 <div className="team-box-split b">
-                  <span className="team-box-text">{x.team2.elo.toFixed(2)}</span>
+                  <span className="team-box-text">{x.team2.elo.toFixed(3)}</span>
                 </div>
               </div>
               <div className="team-box down" onClick={() => this.setState({ elo: !this.state.elo })}>
@@ -384,7 +385,7 @@ export default class Katowice2019 extends React.PureComponent {
             </div>
             <div className="team-box down">
               <div className="team-box-split b">
-                <span className="team-box-text">{team.elo.toFixed(2)}</span>
+                <span className="team-box-text">{team.elo.toFixed(3)}</span>
               </div>
             </div>
             <div className="team-box down">

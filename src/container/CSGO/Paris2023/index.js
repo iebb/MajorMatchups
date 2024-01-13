@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React from 'react';
 import {AdvanceElimSeats, ChampionSeats} from '../../../libs/common/common';
+import {Formats} from "../../../libs/common/formats/formats";
 import {Major3Stage} from "../../Common/Major3Stage";
 import {finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends} from './initial_data';
 import {Scores} from './scores';
@@ -43,8 +44,7 @@ const TournamentStages = [
     teams: finalDataChampions,
     name: "Champions",
     tournament: TournamentChampions,
-    tournamentType: 2,
-    tournamentFormat: "KNOCKOUT",
+    tournamentType: Formats.Knockout,
     seats: ChampionSeats,
     losesToEliminate: 1,
     rounds: 3,

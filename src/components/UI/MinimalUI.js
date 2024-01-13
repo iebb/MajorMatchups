@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
-import { Formats } from '../../libs/common/formats/formats';
+import {Formats, isSwissBuchholtzFormat} from '../../libs/common/formats/formats';
 import { BeakerIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import { Chip, IconButton } from '@material-tailwind/react';
 import { dingbats } from '../../libs/plural';
@@ -92,7 +92,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
             <span className={`${styles.teamRanking} `}>{team.ranking}</span>
             <div className={`${styles.team} hover:bg-blue-50`}>
               <BuchholtzPopup
-                enabled={format === Formats.SwissBuchholtz}
+                enabled={isSwissBuchholtzFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index}
@@ -103,17 +103,17 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{abbrev ? team.code.toUpperCase() : team.name}</span>
               <BuchholtzPopup
-                enabled={format === Formats.SwissBuchholtz}
+                enabled={isSwissBuchholtzFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index + "_"}
               >
                 <span className={styles.scores}>
                   <span className={``}>
-                    {format === Formats.SwissBuchholtz && plus_minus(team.buchholtz)}
+                    {isSwissBuchholtzFormat(format) && plus_minus(team.buchholtz)}
                     {
                       isFinal && (
-                        (format === Formats.SwissBuchholtz ? ", " : "")
+                        (isSwissBuchholtzFormat(format) ? ", " : "")
                         + team.status
                       )
                     }
@@ -143,7 +143,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
         >
           <div className="w-4 h-4 absolute left-0 text-sm">
             <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
+              enabled={isSwissBuchholtzFormat(format)}
               team={match.team1}
               teams={round.allTeams}
             >
@@ -195,7 +195,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           <div className="w-4 h-4 absolute right-0 text-sm">
 
             <BuchholtzPopup
-              enabled={format === Formats.SwissBuchholtz}
+              enabled={isSwissBuchholtzFormat(format)}
               team={match.team2}
               teams={round.allTeams}
             >
