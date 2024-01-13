@@ -6,7 +6,7 @@ import Title from '../../../components/BannerInsertion';
 import {BasicUI} from '../../../components/BasicUI';
 import {getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
 import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
-import {EUA, EUB, NAM, SAM} from './initial_data';
+import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
 import {Scores} from './scores';
 
 const Regions = [
@@ -51,8 +51,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
-      { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
-      { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
+      // { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
+      // { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
+      { status: "rmr", until: 8, abbrev: "R", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
@@ -70,8 +71,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
-      { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
+      { status: "rmr", until: 8, abbrev: "R", statusPositioned: true },
+      // { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
+      // { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
@@ -83,26 +85,26 @@ const Regions = [
     tournamentType: Formats.SwissBuchholtz2024,
     allowDups: false,
   },
-  // {
-  //   id: 2,
-  //   name: "EU-Decider",
-  //   icon: GlobeEuropeAfricaIcon,
-  //   seeds: EUTB,
-  //   seats: [
-  //     { status: "rmr-b", until: 1, abbrev: "R", statusPositioned: true },
-  //     { status: "rmr-a", until: 2, abbrev: "R", statusPositioned: true },
-  //     { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
-  //   ],
-  //   tiebreakers: {
-  //     "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
-  //   },
-  //   rounds: 2,
-  //   winsToAdvance: 1,
-  //   nonDeciderToWin: 1,
-  //   deciderToWin: 2,
-  //   tournamentType: 0,
-  //   allowDups: false,
-  // },
+  {
+    id: 4,
+    name: "EU-Decider",
+    icon: GlobeEuropeAfricaIcon,
+    seeds: EUTB,
+    seats: [
+      { status: "rmr", until: 5, abbrev: "R", statusPositioned: true },
+      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "1": [{teams: 4, id: "4/5", offset: 0.1, name: "4th Decider"}],
+      "2": [{teams: 5, id: "5/6", offset: -0.1, name: "Qualification Match"}],
+    },
+    rounds: 3,
+    winsToAdvance: 1,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: 0,
+    allowDups: false,
+  },
 ];
 
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_qual/${code}.png`;
