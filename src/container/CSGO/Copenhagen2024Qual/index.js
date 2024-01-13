@@ -4,8 +4,8 @@ import {GlobeAmericasIcon} from '@heroicons/react/24/outline';
 import React from 'react';
 import Title from '../../../components/BannerInsertion';
 import {BasicUI} from '../../../components/BasicUI';
-import {pack, setWinner, shuffle} from '../../../libs/common/common';
-import {SwissBuchholtzTB_2024} from "../../../libs/common/formats/SwissBuchholtzTB_2024";
+import {getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
+import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
 import {NAM} from './initial_data';
 import {Scores} from './scores';
 
@@ -23,7 +23,7 @@ const Regions = [
     winsToAdvance: 3,
     nonDeciderToWin: 1,
     deciderToWin: 2,
-    tournamentType: 0,
+    tournamentType: Formats.SwissBuchholtz2024,
     allowDups: false,
   },
   // {
@@ -169,7 +169,7 @@ export default class Copenhagen2024Qual extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtzTB_2024.bind(this)(s, e));
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCS2));
   };
 
   componentDidMount() {

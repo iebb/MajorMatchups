@@ -75,12 +75,28 @@ export const packTeam = (teams) => {
 
 
 export const copy = (x) => JSON.parse(JSON.stringify(x));
-export const getWinnerFromScore = (scores) => {
+export const getWinnerFromScoreCSGO = (scores) => {
   let teamA = 0;
   let teamB = 0;
   for(const sco of scores) {
     if (sco[0] !== sco[1]) {
       if (sco[0] > 15 || sco[1] > 15) {
+        if (sco[0] - sco[1] >= 2 && sco[0] % 3 === 1) {
+          teamA ++;
+        } else if (sco[1] - sco[0] >= 2 && sco[1] % 3 === 1) {
+          teamB ++;
+        }
+      }
+    }
+  }
+  return [Math.sign(teamA - teamB), Math.max(teamA, teamB)]
+}
+export const getWinnerFromScoreCS2 = (scores) => {
+  let teamA = 0;
+  let teamB = 0;
+  for(const sco of scores) {
+    if (sco[0] !== sco[1]) {
+      if (sco[0] > 12 || sco[1] > 12) {
         if (sco[0] - sco[1] >= 2 && sco[0] % 3 === 1) {
           teamA ++;
         } else if (sco[1] - sco[0] >= 2 && sco[1] % 3 === 1) {

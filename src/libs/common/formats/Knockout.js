@@ -1,8 +1,8 @@
 import { ordinal } from '../../plural';
-import { copy, getStatus, getWinnerFromScore } from '../common';
+import { copy, getStatus, getWinnerFromScoreCSGO } from '../common';
 
 
-export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScore) {
+export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
