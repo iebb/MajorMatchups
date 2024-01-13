@@ -6,6 +6,7 @@ import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router} from 'react-router-dom';
 import GoogleAd from './components/GoogleAd';
 import ComplexNavbar from './components/Navbar';
+import {fetchPrefix} from "./libs/common/common";
 import {SettingsCtx} from './libs/Context';
 import Routes from './router';
 
@@ -39,7 +40,7 @@ export const ResponsiveContainer = ({ children }) => {
       });
     } catch {
     }
-    fetch('/config')
+    fetch(fetchPrefix + '/config')
       .then((resp) => resp.json())
       .then((resp) => {
         setAdType(resp.adtype);

@@ -4,7 +4,7 @@ import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outl
 import React from 'react';
 import Title from '../../../components/BannerInsertion';
 import {BasicUI} from '../../../components/BasicUI';
-import {getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
+import {fetchPrefix, getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
 import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
 import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
 import {Scores} from './scores';
@@ -155,7 +155,7 @@ export default class Copenhagen2024Qual extends React.PureComponent {
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
-    return fetch('/cs_scores')
+    return fetch(fetchPrefix + '/cs_scores')
       .then((resp) => resp.json())
       .then((resp) => {
         this.setState({

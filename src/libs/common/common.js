@@ -180,3 +180,5 @@ export function shuffle(currentRound) {
     this.calculateMatchups(currentRound, this.state.rounds + 1)
   })
 }
+
+export const fetchPrefix = (process.env.NODE_ENV === "development" ? 'https://majors.im' : '');

@@ -255,7 +255,10 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
     stageMatches = matchups.map(x => ({...x, id: ++globalID}))
     stateMatches[stage] = stageMatches;
 
-    const teamsSorted = teams.sort(teamCompare).map((x, idx) => ({...x, standing: idx+1}));
+    const teamsSorted = teams.sort(teamCompare).map((x, idx) => ({
+      ...x,
+      standing: stage > 0 ? idx+1 : x.seed,
+    }));
 
     stateRoundTeams[stage] = teamsSorted.map((x, idx) => {
       if (tiebreakers[stage]) {
@@ -350,7 +353,7 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
 
             return ({
               ...x,
-              standing: idx + 1,
+              standing: stage > 0 ? idx + 1 : x.seed,
               ...getStatus(idx+1, state.seats),
               ordinalStanding: ordinal(idx+1),
               tiebreaker: true,
@@ -374,7 +377,7 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
 
       return ({
         ...x,
-        standing: idx + 1,
+        standing: stage > 0 ? idx + 1 : x.seed,
         ...getStatus(idx+1, state.seats),
         ordinalStanding: ordinal(idx+1),
         elim: x.l >= losesToEliminate,

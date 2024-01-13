@@ -7,17 +7,7 @@ import Title from '../../../components/BannerInsertion';
 import {FinalResults} from './final_results';
 
 const teamLogo = (code) => `https://img.majors.im/go/katowice2019/${code}.png`;
-
-
 const copy = x => JSON.parse(JSON.stringify(x));
-
-const qa = 0.684356436340377;
-const qb = 0.13764045664874308;
-const qc = 0.011391235484420453;
-const qd = 0.0002490984538751953;
-const qe = -0.000024713775867179225;
-const qf = -0.000001256769333477871;
-
 
 
 const challengers = [
