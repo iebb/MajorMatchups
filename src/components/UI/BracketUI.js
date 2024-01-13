@@ -9,7 +9,7 @@ import { dingbats } from '../../libs/plural';
 
 
 const colors = (result, deterministic) => {
-  if (result < 0) return "";
+  if (result < 0) return " text-gray-400";
   if (!deterministic) {
     return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-c7`;
   }

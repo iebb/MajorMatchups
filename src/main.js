@@ -40,14 +40,17 @@ export const ResponsiveContainer = ({ children }) => {
       });
     } catch {
     }
-    fetch(fetchPrefix + '/config')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setAdType(resp.adtype);
-        setAd(resp);
-        localStorage.config = JSON.stringify(resp);
-        localStorage.adtype = resp.adtype;
-      });
+
+    if (process.env.NODE_ENV !== "development") {
+      fetch(fetchPrefix + '/config')
+        .then((resp) => resp.json())
+        .then((resp) => {
+          setAdType(resp.adtype);
+          setAd(resp);
+          localStorage.config = JSON.stringify(resp);
+          localStorage.adtype = resp.adtype;
+        });
+    }
   }, []);
   return (
     <SettingsCtx.Provider value={{

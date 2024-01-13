@@ -1,4 +1,9 @@
+:root {
+  color-scheme: dark;
+}
+
 .bracketWrapper {
+  color-scheme: dark;
   display: flex;
   justify-content: space-around;
   align-items: center;
