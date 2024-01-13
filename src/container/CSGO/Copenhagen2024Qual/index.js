@@ -19,6 +19,7 @@ const Regions = [
       { status: "advance", until: 8, abbrev: "R", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
+    tiebreakers: {},
     rounds: 5,
     winsToAdvance: 3,
     nonDeciderToWin: 1,
