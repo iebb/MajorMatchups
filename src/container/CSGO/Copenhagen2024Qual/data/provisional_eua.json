@@ -1,0 +1,98 @@
+[
+  {
+    "code": "provisional/virt",
+    "name": "Virtus.pro",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "provisional/natu",
+    "name": "Natus Vincere",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "provisional/clou",
+    "name": "Cloud9",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "provisional/big",
+    "name": "BIG",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "provisional/betb",
+    "name": "BetBoom Team",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "provisional/3dma",
+    "name": "3DMAX",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "provisional/9pan",
+    "name": "9Pandas",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "provisional/saw",
+    "name": "SAW",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "seed_9",
+    "name": "Seed #9",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "seed_10",
+    "name": "Seed #10",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "seed_11",
+    "name": "Seed #11",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "seed_12",
+    "name": "Seed #12",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "seed_13",
+    "name": "Seed #13",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "seed_14",
+    "name": "Seed #14",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "seed_15",
+    "name": "Seed #15",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "seed_16",
+    "name": "Seed #16",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

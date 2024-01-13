@@ -1,0 +1,98 @@
+[
+  {
+    "code": "provisional/mibr",
+    "name": "MIBR",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "provisional/9z",
+    "name": "9z Team",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "provisional/pain",
+    "name": "paiN Gaming",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "provisional/red",
+    "name": "RED Canids",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "provisional/best",
+    "name": "BESTIA",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "provisional/impe",
+    "name": "Imperial Esports",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "provisional/shar",
+    "name": "Sharks Esports",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "provisional/flux",
+    "name": "Fluxo",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "provisional/flam",
+    "name": "Flamengo Esports",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "provisional/lega",
+    "name": "Legacy",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "provisional/oddi",
+    "name": "ODDIK",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "provisional/w7m",
+    "name": "w7m esports",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "provisional/adal",
+    "name": "adalYamigos",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "provisional/filh",
+    "name": "Filhos de D10S",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "provisional/case",
+    "name": "Case Esports",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "provisional/tima",
+    "name": "TIMACETA",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

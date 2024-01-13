@@ -1,12 +1,12 @@
 /* eslint-disable global-require */
 
-import {GlobeAmericasIcon} from '@heroicons/react/24/outline';
+import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
 import React from 'react';
 import Title from '../../../components/BannerInsertion';
 import {BasicUI} from '../../../components/BasicUI';
 import {getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
 import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
-import {NAM} from './initial_data';
+import {EUA, EUB, NAM, SAM} from './initial_data';
 import {Scores} from './scores';
 
 const Regions = [
@@ -26,63 +26,63 @@ const Regions = [
     tournamentType: Formats.SwissBuchholtz2024,
     allowDups: false,
   },
-  // {
-  //   id: 1,
-  //   name: "South-Am",
-  //   icon: GlobeAmericasIcon,
-  //   seeds: SAM,
-  //   seats: [
-  //     { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
-  //     { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
-  //   ],
-  //   tiebreakers: {
-  //     "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
-  //   },
-  //   rounds: 6,
-  //   winsToAdvance: 3,
-  //   nonDeciderToWin: 1,
-  //   deciderToWin: 2,
-  //   tournamentType: 0,
-  //   allowDups: false,
-  // },
-  // {
-  //   id: 0,
-  //   name: "Europe-A",
-  //   icon: GlobeEuropeAfricaIcon,
-  //   seeds: EUA,
-  //   seats: [
-  //     { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
-  //     { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
-  //     { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-  //     { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
-  //   ],
-  //   tiebreakers: {},
-  //   rounds: 5,
-  //   winsToAdvance: 3,
-  //   nonDeciderToWin: 1,
-  //   deciderToWin: 2,
-  //   tournamentType: 0,
-  //   allowDups: false,
-  // },
-  // {
-  //   id: 1,
-  //   name: "Europe-B",
-  //   icon: GlobeEuropeAfricaIcon,
-  //   seeds: EUB,
-  //   seats: [
-  //     { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
-  //     { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
-  //     { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-  //     { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
-  //   ],
-  //   tiebreakers: {},
-  //   rounds: 5,
-  //   winsToAdvance: 3,
-  //   nonDeciderToWin: 1,
-  //   deciderToWin: 2,
-  //   tournamentType: 0,
-  //   allowDups: false,
-  // },
+  {
+    id: 1,
+    name: "South-Am",
+    icon: GlobeAmericasIcon,
+    seeds: SAM,
+    seats: [
+      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+    },
+    rounds: 6,
+    winsToAdvance: 3,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.SwissBuchholtz2024,
+    allowDups: false,
+  },
+  {
+    id: 2,
+    name: "Europe-A",
+    icon: GlobeEuropeAfricaIcon,
+    seeds: EUA,
+    seats: [
+      { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
+      { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
+      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {},
+    rounds: 5,
+    winsToAdvance: 3,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.SwissBuchholtz2024,
+    allowDups: false,
+  },
+  {
+    id: 3,
+    name: "Europe-B",
+    icon: GlobeEuropeAfricaIcon,
+    seeds: EUB,
+    seats: [
+      { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
+      { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
+      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
+      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {},
+    rounds: 5,
+    winsToAdvance: 3,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.SwissBuchholtz2024,
+    allowDups: false,
+  },
   // {
   //   id: 2,
   //   name: "EU-Decider",

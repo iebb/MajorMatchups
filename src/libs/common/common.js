@@ -12,6 +12,11 @@ export const ChampionSeats = [
   { status: "quarterfinalist", until: 8, abbrev: "QF", statusPositioned: false, statusDisplay: "QF" },
 ];
 
+export const splitCode = c => {
+  const cs = c.split("/");
+  return cs[cs.length - 1];
+}
+
 export const pack = (teams, teamLogo) => {
   return {
     teams: [
@@ -22,7 +27,9 @@ export const pack = (teams, teamLogo) => {
         buchholtz: t.buchholtz || 0,
         buchholtzBreakdown: [],
         ...t,
+        internalCode: t.code,
         logo: teamLogo(t.code),
+        code: splitCode(t.code),
       })),
       false,
       false,

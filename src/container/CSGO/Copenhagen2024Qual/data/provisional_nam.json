@@ -1,0 +1,98 @@
+[
+  {
+    "code": "provisional/comp",
+    "name": "Complexity Gaming",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "provisional/m80",
+    "name": "M80",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "provisional/noun",
+    "name": "Nouns Esports",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "provisional/bada",
+    "name": "Badass Gaming",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "provisional/boss",
+    "name": "BOSS",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "provisional/part",
+    "name": "Party Astronauts",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "provisional/carp",
+    "name": "Carpe Diem",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "provisional/wild",
+    "name": "Wildcard Gaming",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "provisional/team",
+    "name": "Team Liquid",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "provisional/nrg",
+    "name": "NRG",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "provisional/my",
+    "name": "my life be like",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "provisional/vagr",
+    "name": "vagrants",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "provisional/rock",
+    "name": "Rocket",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "provisional/clou",
+    "name": "Cloud 10",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "provisional/los",
+    "name": "LOS",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "provisional/fluf",
+    "name": "FLUFFY AIMERS",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]
