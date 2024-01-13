@@ -1,5 +1,5 @@
 export const FinalResults = {
-  "0": {
+  "1": {
     "vita-gray": [[16,10],
       [14,16],
       [16,5]],
@@ -53,7 +53,7 @@ export const FinalResults = {
     "drea-nrg": [[19,17]],
     "syma-vita": [[16,8]]
   },
-  "1": {
+  "2": {
     "navi-cr4z": [[16,4],
       [16,12],
       [11,16]],
@@ -106,7 +106,7 @@ export const FinalResults = {
     "astr-drea": [[16,9]],
     "ence-avg": [[16,5]]
   },
-  "2": {
+  "3": {
     "astr-avg": [[16,5],
       [16,6]],
     "nrg-astr": [[9,16],

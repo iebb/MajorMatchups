@@ -29,7 +29,7 @@ export const pack = (teams, teamLogo) => {
         ...t,
         internalCode: t.code,
         logo: teamLogo(t.code),
-        code: splitCode(t.code),
+        displayCode: splitCode(t.code),
       })),
       false,
       false,
@@ -85,7 +85,7 @@ export const copy = (x) => JSON.parse(JSON.stringify(x));
 export const getWinnerFromScoreCSGO = (scores) => {
   let teamA = 0;
   let teamB = 0;
-  for(const sco of scores) {
+  for(const sco of (scores || [])) {
     if (sco[0] !== sco[1]) {
       if (sco[0] > 15 || sco[1] > 15) {
         if (sco[0] - sco[1] >= 2 && sco[0] % 3 === 1) {
@@ -101,7 +101,7 @@ export const getWinnerFromScoreCSGO = (scores) => {
 export const getWinnerFromScoreCS2 = (scores) => {
   let teamA = 0;
   let teamB = 0;
-  for(const sco of scores) {
+  for(const sco of (scores || [])) {
     if (sco[0] !== sco[1]) {
       if (sco[0] > 12 || sco[1] > 12) {
         if (sco[0] - sco[1] >= 2 && sco[0] % 3 === 1) {
@@ -117,7 +117,7 @@ export const getWinnerFromScoreCS2 = (scores) => {
 export const getWinnerFromScoreGeneric = (scores) => {
   let teamA = 0;
   let teamB = 0;
-  for(const sco of scores) {
+  for(const sco of (scores || [])) {
     if (sco[0] !== sco[1]) {
       if (sco[0] > sco[1]) {
         teamA ++;

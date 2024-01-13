@@ -2,7 +2,11 @@
 
 
 const teamLogo = (code) => `https://img.majors.im/go/paris2023/${code}_glitter.png`;
-const addLogo = x => ({...x, logo: teamLogo(x.code)});
+const addLogo = x => ({
+  ...x,
+  logo: teamLogo(x.code),
+  displayCode: x.code,
+});
 
 export const initialDataLegends = [
   {

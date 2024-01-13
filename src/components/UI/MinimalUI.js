@@ -101,7 +101,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                   <img alt={team.code} src={team.logo} className="transfer-team-logo" />
                 </div>
               </BuchholtzPopup>
-              <span className={`${styles.teamName} `}>{abbrev ? team.code.toUpperCase() : team.name}</span>
+              <span className={`${styles.teamName} `}>{abbrev ? team.displayCode.toUpperCase() : team.name}</span>
               <BuchholtzPopup
                 enabled={isSwissBuchholtzFormat(format)}
                 team={team}
@@ -154,7 +154,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
           <img alt={match.team1.code} src={match.team1.logo} className="w-[42px] h-[42px] inline-block" />
           <p className={`h-[16px] text-xs px-1 text-center rounded-bl-md ${conflictColors(match.picked, match.result)}`}>
-            {match.team1.code.toUpperCase()}
+            {match.team1.displayCode.toUpperCase()}
           </p>
         </div>
         <div
@@ -206,7 +206,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
           <img alt={match.team2.code} src={match.team2.logo} className="w-[42px] h-[42px] inline-block" />
           <p className={`h-[16px] text-xs text-center rounded-br-md ${conflictColors(-match.picked, -match.result)}`}>
-            {match.team2.code.toUpperCase()}
+            {match.team2.displayCode.toUpperCase()}
           </p>
         </div>
 

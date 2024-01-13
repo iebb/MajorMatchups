@@ -148,7 +148,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
 
   calculateMatchups = (s, e) => {
-    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO()));
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO));
   };
 
   componentDidMount() {

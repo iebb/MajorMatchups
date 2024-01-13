@@ -85,7 +85,7 @@ export function BracketUI({ preferences, state, shuffle }) {
                 key={index}
               >
                 <div className={styles.teamLogo}>
-                  <img alt={team.code} src={team.logo} className="transfer-team-logo" />
+                  <img alt={team.displayCode} src={team.logo} className="transfer-team-logo" />
                 </div>
               </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{team.name}</span>
@@ -141,11 +141,11 @@ export function BracketUI({ preferences, state, shuffle }) {
               team={match.team1}
               teams={round.allTeams}
             >
-              <img alt={match.team1.code} src={match.team1.logo} className="transfer-team-logo" />
+              <img alt={match.team1.displayCode} src={match.team1.logo} className="transfer-team-logo" />
             </BuchholtzPopup>
           </div>
           <span className={`${styles.teamName} `}>
-            {teamStandings && dingbats(match.team1.standing)} {abbrev ? match.team1.code.toUpperCase() : match.team1.name}
+            {teamStandings && dingbats(match.team1.standing)} {abbrev ? match.team1.displayCode.toUpperCase() : match.team1.name}
           </span>
           <span className={`${styles.scores} ${match.score[0]?.length > 0 ? colors(match.result, 1) : ""}`}>
             {match.score[0].length ? match.score[0].map((x, _idx) => (
@@ -172,11 +172,11 @@ export function BracketUI({ preferences, state, shuffle }) {
               team={match.team2}
               teams={round.allTeams}
             >
-              <img alt={match.team2.code} src={match.team2.logo} className="transfer-team-logo" />
+              <img alt={match.team2.displayCode} src={match.team2.logo} className="transfer-team-logo" />
             </BuchholtzPopup>
           </div>
           <span className={`${styles.teamName} `}>
-            {teamStandings && dingbats(match.team2.standing)} {abbrev ? match.team2.code.toUpperCase() : match.team2.name}
+            {teamStandings && dingbats(match.team2.standing)} {abbrev ? match.team2.displayCode.toUpperCase() : match.team2.name}
           </span>
 
           <span className={`${styles.scores} ${match.score[1]?.length > 0 ? colors(-match.result, 1) : ""}`}>

@@ -146,26 +146,12 @@ export default class Rio2022RMR extends React.PureComponent {
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, Regions[region].rounds + 1));
-
-    // return fetch('https://score-service.deta.dev/fetch_results/rio22rmr')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       ...pack(Regions[region].seeds, teamLogo),
-    //       scores: resp,
-    //
-    //       regionId: region,
-    //       ...Regions[region],
-    //     });
-    //   }).then(
-    //     () => this.calculateMatchups(0, this.state.rounds + 1)
-    //   );
   };
 
 
 
   calculateMatchups = (s, e) => {
-    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO()));
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO));
   };
 
   componentDidMount() {

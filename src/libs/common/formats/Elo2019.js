@@ -1,7 +1,14 @@
 import { ordinal } from '../../plural';
 import { copy, getStatus, getWinnerFromScoreCSGO } from '../common';
 
-export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
+const defaultElo = x => {
+  const l= 5;
+  const a= 6.3;
+  const k= 0.794;
+  return l / (1 + a * Math.pow(k, x));
+}
+
+export function Elo2019(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO, eloCalculate=defaultElo) {
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
@@ -12,12 +19,10 @@ export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScor
     nonDeciderToWin,
     deciderToWin,
     tiebreakers,
-    round1Preventions
   } = state;
 
   let { advancerToWin } = state;
   let { losesToEliminate } = state;
-  let { buchholtzLockIns } = state;
   let { defaultSuffix } = state;
 
   if (!losesToEliminate) {
@@ -25,9 +30,6 @@ export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScor
   }
   if (!advancerToWin) {
     advancerToWin = deciderToWin;
-  }
-  if (!buchholtzLockIns) {
-    buchholtzLockIns = [];
   }
   if (!defaultSuffix) {
     defaultSuffix = "";
@@ -81,8 +83,8 @@ export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScor
         }
 
       }
-      if (stage > 0)
-      if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
+      if (y.elo - x.elo) return y.elo - x.elo > 0 ? -1 : 1;
+
       return x.seed - y.seed;
     };
 
@@ -97,33 +99,52 @@ export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScor
         }
         const opponents1 = [...match.team1.opponents, match.team2.code];
         const opponents2 = [...match.team2.opponents, match.team1.code];
-
+        const dElo = match.team1.elo - match.team2.elo;
         if (match.picked === 1) {
-          teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1 });
-          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1 });
+          const eloSwap = eloCalculate(dElo);
+          teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + 1,
+            elo: match.team1.elo - eloSwap,
+            elo_diff: - eloSwap,
+            eloBreakdown: [...(match.team1.eloBreakdown || []), {
+              code: match.team2.code,
+              opponent_elo: match.team2.elo,
+              elo_diff: dElo,
+              diff: -eloSwap,
+            }] });
+          teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1,
+            elo: match.team2.elo + eloSwap,
+            elo_diff: eloSwap,
+            eloBreakdown: [...(match.team2.eloBreakdown || []), {
+              code: match.team1.code,
+              opponent_elo: match.team1.elo,
+              elo_diff: -dElo,
+              diff: +eloSwap,
+            }] });
         } else if (match.picked === -1) {
-          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1 });
-          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team2.w + 1 });
+          const eloSwap = eloCalculate(-dElo);
+          teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1,
+            elo: match.team1.elo + eloSwap,
+            elo_diff: eloSwap,
+            eloBreakdown: [...(match.team1.eloBreakdown || []), {
+              code: match.team2.code,
+              opponent_elo: match.team2.elo,
+              elo_diff: -dElo,
+              diff: eloSwap,
+            }] });
+          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team2.w + 1,
+            elo: match.team2.elo - eloSwap,
+            elo_diff: - eloSwap,
+            eloBreakdown: [...(match.team2.eloBreakdown || []), {
+              code: match.team1.code,
+              opponent_elo: match.team1.elo,
+              elo_diff: dElo,
+              diff: -eloSwap,
+            }] });
         }
       }
 
-      const buchholtzScore = {};
-      for (const team of teamsT) {
-        buchholtzScore[team.code] = team.w - team.l;
-      }
-      for (const team of teamsT) {
-        if (!team.buchholtzLocked) {
-          const initialB = team.buchholtz_offset || 0;
-          team.buchholtz = initialB + team.opponents.map(x => buchholtzScore[x]).reduce((x, y) => x+y, 0);
-          team.buchholtzBreakdown = team.opponents.map(x => ({
-            code: x,
-            b: buchholtzScore[x],
-          }))
-          if (buchholtzLockIns.indexOf(`${team.w}-${team.l}`) !== -1) {
-            team.buchholtzLocked = 1;
-          }
-        }
-      }
+
+
       stateTeams[stage] = teamsT;
     }
 
@@ -153,10 +174,6 @@ export function SwissBuchholtzR1P(fromStage, toStage, winnerFn=getWinnerFromScor
       const team1 = p[0];
       let team2cands = p.filter((team) => {
         if (team.code === team1.code) return false;
-        if (stage === 0) {
-          if (`${team1.code}-${team.code}` in round1Preventions) return false;
-          if (`${team.code}-${team1.code}` in round1Preventions) return false;
-        }
         return !previouslyMatchedUp(stage, team.code, team1.code);
       });
 

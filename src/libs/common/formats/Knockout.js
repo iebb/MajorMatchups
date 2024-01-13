@@ -52,7 +52,7 @@ export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
           teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1, _seed });
         } else if (match.picked === -1) {
           teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1, _seed });
-          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team1.w + 1, _seed });
+          teamsT.push({ ...match.team2, opponents: opponents2, w: match.team2.w + 1, _seed });
         }
       }
       stateTeams[stage] = teamsT;

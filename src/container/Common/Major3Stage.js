@@ -54,14 +54,6 @@ export class Major3Stage extends React.Component {
         l: 0, w: 0, buchholtz: 0, seed: _idx + 9, opponents: [],
         buchholtzBreakdown: [],
       }))
-      // console.log(teamsAdvanced.map(x => ({
-      //   code: x.code,
-      //   name: x.name,
-      //   seed: x.seed,
-      //   region: x.region,
-      //   description: x.description,
-      // })));
-      // console.log(teamsAdvanced);
       challengerResult = this.state.roundTeams[5];
       finalTeams = [
         ...this.TournamentStages[1].initialTeams, // directly to legends
@@ -193,11 +185,6 @@ export class Major3Stage extends React.Component {
     this.shuffle = shuffle.bind(this);
   }
 
-  advances = {
-    1: this.advance,
-    2: this.advance2,
-  }
-
   render() {
     const icons = [
       UserGroupIcon,
@@ -212,7 +199,10 @@ export class Major3Stage extends React.Component {
           label: ts.name,
           active: this.state.tournament === ts.id,
           icon: icons[ts.id],
-          onClick:() => ts.id <= this.currentStage ? this.init(ts.id) : this.advances[ts.id]()
+          onClick:() => ts.id <= this.currentStage ? this.init(ts.id) : {
+            1: this.advance,
+            2: this.advance2,
+          }[ts.id]()
         }
       )),
     ]
@@ -228,7 +218,10 @@ export class Major3Stage extends React.Component {
           stage={this.getStage()}
           shuffle={this.shuffle}
           advance={
-            this.advances[this.state.tournament + 1]
+            {
+              1: this.advance,
+              2: this.advance2,
+            }[this.state.tournament + 1]
           }
         />
         {
