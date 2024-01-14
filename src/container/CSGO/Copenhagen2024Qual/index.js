@@ -96,18 +96,24 @@ const Regions = [
         if (localStorage["cph24.cq.eua"] && localStorage["cph24.cq.eub"]) {
           const la = JSON.parse(localStorage["cph24.cq.eua"]);
           const lb = JSON.parse(localStorage["cph24.cq.eub"]);
-          const _seeds = [la[8], lb[8], la[9], lb[9], la[10], lb[10]];
-          console.log(la, lb, _seeds);
-          return {
-            success: true,
-            seeds: _seeds.map((team, _seed) => ({
-              code: team.code,
-              name: team.name,
-              seed: _seed + 1,
-              buchholtz_offset: team.buchholtz,
-              buchholtz: team.buchholtz,
-            }))
-          };
+          if (la.length === 16 && lb.length === 16) {
+            const _seeds = [la[8], lb[8], la[9], lb[9], la[10], lb[10]];
+            return {
+              success: true,
+              seeds: _seeds.map((team, _seed) => ({
+                code: team.code,
+                name: team.name,
+                seed: _seed + 1,
+                buchholtz_offset: team.buchholtz,
+                buchholtz: team.buchholtz,
+              }))
+            };
+          } else {
+            return {
+              success: false,
+              message: "This Tab requires visiting EUA and EUB first",
+            };
+          }
         } else {
           return {
             success: false,

@@ -379,7 +379,6 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
 
   }
 
-  console.log(stateRoundTeams);
   return {
     teams: stateTeams,
     tiebreakerResults,

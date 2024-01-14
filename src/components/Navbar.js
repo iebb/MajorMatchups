@@ -223,12 +223,20 @@ function NavListMenu({ edition }) {
           <Typography variant="h6" color="blue-gray" className="mb-1">
             {title}
           </Typography>
-          <Typography variant="small" color="gray" className="font-normal">
-            {subtitle}
-          </Typography>
-          <Typography variant="small" color="gray" className="font-normal">
-            {description}
-          </Typography>
+          {
+            subtitle && (
+              <Typography variant="small" color="gray" className="font-normal">
+                {subtitle}
+              </Typography>
+            )
+          }
+          {
+            description && (
+              <Typography variant="small" color="gray" className="font-normal">
+                {description}
+              </Typography>
+            )
+          }
         </div>
       </MenuItem>
     </a>

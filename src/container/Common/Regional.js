@@ -51,7 +51,6 @@ export class Regionals extends React.Component {
     if (Regions[region]) {
       if (Regions[region].getSeeds !== undefined) {
         const {success, seeds, message} = Regions[region].getSeeds();
-        console.log(region, Regions[region], success, seeds, message);
         if (success) {
           this.setState({ errorMessage: null })
           return seeds;
