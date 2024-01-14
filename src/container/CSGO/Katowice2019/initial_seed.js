@@ -1,0 +1,38 @@
+
+export const challengers = [
+  { type: 'graffiti', seed: 1, name: 'Fnatic', code: 'fntc', elo: 25/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 2, name: 'NRG Esports', code: 'nrg', elo: 32/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 3, name: 'Cloud9', code: 'c9', elo: 46/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 4, name: 'Ninjas in Pyjamas', code: 'nip', elo: 50/15, w: 0, l: 0 },
+  { type: 'graffiti', seed: 5, name: 'ENCE', code: 'ence', elo: 43/11, w: 0, l: 0 },
+  { type: 'graffiti', seed: 6, name: 'Vitality', code: 'vita', elo: 6, w: 0, l: 0 },
+  { type: 'graffiti', seed: 7, name: 'G2 Esports', code: 'g2', elo: 95/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 8, name: 'AVANGAR', code: 'avg', elo: 106/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 9, name: 'Renegades', code: 'ren', elo: 117/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 10, name: 'Vega Squadron', code: 'vega', elo: 117/12, w: 0, l: 0 },
+  { type: 'graffiti', seed: 11, name: 'TYLOO', code: 'tyl', elo: 128/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 12, name: 'Team Spirit', code: 'spir', elo: 139/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 13, name: 'FURIA Esports', code: 'furi', elo: 12, w: 0, l: 0 },
+  { type: 'graffiti', seed: 14, name: 'Grayhound', code: 'gray', elo: 190/14, w: 0, l: 0 },
+  { type: 'graffiti', seed: 15, name: 'Winstrike Team', code: 'wins', elo: 177/13, w: 0, l: 0 },
+  { type: 'graffiti', seed: 16, name: 'ViCi Gaming', code: 'vici', elo: 197/14, w: 0, l: 0 },
+];
+
+export const legends = [
+  { type: 'foil', seed: 1, name: 'Astralis', code: 'astr', elo: 1, w: 0, l: 0 },
+  { type: 'foil', seed: 2, name: 'Team Liquid', code: 'liq', elo: 2, w: 0, l: 0 },
+  { type: 'foil', seed: 3, name: 'Natus Vincere', code: 'navi', elo: 3.5, w: 0, l: 0 },
+  { type: 'foil', seed: 4, name: 'MIBR', code: 'mibr', elo: 55/15, w: 0, l: 0 },
+  { type: 'foil', seed: 5, name: 'FaZe Clan', code: 'faze', elo: 53/14, w: 0, l: 0 },
+  { type: 'foil', seed: 6, name: 'NRG Esports', code: 'nrg', elo: 69/13, w: 0, l: 0 },
+  { type: 'foil', seed: 7, name: 'BIG', code: 'big', elo: 7.5, w: 0, l: 0 },
+  { type: 'foil', seed: 8, name: 'ENCE eSports', code: 'ence', elo: 107/14, w: 0, l: 0 },
+  { type: 'foil', seed: 9, name: 'Renegades', code: 'ren', elo: 125/13, w: 0, l: 0 },
+  { type: 'foil', seed: 10, name: 'Team Vitality', code: 'vita', elo: 10, w: 0, l: 0 },
+  { type: 'foil', seed: 11, name: 'Ninjas in Pyjamas', code: 'nip', elo: 160/15, w: 0, l: 0 },
+  { type: 'foil', seed: 12, name: 'HellRaisers', code: 'hlr', elo: 151/13, w: 0, l: 0 },
+  { type: 'foil', seed: 13, name: 'Cloud9', code: 'c9', elo: 164/14, w: 0, l: 0 },
+  { type: 'foil', seed: 14, name: 'G2 Esports', code: 'g2', elo: 173/14, w: 0, l: 0 },
+  { type: 'foil', seed: 15, name: 'AVANGAR', code: 'avg', elo: 171/13, w: 0, l: 0 },
+  { type: 'foil', seed: 16, name: 'compLexity Gaming', code: 'col', elo: 15, w: 0, l: 0 },
+];

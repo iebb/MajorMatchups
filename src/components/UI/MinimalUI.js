@@ -160,7 +160,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
         <div
           className={`flex-[4]`}
         >
-          <div className={`flex-col text-xs text-center`}>
+          <div className={`flex-col text-sm text-center`}>
             {
               match.result === 0 && (
                 <>
@@ -174,7 +174,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
               )
             }
             {match.score[0].map((x, _idx) => (
-              <div className="flex flex-row" key={_idx}>
+              <div className="flex flex-row text-sm" key={_idx}>
                 <div className={`flex-1 text-right ${x > match.score[1][_idx] && "font-bold text-green-500"}`}>
                   {x}
                 </div>

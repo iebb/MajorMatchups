@@ -1,5 +1,6 @@
 export const FinalResults = {
-  "0": {
+  "0": {},
+  "1": {
     "wins-c9": [
       [16,19],
       [7,16]
@@ -119,7 +120,7 @@ export const FinalResults = {
       [16,9]
     ]
   },
-  "1": {
+  "2": {
     "c9-faze": [
       [9,16],
       [14,16]
@@ -238,7 +239,7 @@ export const FinalResults = {
       [13,16]
     ]
   },
-  "2": {
+  "3": {
     "ence-astr": [
       [4,16],
       [11,16]

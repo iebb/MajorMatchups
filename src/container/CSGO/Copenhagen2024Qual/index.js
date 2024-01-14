@@ -16,7 +16,7 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: NAM,
     seats: [
-      { status: "advance", until: 8, abbrev: "R", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {},
@@ -33,7 +33,7 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: SAM,
     seats: [
-      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
+      { status: "qualified", until: 7, abbrev: "Q", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {
@@ -54,7 +54,7 @@ const Regions = [
     seats: [
       // { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
       // { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
-      { status: "rmr", until: 8, abbrev: "R", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
@@ -72,7 +72,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "rmr", until: 8, abbrev: "R", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
       // { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
       // { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },

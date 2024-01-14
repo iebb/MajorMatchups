@@ -3,46 +3,27 @@
 import {PaperAirplaneIcon, UserGroupIcon} from "@heroicons/react/24/outline";
 import {Tab, Tabs, TabsHeader} from "@material-tailwind/react";
 import React from 'react';
-import Title from '../../../components/BannerInsertion';
-import {getWinnerFromScoreCSGO} from "../../../libs/common/common";
-import {FinalChallengers, FinalLegends, FinalResults} from './final_results';
-import {getRelativeSeed, rankingSeed} from './initial_seed';
+import Title from '../../../../components/BannerInsertion';
+import {FinalResults} from './final_results';
 
-const copy = (x) => JSON.parse(JSON.stringify(x));
+const teamLogo = (code) => `https://img.majors.im/go/katowice2019/${code}.png`;
+const copy = x => JSON.parse(JSON.stringify(x));
 
-const qs = [0.7333, 0.1365, 1.065e-2, 2.69e-4, -2.078e-5, -1.549e-6, 4.29e-9, 1.831e-9];
 
-const teams = [];
-
-let results = {};
 let gamescores = {};
 
-const teamLogo = (code) => `https://img.majors.im/go/berlin2019/${code}.png`;
-
-export default class Berlin2019xx extends React.PureComponent {
+export default class Katowice2019 extends React.PureComponent {
   state = {
-    teams: [copy(teams), false, false, false, false, false],
+    teams: [false, false, false, false, false, false],
     matches: [false, false, false, false, false, false],
     elo: true,
     legends: false,
-    scores: false,
+    scores: true,
+    tournament: 2,
   };
 
-  init = (tournament) => {
-    results = {};
-    gamescores = {};
-    const resp = tournament === 1 ? FinalChallengers : FinalLegends;
 
-    const teams = resp.teams.map((team) => ({ ...team, w: 0, l: 0 }));
-    if (resp.data) {
-      for (const round of resp.data.matches) {
-        if (round.length) {
-          for (const match of round) {
-            results[match.team1.code + '-' + match.team2.code] = match.result;
-          }
-        }
-      }
-    }
+  init(tournament) {
     for (const key of Object.keys(FinalResults[tournament])) {
       const val = FinalResults[tournament][key];
       gamescores[key] = val;
@@ -50,44 +31,16 @@ export default class Berlin2019xx extends React.PureComponent {
       gamescores[key2[1] + '-' + key2[0]] = val.map(vals => [vals[1], vals[0]]);
     }
     this.setState({
-      teams: [teams, false, false, false, false, false],
+      teams: [copy(tournament === 1 ? challengers : legends), false, false, false, false, false],
       matches: [false, false, false, false, false, false],
-      tournament: resp.tournament,
-      legends: false,
-    });
-  };
-
-  restore = () => {
-    if (this.savedData) {
-      this.setState(JSON.parse(this.savedData));
-    }
-  };
-
-  advance = () => {
-    this.savedData = JSON.stringify(this.state);
-    const advancedTeams = this.state.teams[5].filter(t => t.w === 3).map(t => t.code);
-    const filtered = rankingSeed.filter((x) => x.length === 3 || advancedTeams.indexOf(x[0]) !== -1);
-    const elos = getRelativeSeed(filtered);
-    const teams = Object.keys(elos).map((team, idx) => ({
-      seed: idx,
-      name: team,
-      code: team,
-      elo: elos[team],
-      w: 0,
-      l: 0,
-    }));
-    results = {};
-    this.setState({
-      teams: [teams, false, false, false, false, false],
-      matches: [false, false, false, false, false, false],
-      refresh: true,
-      legends: true,
-    });
-  };
+      tournament: tournament,
+    })
+  }
 
   componentDidMount() {
-    this.init(2);
+    this.init(1);
   }
+
 
   previouslyMatchedUp(stage, tA, tB) {
     for (let i = 0; i < stage; i += 1) {
@@ -98,9 +51,23 @@ export default class Berlin2019xx extends React.PureComponent {
     }
     return false;
   }
+
+  calculateDeltaEloX = (x) => {
+    /*
+    y_{1}\sim\frac{l}{1+ak^{x_{1}}}
+    https://www.desmos.com/calculator/pljbjjix32
+    l=4.98409
+    a=6.28829
+    k=0.793961
+    */
+    const l= 5;
+    const a= 6.3;
+    const k= 0.794;
+    return l / (1 + a * Math.pow(k, x));
+  };
+
   calculateDeltaElo = (team1, team2) => {
-    const dElo = team1.elo - team2.elo;
-    return qs.map((v, idx) => v * dElo ** idx).reduce((a, b) => a + b);
+    return this.calculateDeltaEloX(team1.elo - team2.elo);
   };
 
   formatSign = (val) => (
@@ -125,7 +92,7 @@ export default class Berlin2019xx extends React.PureComponent {
 
         for (const match of stateMatches[stage - 1]) {
           const x = (match.team1.elo - match.team2.elo) * match.picked;
-          const exchange = qs.map((v, idx) => v * x ** idx).reduce((a, b) => a + b);
+          const exchange = this.calculateDeltaEloX(x);
           if (match.picked === 1) {
             teamsT.push({ ...match.team1, elo: match.team1.elo - exchange, w: match.team1.w + 1 });
             teamsT.push({ ...match.team2, elo: match.team2.elo + exchange, l: match.team2.l + 1 });
@@ -148,69 +115,74 @@ export default class Berlin2019xx extends React.PureComponent {
         return vy - vx;
       });
 
-      const dfs = (p, m, mref, pool) => {
-        if (!p.length) {
-          for (const match of m) {
-            mref.push(match);
-          }
-          return true;
-        }
-
-        const team1 = p[0];
-        const team2cands = p.filter((team) => {
-          if (team.seed === team1.seed) return false;
-          return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
-        });
-
-        if (!team2cands.length) return false;
-        for (let c = team2cands.length - 1; c >= 0; c -= 1) {
-          const team2 = team2cands[c];
-          const mat = copy(m);
-          // let picked = (Math.random() * (1.2**(team1.elo - team2.elo)) <= 0.5) ? 1 : -1; // 1 for A win and -1 for B win
-          let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
-          let result = 0;
-
-          /* played match */
-
-          if (`${team1.code}-${team2.code}` in results) {
-            result = results[`${team1.code}-${team2.code}`];
-            if (result !== 0) {
-              picked = result;
-            }
-          } else if (`${team2.code}-${team1.code}` in results) {
-            result = -results[`${team2.code}-${team1.code}`];
-            if (result !== 0) {
-              picked = result;
-            }
-          }
-
-          let score = [[], []];
-          if (`${team1.code}-${team2.code}` in gamescores) {
-            const gs = gamescores[`${team1.code}-${team2.code}`];
-            result = getWinnerFromScoreCSGO(gs)[0];
-            score[0] = gs.map(x => x[0])
-            score[1] = gs.map(x => x[1])
-          }
-
-          const deltaElo =
-            picked === 1
-              ? this.calculateDeltaElo(team1, team2)
-              : picked === -1
-                ? -this.calculateDeltaElo(team2, team1)
-                : 0;
-
-          mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
-          const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
-          if (dfs(nPoolTeams, mat, mref, pool)) {
-            return true;
-          }
-        }
-        return false;
-      };
-
       for (const pool of pools) {
         const poolTeams = remainingTeams.filter((team) => pool === `${team.w}-${team.l}`);
-        dfs(poolTeams, [], matchups, pool);
+
+        const dfs = (p, m, mref) => {
+          if (!p.length) {
+            for (const match of m) {
+              mref.push(match);
+            }
+            return true;
+          }
+
+          const team1 = p[0];
+          const team2cands = p.filter((team) => {
+            if (team.seed === team1.seed) return false;
+            return !this.previouslyMatchedUp(stage, team.seed, team1.seed);
+          });
+
+          if (!team2cands.length) return false;
+          for (let c = team2cands.length - 1; c >= 0; c -= 1) {
+            const team2 = team2cands[c];
+            const mat = copy(m);
+            // let picked = (Math.random() * (1.2**(team1.elo - team2.elo)) <= 0.5) ? 1 : -1; // 1 for A win and -1 for B win
+            let picked = team1.elo <= team2.elo ? 1 : -1; // 1 for A win and -1 for B win
+            let result = 0;
+
+
+            let score = [[], []];
+            if (`${team1.code}-${team2.code}` in gamescores) {
+              let teamA = 0;
+              let teamB = 0;
+              const gs = gamescores[`${team1.code}-${team2.code}`];
+              for (const sco of gs) {
+                if (sco[0] !== sco[1]) {
+                  if (sco[0] > 15 || sco[1] > 15) {
+                    if (sco[0] > sco[1]) {
+                      teamA++;
+                    } else if (sco[1] > sco[0]) {
+                      teamB++;
+                    }
+                  }
+                }
+              }
+              score[0] = gs.map(x => x[0])
+              score[1] = gs.map(x => x[1])
+              if (teamA !== teamB) {
+                picked = teamA > teamB ? 1 : -1;
+                if (((team1.w === 2 || team1.l === 2) && (teamA === 2 || teamB === 2)) || (team1.w < 2 && team1.l < 2)) {
+                  result = picked
+                }
+              }
+            }
+
+            const deltaElo =
+              picked === 1
+                ? this.calculateDeltaElo(team1, team2)
+                : picked === -1
+                  ? -this.calculateDeltaElo(team2, team1)
+                  : 0;
+
+            mat.push({ pool, match: m.length, team1, team2, picked, result, deltaElo, score });
+            const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
+            if (dfs(nPoolTeams, mat, mref)) {
+              return true;
+            }
+          }
+          return false;
+        };
+        dfs(poolTeams, [], matchups);
       }
       stageMatches = matchups;
       stateMatches[stage] = stageMatches;
@@ -379,47 +351,51 @@ export default class Berlin2019xx extends React.PureComponent {
     );
   }
 
+
   render() {
     return (
-      <div className="page-container">
-        <Title
-          title="StarLadder Berlin Major 2019 Simulator"
-          sponsorLess
-        />
-        {/* Seeding: Live-Elo based on HLTV Ranking */}
-        <div className="pt-4">
-          <Tabs
-            key={this.state.tournament}
-            value={this.state.tournament}
-            id="tab"
-            className="w-auto m-auto inline-block"
-          >
-            <TabsHeader className="whitespace-nowrap">
-              <Tab value={1} onClick={() => this.init(1)} className="w-auto">
-                <div className="flex items-center px-2">
-                  {React.createElement(UserGroupIcon, { className: "w-5 h-5 mr-1" })}
-                  Challengers Stage
-                </div>
-              </Tab>
-              <Tab value={2} onClick={() => this.init(2) /* advance */ } className="w-auto">
-                <div className="flex items-center px-2">
-                  {React.createElement(PaperAirplaneIcon, { className: "w-5 h-5 mr-1" })}
-                  Legends Stage
-                </div>
-              </Tab>
-            </TabsHeader>
-          </Tabs>
-        </div>
-        <div className="main-container">
-          {[0, 1, 2, 3, 4, 5].map((round) => (
-            <>
-              <h1 className="round-title" key={round}>
-                {round === 5 ? `Final Results` : `Round ${round + 1}`}
-              </h1>
-              <div>{this.getMatchUps(round)}</div>
-            </>
-          ))}
-        </div>
+
+        <div className="page-container">
+          <Title
+            title="IEM Katowice Major 2019 Simulator"
+            sponsorLess
+          />
+          {/* Seeding: Teams rank each other */}
+          <div className="pt-4">
+            <div style={{ overflowX: "auto" }}>
+              <Tabs
+                key={this.state.tournament}
+                value={this.state.tournament}
+                id="tab"
+                className="w-auto m-auto inline-block"
+              >
+                <TabsHeader className="whitespace-nowrap">
+                  <Tab value={1} onClick={() => this.init(1)} className="w-auto">
+                    <div className="flex items-center px-2">
+                      {React.createElement(UserGroupIcon, { className: "w-5 h-5 mr-1" })}
+                      Challengers Stage
+                    </div>
+                  </Tab>
+                  <Tab value={2} onClick={() => this.init(2)} className="w-auto">
+                    <div className="flex items-center px-2">
+                      {React.createElement(PaperAirplaneIcon, { className: "w-5 h-5 mr-1" })}
+                      Legends Stage
+                    </div>
+                  </Tab>
+                </TabsHeader>
+              </Tabs>
+            </div>
+          </div>
+          <div className="main-container">
+            {[0, 1, 2, 3, 4, 5].map((round) => (
+              <>
+                <h1 className="round-title" key={round}>
+                  {round === 5 ? `Final Results` : `Round ${round + 1}`}
+                </h1>
+                <div key={`_${round}`}>{this.getMatchUps(round)}</div>
+              </>
+            ))}
+          </div>
       </div>
     );
   }

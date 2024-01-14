@@ -421,6 +421,12 @@ iframe {
 }
 
 
+.team.qualified .b  {
+  border: 1px solid #40ff50;
+}
+.team.qualified .team-box-text {
+  color: #40ff50;
+}
 .team.rmr-a .b  {
   border: 1px solid #fc40ff;
 }

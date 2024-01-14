@@ -1,7 +1,7 @@
-import { ordinal } from '../../plural';
-import { copy, getStatus, getWinnerFromScoreCSGO } from '../common';
+import {ordinal} from '../../plural';
+import {copy, getStatus, getWinnerFromScoreCS2} from '../common';
 
-export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
+export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFromScoreCS2) {
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
