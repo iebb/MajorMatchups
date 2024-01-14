@@ -27,7 +27,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 1,
@@ -46,7 +45,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 2,
@@ -66,7 +64,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 3,
@@ -85,7 +82,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 4,
@@ -104,7 +100,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
 ];
 
@@ -138,7 +133,6 @@ export default class Paris2023Qual extends React.PureComponent {
       contenders: 0,
     },
     rounds: 0,
-    allowDups: false,
     event: "23qualparis",
   };
 

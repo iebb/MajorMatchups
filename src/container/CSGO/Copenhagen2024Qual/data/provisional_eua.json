@@ -48,50 +48,50 @@
     "description": "Seed #8"
   },
   {
-    "code": "seed_9",
-    "name": "Seed #9",
+    "code": "seed/09_a",
+    "name": "Seed #09A",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "seed_10",
-    "name": "Seed #10",
+    "code": "seed/10_a",
+    "name": "Seed #10A",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "seed_11",
-    "name": "Seed #11",
+    "code": "seed/11_a",
+    "name": "Seed #11A",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "seed_12",
-    "name": "Seed #12",
+    "code": "seed/12_a",
+    "name": "Seed #12A",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "seed_13",
-    "name": "Seed #13",
+    "code": "seed/13_a",
+    "name": "Seed #13A",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "seed_14",
-    "name": "Seed #14",
+    "code": "seed/14_a",
+    "name": "Seed #14A",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "seed_15",
-    "name": "Seed #15",
+    "code": "seed/15_a",
+    "name": "Seed #15A",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "seed_16",
-    "name": "Seed #16",
+    "code": "seed/16_a",
+    "name": "Seed #16A",
     "seed": 16,
     "description": "Seed #16"
   }

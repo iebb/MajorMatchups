@@ -388,6 +388,11 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
 
   }
 
+
+  if (state.resultTag) {
+    localStorage[state.resultTag] = JSON.stringify(stateRoundTeams[stateRoundTeams.length - 1]);
+  }
+
   return {
     teams: stateTeams,
     tiebreakerResults,

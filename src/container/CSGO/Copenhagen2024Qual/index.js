@@ -6,6 +6,7 @@ import Title from '../../../components/BannerInsertion';
 import {BasicUI} from '../../../components/BasicUI';
 import {fetchPrefix, getWinnerFromScoreCS2, pack, setWinner, shuffle} from '../../../libs/common/common';
 import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
+import {Regionals} from "../../Common/Regional";
 import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
 import {Scores} from './scores';
 
@@ -25,7 +26,7 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    allowDups: false,
+    resultTag: "",
   },
   {
     id: 1,
@@ -44,7 +45,7 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    allowDups: false,
+    resultTag: "",
   },
   {
     id: 2,
@@ -64,7 +65,7 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    allowDups: false,
+    resultTag: "cph24.cq.eua",
   },
   {
     id: 3,
@@ -84,13 +85,47 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    allowDups: false,
+    resultTag: "cph24.cq.eub",
   },
   {
     id: 4,
     name: "EU-Decider",
     icon: GlobeEuropeAfricaIcon,
-    seeds: EUTB,
+    getSeeds: () => {
+      try {
+        if (localStorage["cph24.cq.eua"] && localStorage["cph24.cq.eub"]) {
+          const la = JSON.parse(localStorage["cph24.cq.eua"]);
+          const lb = JSON.parse(localStorage["cph24.cq.eub"]);
+          const _seeds = [la[8], lb[8], la[9], lb[9], la[10], lb[10]];
+          console.log(la, lb, _seeds);
+          return {
+            success: true,
+            seeds: _seeds.map((team, _seed) => ({
+              code: team.code,
+              name: team.name,
+              seed: _seed + 1,
+              buchholtz_offset: team.buchholtz,
+              buchholtz: team.buchholtz,
+            }))
+          };
+        } else {
+          return {
+            success: false,
+            message: "This Tab requires visiting EUA and EUB first",
+          };
+        }
+      } catch (e) {
+        return {
+          success: false,
+          message: e.toString(),
+        };
+      }
+      return {
+        success: false,
+        message: "??",
+      };
+    },
+    defaultSeeds: null,
     seats: [
       { status: "rmr", until: 5, abbrev: "R", statusPositioned: true },
       { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
@@ -103,115 +138,16 @@ const Regions = [
     winsToAdvance: 1,
     nonDeciderToWin: 1,
     deciderToWin: 2,
-    tournamentType: 0,
-    allowDups: false,
+    tournamentType: Formats.SwissBuchholtz2024,
+    resultTag: "",
   },
 ];
 
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_qual/${code}.png`;
 
-export default class Copenhagen2024Qual extends React.PureComponent {
-  state = {
-    teams: [[], false, false, false, false, false],
-    roundTeams: [
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-    ],
-    matches: [false, false, false, false, false, false],
-    regionId: 0,
-
-    legends: false,
-    scores: Scores,
-    tiebreakers: {},
-    tiebreakerResults: {},
-    pickResults: {},
-    lockResults: {},
-    seats: {
-      legends: 0,
-      challengers: 0,
-      contenders: 0,
-    },
-    rounds: 0,
-    allowDups: false,
-    event: "23qualparis",
-  };
-
-  event = "23qualparis";
-
-  getStage = () => {
-    return this.state.regionId;
-  };
-
-  init = (region) => {
-    this.setState({
-      ...pack(Regions[region].seeds, teamLogo),
-
-      regionId: region,
-      ...Regions[region],
-    }, () => this.calculateMatchups(0, this.state.rounds + 1));
-
-    return fetch(fetchPrefix + '/cs_scores')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...pack(Regions[region].seeds, teamLogo),
-
-          scores: resp,
-          regionId: region,
-          ...Regions[region],
-        }, () => this.calculateMatchups(0, this.state.rounds + 1));
-      });
-  };
-
-
-
-  calculateMatchups = (s, e) => {
-    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCS2));
-  };
-
-  componentDidMount() {
-    this.setWinner = setWinner.bind(this);
-    this.shuffle = shuffle.bind(this);
-    const hash = this.props.history?.location?.hash?.slice(1);
-    for(const h of Regions) {
-      if (h.name === hash) {
-        this.init(h.id);
-        return;
-      }
-    }
-    this.init(0);
-  }
-  render() {
-    const tabs = Regions.map(region => ({
-      value: region.id,
-      label: region.name,
-      active: this.state.regionId === region.id,
-      icon: region.icon,
-      onClick:  () => {
-        this.props.history.push("#" + region.name);
-        // document.location.reload();
-        this.init(region.id)
-      }
-    }));
-    return (
-
-        <div className="page-container">
-          <Title
-            title="PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator"
-          />
-          <BasicUI
-            tabs={tabs}
-            state={this.state}
-            stage={this.getStage()}
-            shuffle={this.shuffle}
-          />
-      </div>
-    );
-  }
+export default class Copenhagen2024Qual extends Regionals {
+  Regions = Regions;
+  teamLogo = teamLogo;
+  title = "PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator";
+  subtitle = "EU-Decider Teams are based on your choices in EUA & EUB.";
 }

@@ -86,54 +86,54 @@ export const getMatchupDisplay = (state, stage) => {
     );
   }
 
-  return (
-    <div key={stage}>
-      {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => {
-        return (
-          <div key={team.code} className={`team one ${team.status}`}>
-            <div className="team-box up" style={
-              team.tiebreaker ? { background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)' } : {}
-            }>
-              <div className="team-box-split b">
+
+
+  const renderSingleTeam = (team) => {
+    return (
+      <div key={team.code} className={`team one ${team.status}`}>
+        <div className="team-box up" style={
+          team.tiebreaker ? {background: 'repeating-linear-gradient(45deg, #606dbc, #606dbc 10px, #465298 10px, #465298 20px)'} : {}
+        }>
+          <div className="team-box-split b">
                 <span className="team-box-text">
                   {`${team.w}-${team.l}`} {team.tiebreaker && "TB"}
                 </span>
-              </div>
-            </div>
-            {team.tiebreaker ? team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
-              <div className="team-box down" key={idx + '_tbs'}>
-                <div className="team-box-split b">
+          </div>
+        </div>
+        {team.tiebreaker ? team.tiebreakerScores && team.tiebreakerScores.map((p, idx) => (
+          <div className="team-box down" key={idx + '_tbs'}>
+            <div className="team-box-split b">
                   <span className={`team-box-text`}>
                     {p}
                   </span>
-                </div>
-              </div>
-            )) : (
-              <div className="team-box down">
-                <div className="team-box-split b">
+            </div>
+          </div>
+        )) : (
+          <div className="team-box down">
+            <div className="team-box-split b">
                 <span className="team-box-text">
                   {`${ordinal(team.standing)} (${team.abbrev})`}
                 </span>
-                </div>
-              </div>
-            )}
-            <div className="team-box med">
-              {
-                (team.tiebreaker) ? (
-                  <div className={
-                    `team-box-split b tb-${team.tiebreakerStats ? "win" : "lose"}`
-                  } onClick={() => team.setTiebreakerWin()}>
-                    {teamLogo(team)}
-                  </div>
-                ) : (
-                  <div className="team-box-split b">
-                    {teamLogo(team)}
-                  </div>
-                )
-              }
             </div>
-            <div className="team-box down">
+          </div>
+        )}
+        <div className="team-box med">
+          {
+            (team.tiebreaker) ? (
+              <div className={
+                `team-box-split b tb-${team.tiebreakerStats ? "win" : "lose"}`
+              } onClick={() => team.setTiebreakerWin()}>
+                {teamLogo(team)}
+              </div>
+            ) : (
               <div className="team-box-split b">
+                {teamLogo(team)}
+              </div>
+            )
+          }
+        </div>
+        <div className="team-box down">
+          <div className="team-box-split b">
                 <span className="team-box-text">#{team.seed} <sub>
                 {
                   (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
@@ -143,34 +143,38 @@ export const getMatchupDisplay = (state, stage) => {
                 }
                 </sub>
                 </span>
+          </div>
+        </div>
+        {
+          (state.tournamentType === Formats.Elo2019) && (
+            <>
+              <div className="team-box down">
+                <div className="team-box-split b">
+                  <EloPopup
+                    team={team}
+                    teams={teams}
+                  />
+                </div>
+              </div>
+            </>
+          )
+        }
+        {
+          (state.showDescription || stage === 0) && (
+            <div className="team-box down">
+              <div className="team-box-split b">
+                <span className="team-box-text-sm">{team.description}</span>
               </div>
             </div>
-            {
-              (state.tournamentType === Formats.Elo2019) && (
-                <>
-                  <div className="team-box down">
-                    <div className="team-box-split b">
-                      <EloPopup
-                        team={team}
-                        teams={teams}
-                      />
-                    </div>
-                  </div>
-                </>
-              )
-            }
-            {
-              (state.showDescription || stage === 0) && (
-                <div className="team-box down">
-                  <div className="team-box-split b">
-                    <span className="team-box-text-sm">{team.description}</span>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-        )
-      })}
+          )
+        }
+      </div>
+    )
+  }
+
+  return (
+    <div key={stage}>
+      {roundTeams.filter(x => x.adv).filter(x => x.tiebreaker || !matchOnly).map((team, _) => renderSingleTeam(team))}
       {stageMatches.map((x) => {
         if (x.is_tiebreaker) {
           return null;
@@ -346,63 +350,7 @@ export const getMatchupDisplay = (state, stage) => {
           </div>
         );
       })}
-      {roundTeams.filter(x => x.elim).filter(x => x.tiebreaker || !matchOnly).map((team, _) => (
-        <div key={team.code} className={`team one ${team.status}`}>
-          <div className="team-box up">
-            <div className="team-box-split b">
-                <span className="team-box-text">
-                  {team.w}-{team.l}
-                </span>
-            </div>
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
-              <span className="team-box-text">{ordinal(team.standing)} ({team.abbrev})</span>
-            </div>
-          </div>
-          <div className="team-box med">
-            <div className="team-box-split b">
-              {teamLogo(team)}
-            </div>
-          </div>
-          <div className="team-box down">
-            <div className="team-box-split b">
-                <span className="team-box-text">#{team.seed} <sub>
-                {
-                  (isSwissBuchholtzFormat(state.tournamentType)) && <BuchholtzPopup
-                    team={team}
-                    teams={teams}
-                  />
-                }
-                </sub>
-                </span>
-            </div>
-          </div>
-          {
-            (state.tournamentType === Formats.Elo2019) && (
-              <>
-                <div className="team-box down">
-                  <div className="team-box-split b">
-                    <EloPopup
-                      team={team}
-                      teams={teams}
-                    />
-                  </div>
-                </div>
-              </>
-            )
-          }
-          {
-            (state.showDescription || stage === 0) && (
-              <div className="team-box down">
-                <div className="team-box-split b">
-                  <span className="team-box-text-sm">{team.description}</span>
-                </div>
-              </div>
-            )
-          }
-        </div>
-      ))}
+      {roundTeams.filter(x => x.elim).filter(x => x.tiebreaker || !matchOnly).map((team, _) => renderSingleTeam(team))}
       {
         altTimeline > 0 && (
           <p style={{ color: "yellow", marginTop: 15, fontWeight: 600 }}>

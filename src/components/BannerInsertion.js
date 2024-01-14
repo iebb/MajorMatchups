@@ -60,7 +60,7 @@ function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, class
         }
         {
           subtitle && (
-            <p className="text-yellow-500 text-xl my-2">
+            <p className="text-light-green-500 text-xl my-2">
               {subtitle}
             </p>
           )

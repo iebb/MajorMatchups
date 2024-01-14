@@ -30,7 +30,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 1,
@@ -50,7 +49,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 2,
@@ -73,7 +71,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
   },
   {
     id: 3,
@@ -92,7 +89,6 @@ const Regions = [
     nonDeciderToWin: 2,
     deciderToWin: 2,
     tournamentType: Formats.DoubleElimination,
-    allowDups: true,
   },
 ];
 
@@ -126,7 +122,6 @@ export default class Antwerp2022RMR extends React.PureComponent {
       contenders: 0,
     },
     rounds: 0,
-    allowDups: false,
     event: "22rmrantwerp",
   };
 

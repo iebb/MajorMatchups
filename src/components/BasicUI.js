@@ -3,6 +3,7 @@ import { ClassicUI } from './UI/ClassicUI';
 import { VisUI } from './UI/VisUI';
 import { BracketUI } from './UI/BracketUI';
 import {
+  Alert,
   Button,
   Dialog,
   DialogBody,
@@ -74,7 +75,7 @@ const UIEnums = {
   },
 }
 
-export function BasicUI({ tabs, state, stage, shuffle, advance }) {
+export function BasicUI({ tabs, state, stage, shuffle, advance, errorMessage=null }) {
   const uiType = localStorage.ui || 'bracket';
   const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'minimal');
   const [open, handleOpen] = useState(false);
@@ -239,25 +240,36 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           </div>
         )
       }
-      <UI
-        state={state}
-        shuffle={shuffle}
-        preferences={values}
-      />
       {
-        advance && (
-          <div className="m-4 items-center flex flex-row content-center place-content-center">
-            <Button
-              onClick={advance}
-              color="blue-gray"
-              variant="outlined"
-              className="normal-case text-black font-normal text-2xl py-4 px-12 my-0 flex items-center gap-2"
-            >
-              Next Stage <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
-            </Button>
+        errorMessage ? (
+          <div className="my-10">
+            <Alert color="red" className="text-black">{errorMessage}</Alert>
           </div>
+        ) : (
+          <>
+            <UI
+              state={state}
+              shuffle={shuffle}
+              preferences={values}
+            />
+            {
+              advance && (
+                <div className="m-4 items-center flex flex-row content-center place-content-center">
+                  <Button
+                    onClick={advance}
+                    color="blue-gray"
+                    variant="outlined"
+                    className="normal-case text-black font-normal text-2xl py-4 px-12 my-0 flex items-center gap-2"
+                  >
+                    Next Stage <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
+                  </Button>
+                </div>
+              )
+            }
+            </>
         )
       }
+
     </div>
   );
 }

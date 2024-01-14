@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
-import {Formats} from "../../../libs/common/formats/formats";
+import {FormatBinder, Formats} from "../../../libs/common/formats/formats";
 import { AME, AP, EUA, EUB, EUTB } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../../libs/common/formats/SwissBuchholtzTB';
@@ -34,7 +34,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
     defaultSuffix: "",
   },
   {
@@ -60,7 +59,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
     defaultSuffix: "",
   },
   {
@@ -83,7 +81,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
     defaultSuffix: "",
   },
   {
@@ -123,7 +120,6 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: 0,
-    allowDups: false,
     defaultSuffix: "#1",
   },
 ];
@@ -163,7 +159,6 @@ export default class Paris2023RMR extends React.PureComponent {
       contenders: 0,
     },
     rounds: 0,
-    allowDups: false,
     event: "par23rmr",
   };
 
@@ -182,23 +177,12 @@ export default class Paris2023RMR extends React.PureComponent {
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
-    // return fetch('https://y5au3m.deta.dev/fetch_results/par23rmr')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       ...pack(Regions[region].seeds, teamLogo),
-    //
-    //       scores: resp,
-    //       regionId: region,
-    //       ...Regions[region],
-    //     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //   });
   };
 
 
 
   calculateMatchups = (s, e) => {
-    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e, getWinnerFromScoreCSGO));
+    this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e));
   };
 
   componentDidMount() {
