@@ -45,28 +45,28 @@ const Regions = [
       }
 
 
-      if (localStorage["cph24.cq.nam"]) {
-        const teams = JSON.parse(localStorage["cph24.cq.nam"]);
-        if (teams.length === 16) {
-          msg.push(<br />);
-          msg.push(<p>North American Seeds: <a onClick={() => {
-            delete localStorage['cph24.cq.nam'];
-            document.location.reload();
-          }}>[clear]</a> </p>);
-          for(let i = 0; i < 8; i++) {
-            base[2 * i + 1] = teams[i];
-            if (i === 4) {
-              msg.push(<br />);
-            }
-            msg.push(
-              <span className="inline-block w-[240px]">
-                {`#${2*i+2}: ${teams[i].name} (${i+1})`}
-              </span>
-            );
-          }
-        }
-        msg.push(<br />);
-      }
+      // if (localStorage["cph24.cq.nam"]) {
+      //   const teams = JSON.parse(localStorage["cph24.cq.nam"]);
+      //   if (teams.length === 16) {
+      //     msg.push(<br />);
+      //     msg.push(<p>North American Seeds: <a onClick={() => {
+      //       delete localStorage['cph24.cq.nam'];
+      //       document.location.reload();
+      //     }}>[clear]</a> </p>);
+      //     for(let i = 0; i < 8; i++) {
+      //       base[2 * i + 1] = teams[i];
+      //       if (i === 4) {
+      //         msg.push(<br />);
+      //       }
+      //       msg.push(
+      //         <span className="inline-block w-[240px]">
+      //           {`#${2*i+2}: ${teams[i].name} (${i+1})`}
+      //         </span>
+      //       );
+      //     }
+      //   }
+      //   msg.push(<br />);
+      // }
 
       return {
         success: true,

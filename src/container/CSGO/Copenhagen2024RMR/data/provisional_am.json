@@ -13,7 +13,7 @@
   },
   {
     "code": "seed/03_m",
-    "name": "Seed #03M",
+    "name": "Seed #03 (SA#1)",
     "seed": 3,
     "description": "Seed #3"
   },
@@ -25,7 +25,7 @@
   },
   {
     "code": "seed/05_m",
-    "name": "Seed #05M",
+    "name": "Seed #05 (SA#2)",
     "seed": 5,
     "description": "Seed #5"
   },
@@ -37,7 +37,7 @@
   },
   {
     "code": "seed/07_m",
-    "name": "Seed #07M",
+    "name": "Seed #07 (SA#3)",
     "seed": 7,
     "description": "Seed #7"
   },
@@ -49,7 +49,7 @@
   },
   {
     "code": "seed/09_m",
-    "name": "Seed #09M",
+    "name": "Seed #09 (SA#4)",
     "seed": 9,
     "description": "Seed #9"
   },
@@ -61,37 +61,37 @@
   },
   {
     "code": "seed/11_m",
-    "name": "Seed #11M",
+    "name": "Seed #11 (SA#5)",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "seed/12_m",
-    "name": "Seed #12M",
+    "code": "provisional/rock",
+    "name": "Rocket",
     "seed": 12,
     "description": "Seed #12"
   },
   {
     "code": "seed/13_m",
-    "name": "Seed #13M",
+    "name": "Seed #13 (SA#6)",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "seed/14_m",
-    "name": "Seed #14M",
+    "code": "provisional/noun",
+    "name": "Nouns Esports",
     "seed": 14,
     "description": "Seed #14"
   },
   {
     "code": "seed/15_m",
-    "name": "Seed #15M",
+    "name": "Seed #15 (SA#7)",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "seed/16_m",
-    "name": "Seed #16M",
+    "code": "provisional/bada",
+    "name": "Badass Gaming",
     "seed": 16,
     "description": "Seed #16"
   }
