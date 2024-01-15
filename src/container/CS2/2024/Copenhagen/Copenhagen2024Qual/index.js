@@ -146,6 +146,8 @@ const Regions = [
           logo: team.logo,
           name: team.name,
           seed: _seed + 1,
+          buchholtz_offset: team.buchholtz,
+          buchholtz: team.buchholtz,
         })),
         message: <div className="text-left">{msg}</div>,
       };
