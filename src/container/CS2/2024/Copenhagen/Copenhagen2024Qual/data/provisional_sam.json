@@ -48,8 +48,8 @@
     "description": "Seed #8"
   },
   {
-    "code": "provisional/flam",
-    "name": "Flamengo Esports",
+    "code": "provisional/oddi",
+    "name": "ODDIK",
     "seed": 9,
     "description": "Seed #9"
   },
@@ -60,20 +60,20 @@
     "description": "Seed #10"
   },
   {
-    "code": "provisional/oddi",
-    "name": "ODDIK",
+    "code": "provisional/w7m",
+    "name": "w7m esports",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "provisional/w7m",
-    "name": "w7m esports",
+    "code": "provisional/case",
+    "name": "Case Esports",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "provisional/adal",
-    "name": "adalYamigos",
+    "code": "provisional/flam",
+    "name": "Flamengo CS2",
     "seed": 13,
     "description": "Seed #13"
   },
@@ -84,14 +84,14 @@
     "description": "Seed #14"
   },
   {
-    "code": "provisional/case",
-    "name": "Case Esports",
+    "code": "provisional/tima",
+    "name": "TIMACETA",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "provisional/tima",
-    "name": "TIMACETA",
+    "code": "provisional/adal",
+    "name": "adalYamigos",
     "seed": 16,
     "description": "Seed #16"
   }
