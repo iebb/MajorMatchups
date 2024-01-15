@@ -48,7 +48,7 @@ const Regions = [
           seeds: base,
           message: <div className="text-left">
             <p>Pick your winners in <a
-              href="/24qual_copenhagen/#South-Am"
+              href="/24qual_copenhagen#South-Am"
               className="underline hover:text-nekoko-400">Closed Qualifiers</a> to have this page updated!
             </p>
           </div>,
