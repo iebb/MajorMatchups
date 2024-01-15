@@ -25,7 +25,10 @@ const Regions = [
         const teams = JSON.parse(localStorage["cph24.cq.sam"]);
         if (teams.length === 16) {
           msg.push(<br />);
-          msg.push(<p>South American Seeds:</p>);
+          msg.push(<p>South American Seeds: <a onClick={() => {
+            delete localStorage['cph24.cq.sam'];
+            document.location.reload();
+          }}>[clear]</a> </p>);
           for(let i = 0; i < 7; i++) {
             base[2 * i + 2] = teams[i];
             if (i === 4) {
@@ -46,7 +49,10 @@ const Regions = [
         const teams = JSON.parse(localStorage["cph24.cq.nam"]);
         if (teams.length === 16) {
           msg.push(<br />);
-          msg.push(<p>North American Seeds:</p>);
+          msg.push(<p>North American Seeds: <a onClick={() => {
+            delete localStorage['cph24.cq.nam'];
+            document.location.reload();
+          }}>[clear]</a> </p>);
           for(let i = 0; i < 8; i++) {
             base[2 * i + 1] = teams[i];
             if (i === 4) {
