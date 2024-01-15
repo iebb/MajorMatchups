@@ -1,17 +1,23 @@
 import React from 'react';
 import {Redirect, Route, Switch, useHistory} from "react-router-dom";
-import Antwerp2022 from "./container/CSGO/Antwerp2022";
-import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
-import Berlin2019 from './container/CSGO/Berlin2019';
-import Copenhagen2024Qual from "./container/CSGO/Copenhagen2024Qual";
-import Copenhagen2024RMR from "./container/CSGO/Copenhagen2024RMR";
-import Katowice2019 from './container/CSGO/Katowice2019';
-import Paris2023 from "./container/CSGO/Paris2023";
-import Paris2023Qual from "./container/CSGO/Paris2023Qual";
-import Paris2023RMR from "./container/CSGO/Paris2023RMR";
-import Rio2022 from "./container/CSGO/Rio2022";
-import Rio2022RMR from "./container/CSGO/Rio2022RMR";
-import Stockholm2021 from './container/CSGO/Stockholm2021';
+
+import Copenhagen2024Qual from "./container/CS2/2024/Copenhagen/Copenhagen2024Qual";
+import Copenhagen2024RMR from "./container/CS2/2024/Copenhagen/Copenhagen2024RMR";
+
+import Berlin2019 from './container/CSGO/2019/Berlin2019';
+import Katowice2019 from './container/CSGO/2019/Katowice2019';
+
+import Stockholm2021 from './container/CSGO/2021/Stockholm2021';
+
+import Antwerp2022 from "./container/CSGO/2022/Antwerp/Antwerp2022";
+import Antwerp2022RMR from "./container/CSGO/2022/Antwerp/Antwerp2022RMR";
+import Rio2022 from "./container/CSGO/2022/Rio/Rio2022";
+import Rio2022RMR from "./container/CSGO/2022/Rio/Rio2022RMR";
+
+import Paris2023 from "./container/CSGO/2023/Paris2023";
+import Paris2023Qual from "./container/CSGO/2023/Paris2023Qual";
+import Paris2023RMR from "./container/CSGO/2023/Paris2023RMR";
+
 import R6ATL23 from "./container/RainbowSix/R6ATL23";
 import R6CPH23 from "./container/RainbowSix/R6CPH23";
 

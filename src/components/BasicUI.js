@@ -119,7 +119,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
   return (
     <div>
       <Dialog
-        open={Boolean(open)}
+        open={open}
         size="md"
         className="max-w-[90%] w-[24rem] min-w-[12rem]"
         handler={handleOpen}
@@ -170,10 +170,9 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
         <DialogFooter>
           <Button
             color="blue-gray"
-            className="normal-case text-black font-normal text-md py-2 my-0"
+            className="normal-case text-white font-normal text-md py-2 my-0"
             onClick={() => {
               handleOpen(null)
-              // document.location.reload();
             }}
           >
             <span>Confirm</span>
@@ -183,6 +182,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       <div className="pb-4 gap-2 flex flex-row content-center place-content-center">
         <div>
           <Select
+            color="blue-gray"
             value={UIType}
             onChange={(value) => {
               setUIType(value);
@@ -206,14 +206,14 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           <Button
             onClick={() => handleOpen(true)}
             color="blue-gray"
-            className="normal-case text-black font-normal text-md py-2 my-0 mx-2"
+            className="normal-case text-white font-normal text-md py-2 my-0 mx-2"
           >
             Customize
           </Button>
           <Button
             onClick={() => window.open("https://discord.gg/KYNbRYrZGe", "_blank")}
             color="indigo"
-            className="normal-case text-black font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
+            className="normal-case text-white font-normal text-md py-2 my-0 mx-2 items-center gap-2 inline-flex"
           >
             <ChatBubbleLeftEllipsisIcon strokeWidth={2} className="h-5 w-5" /> Discord
           </Button>
@@ -223,6 +223,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
         tabs && (
           <div style={{ overflowX: "auto" }}>
             <Tabs
+              color="blue-gray"
               key={stage}
               value={stage}
               id="tab"
@@ -245,14 +246,14 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       {
         message && (
           <div className="my-1">
-            <Alert color="teal" className="text-black whitespace-pre-wrap">{message}</Alert>
+            <Alert color="teal" className="text-white whitespace-pre-wrap">{message}</Alert>
           </div>
         )
       }
       {
         errorMessage ? (
           <div className="my-1">
-            <Alert color="red" className="text-black">{errorMessage}</Alert>
+            <Alert color="red" className="text-white">{errorMessage}</Alert>
           </div>
         ) : (
           <>
@@ -268,7 +269,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
                     onClick={advance}
                     color="blue-gray"
                     variant="outlined"
-                    className="normal-case text-black font-normal text-2xl py-4 px-12 my-0 flex items-center gap-2"
+                    className="normal-case text-white font-normal text-2xl py-4 px-12 my-0 flex items-center gap-2"
                   >
                     Next Stage <ArrowLongRightIcon strokeWidth={2} className="h-5 w-5" />
                   </Button>

@@ -2,9 +2,8 @@ import React from 'react';
 import Title from "../../components/BannerInsertion";
 import {BasicUI} from "../../components/BasicUI";
 
-import {fetchPrefix, pack, setWinner, shuffle} from "../../libs/common/common";
+import {pack, setWinner, shuffle} from "../../libs/common/common";
 import {FormatBinder} from "../../libs/common/formats/formats";
-import {Scores} from "../CSGO/Copenhagen2024Qual/scores";
 
 export class Regionals extends React.Component {
   nextMajorSlot = false;
@@ -25,7 +24,7 @@ export class Regionals extends React.Component {
     regionId: 0,
     isUnavailable: false,
     legends: false,
-    scores: Scores,
+    scores: {},
     tiebreakers: {},
     tiebreakerResults: {},
     pickResults: {},
@@ -121,7 +120,8 @@ export class Regionals extends React.Component {
       onClick:  () => {
         this.props.history.push("#" + region.name);
         // document.location.reload();
-        this.init(region.id)
+        this.setState({ message: null, errorMessage: null })
+        this.init(region.id);
       }
     }));
     return (

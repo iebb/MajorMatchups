@@ -9,6 +9,7 @@ import ComplexNavbar from './components/Navbar';
 import {fetchPrefix} from "./libs/common/common";
 import {SettingsCtx} from './libs/Context';
 import Routes from './router';
+import { ThemeProvider } from "@material-tailwind/react";
 
 const BaseAd = {
   banner: "",
@@ -26,7 +27,7 @@ export const ResponsiveContainer = ({ children }) => {
   const Footer = () => (
     <div className="m-2">
       <p className="text-lg pt-2">
-        by ieb (<a href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 &middot; Give <a href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
+        by ieb (<a className="hyperlink" href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 &middot; Give <a className="hyperlink" href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
       </p>
       {ad.comment ? <p>{ad.comment}</p> : ""}
     </div>
@@ -95,12 +96,85 @@ export const ResponsiveContainer = ({ children }) => {
   );
 }
 
+
+const customTheme = {
+  tabsHeader: {
+    defaultProps: {
+      className: "",
+    },
+    styles: {
+      base: {
+        bg: "bg-nekoko-700",
+      },
+    },
+  },
+  tab: {
+    defaultProps: {
+      className: "",
+      activeClassName: "",
+      disabled: false,
+    },
+    styles: {
+      base: {
+        tab: {
+          initial: {
+            color: "text-nekoko-100",
+          },
+        },
+        indicator: {
+          bg: "bg-nekoko-950",
+        },
+      },
+    },
+  },
+  popover: {
+    styles: {
+      base: {
+        bg: "bg-nekoko-950",
+        border: "border border-nekoko-950",
+      }
+    }
+  },
+  select: {
+    styles: {
+      base: {
+        select: {
+          color: "text-nekoko-200",
+        },
+        option: {
+          initial: {
+            background: "hover:bg-nekoko-950 focus:bg-nekoko-950",
+            opacity: "hover:bg-opacity-80 focus:bg-opacity-80",
+            color: "hover:text-nekoko-100 focus:text-nekoko-100",
+          },
+          active: {
+            bg: "bg-nekoko-950 bg-opacity-80",
+            color: "text-nekoko-100",
+          },
+          disabled: {
+            opacity: "opacity-50",
+            cursor: "cursor-not-allowed",
+            userSelect: "select-none",
+            pointerEvents: "pointer-events-none",
+          },
+        },
+        menu: {
+          border: "border border-nekoko-950",
+          bg: "bg-nekoko-900",
+          color: "text-nekoko-200",
+        }
+      }
+    }
+  }
+}
 const HomepageLayout = () => (
 
   <Router>
+    <ThemeProvider value={customTheme}>
     <ResponsiveContainer>
       <Routes />
     </ResponsiveContainer>
+    </ThemeProvider>
   </Router>
 );
 

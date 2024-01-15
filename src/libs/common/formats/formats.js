@@ -25,6 +25,10 @@ export const isSwissBuchholtzFormat = (f) => {
   return f === Formats.SwissBuchholtz || f === Formats.SwissBuchholtzR1P || f === Formats.SwissBuchholtz2024;
 }
 
+export const isSwissBuchholtzOrEloFormat = (f) => {
+  return f === Formats.SwissBuchholtz || f === Formats.SwissBuchholtzR1P || f === Formats.SwissBuchholtz2024 || f === Formats.Elo2019;
+}
+
 export const FormatBinder = {
   [Formats.SwissBuchholtz]: SwissBuchholtzTB,
   [Formats.SwissBuchholtz2024]: SwissBuchholtzTB_2024,

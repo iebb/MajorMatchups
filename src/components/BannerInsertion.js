@@ -21,7 +21,7 @@ function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, class
             ctx.adType === "custom" ? (
               <div className="adv-logo-inline">
                 <div className="adv-logo-inline-left">
-                  <a href="https://redirect.badasstemple.eu/br7lju">
+                  <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju">
                     <img src={sponsorLogo} alt={ctx.adProvider} />
                   </a>
                 </div>
@@ -32,8 +32,8 @@ function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, class
             ) : (
               <>
                 <h1 className="title">{title}</h1>
-                <p className="text-xl mt-2 text-blue-gray-300">
-                  Sponsored by <a href="https://redirect.badasstemple.eu/br7lju">
+                <p className="text-xl mt-2 text-nekoko-700">
+                  Sponsored by <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju">
                   <img src={sponsorLogo} alt={ctx.adProvider}
                        style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>
                 </a>
@@ -46,18 +46,18 @@ function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, class
           isMajor && (
             <p className="text-yellow-300 text-xl mt-2">
               {/* eslint-disable-next-line */}
-              Place and Track Pick'ems: <a href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
+              Place and Track Pick'ems: <a className="hyperlink" href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
             </p>
           )
         }
-        {
-          isMajor && (
-            <p className="text-yellow-500 text-xl my-2">
-              {/* eslint-disable-next-line */}
-              Wanna know how fucked up everyone's pickems are, and how much chance you have left? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>
-            </p>
-          )
-        }
+        {/*{*/}
+        {/*  isMajor && (*/}
+        {/*    <p className="text-yellow-500 text-xl my-2">*/}
+        {/*      /!* eslint-disable-next-line *!/*/}
+        {/*      Wanna know how fucked up everyone's pickems are, and how much chance you have left? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>*/}
+        {/*    </p>*/}
+        {/*  )*/}
+        {/*}*/}
         {
           subtitle && (
             <p className="text-light-green-500 text-xl my-2">
@@ -77,7 +77,7 @@ function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, class
       <p>
         {
           extras.map((x, _idx) => <>
-            <a href={x.link} key={_idx + "@"}>{x.title}</a>
+            <a className="hyperlink" href={x.link} key={_idx + "@"}>{x.title}</a>
           </>)
         }
       </p>

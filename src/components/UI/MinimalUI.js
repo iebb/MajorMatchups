@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
-import {Formats, isSwissBuchholtzFormat} from '../../libs/common/formats/formats';
+import {Formats, isSwissBuchholtzFormat, isSwissBuchholtzOrEloFormat} from '../../libs/common/formats/formats';
 import { BeakerIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import { Chip, IconButton } from '@material-tailwind/react';
 import { dingbats } from '../../libs/plural';
@@ -16,7 +16,7 @@ const conflictColors = (picked, result) => {
   return "";
   // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
   // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
 const colors = (picked, result) => {
@@ -26,7 +26,7 @@ const colors = (picked, result) => {
   }-${result ? "c10" : "c7"} hover:bg-${picked ? picked < 0 ? "red" : "green" : "blue"}-300`;
   // can be hover:bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
   // can be hover:bg-green-300 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be hover:bg-blue-300 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
+  // can be hover:bg-blue-300 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
 function getCookie(name) {
@@ -82,7 +82,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
     if (bracket.teams.length === 0) return null;
     return (
       <div key={bracket.pool} className={
-        `flex flex-col ${isFinal ? "w-[250px]" : "w-[180px]"} bg-blue-gray-100 text-xs rounded-md shadow-md`
+        `flex flex-col ${isFinal ? "w-[250px]" : "w-[180px]"} bg-nekoko-900 text-xs rounded-md shadow-md`
       }>
         {bracket.teams.map((team, index) => (
 
@@ -90,9 +90,9 @@ export function MinimalUI({ preferences, state, shuffle }) {
             `grid grid-cols-[25px_auto]`
           } key={index}>
             <span className={`${styles.teamRanking} `}>{team.ranking}</span>
-            <div className={`${styles.team} hover:bg-blue-50`}>
+            <div className={`${styles.team} hover:bg-blue-900`}>
               <BuchholtzPopup
-                enabled={isSwissBuchholtzFormat(format)}
+                enabled={isSwissBuchholtzOrEloFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index}
@@ -103,7 +103,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
               </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{abbrev ? team.displayCode.toUpperCase() : team.name}</span>
               <BuchholtzPopup
-                enabled={isSwissBuchholtzFormat(format)}
+                enabled={isSwissBuchholtzOrEloFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index + "_"}
@@ -133,7 +133,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
       <div key={index} className={
-        `flex flex-row w-[180px] my-1 bg-blue-gray-100 items-center justify-between rounded-md shadow-lg`
+        `flex flex-row w-[180px] my-1 bg-nekoko-900 items-center justify-between rounded-md shadow-lg`
       }>
         <div
           className={`flex-[5] relative text-center h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
@@ -143,7 +143,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
         >
           <div className="w-4 h-4 absolute left-0 text-sm">
             <BuchholtzPopup
-              enabled={isSwissBuchholtzFormat(format)}
+              enabled={isSwissBuchholtzOrEloFormat(format)}
               team={match.team1}
               teams={round.allTeams}
             >
@@ -195,7 +195,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           <div className="w-4 h-4 absolute right-0 text-sm">
 
             <BuchholtzPopup
-              enabled={isSwissBuchholtzFormat(format)}
+              enabled={isSwissBuchholtzOrEloFormat(format)}
               team={match.team2}
               teams={round.allTeams}
             >
@@ -288,7 +288,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                             Round {_idx + 1}
                             {
                               Object.keys(pools).map(p => pools[p].matches.some(x => x.result === 0)).some(x => x) && (
-                                <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7">
+                                <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7" color="white">
                                   <BeakerIcon strokeWidth={2} className="h-5 w-5" />
                                 </IconButton>
                               )

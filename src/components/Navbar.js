@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@material-tailwind/react';
 import {
+  FilmIcon,
   Bars2Icon,
   BookOpenIcon,
   ChatBubbleBottomCenterIcon, CheckBadgeIcon,
@@ -63,7 +64,7 @@ const Editions = [
   },
   {
     edition: "2024",
-    icon: RocketLaunchIcon,
+    icon: FilmIcon,
     items: [
       {
         title: '2024 Copenhagen RMR',
@@ -216,7 +217,7 @@ function NavListMenu({ edition }) {
 
   const renderItems = items.map(({title, description, path, subtitle, icon: ItemIcon, img}) => (
     <a href={path} key={title}>
-      <MenuItem>
+      <MenuItem className="hover:bg-nekoko-700 hover:border-nekoko-800 active:bg-nekoko-500 active:border-nekoko-600">
         <div className="h-[32px] w-[32px] inline-block mr-3 content-center">
           {
             ItemIcon ? (
@@ -227,19 +228,19 @@ function NavListMenu({ edition }) {
           }
         </div>
         <div className="inline-block">
-          <Typography variant="h6" color="blue-gray" className="mb-1">
+          <Typography variant="h6" className="mb-1 text-white">
             {title}
           </Typography>
           {
             subtitle && (
-              <Typography variant="small" color="gray" className="font-normal">
+              <Typography variant="small" className="font-normal text-gray-400">
                 {subtitle}
               </Typography>
             )
           }
           {
             description && (
-              <Typography variant="small" color="gray" className="font-normal">
+              <Typography variant="small" className="font-normal text-gray-400">
                 {description}
               </Typography>
             )
@@ -250,13 +251,13 @@ function NavListMenu({ edition }) {
   ));
 
   return (
-    <React.Fragment>
+    <>
       <Menu open={isMenuOpen} handler={setIsMenuOpen}>
         <MenuHandler>
           <Typography as="a" href="#" variant="small" className="font-normal">
             <MenuItem
               {...triggers}
-              className="hidden items-center gap-2 text-blue-gray-900 md:flex md:rounded-full"
+              className="hidden items-center gap-2 text-white md:flex md:rounded-full"
             >
               <EditionIcon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
               <ChevronDownIcon
@@ -270,20 +271,20 @@ function NavListMenu({ edition }) {
         </MenuHandler>
         <MenuList
           {...triggers}
-          className="hidden w-[28rem] grid-cols-4 gap-3 overflow-visible md:grid"
+          className="hidden w-[28rem] grid-cols-4 gap-3 overflow-visible md:grid bg-nekoko-900 border-nekoko-950"
         >
-          <ul className="col-span-4 flex w-full flex-col gap-1 !outline-none">
+          <ul className="col-span-4 flex w-full flex-col gap-1 !outline-none text-white">
             {renderItems}
           </ul>
         </MenuList>
       </Menu>
-      <MenuItem className="flex items-center gap-2 text-blue-gray-900 md:hidden">
+      <MenuItem className="flex items-center gap-2 text-white md:hidden">
         <EditionIcon className="h-[18px] w-[18px]" /> {edition.edition}{" "}
       </MenuItem>
-      <ul className="ml-6 flex w-full flex-col gap-1 md:hidden">
+      <ul className="ml-6 flex w-full flex-col gap-1 md:hidden bg-nekoko-900">
         {renderItems}
       </ul>
-    </React.Fragment>
+    </>
   );
 }
 
@@ -313,12 +314,16 @@ export default function ComplexNavbar() {
   }, []);
 
   return (
-    <Navbar className="md:sticky inset-0 z-40 h-max max-w-full rounded-none p-2 md:pl-6">
-      <div className="relative mx-auto flex items-center text-blue-gray-900">
+    <Navbar
+      variant="gradient"
+      color="blue-gray"
+      className="md:sticky from-nekoko-900 to-nekoko-800 inset-0 z-40 h-max max-w-full rounded-none p-2 md:pl-6"
+    >
+      <div className="relative mx-auto flex items-center text-white">
         <Typography
           as="a"
           href="#"
-          className="mr-4 ml-2 cursor-pointer py-1.5 font-medium"
+          className="mr-4 ml-2 cursor-pointer py-1.5 font-medium text-white"
         >
           Majors.im
         </Typography>

@@ -1,14 +1,18 @@
+import {EloPopup} from "./EloPopup";
 import HoverPopover from './Popover';
 import { plus_minus } from '../libs/plus_minus';
 import React from 'react';
 
 export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) => {
+  if (team.eloBreakdown) {
+    return <EloPopup team={team} teams={teams} enabled={enabled} children={children}/>;
+  }
   if (!enabled || !team.buchholtzBreakdown) { //  || team.buchholtzBreakdown.length === 0
     return children;
   }
   return (
     <HoverPopover
-      inverted
+      className="bg-black"
       popup={
         <table className="text-left">
           <thead>
@@ -18,14 +22,14 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
             <td colSpan={3} className="py-2"><b>Initial Seeding</b></td>
             <td className="text-center py-2">{team.seed}</td>
           </tr>
-          <tr className="border-t-2 border-t-blue-gray-400">
+          <tr className="border-t-2 border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Current Standing</b></td>
             <td className="text-center py-2">#{team.standing}</td>
           </tr>
-          <tr className="border-b-2 border-b-blue-gray-400">
+          <tr className="border-b-2 border-b-nekoko-600">
             <td className="w-[24px]">
               <div className="h-[24px] inline-block mr-3 content-center">
-                <img className="max-w-[36px]"
+                <img className="max-w-[36px] max-h-[32px]"
                      src={team.logo}
                      alt={team.code}
                      title={team.code}
@@ -49,7 +53,7 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
               <tr key={_idx}>
                 <td className="w-[24px]">
                   <div className="h-[24px] inline-block mr-3 content-center">
-                    <img className="max-w-[36px]"
+                    <img className="max-w-[36px] max-h-[32px]"
                          src={teams[opp.code].logo}
                          alt={opp.code}
                          title={opp.code}
@@ -65,7 +69,7 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
               </tr>
             )
           }
-          <tr className="border-t-2 border-t-blue-gray-400">
+          <tr className="border-t-2 border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Total Buchholtz</b></td>
             <td className="text-center py-2">{team.buchholtz}</td>
           </tr>

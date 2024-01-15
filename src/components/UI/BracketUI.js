@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './bracket.module.css';
 import { plus_minus } from '../../libs/plus_minus';
 import { BuchholtzPopup } from '../BuchholtzPopup';
-import {Formats, isSwissBuchholtzFormat} from '../../libs/common/formats/formats';
+import {Formats, isSwissBuchholtzFormat, isSwissBuchholtzOrEloFormat} from '../../libs/common/formats/formats';
 import { BeakerIcon, CheckCircleIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
 import { dingbats } from '../../libs/plural';
 
@@ -17,7 +17,7 @@ const colors = (result, deterministic) => {
   return `bg-${deterministic ? deterministic < 0 ? "red" : "green" : "blue"}-${deterministic ? "c10" : "c7"}`;
   // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
   // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-blue-50 bg-blue-30 bg-blue-c10 bg-blue-c7
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
 };
 
 function getCookie(name) {
@@ -77,9 +77,9 @@ export function BracketUI({ preferences, state, shuffle }) {
 
           <div className={styles.teamNomatch} key={index}>
             <span className={`${styles.teamRanking} `}>{team.ranking}</span>
-            <div className={`${styles.team} hover:bg-blue-50`}>
+            <div className={`${styles.team} hover:bg-blue-900`}>
               <BuchholtzPopup
-                enabled={isSwissBuchholtzFormat(format)}
+                enabled={isSwissBuchholtzOrEloFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index}
@@ -90,7 +90,7 @@ export function BracketUI({ preferences, state, shuffle }) {
               </BuchholtzPopup>
               <span className={`${styles.teamName} `}>{team.name}</span>
               <BuchholtzPopup
-                enabled={isSwissBuchholtzFormat(format)}
+                enabled={isSwissBuchholtzOrEloFormat(format)}
                 team={team}
                 teams={bracket.allTeams}
                 key={index + "_"}
@@ -130,14 +130,14 @@ export function BracketUI({ preferences, state, shuffle }) {
             )
         }<p>{match.id}</p></div>
         <div
-          className={`${styles.team} hover:bg-blue-50 ${colors(match.picked, match.result)}`}
+          className={`${styles.team} hover:bg-blue-900 ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
         >
           <div className={styles.teamLogo}>
             <BuchholtzPopup
-              enabled={isSwissBuchholtzFormat(format)}
+              enabled={isSwissBuchholtzOrEloFormat(format)}
               team={match.team1}
               teams={round.allTeams}
             >
@@ -161,14 +161,14 @@ export function BracketUI({ preferences, state, shuffle }) {
           </div>
         </div>
         <div
-          className={`${styles.team} hover:bg-blue-50 ${colors(-match.picked, -match.result)}`}
+          className={`${styles.team} hover:bg-blue-900 ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
         >
           <div className={styles.teamLogo}>
             <BuchholtzPopup
-              enabled={isSwissBuchholtzFormat(format)}
+              enabled={isSwissBuchholtzOrEloFormat(format)}
               team={match.team2}
               teams={round.allTeams}
             >
@@ -273,7 +273,7 @@ export function BracketUI({ preferences, state, shuffle }) {
                             Round {_idx + 1}
                             {
                               Object.keys(pools).map(p => pools[p].matches.some(x => x.result === 0)).some(x => x) && (
-                                <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7">
+                                <IconButton variant="outlined" className="inline-flex items-center gap-3 mx-3 h-7" color="white">
                                   <BeakerIcon strokeWidth={2} className="h-5 w-5" />
                                 </IconButton>
                               )

@@ -112,15 +112,11 @@ body {
   max-height: 120px;
 }
 
-a {
+.hyperlink {
   color: #8d91bf;
 }
 
-.text-black a{
-  color: #282936;
-}
-
-a:hover {
+.hyperlink:hover {
   color: #bec1da;
 }
 

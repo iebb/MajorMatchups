@@ -60,6 +60,7 @@
 .teamLogo {
   width: 24px;
   height: 24px;
+  padding: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,6 +69,7 @@
 .teamLogo img {
   max-width: 28px;
   max-height: 24px;
+  padding: 2px;
 }
 
 .bracket {
