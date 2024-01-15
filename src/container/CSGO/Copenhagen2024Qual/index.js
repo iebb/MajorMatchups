@@ -155,11 +155,11 @@ export default class Copenhagen2024Qual extends Regionals {
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator";
-  subtitle = <p>
+  subtitle = <span>
     EU-Decider Teams are based on your choices in EUA & EUB.
     <br />
     Pick your winners in NA/SA here, and <a href="/24rmr_copenhagen">American RMR Simulator</a> is there for you!
-  </p>;
+  </span>;
 
   fetch_scores = (callback) => {
     fetch(fetchPrefix + '/cs_scores')

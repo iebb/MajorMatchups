@@ -74,10 +74,8 @@ export class Regionals extends React.Component {
 
     if (!seeds) return;
 
-    const teams = pack(seeds, teamLogo);
-
     this.setState({
-      ...teams,
+      ...pack(seeds, teamLogo),
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
@@ -85,7 +83,7 @@ export class Regionals extends React.Component {
     if (this.fetch_scores) {
       this.fetch_scores((resp) => {
         this.setState({
-          ...teams,
+          ...pack(seeds, teamLogo),
           regionId: region,
           scores: resp,
           ...Regions[region],
