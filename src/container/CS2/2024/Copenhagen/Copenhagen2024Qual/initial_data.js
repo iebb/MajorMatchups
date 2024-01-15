@@ -3,7 +3,7 @@
 export const EUA = require("./data/provisional_eua.json");
 export const EUB = require("./data/provisional_eub.json");
 export const NAM = require("./data/nam.json");
-export const SAM = require("./data/provisional_sam.json");
+export const SAM = require("./data/sam.json");
 
 export const EUTB = [
   {
