@@ -11,13 +11,13 @@ import { dingbats } from '../../libs/plural';
 const colors = (result, deterministic) => {
   if (result < 0) return " text-gray-400";
   if (!deterministic) {
-    return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-c7`;
+    return `bg-${result ? result < 0 ? "red" : "green" : "blue"}-undetermined`;
   }
 
-  return `bg-${deterministic ? deterministic < 0 ? "red" : "green" : "blue"}-${deterministic ? "c10" : "c7"}`;
-  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
-  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
+  return `bg-${deterministic ? deterministic < 0 ? "red" : "green" : "blue"}-${deterministic ? "determined" : "undetermined"}`;
+  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-determined bg-red-undetermined
+  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-determined bg-green-undetermined
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-determined bg-blue-undetermined
 };
 
 function getCookie(name) {

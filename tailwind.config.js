@@ -36,16 +36,16 @@ module.exports = withMT({
           '950': '#2f354b',
         },
         green: {
-          c10:  "#2A6F2A",
-          c7:  "#378a37",
+          determined:  "#215721",
+          undetermined:  "#378a37",
         },
         blue: {
-          c10:  "#0F4275",
-          c7:  "#1359A0",
+          determined:  "#0b2e5c",
+          undetermined:  "#1359A0",
         },
         red: {
-          c10:  "#871212",
-          c7:  "#AE1E1E",
+          determined:  "#6e0e0e",
+          undetermined:  "#AE1E1E",
         },
       }
     },

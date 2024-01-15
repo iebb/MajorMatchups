@@ -11,22 +11,22 @@ import { dingbats } from '../../libs/plural';
 const conflictColors = (picked, result) => {
   if (picked < 0) return "";
   if (result && picked !== result) {
-    return `bg-red-${result ? "c7" : "c10"}`;
+    return `bg-red-${result ? "undetermined" : "determined"}`;
   }
   return "";
-  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
-  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
+  // can be bg-red-400 bg-red-200 bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-determined bg-red-undetermined
+  // can be bg-green-400 bg-green-200 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-determined bg-green-undetermined
+  // can be bg-blue-400 bg-blue-200 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-determined bg-blue-undetermined
 };
 
 const colors = (picked, result) => {
   if (picked < 0) return "";
   return `bg-${
     picked ? picked < 0 ? "red" : "green" : "blue"
-  }-${result ? "c10" : "c7"} hover:bg-${picked ? picked < 0 ? "red" : "green" : "blue"}-300`;
-  // can be hover:bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-c10 bg-red-c7
-  // can be hover:bg-green-300 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-c10 bg-green-c7
-  // can be hover:bg-blue-300 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-c10 bg-blue-c7
+  }-${result ? "determined" : "undetermined"} hover:bg-${picked ? picked < 0 ? "red" : "green" : "blue"}-300`;
+  // can be hover:bg-red-300 bg-red-100 bg-red-50 bg-red-30 bg-red-determined bg-red-undetermined
+  // can be hover:bg-green-300 bg-green-300 bg-green-100 bg-green-50 bg-green-30 bg-green-determined bg-green-undetermined
+  // can be hover:bg-blue-300 bg-blue-300 bg-blue-100 bg-nekoko-950 bg-blue-30 bg-blue-determined bg-blue-undetermined
 };
 
 function getCookie(name) {
