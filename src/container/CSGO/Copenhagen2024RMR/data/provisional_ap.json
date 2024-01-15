@@ -1,0 +1,50 @@
+[
+  {
+    "code": "seed/01_p",
+    "name": "Seed #01P",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "seed/02_p",
+    "name": "Seed #02P",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "seed/03_p",
+    "name": "Seed #03P",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "seed/04_p",
+    "name": "Seed #04P",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "seed/05_p",
+    "name": "Seed #05P",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "seed/06_p",
+    "name": "Seed #06P",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "seed/07_p",
+    "name": "Seed #07P",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "seed/08_p",
+    "name": "Seed #08P",
+    "seed": 8,
+    "description": "Seed #8"
+  }
+]

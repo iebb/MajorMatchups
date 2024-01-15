@@ -26,7 +26,7 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    resultTag: "",
+    resultTag: "cph24.cq.nam",
   },
   {
     id: 1,
@@ -45,7 +45,7 @@ const Regions = [
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
-    resultTag: "",
+    resultTag: "cph24.cq.sam",
   },
   {
     id: 2,
@@ -155,5 +155,15 @@ export default class Copenhagen2024Qual extends Regionals {
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator";
-  subtitle = "EU-Decider Teams are based on your choices in EUA & EUB.";
+  subtitle = <p>
+    EU-Decider Teams are based on your choices in EUA & EUB.
+    <br />
+    Pick your winners in NA/SA here, and <a href="/24rmr_copenhagen">American RMR Simulator</a> is there for you!
+  </p>;
+
+  fetch_scores = (callback) => {
+    fetch(fetchPrefix + '/cs_scores')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
 }

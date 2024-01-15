@@ -1,4 +1,3 @@
-import {Alert} from "@material-tailwind/react";
 import React from 'react';
 import Title from "../../components/BannerInsertion";
 import {BasicUI} from "../../components/BasicUI";
@@ -8,7 +7,7 @@ import {FormatBinder} from "../../libs/common/formats/formats";
 import {Scores} from "../CSGO/Copenhagen2024Qual/scores";
 
 export class Regionals extends React.Component {
-  nextMajorSlot = true;
+  nextMajorSlot = false;
 
   state = {
     teams: [[], false, false, false, false, false],
@@ -32,6 +31,7 @@ export class Regionals extends React.Component {
     pickResults: {},
     lockResults: {},
     errorMessage: null,
+    message: null,
     seats: {
       legends: 0,
       challengers: 0,
@@ -51,6 +51,7 @@ export class Regionals extends React.Component {
     if (Regions[region]) {
       if (Regions[region].getSeeds !== undefined) {
         const {success, seeds, message} = Regions[region].getSeeds();
+        this.setState({ message });
         if (success) {
           this.setState({ errorMessage: null })
           return seeds;
@@ -75,24 +76,22 @@ export class Regionals extends React.Component {
 
     const teams = pack(seeds, teamLogo);
 
-
     this.setState({
       ...teams,
       regionId: region,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
-    return fetch(fetchPrefix + '/cs_scores')
-      .then((resp) => resp.json())
-      .then((resp) => {
+    if (this.fetch_scores) {
+      this.fetch_scores((resp) => {
         this.setState({
-          ...pack(this.getSeed(region), teamLogo),
-
-          scores: resp,
+          ...teams,
           regionId: region,
+          scores: resp,
           ...Regions[region],
         }, () => this.calculateMatchups(0, this.state.rounds + 1));
       });
+    }
   };
 
 
@@ -115,7 +114,6 @@ export class Regionals extends React.Component {
     this.init(0);
   }
   render() {
-    const { errorMessage } = this.state;
     const { Regions } = this;
     const tabs = Regions.map(region => ({
       value: region.id,
@@ -137,7 +135,6 @@ export class Regionals extends React.Component {
         />
         <BasicUI
           tabs={tabs}
-          errorMessage={errorMessage}
           state={this.state}
           stage={this.getStage()}
           shuffle={this.shuffle}

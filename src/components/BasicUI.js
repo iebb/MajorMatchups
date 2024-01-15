@@ -75,11 +75,13 @@ const UIEnums = {
   },
 }
 
-export function BasicUI({ tabs, state, stage, shuffle, advance, errorMessage=null }) {
+export function BasicUI({ tabs, state, stage, shuffle, advance }) {
   const uiType = localStorage.ui || 'bracket';
   const [UIType, setUIType] = useState(UIEnums.hasOwnProperty(uiType) ? uiType : 'minimal');
   const [open, handleOpen] = useState(false);
   const [values, setValues] = useState({});
+
+  const {errorMessage, message} = state;
 
 
 
@@ -241,8 +243,15 @@ export function BasicUI({ tabs, state, stage, shuffle, advance, errorMessage=nul
         )
       }
       {
+        message && (
+          <div className="my-1">
+            <Alert color="teal" className="text-black whitespace-pre-wrap">{message}</Alert>
+          </div>
+        )
+      }
+      {
         errorMessage ? (
-          <div className="my-10">
+          <div className="my-1">
             <Alert color="red" className="text-black">{errorMessage}</Alert>
           </div>
         ) : (

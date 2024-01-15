@@ -4,6 +4,7 @@ import Antwerp2022 from "./container/CSGO/Antwerp2022";
 import Antwerp2022RMR from "./container/CSGO/Antwerp2022RMR";
 import Berlin2019 from './container/CSGO/Berlin2019';
 import Copenhagen2024Qual from "./container/CSGO/Copenhagen2024Qual";
+import Copenhagen2024RMR from "./container/CSGO/Copenhagen2024RMR";
 import Katowice2019 from './container/CSGO/Katowice2019';
 import Paris2023 from "./container/CSGO/Paris2023";
 import Paris2023Qual from "./container/CSGO/Paris2023Qual";
@@ -50,6 +51,10 @@ export default function Routes() {
       </Route>
       <Route path="/24qual_copenhagen">
         <Copenhagen2024Qual history={h} />
+      </Route>
+
+      <Route path="/24rmr_copenhagen">
+        <Copenhagen2024RMR history={h} />
       </Route>
 
       <Route path="/r6_23majorcph">

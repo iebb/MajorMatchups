@@ -1,0 +1,98 @@
+[
+  {
+    "code": "provisional/furi",
+    "name": "FURIA Esports",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "provisional/wild",
+    "name": "Wildcard Gaming",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "seed/03_m",
+    "name": "Seed #03M",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "provisional/comp",
+    "name": "Complexity Gaming",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "seed/05_m",
+    "name": "Seed #05M",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "provisional/m80",
+    "name": "M80",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "seed/07_m",
+    "name": "Seed #07M",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "provisional/team",
+    "name": "Team Liquid",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "seed/09_m",
+    "name": "Seed #09M",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "provisional/boss",
+    "name": "BOSS",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "seed/11_m",
+    "name": "Seed #11M",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "seed/12_m",
+    "name": "Seed #12M",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "seed/13_m",
+    "name": "Seed #13M",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "seed/14_m",
+    "name": "Seed #14M",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "seed/15_m",
+    "name": "Seed #15M",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "seed/16_m",
+    "name": "Seed #16M",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

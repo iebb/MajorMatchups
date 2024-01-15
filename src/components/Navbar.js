@@ -66,10 +66,17 @@ const Editions = [
     icon: RocketLaunchIcon,
     items: [
       {
+        title: '2024 Copenhagen RMR',
+        subtitle: 'Europe and Americas',
+        img: require("../images/logos/pglrmr24.png"),
+        description: '2024.02.14 - 2024.03.04',
+        path: '/24rmr_copenhagen',
+      },
+      {
         title: '2024 Copenhagen RMR Closed Qualifier',
         subtitle: 'Europe and Americas',
         img: require("../images/logos/pglrmr24.png"),
-        description: '2024.01.12 - ',
+        description: '2024.01.12 - 2024.01.22',
         path: '/24qual_copenhagen',
       },
     ]
