@@ -3,9 +3,9 @@ import {Helmet} from "react-helmet";
 import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "../libs/Context";
 
-function Title({ title, subtitle ="", isMajor = false, _sponsorLess=false, classNames = "", extras=[] }) {
+function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
-  const sponsorLess = true;
+  // const sponsorLess = true;
 
   return (
     <div className={classNames + " title-outer-container"}>
