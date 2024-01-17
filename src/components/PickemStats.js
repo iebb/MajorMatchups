@@ -7,7 +7,7 @@ export const PickStats = ({ state }) => {
     return null;
   }
   const rt = copy(state.roundTeams[state.rounds]);
-  const s = this.getStage();
+  const s = this.getTab();
   if (s >= 2) return null;
   const groupId = 206 + s;
 

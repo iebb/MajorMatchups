@@ -130,7 +130,7 @@ export default class Rio2022RMR extends React.PureComponent {
 
   event = "22rmrrio";
 
-  getStage = () => {
+  getTab = () => {
     return this.state.regionId;
   };
 
@@ -182,7 +182,7 @@ export default class Rio2022RMR extends React.PureComponent {
           <BasicUI
             tabs={tabs}
             state={this.state}
-            stage={this.getStage()}
+            stage={this.getTab()}
             shuffle={this.shuffle}
           />
       </div>

@@ -160,7 +160,7 @@ export function setWinner(match, picked)  {
     return;
   }
 
-  setPickResults('pickResults', this.getStage ? this.getStage() : 0, this.event, pickResults);
+  setPickResults('pickResults', this.getTab ? this.getTab() : 0, this.event, pickResults);
   this.setState({ pickResults }, () => {
     this.calculateMatchups(currentRound, this.state.rounds + 1)
   })

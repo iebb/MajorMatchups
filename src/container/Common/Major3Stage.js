@@ -36,7 +36,7 @@ export class Major3Stage extends React.Component {
     deciderToWin: 2,
   };
 
-  getStage = () => {
+  getTab = () => {
     return this.state.tournament;
   };
 
@@ -215,7 +215,7 @@ export class Major3Stage extends React.Component {
         <BasicUI
           tabs={tabs}
           state={this.state}
-          stage={this.getStage()}
+          stage={this.getTab()}
           shuffle={this.shuffle}
           advance={
             {

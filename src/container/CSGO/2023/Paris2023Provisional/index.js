@@ -84,7 +84,7 @@ export default class Paris2023Provisional extends React.PureComponent {
     legendResult: LegendResults,
   };
 
-  getStage = () => {
+  getTab = () => {
     return this.state.tournament;
   };
 
@@ -241,7 +241,7 @@ export default class Paris2023Provisional extends React.PureComponent {
           <BasicUI
             tabs={tabs}
             state={this.state}
-            stage={this.getStage()}
+            stage={this.getTab()}
             shuffle={this.shuffle}
             advance={
               this.state.tournament === 0 ? this.advance : this.state.tournament === 1 ? this.advance2 : null

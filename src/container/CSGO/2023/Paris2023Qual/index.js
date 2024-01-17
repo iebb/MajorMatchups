@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 
 import React from 'react';
+import {Regionals} from "../../../Common/Regional";
 import { EUA, EUB, EUTB, NAM, SAM } from './initial_data';
 import { Scores } from './scores';
 import { SwissBuchholtzTB } from '../../../../libs/common/formats/SwissBuchholtzTB';
@@ -105,107 +106,18 @@ const Regions = [
 
 const teamLogo = (code) => `https://img.majors.im/rmr/paris2023_qual/${code}.png`;
 
-export default class Paris2023Qual extends React.PureComponent {
-  state = {
-    teams: [[], false, false, false, false, false],
-    roundTeams: [
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-      [],
-    ],
-    matches: [false, false, false, false, false, false],
-    regionId: 0,
+export default class Paris2023Qual extends Regionals {
+  defaultTab = 0;
+  Regions = Regions;
+  event = "par23qual";
 
-    legends: false,
-    scores: Scores,
-    tiebreakers: {},
-    tiebreakerResults: {},
-    pickResults: {},
-    lockResults: {},
-    seats: {
-      legends: 0,
-      challengers: 0,
-      contenders: 0,
-    },
-    rounds: 0,
-    event: "23qualparis",
-  };
+  teamLogo = teamLogo;
+  title= "BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
+  Scores = Scores;
 
-  event = "23qualparis";
-
-  getStage = () => {
-    return this.state.regionId;
-  };
-
-  init = (region) => {
-    this.setState({
-      ...pack(Regions[region].seeds, teamLogo),
-
-      regionId: region,
-      ...Regions[region],
-    }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //
-    // return fetch('https://y5au3m.deta.dev/fetch_results/par23qual')
-    //   .then((resp) => resp.json())
-    //   .then((resp) => {
-    //     this.setState({
-    //       ...pack(Regions[region].seeds, teamLogo),
-    //
-    //       scores: resp,
-    //       regionId: region,
-    //       ...Regions[region],
-    //     }, () => this.calculateMatchups(0, this.state.rounds + 1));
-    //   });
-  };
-
-
-
-  calculateMatchups = (s, e) => {
-    this.setState(SwissBuchholtzTB.bind(this)(s, e));
-  };
-
-  componentDidMount() {
-    this.setWinner = setWinner.bind(this);
-    this.shuffle = shuffle.bind(this);
-    const hash = this.props.history?.location?.hash?.slice(1);
-    for(const h of Regions) {
-      if (h.name === hash) {
-        this.init(h.id);
-        return;
-      }
-    }
-    this.init(0);
-  }
-  render() {
-    const tabs = Regions.map(region => ({
-      value: region.id,
-      label: region.name,
-      active: this.state.regionId === region.id,
-      icon: region.icon,
-      onClick:  () => {
-        this.props.history.push("#" + region.name);
-        // document.location.reload();
-        this.init(region.id)
-      }
-    }));
-    return (
-
-        <div className="page-container">
-          <Title
-            title="BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
-          />
-          <BasicUI
-            tabs={tabs}
-            state={this.state}
-            stage={this.getStage()}
-            shuffle={this.shuffle}
-          />
-      </div>
-    );
-  }
+  // fetch_scores = (callback) => {
+  //   fetch(fetchPrefix + '/cs_scores')
+  //     .then((resp) => resp.json())
+  //     .then(callback);
+  // };
 }

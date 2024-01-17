@@ -127,7 +127,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
 
   event = "22rmrantwerp";
 
-  getStage = () => {
+  getTab = () => {
     return this.state.regionId;
   };
 
@@ -182,7 +182,7 @@ export default class Antwerp2022RMR extends React.PureComponent {
           <BasicUI
             tabs={tabs}
             state={this.state}
-            stage={this.getStage()}
+            stage={this.getTab()}
             shuffle={this.shuffle}
           />
       </div>

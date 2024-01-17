@@ -9,7 +9,6 @@ import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
 
 const Regions = [
   {
-    id: 0,
     name: "North-Am",
     icon: GlobeAmericasIcon,
     seeds: NAM,
@@ -26,7 +25,6 @@ const Regions = [
     resultTag: "cph24.cq.nam",
   },
   {
-    id: 1,
     name: "South-Am",
     icon: GlobeAmericasIcon,
     seeds: SAM,
@@ -45,7 +43,6 @@ const Regions = [
     resultTag: "cph24.cq.sam",
   },
   {
-    id: 2,
     name: "Europe-A",
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
@@ -65,7 +62,6 @@ const Regions = [
     resultTag: "cph24.cq.eua",
   },
   {
-    id: 3,
     name: "Europe-B",
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
@@ -85,7 +81,6 @@ const Regions = [
     resultTag: "cph24.cq.eub",
   },
   {
-    id: 4,
     name: "EU-Decider",
     icon: GlobeEuropeAfricaIcon,
 
@@ -168,18 +163,19 @@ const Regions = [
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "",
   },
-];
+].map((r, id) => ({...r, id}));
 
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_qual/${code}.png`;
 
 export default class Copenhagen2024Qual extends Regionals {
+  defaultTab = 2;
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PGL Major Copenhagen 2024 RMR Closed Qualifier Simulator";
   subtitle = <span>
+    Switch to Bracket UI / Visualization UI to get a preview of EUA and EUB matches based on the rulebook.
+    <br/>
     EU-Decider Teams are based on your choices in EUA & EUB.
-    {/*<br />*/}
-    {/*Pick your winners in NA/SA here, and <a className="hyperlink" href="/24rmr_copenhagen">American RMR Simulator</a> is there for you!*/}
   </span>;
 
   fetch_scores = (callback) => {

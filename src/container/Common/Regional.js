@@ -7,6 +7,7 @@ import {FormatBinder} from "../../libs/common/formats/formats";
 
 export class Regionals extends React.Component {
   nextMajorSlot = false;
+  defaultTab = 0;
 
   state = {
     teams: [[], false, false, false, false, false],
@@ -22,7 +23,6 @@ export class Regionals extends React.Component {
     ],
     matches: [false, false, false, false, false, false],
     regionId: 0,
-    isUnavailable: false,
     legends: false,
     scores: {},
     tiebreakers: {},
@@ -41,7 +41,7 @@ export class Regionals extends React.Component {
   };
 
 
-  getStage = () => {
+  getTab = () => {
     return this.state.regionId;
   };
 
@@ -76,6 +76,7 @@ export class Regionals extends React.Component {
     this.setState({
       ...pack(seeds, teamLogo),
       regionId: region,
+      scores: this.Scores,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
@@ -108,7 +109,7 @@ export class Regionals extends React.Component {
         return;
       }
     }
-    this.init(0);
+    this.init(this.defaultTab);
   }
   render() {
     const { Regions } = this;
@@ -134,7 +135,7 @@ export class Regionals extends React.Component {
         <BasicUI
           tabs={tabs}
           state={this.state}
-          stage={this.getStage()}
+          stage={this.getTab()}
           shuffle={this.shuffle}
         />
       </div>

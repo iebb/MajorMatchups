@@ -82,7 +82,7 @@ export default class R6CPH23 extends React.PureComponent {
 
   event = "23r6cph";
 
-  getStage = () => {
+  getTab = () => {
     return this.state.tournament;
   };
 
@@ -183,7 +183,7 @@ export default class R6CPH23 extends React.PureComponent {
           <BasicUI
             tabs={tabs}
             state={this.state}
-            stage={this.getStage()}
+            stage={this.getTab()}
             shuffle={this.shuffle}
             advance={
               this.state.tournament === 0 ? this.advance2 : null
