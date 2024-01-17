@@ -1,97 +1,97 @@
 [
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "vp",
+    "name": "Virtus.pro",
     "seed": 1,
     "description": "Seed #1"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "navi",
+    "name": "Natus Vincere",
     "seed": 2,
     "description": "Seed #2"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "c9",
+    "name": "Cloud9",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "big",
+    "name": "BIG",
     "seed": 4,
     "description": "Seed #4"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "betb",
+    "name": "BetBoom Team",
     "seed": 5,
     "description": "Seed #5"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "3dma",
+    "name": "3DMAX",
     "seed": 6,
     "description": "Seed #6"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "9pan",
+    "name": "9Pandas",
     "seed": 7,
     "description": "Seed #7"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "saw",
+    "name": "SAW",
     "seed": 8,
     "description": "Seed #8"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "sinn",
+    "name": "SINNERS Esports",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "ecst",
+    "name": "ECSTATIC",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "og",
+    "name": "OG",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "perm",
+    "name": "Permitta Esports",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "z10",
+    "name": "Zero Tenacity",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "jano",
+    "name": "JANO Esports",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "nexu",
+    "name": "Nexus Gaming",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "tbd",
-    "name": "TBD",
+    "code": "fnat",
+    "name": "Fnatic",
     "seed": 16,
     "description": "Seed #16"
   }

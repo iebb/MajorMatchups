@@ -1,97 +1,97 @@
 [
   {
-    "code": "provisional/furi",
-    "name": "FURIA Esports",
+    "code": "seed/01_b",
+    "name": "Seed #01B",
     "seed": 1,
     "description": "Seed #1"
   },
   {
-    "code": "provisional/wild",
-    "name": "Wildcard Gaming",
+    "code": "seed/02_b",
+    "name": "Seed #02B",
     "seed": 2,
     "description": "Seed #2"
   },
   {
-    "code": "seed/03_m",
-    "name": "Seed #03 (SA#1)",
+    "code": "seed/03_b",
+    "name": "Seed #03B",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "provisional/comp",
-    "name": "Complexity Gaming",
+    "code": "seed/04_b",
+    "name": "Seed #04B",
     "seed": 4,
     "description": "Seed #4"
   },
   {
-    "code": "seed/05_m",
-    "name": "Seed #05 (SA#2)",
+    "code": "seed/05_b",
+    "name": "Seed #05B",
     "seed": 5,
     "description": "Seed #5"
   },
   {
-    "code": "provisional/m80",
-    "name": "M80",
+    "code": "seed/06_b",
+    "name": "Seed #06B",
     "seed": 6,
     "description": "Seed #6"
   },
   {
-    "code": "seed/07_m",
-    "name": "Seed #07 (SA#3)",
+    "code": "seed/07_b",
+    "name": "Seed #07B",
     "seed": 7,
     "description": "Seed #7"
   },
   {
-    "code": "provisional/team",
-    "name": "Team Liquid",
+    "code": "seed/08_b",
+    "name": "Seed #08B",
     "seed": 8,
     "description": "Seed #8"
   },
   {
-    "code": "seed/09_m",
-    "name": "Seed #09 (SA#4)",
+    "code": "seed/09_b",
+    "name": "Seed #09B",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "provisional/boss",
-    "name": "BOSS",
+    "code": "seed/10_b",
+    "name": "Seed #10B",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "seed/11_m",
-    "name": "Seed #11 (SA#5)",
+    "code": "seed/11_b",
+    "name": "Seed #11B",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "provisional/rock",
-    "name": "Rocket",
+    "code": "seed/12_b",
+    "name": "Seed #12B",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "seed/13_m",
-    "name": "Seed #13 (SA#6)",
+    "code": "seed/13_b",
+    "name": "Seed #13B",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "provisional/noun",
-    "name": "Nouns Esports",
+    "code": "seed/14_b",
+    "name": "Seed #14B",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "seed/15_m",
-    "name": "Seed #15 (SA#7)",
+    "code": "seed/15_b",
+    "name": "Seed #15B",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "provisional/bada",
-    "name": "Badass Gaming",
+    "code": "seed/16_b",
+    "name": "Seed #16B",
     "seed": 16,
     "description": "Seed #16"
   }

@@ -58,13 +58,10 @@ export default function Routes() {
       <Route path="/24qual_copenhagen">
         <Copenhagen2024Qual history={h} />
       </Route>
-      <Route path="/24rmr_copenhagen">
-        <Copenhagen2024Qual history={h} />
-      </Route>
 
-      {/*<Route path="/24rmr_copenhagen">*/}
-      {/*  <Copenhagen2024RMR history={h} />*/}
-      {/*</Route>*/}
+      <Route path="/24rmr_copenhagen">
+        <Copenhagen2024RMR history={h} />
+      </Route>
 
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />
