@@ -72,26 +72,26 @@
     "description": "Seed #12"
   },
   {
-    "code": "provisional/z10",
-    "name": "Zero Tenacity",
+    "code": "provisional/ex-t",
+    "name": "ex-ThunderFlash",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "provisional/jano",
-    "name": "JANO Esports",
+    "code": "provisional/entr",
+    "name": "Entropiq",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "provisional/nexu",
-    "name": "Nexus Gaming",
+    "code": "provisional/ikla",
+    "name": "IKLA",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "provisional/fnat",
-    "name": "Fnatic",
+    "code": "provisional/hero",
+    "name": "Heroic",
     "seed": 16,
     "description": "Seed #16"
   }
