@@ -48,51 +48,50 @@
     "description": "Seed #8"
   },
   {
-    "code": "seed/09_a",
-    "displayCode": "SINNERS",
-    "name": "S18 - SINNERS Esports",
+    "code": "provisional/sinn",
+    "name": "SINNERS Esports",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "seed/10_a",
-    "name": "S20 - ECSTATIC",
+    "code": "provisional/ecst",
+    "name": "ECSTATIC",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "seed/11_a",
-    "name": "S22 - OG",
+    "code": "provisional/og",
+    "name": "OG",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "seed/12_a",
-    "name": "S24 - ex-ThunderFlash",
+    "code": "provisional/ex-t",
+    "name": "ex-ThunderFlash",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "seed/13_a",
-    "name": "S26 - Entropiq",
+    "code": "provisional/entr",
+    "name": "Entropiq",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "seed/14_a",
-    "name": "S28 - IKLA",
+    "code": "provisional/ikla",
+    "name": "IKLA",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "seed/15_a",
-    "name": "S30 - Heroic",
+    "code": "provisional/hero",
+    "name": "Heroic",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "seed/16_a",
-    "name": "S32 - Permitta Esports",
+    "code": "provisional/perm",
+    "name": "Permitta Esports",
     "seed": 16,
     "description": "Seed #16"
   }

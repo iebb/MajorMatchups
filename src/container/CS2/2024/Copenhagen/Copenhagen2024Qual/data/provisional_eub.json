@@ -48,50 +48,50 @@
     "description": "Seed #8"
   },
   {
-    "code": "seed/09_b",
-    "name": "S17 - EYEBALLERS",
+    "code": "provisional/eye",
+    "name": "EYEBALLERS",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "seed/10_b",
-    "name": "S19 - KOI",
+    "code": "provisional/koi",
+    "name": "KOI",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "seed/11_b",
-    "name": "S21 - Pera Esports",
+    "code": "provisional/pera",
+    "name": "Pera Esports",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "seed/12_b",
-    "name": "S23 - sYnck",
+    "code": "provisional/sync",
+    "name": "sYnck",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "seed/13_b",
-    "name": "S26 - Zero Tenacity",
+    "code": "provisional/z10",
+    "name": "Zero Tenacity",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "seed/14_b",
-    "name": "S28 - JANO Esports",
+    "code": "provisional/jano",
+    "name": "JANO Esports",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "seed/15_b",
-    "name": "S30 - Nexus Gaming",
+    "code": "provisional/nexu",
+    "name": "Nexus Gaming",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "seed/16_b",
-    "name": "S32 - Fnatic",
+    "code": "provisional/fnat",
+    "name": "Fnatic",
     "seed": 16,
     "description": "Seed #16"
   }

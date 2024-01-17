@@ -175,6 +175,10 @@ export default class Copenhagen2024Qual extends Regionals {
   subtitle = <span>
     Switch to Bracket UI / Visualization UI to get a preview of EUA and EUB matches.
     <br/>
+    <a className="text-yellow-400" href="https://twitter.com/CyberHono/status/1747570609373278296">
+      Permitta is a ranked team and should be the 24th seed, but they appear unranked in the official groupings.
+    </a>
+    <br/>
     EU-Decider Teams are based on your choices in EUA & EUB.
   </span>;
 
