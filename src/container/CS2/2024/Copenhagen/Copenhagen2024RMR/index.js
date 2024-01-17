@@ -190,9 +190,12 @@ const Regions = [
         return {
           success: true,
           seeds: EUA,
-          message: <p>
-            This Tab requires visiting <a href="/24qual_copenhagen#Europe-A" className="underline hover:text-nekoko-400">Closed Qualifiers</a> first.
-          </p>,
+          message: <div className="text-left">
+            <p>Pick your winners in <a
+              href="/24qual_copenhagen#EU-Decider"
+              className="underline hover:text-nekoko-400">Closed Qualifiers</a> (incl. Decider) to have this page updated!
+            </p>
+          </div>,
         };
       }
     },
@@ -239,9 +242,12 @@ const Regions = [
         return {
           success: true,
           seeds: EUA,
-          message: <p>
-            This Tab requires visiting <a href="/24qual_copenhagen#Europe-A" className="underline hover:text-nekoko-400">Closed Qualifiers</a> first.
-          </p>,
+          message: <div className="text-left">
+            <p>Pick your winners in <a
+              href="/24qual_copenhagen#EU-Decider"
+              className="underline hover:text-nekoko-400">Closed Qualifiers</a> (incl. Decider) to have this page updated!
+            </p>
+          </div>,
         };
       }
     },
