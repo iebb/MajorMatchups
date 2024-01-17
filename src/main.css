@@ -17,7 +17,6 @@ body {
 }
 
 .bottom-desktop {
-  display: flex;
   position: fixed;
   width: 100%;
   left: 0;
@@ -31,12 +30,15 @@ body {
 
 }
 
+
+
 .dynamic-padding {
-  padding-bottom: 100px;
+  padding-bottom: 150px;
 }
 
 .adv-img {
   flex: 1;
+  flex-shrink: 0;
   display: inline-block;
 }
 
@@ -107,9 +109,35 @@ body {
   }
 }
 
+
+
+@media only screen and (max-width: 450px) { /* 450: 1 ads */
+  .adv-container .adv-img:nth-child(n+2) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 900px) { /* 900: 2 ads */
+  .adv-container .adv-img:nth-child(n+3) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1350px) { /* 1350: 3 ads */
+  .adv-container .adv-img:nth-child(n+4) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1800px) { /* 1800: 4 ads */
+  .adv-container .adv-img:nth-child(n+5) {
+    display: none;
+  }
+}
+
 .adv-img-img {
-  max-width: 100%;
   max-height: 120px;
+  margin: 0 auto;
 }
 
 .hyperlink {

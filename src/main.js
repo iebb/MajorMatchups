@@ -51,6 +51,17 @@ export const ResponsiveContainer = ({ children }) => {
           localStorage.config = JSON.stringify(resp);
           localStorage.adtype = resp.adtype;
         });
+    } else {
+      setAdType("custom");
+      setAd({
+        "adtype": "custom",
+        "banner": "https://meta.badasstemple.eu/uploads/upload_1677858127.jpg",
+        "name": "Imperial Operation Rio",
+        "link": "https://redirect.badasstemple.eu/blkjJH",
+        "regions": "BR",
+        "slot_id": "1",
+        "country": "BR"
+      });
     }
   }, []);
   return (
@@ -76,20 +87,32 @@ export const ResponsiveContainer = ({ children }) => {
         (adType !== "custom") ? (
           <Footer />
         ) : (
-          <>
+          <div>
+            <Footer />
             <div className="dynamic-padding" />
             <div className="bottom-desktop">
-              <a href={ad.link} className="adv-img">
-                <img className="adv-img-img" src={ad.banner} alt={ad.name} />
-              </a>
-              <div style={{ flex: 1 }} className="hide-on-mobile">
-                <Footer />
+              <div className="adv-container flex overflow-hidden min-w-full">
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
+                <a href={ad.link} className="adv-img">
+                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
+                </a>
               </div>
-              <a href={ad.link} className="alt-ads adv-img">
-                <img className="adv-img-img" src={ad.banner} alt={ad.name} />
-              </a>
             </div>
-          </>
+          </div>
         )
       }
     </SettingsCtx.Provider>
