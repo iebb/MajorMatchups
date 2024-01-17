@@ -159,6 +159,7 @@ const Regions = [
     },
     rounds: 3,
     winsToAdvance: 1,
+    losesToEliminate: 1,
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,

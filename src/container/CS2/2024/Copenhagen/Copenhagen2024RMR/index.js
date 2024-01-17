@@ -73,8 +73,9 @@ const Regions = [
       let teams = [];
       for(const team of PrequalifiedTeamsAM) {
         msg.push(<br />);
-        msg.push(<p>Paris Major Seeds: </p>);
-        msg.push(
+        msg.push(<p><b>Paris Major Seeds: </b></p>
+      );
+      msg.push(
           <span className="inline-block w-[240px]">
                 {`${team.name} (${team.valveRanking})`}
               </span>
@@ -87,7 +88,7 @@ const Regions = [
         const _teams = Results_ClosedQualifierNA; // JSON.parse(localStorage["cph24.cq.nam"]);
         if (_teams.length === 16) {
           msg.push(<br/>);
-          msg.push(<p>North American Seeds:</p>);
+          msg.push(<p><b>North American Seeds:</b></p>);
           // msg.push(<p>North American Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
           //   delete localStorage['cph24.cq.nam'];
           //   document.location.reload();
@@ -107,10 +108,10 @@ const Regions = [
         const _teams = JSON.parse(localStorage["cph24.cq.sam"]);
         if (_teams.length === 16) {
           msg.push(<br />);
-          msg.push(<p>South American Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
+          msg.push(<p><b>South American Seeds:</b> <a className="underline hover:text-nekoko-400" onClick={() => {
             delete localStorage['cph24.cq.sam'];
             document.location.reload();
-          }}>[clear]</a> </p>);
+          }}>[clear]</a></p>);
           for(let i = 0; i < 7; i++) {
             teams.push(_teams[i]);
             msg.push(
@@ -147,10 +148,13 @@ const Regions = [
     },
     seeds: AM,
     seats: [
-      { status: "qualified", until: 5, abbrev: "Q", statusPositioned: true },
+      { status: "legends", until: 1, abbrev: "L", statusPositioned: true },
+      { status: "challenger", until: 5, abbrev: "C", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
-    tiebreakers: {},
+    tiebreakers: {
+      "3": [{teams: 1, id: "1/2", name: "Legends Decider"}],
+    },
     rounds: 4,
     winsToAdvance: 3,
     losesToEliminate: 2,
@@ -201,16 +205,19 @@ const Regions = [
     },
     seeds: EUA,
     seats: [
-      {status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
+      { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
+      { status: "challenger", until: 8, abbrev: "C", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {},
     rounds: 5,
     winsToAdvance: 3,
+    losesToEliminate: 3,
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
+    resultTag: "cph24.rmr.eua",
   },
   {
     name: "Europe-B",
@@ -252,77 +259,104 @@ const Regions = [
       }
     },
     seats: [
-      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
+      { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
+      { status: "challenger", until: 8, abbrev: "C", statusPositioned: true },
       { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
       { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {},
     rounds: 5,
     winsToAdvance: 3,
+    losesToEliminate: 3,
     nonDeciderToWin: 1,
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
+    resultTag: "cph24.rmr.eub",
   },
-  // {
-  //   id: 4,
-  //   name: "EU-Decider",
-  //   icon: GlobeEuropeAfricaIcon,
-  //   getSeeds: () => {
-  //     try {
-  //       if (localStorage["cph24.cq.eua"] && localStorage["cph24.cq.eub"]) {
-  //         const la = JSON.parse(localStorage["cph24.cq.eua"]);
-  //         const lb = JSON.parse(localStorage["cph24.cq.eub"]);
-  //         if (la.length === 16 && lb.length === 16) {
-  //           const _seeds = [la[8], lb[8], la[9], lb[9], la[10], lb[10]];
-  //           return {
-  //             success: true,
-  //             seeds: _seeds.map((team, _seed) => ({
-  //               code: team.code,
-  //               name: team.name,
-  //               seed: _seed + 1,
-  //               buchholtz_offset: team.buchholtz,
-  //               buchholtz: team.buchholtz,
-  //             }))
-  //           };
-  //         } else {
-  //           return {
-  //             success: false,
-  //             message: "This Tab requires visiting EUA and EUB first",
-  //           };
-  //         }
-  //       } else {
-  //         return {
-  //           success: false,
-  //           message: "This Tab requires visiting EUA and EUB first",
-  //         };
-  //       }
-  //     } catch (e) {
-  //       return {
-  //         success: false,
-  //         message: e.toString(),
-  //       };
-  //     }
-  //     return {
-  //       success: false,
-  //       message: "??",
-  //     };
-  //   },
-  //   defaultSeeds: null,
-  //   seats: [
-  //     { status: "rmr", until: 5, abbrev: "R", statusPositioned: true },
-  //     { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
-  //   ],
-  //   tiebreakers: {
-  //     "1": [{teams: 4, id: "4/5", offset: 0.1, name: "4th Decider"}],
-  //     "2": [{teams: 5, id: "5/6", offset: -0.1, name: "Qualification Match"}],
-  //   },
-  //   rounds: 3,
-  //   winsToAdvance: 1,
-  //   nonDeciderToWin: 1,
-  //   deciderToWin: 2,
-  //   tournamentType: Formats.SwissBuchholtz2024,
-  //   resultTag: "",
-  // },
+  {
+    name: "EU-Decider",
+    icon: GlobeEuropeAfricaIcon,
+    getSeeds: () => {
+
+      const base = JSON.parse(JSON.stringify(EUTB));
+      let msg = [
+        <p>EU-Decider Teams are based on your choices in <a href="/24rmr_copenhagen#Europe-A" className="underline hover:text-nekoko-400">
+          Europe A</a> and <a href="/24rmr_copenhagen#Europe-B" className="underline hover:text-nekoko-400">
+          Europe B</a>.
+        </p>
+      ];
+
+      if (localStorage["cph24.rmr.eua"]) {
+        const teams = JSON.parse(localStorage["cph24.rmr.eua"]);
+        if (teams.length === 16) {
+          msg.push(<br />);
+          msg.push(<p>EU Qualifier A Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
+            delete localStorage['cph24.rmr.eua'];
+            document.location.reload();
+          }}>[clear]</a> </p>);
+          for(let i = 0; i < 3; i++) {
+            base[i * 2] = teams[8 + i];
+            msg.push(
+              <span className="inline-block w-[240px]">
+                {`#${i * 2 + 1}: ${teams[8 + i].name} (${8 + i + 1})`}
+              </span>
+            );
+          }
+          msg.push(<br />);
+        }
+      }
+
+      if (localStorage["cph24.rmr.eub"]) {
+        const teams = JSON.parse(localStorage["cph24.rmr.eub"]);
+        if (teams.length === 16) {
+          msg.push(<br />);
+          msg.push(<p>EU Qualifier B Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
+            delete localStorage['cph24.rmr.eub'];
+            document.location.reload();
+          }}>[clear]</a> </p>);
+          for(let i = 0; i < 3; i++) {
+            base[i * 2 + 1] = teams[8 + i];
+            msg.push(
+              <span className="inline-block w-[240px]">
+                {`#${i * 2 + 2}: ${teams[8 + i].name} (${8 + i + 1})`}
+              </span>
+            );
+          }
+          msg.push(<br />);
+        }
+      }
+
+
+      return {
+        success: true,
+        seeds: base.map((team, _seed) => ({
+          code: team.code,
+          logo: team.logo,
+          name: team.name,
+          seed: _seed + 1,
+          valveRanking: team.valveRanking,
+          buchholtz_offset: team.buchholtz,
+          buchholtz: team.buchholtz,
+        })),
+        message: <div className="text-left">{msg}</div>,
+      };
+    },
+    seats: [
+      { status: "challenger", until: 1, abbrev: "C", statusPositioned: true },
+      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {
+      "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
+      "2": [{teams: 1, id: "1/2", offset: 0.1, name: "1st/2nd Decider"}],
+    },
+    rounds: 3,
+    winsToAdvance: 1,
+    losesToEliminate: 1,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.SwissBuchholtz2024,
+    resultTag: "cph24.rmr.eucq",
+  },
 ].map((r, id) => ({...r, id}));
 
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_rmr/${code}.png`;

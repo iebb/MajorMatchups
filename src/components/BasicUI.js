@@ -246,7 +246,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
       {
         message && (
           <div className="my-1">
-            <Alert color="teal" className="text-white whitespace-pre-wrap">{message}</Alert>
+            <Alert color="teal" className="text-white whitespace-pre-wrap max-w-[1200px]" style={{ margin: "0 auto" }}>{message}</Alert>
           </div>
         )
       }
