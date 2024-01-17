@@ -51,17 +51,6 @@ export const ResponsiveContainer = ({ children }) => {
           localStorage.config = JSON.stringify(resp);
           localStorage.adtype = resp.adtype;
         });
-    } else {
-      setAdType("custom");
-      setAd({
-        "adtype": "custom",
-        "banner": "https://meta.badasstemple.eu/uploads/upload_1677858127.jpg",
-        "name": "Imperial Operation Rio",
-        "link": "https://redirect.badasstemple.eu/blkjJH",
-        "regions": "BR",
-        "slot_id": "1",
-        "country": "BR"
-      });
     }
   }, []);
   return (
