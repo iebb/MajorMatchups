@@ -22,11 +22,19 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
             <td colSpan={3} className="py-2"><b>Initial Seeding</b></td>
             <td className="text-center py-2">{team.seed}</td>
           </tr>
-          <tr className="border-t-2 border-t-nekoko-600">
+          {
+            team.valveRanking ? (
+              <tr className="">
+                <td colSpan={3} className="py-2"><b>{team.valveRanking > 1000 ? "HLTV Ranking (Valve-Unranked)" : "Valve Regional Ranking"}</b></td>
+                <td className="text-center py-2">#{team.valveRanking > 1000 ? `${(team.valveRanking % 1000)}` : team.valveRanking}</td>
+              </tr>
+            ) : null
+          }
+          <tr className="border-t-[1px] border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Current Standing</b></td>
             <td className="text-center py-2">#{team.standing}</td>
           </tr>
-          <tr className="border-b-2 border-b-nekoko-600">
+          <tr className="border-b-[1px] border-b-nekoko-600">
             <td className="w-[24px]">
               <div className="h-[24px] inline-block mr-3 content-center">
                 <img className="max-w-[36px] max-h-[32px]"
@@ -69,7 +77,7 @@ export const BuchholtzPopup = ({ team, teams, enabled = true, children=null }) =
               </tr>
             )
           }
-          <tr className="border-t-2 border-t-nekoko-600">
+          <tr className="border-t-[1px] border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Total Buchholtz</b></td>
             <td className="text-center py-2">{team.buchholtz}</td>
           </tr>

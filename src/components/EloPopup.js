@@ -18,7 +18,7 @@ export const EloPopup = ({ team, teams, enabled = true, children=null }) => {
             <td colSpan={3} className="py-2"><b>Initial Seeding</b></td>
             <td className="text-center py-2">{team.seed}</td>
           </tr>
-          <tr className="border-t-2 border-t-nekoko-600">
+          <tr className="border-t-[1px] border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Current Standing</b></td>
             <td className="text-center py-2">#{team.standing}</td>
           </tr>
@@ -27,7 +27,7 @@ export const EloPopup = ({ team, teams, enabled = true, children=null }) => {
             <th className="pt-4 pb-2 px-4 text-center">W-L</th>
             <th className="pt-4 pb-2 text-center">Initial Elo</th>
           </tr>
-          <tr className="border-b-2 border-b-nekoko-600">
+          <tr className="border-b-[1px] border-b-nekoko-600">
             <td className="w-[24px]">
               <div className="h-[24px] inline-block mr-3 content-center">
                 <img className="max-w-[36px]"
@@ -70,7 +70,7 @@ export const EloPopup = ({ team, teams, enabled = true, children=null }) => {
               </tr>
             )
           }
-          <tr className="border-t-2 border-t-nekoko-600">
+          <tr className="border-t-[1px] border-t-nekoko-600">
             <td colSpan={3} className="py-2"><b>Total Elo</b></td>
             <td className="text-center py-2">{team.elo.toFixed(4)}</td>
           </tr>

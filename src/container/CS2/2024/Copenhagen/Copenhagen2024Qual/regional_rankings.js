@@ -27,7 +27,7 @@ export const RegionalRankings_2023_12_EU = {
   "z10": 70,
   "jano": 77,
   "nexu": 93,
-  "fnat": 1003,
+  "fnat": 1036,
 
   "mouz": 4,
   "spir": 6,
@@ -44,7 +44,7 @@ export const RegionalRankings_2023_12_EU = {
   "ex-t": 69,
   "entr": 74,
   "ikla": 81,
-  "hero": 3001,
+  "hero": 1049, // hero qualified 3rd > fnatic qualified 1st
 
 
 }

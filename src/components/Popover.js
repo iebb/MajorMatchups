@@ -1,13 +1,5 @@
+import {Popover, PopoverContent, PopoverHandler,} from "@material-tailwind/react";
 import React from "react";
-import {
-  Popover,
-  PopoverHandler,
-  PopoverContent,
-  Button,
-  Avatar,
-  Typography,
-} from "@material-tailwind/react";
-import { MapPinIcon, BuildingOffice2Icon } from "@heroicons/react/24/outline";
 
 export default function HoverPopover({
   children, popup, placement="bottom"
