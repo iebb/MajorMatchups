@@ -46,10 +46,20 @@ const getEUTeams = (group = 1) => {
   }
 
 
-  return teams.sort((x, y) => x.valveRanking - y.valveRanking).filter(
+  const teamCount = new Set(teams.map(t => t.code)).size;
+
+  if (teamCount !== 32) {
+    return [];
+  }
+
+  const sortedTeam = teams.sort((x, y) => x.valveRanking - y.valveRanking).map(
+    (team, index) => ({...team, index: index + 1})
+  )
+
+  return sortedTeam.filter(
     (team, index) => (group === 1 ?
       [1, 3, 5, 7, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32] :
-      [2, 4, 6, 8, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]).includes(index + 1)
+      [2, 4, 6, 8,  9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31]).indexOf(team.index) !== -1
   ).map((team, _seed) => ({
     code: team.code,
     logo: team.logo,
