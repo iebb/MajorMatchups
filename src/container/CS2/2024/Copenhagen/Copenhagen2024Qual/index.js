@@ -5,6 +5,7 @@ import React from 'react';
 import {fetchPrefix} from '../../../../../libs/common/common';
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Regionals} from "../../../../Common/Regional";
+import {Results_ClosedQualifierEUA, Results_ClosedQualifierEUB} from "../Copenhagen2024RMR/provisional_data";
 import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
 
 const Regions = [
@@ -97,14 +98,18 @@ const Regions = [
         </p>
       ];
 
-      if (localStorage["cph24.cq.eua"]) {
-        const teams = JSON.parse(localStorage["cph24.cq.eua"]);
+      if (true) { // if (localStorage["cph24.cq.eua"]) {
+        const teams = Results_ClosedQualifierEUA; // JSON.parse(localStorage["cph24.cq.eua"]);
         if (teams.length === 16) {
           msg.push(<br />);
-          msg.push(<p>EU Qualifier A Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
+          msg.push(<p>EU Qualifier A Seeds:</p>);
+          /*
+          clear disabled:
+           <a className="underline hover:text-nekoko-400" onClick={() => {
             delete localStorage['cph24.cq.eua'];
             document.location.reload();
-          }}>[clear]</a> </p>);
+          }}>[clear]</a>
+           */
           for(let i = 0; i < 3; i++) {
             base[i * 2] = teams[8 + i];
             msg.push(
@@ -117,14 +122,18 @@ const Regions = [
         }
       }
 
-      if (localStorage["cph24.cq.eub"]) {
-        const teams = JSON.parse(localStorage["cph24.cq.eub"]);
+      if (true) { // if (localStorage["cph24.cq.eub"]) {
+        const teams = Results_ClosedQualifierEUB; // = JSON.parse(localStorage["cph24.cq.eub"]);
         if (teams.length === 16) {
           msg.push(<br />);
-          msg.push(<p>EU Qualifier B Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
-            delete localStorage['cph24.cq.eub'];
+          msg.push(<p>EU Qualifier B Seeds:</p>);
+          /*
+          clear disabled:
+           <a className="underline hover:text-nekoko-400" onClick={() => {
+            delete localStorage['cph24.cq.eua'];
             document.location.reload();
-          }}>[clear]</a> </p>);
+          }}>[clear]</a>
+           */
           for(let i = 0; i < 3; i++) {
             base[i * 2 + 1] = teams[8 + i];
             msg.push(
