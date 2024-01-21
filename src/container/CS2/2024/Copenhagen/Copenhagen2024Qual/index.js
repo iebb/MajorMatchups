@@ -98,6 +98,7 @@ const Regions = [
         </p>
       ];
 
+
       if (true) { // if (localStorage["cph24.cq.eua"]) {
         const teams = Results_ClosedQualifierEUA; // JSON.parse(localStorage["cph24.cq.eua"]);
         if (teams.length === 16) {
@@ -111,10 +112,10 @@ const Regions = [
           }}>[clear]</a>
            */
           for(let i = 0; i < 3; i++) {
-            base[i * 2] = teams[8 + i];
+            base[i * 2] = {...teams[8 + i], group: 1};
             msg.push(
               <span className="inline-block w-[240px]">
-                {`#${i * 2 + 1}: ${teams[8 + i].name} (${8 + i + 1})`}
+                {`#${8 + i + 1}: ${teams[8 + i].name}`}
               </span>
             );
           }
@@ -135,10 +136,10 @@ const Regions = [
           }}>[clear]</a>
            */
           for(let i = 0; i < 3; i++) {
-            base[i * 2 + 1] = teams[8 + i];
+            base[i * 2 + 1] = {...teams[8 + i], group: 2};
             msg.push(
               <span className="inline-block w-[240px]">
-                {`#${i * 2 + 2}: ${teams[8 + i].name} (${8 + i + 1})`}
+                {`#${8 + i + 1}: ${teams[8 + i].name}`}
               </span>
             );
           }
@@ -149,7 +150,17 @@ const Regions = [
 
       return {
         success: true,
-        seeds: base.map((team, _seed) => ({
+        seeds: base.sort((teamA, teamB) => {
+          if (teamA.standing !== teamB.standing) {
+            return teamA.standing - teamB.standing;
+          }
+          if (teamA.buchholtz !== teamB.buchholtz) {
+            return teamB.buchholtz - teamA.buchholtz;
+          }
+          if (teamA.group !== teamB.group) {
+            return teamA.group - teamB.group;
+          }
+        }).map((team, _seed) => ({
           code: team.code,
           logo: team.logo,
           name: team.name,
