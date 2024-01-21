@@ -76,19 +76,22 @@ export class Regionals extends React.Component {
     this.setState({
       ...pack(seeds, teamLogo),
       regionId: region,
-      scores: this.Scores,
+      scores: this.fetchedScore ? this.fetchedScore : this.Scores,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
     if (this.fetch_scores) {
-      this.fetch_scores((resp) => {
-        this.setState({
-          ...pack(seeds, teamLogo),
-          regionId: region,
-          scores: resp,
-          ...Regions[region],
-        }, () => this.calculateMatchups(0, this.state.rounds + 1));
-      });
+      if (!this.fetchedScore) {
+        this.fetch_scores((resp) => {
+          this.fetchedScore = resp;
+          this.setState({
+            ...pack(seeds, teamLogo),
+            regionId: region,
+            scores: resp,
+            ...Regions[region],
+          }, () => this.calculateMatchups(0, this.state.rounds + 1));
+        });
+      }
     }
   };
 
