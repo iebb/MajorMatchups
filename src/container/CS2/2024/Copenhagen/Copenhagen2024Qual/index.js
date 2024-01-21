@@ -154,7 +154,7 @@ const Regions = [
           if (teamA.standing !== teamB.standing) {
             return teamA.standing - teamB.standing;
           }
-          if (teamA.buchholtz !== teamB.buchholtz) {
+          if (teamA.standing === 10 && (teamA.buchholtz !== teamB.buchholtz)) {
             return teamB.buchholtz - teamA.buchholtz;
           }
           if (teamA.group !== teamB.group) {
