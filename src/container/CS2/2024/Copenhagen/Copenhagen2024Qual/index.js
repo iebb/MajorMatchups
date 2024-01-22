@@ -5,8 +5,7 @@ import React from 'react';
 import {fetchPrefix} from '../../../../../libs/common/common';
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Regionals} from "../../../../Common/Regional";
-import {Results_ClosedQualifierEUA, Results_ClosedQualifierEUB} from "../Copenhagen2024RMR/provisional_data";
-import {EUA, EUB, EUTB, EUTB_Final, NAM, SAM} from './initial_data';
+import {EUA, EUB, EUTB_Final, NAM, SAM} from './initial_data';
 import {Scores} from "./scores";
 
 const Regions = [

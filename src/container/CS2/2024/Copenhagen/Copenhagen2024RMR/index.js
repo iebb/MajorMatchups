@@ -19,51 +19,17 @@ import {Scores} from './scores';
 
 const getEUTeams = (group = 1) => {
   let teams = [];
-  for(const team of PrequalifiedTeamsEU) {
-    teams.push(team);
-  }
 
-  if (true) { // if (localStorage["cph24.cq.eub"]) {
-    const _teams = Results_ClosedQualifierEUA; // = JSON.parse(localStorage["cph24.cq.eub"]);
-    if (_teams.length === 16) {
-      for (let i = 0; i < 8; i++) {
-        teams.push(_teams[i]);
-      }
-    }
-  }
-
-  if (true) { // if (localStorage["cph24.cq.eub"]) {
-    const _teams = Results_ClosedQualifierEUB; // = JSON.parse(localStorage["cph24.cq.eub"]);
-    if (_teams.length === 16) {
-      for (let i = 0; i < 8; i++) {
-        teams.push(_teams[i]);
-      }
-    }
-  }
-  if (true) { // if (localStorage["cph24.cq.eub"]) {
-    const _teams = Results_ClosedQualifierEUD; // = JSON.parse(localStorage["cph24.cq.eub"]);
-    if (_teams.length === 6) {
-      for (let i = 0; i < 5; i++) {
-        teams.push(_teams[i]);
-      }
-    }
-  }
-
-  // if (localStorage["cph24.cq.eud"] ) {
-  //   const _teams = JSON.parse(localStorage["cph24.cq.eud"]);
-  //   if (_teams.length === 6) {
-  //     for (let i = 0; i < 5; i++) {
-  //       teams.push(_teams[i]);
-  //     }
-  //   }
+  teams = [...teams, ...PrequalifiedTeamsEU.map(t => ({...t, qualification: "previous"}))];
+  teams = [...teams, ...Results_ClosedQualifierEUA.slice(0, 8).map(t => ({...t, qualification: "europe-a"}))];
+  teams = [...teams, ...Results_ClosedQualifierEUB.slice(0, 8).map(t => ({...t, qualification: "europe-b"}))];
+  teams = [...teams, ...Results_ClosedQualifierEUD.slice(0, 5).map(t => ({...t, qualification: "europe-decider"}))];
+  //
+  // const teamCount = new Set(teams.map(t => t.code)).size;
+  //
+  // if (teamCount !== 32) {
+  //   return [];
   // }
-
-
-  const teamCount = new Set(teams.map(t => t.code)).size;
-
-  if (teamCount !== 32) {
-    return [];
-  }
 
   const sortedTeam = teams.sort((x, y) => x.valveRanking - y.valveRanking).map(
     (team, index) => ({...team, index: index + 1})
@@ -101,7 +67,7 @@ const Regions = [
         msg.push(
           <span className="inline-block w-[240px]">
                 {`${team.name} (${team.valveRanking < 1000 ? team.valveRanking : "unranked"})`}
-              </span>
+          </span>
         );
 
         teams.push(team);
@@ -114,7 +80,7 @@ const Regions = [
         msg.push(
           <span className="inline-block w-[240px]">
                 {`${t.name} (${t.valveRanking < 1000 ? t.valveRanking : "unranked"})`}
-              </span>
+          </span>
         );
       }
 
