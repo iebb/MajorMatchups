@@ -6,7 +6,7 @@ export const RegionalRankings_2023_12_EU = {
   "faze": 1,
   "mont": 8,
   "itb": 42,
-  "nip": 21,
+  "nip": 54,
   "falc": 9,  // ence seat
   "guil": 23,
   "g2": 7,
