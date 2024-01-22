@@ -90,11 +90,11 @@ export const PrequalifiedTeamsEU = [
   },
   {
     "code": "falc", // ence seat
-    "name": "Team Falcons (ex-ENCE)",
+    "name": "Team Falcons",
   },
   {
     "code": "guil",
-    "name": "Guild Eagles (ex-BNE)",
+    "name": "Guild Eagles",
   },
   {
     "code": "g2",
@@ -102,7 +102,7 @@ export const PrequalifiedTeamsEU = [
   },
   {
     "code": "ence", // 9ine seat
-    "name": "ENCE (ex-9INE)",
+    "name": "ENCE",
   },
 ].map(team => ({
   ...team,

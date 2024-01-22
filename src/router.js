@@ -71,7 +71,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/24qual_copenhagen" />
+        <Redirect to="/24rmr_copenhagen" />
       </Route>
     </Switch>
   );
