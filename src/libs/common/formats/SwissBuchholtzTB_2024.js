@@ -179,6 +179,8 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
 
         const suffix = defaultSuffix;
 
+        console.log(`${team1.code}-${team2.code}` + suffix, gamescores);
+
         if (`${team1.code}-${team2.code}` + suffix in gamescores) {
           const gs = gamescores[`${team1.code}-${team2.code}` + suffix];
           score[0] = gs.map(x => x[0])

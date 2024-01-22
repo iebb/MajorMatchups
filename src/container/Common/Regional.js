@@ -50,6 +50,7 @@ export class Regionals extends React.Component {
     if (Regions[region]) {
       if (Regions[region].getSeeds !== undefined) {
         const {success, seeds, message} = Regions[region].getSeeds();
+        console.log("seeds:", seeds)
         this.setState({ message });
         if (success) {
           this.setState({ errorMessage: null })
@@ -73,21 +74,24 @@ export class Regionals extends React.Component {
 
     if (!seeds) return;
 
+    console.log("fs", this.fetchedScore)
+    console.log("fs", this.fetchedScore ? this.fetchedScore : this._scores)
+
     this.setState({
       ...pack(seeds, teamLogo),
       regionId: region,
-      scores: this.fetchedScore ? this.fetchedScore : this.Scores,
+      scores: this.fetchedScore ? this.fetchedScore : this._scores,
       ...Regions[region],
     }, () => this.calculateMatchups(0, this.state.rounds + 1));
 
     if (this.fetch_scores) {
       if (!this.fetchedScore) {
         this.fetch_scores((resp) => {
-          this.fetchedScore = resp;
+          this.fetchedScore = {...resp, ...this._scores};
           this.setState({
             ...pack(seeds, teamLogo),
             regionId: region,
-            scores: resp,
+            scores: {...resp, ...this._scores},
             ...Regions[region],
           }, () => this.calculateMatchups(0, this.state.rounds + 1));
         });
