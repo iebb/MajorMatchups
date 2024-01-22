@@ -9,7 +9,12 @@ import {FormatBinder, Formats} from "../../../../../libs/common/formats/formats"
 import {Regionals} from "../../../../Common/Regional";
 import {RegionalRankings_2023_12_AM} from "../Copenhagen2024Qual/regional_rankings";
 import {AM, EUA, EUB, EUTB, AP, PrequalifiedTeamsAM, PrequalifiedTeamsEU} from './initial_data';
-import {Results_ClosedQualifierEUA, Results_ClosedQualifierEUB, Results_ClosedQualifierNA} from "./provisional_data";
+import {
+  Results_ClosedQualifierEUA,
+  Results_ClosedQualifierEUB,
+  Results_ClosedQualifierEUD,
+  Results_ClosedQualifierNA
+} from "./provisional_data";
 import {Scores} from './scores';
 
 const getEUTeams = (group = 1) => {
@@ -35,15 +40,23 @@ const getEUTeams = (group = 1) => {
       }
     }
   }
-
-  if (localStorage["cph24.cq.eud"] ) {
-    const _teams = JSON.parse(localStorage["cph24.cq.eud"]);
+  if (true) { // if (localStorage["cph24.cq.eub"]) {
+    const _teams = Results_ClosedQualifierEUD; // = JSON.parse(localStorage["cph24.cq.eub"]);
     if (_teams.length === 6) {
       for (let i = 0; i < 5; i++) {
         teams.push(_teams[i]);
       }
     }
   }
+
+  // if (localStorage["cph24.cq.eud"] ) {
+  //   const _teams = JSON.parse(localStorage["cph24.cq.eud"]);
+  //   if (_teams.length === 6) {
+  //     for (let i = 0; i < 5; i++) {
+  //       teams.push(_teams[i]);
+  //     }
+  //   }
+  // }
 
 
   const teamCount = new Set(teams.map(t => t.code)).size;
@@ -78,10 +91,10 @@ const Regions = [
     icon: GlobeAmericasIcon,
     getSeeds: () => {
       let msg = [
-        <p>Teams are based on your choices in <a href="/24qual_copenhagen#South-Am" className="underline hover:text-nekoko-400">Closed Qualifiers</a>, while seeding is base on Valve Rankings.</p>
+        <p>Seeding is based on Valve Rankings.</p>
       ];
       let teams = [];
-      for(const team of PrequalifiedTeamsAM) {
+      for (const team of PrequalifiedTeamsAM) {
         msg.push(<br />);
         msg.push(<p><b>Paris Major Seeds: </b></p>
         );
@@ -178,7 +191,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     getSeeds: () => {
       let msg = [
-        <p>Teams are based on your choices in <a href="/24qual_copenhagen#EU-Decider" className="underline hover:text-nekoko-400">Closed Qualifiers</a>, while seeding is base on Valve Rankings.</p>
+        <p>Seeding is based on Valve Rankings.</p>
       ];
 
       let teams = getEUTeams(1);
@@ -234,9 +247,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     getSeeds: () => {
       let msg = [
-        <p>
-          Teams are based on your choices in <a href="/24qual_copenhagen#EU-Decider" className="underline hover:text-nekoko-400">Closed Qualifiers</a>, while seeding is base on Valve Rankings.
-        </p>
+        <p>Seeding is based on Valve Rankings.</p>
       ];
 
       let teams = getEUTeams(2);
