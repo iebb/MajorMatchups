@@ -91,7 +91,7 @@ const Regions = [
     icon: GlobeAmericasIcon,
     getSeeds: () => {
       let msg = [
-        <p>Seeding is based on Valve Rankings.</p>
+        <p>Seeding is based on Valve Rankings @ 2023-12-18.</p>
       ];
       let teams = [];
       for (const team of PrequalifiedTeamsAM) {
@@ -191,7 +191,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     getSeeds: () => {
       let msg = [
-        <p>Seeding is based on Valve Rankings.</p>
+        <p>Seeding is based on Valve Rankings @ 2023-12-18.</p>
       ];
 
       let teams = getEUTeams(1);
@@ -247,7 +247,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     getSeeds: () => {
       let msg = [
-        <p>Seeding is based on Valve Rankings.</p>
+        <p>Seeding is based on Valve Rankings @ 2023-12-18.</p>
       ];
 
       let teams = getEUTeams(2);
