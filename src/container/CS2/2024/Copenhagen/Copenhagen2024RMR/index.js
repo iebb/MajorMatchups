@@ -13,7 +13,7 @@ import {
   Results_ClosedQualifierEUA,
   Results_ClosedQualifierEUB,
   Results_ClosedQualifierEUD,
-  Results_ClosedQualifierNA
+  Results_ClosedQualifierNA, Results_ClosedQualifierSA
 } from "./provisional_data";
 import {Scores} from './scores';
 
@@ -100,61 +100,33 @@ const Regions = [
         );
         msg.push(
           <span className="inline-block w-[240px]">
-                {`${team.name} (${team.valveRanking})`}
+                {`${team.name} (${team.valveRanking < 1000 ? team.valveRanking : "unranked"})`}
               </span>
         );
 
         teams.push(team);
       }
 
-      //if (localStorage["cph24.cq.nam"] ) {
-      const _teams = Results_ClosedQualifierNA; // JSON.parse(localStorage["cph24.cq.nam"]);
-      if (_teams.length === 16) {
-        msg.push(<br/>);
-        msg.push(<p><b>North American Seeds:</b></p>);
-        // msg.push(<p>North American Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
-        //   delete localStorage['cph24.cq.nam'];
-        //   document.location.reload();
-        // }}>[clear]</a></p>);
-        for (let i = 0; i < 8; i++) {
-          teams.push(_teams[i]);
-          msg.push(
-            <span className="inline-block w-[240px]">
-                {`${_teams[i].name} (${_teams[i].valveRanking})`}
+      msg.push(<br/>);
+      msg.push(<p><b>North American Seeds:</b></p>);
+      for (const t of Results_ClosedQualifierNA.slice(0, 8)) {
+        teams.push(t);
+        msg.push(
+          <span className="inline-block w-[240px]">
+                {`${t.name} (${t.valveRanking < 1000 ? t.valveRanking : "unranked"})`}
               </span>
-          );
-        }
+        );
       }
-      // }
 
-      if (localStorage["cph24.cq.sam"]) {
-        const _teams = JSON.parse(localStorage["cph24.cq.sam"]);
-        if (_teams.length === 16) {
-          msg.push(<br />);
-          msg.push(<p><b>South American Seeds:</b> <a className="underline hover:text-nekoko-400" onClick={() => {
-            delete localStorage['cph24.cq.sam'];
-            document.location.reload();
-          }}>[clear]</a></p>);
-          for(let i = 0; i < 7; i++) {
-            teams.push(_teams[i]);
-            msg.push(
-              <span className="inline-block w-[240px]">
-                {`${_teams[i].name} (${_teams[i].valveRanking})`}
-              </span>
-            );
-          }
-        }
-      } else {
-        return {
-          success: true,
-          seeds: AM,
-          message: <div className="text-left">
-            <p>Pick your winners in <a
-              href="/24qual_copenhagen#South-Am"
-              className="underline hover:text-nekoko-400">Closed Qualifiers</a> (incl. Decider) to have this page updated!
-            </p>
-          </div>,
-        };
+      msg.push(<br/>);
+      msg.push(<p><b>South American Seeds:</b></p>);
+      for (const t of Results_ClosedQualifierSA.slice(0, 7)) {
+        teams.push(t);
+        msg.push(
+          <span className="inline-block w-[240px]">
+                {`${t.name} (${t.valveRanking < 1000 ? t.valveRanking : "unranked"})`}
+          </span>
+        );
       }
 
       return {
@@ -203,7 +175,7 @@ const Regions = [
         for(const team of teams) {
           msg.push(
             <span className="inline-block w-[240px]">
-            {`${team.name} (${team.valveRanking})`}
+                {`${team.name} (${team.valveRanking < 1000 ? team.valveRanking : "unranked"})`}
           </span>
           );
         }
@@ -258,7 +230,7 @@ const Regions = [
         for(const team of teams) {
           msg.push(
             <span className="inline-block w-[240px]">
-            {`${team.name} (${team.valveRanking})`}
+                {`${team.name} (${team.valveRanking < 1000 ? team.valveRanking : "unranked"})`}
           </span>
           );
         }
