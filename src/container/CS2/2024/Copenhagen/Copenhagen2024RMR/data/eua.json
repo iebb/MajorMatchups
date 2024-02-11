@@ -1,0 +1,98 @@
+[
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "vp",
+    "name": "Virtus.pro",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "navi",
+    "name": "Natus Vincere",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "ef",
+    "name": "Eternal Fire",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "amka",
+    "name": "AMKAL ESPORTS",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "betb",
+    "name": "BetBoom Team",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "3dma",
+    "name": "3DMAX",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "9pan",
+    "name": "9Pandas",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "saw",
+    "name": "SAW",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "koi",
+    "name": "KOI",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "itb",
+    "name": "Into The Breach",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "nip",
+    "name": "Ninjas in Pyjamas",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "ente",
+    "name": "ENTERPRISE",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "fnat",
+    "name": "Fnatic",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "falc",
+    "name": "Team Falcons",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

@@ -1,11 +1,67 @@
 // prettier-ignore
 
-import {RegionalRankings_2023_12_AM, RegionalRankings_2023_12_EU} from "../Copenhagen2024Qual/regional_rankings";
+import {RegionalRankings_2023_12_AM, RegionalRankings_2023_12_EU} from "./regional_rankings";
 
-export const EUA = require("./data/provisional_eua.json");
-export const EUB = require("./data/provisional_eub.json");
-export const AM = require("./data/provisional_am.json");
-export const AP = require("./data/provisional_ap.json");
+export const EUA = require("./data/eua.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_EU[team.code]}));
+export const EUB = require("./data/eub.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_EU[team.code]}));
+export const AM = require("./data/am.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_AM[team.code]}));
+
+export const EUTB_Final = [
+  {
+    "code": "ecst",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/ecst.png",
+    "name": "ECSTATIC",
+    "seed": 1,
+    "valveRanking": 40,
+    "buchholtz_offset": 2,
+    "buchholtz": 2
+  },
+  {
+    "code": "sync",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/sync.png",
+    "name": "sYnck",
+    "seed": 2,
+    "valveRanking": 65,
+    "buchholtz_offset": 2,
+    "buchholtz": 2
+  },
+  {
+    "code": "prea",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/prea.png",
+    "name": "Preasy Esport",
+    "seed": 3,
+    "valveRanking": 17,
+    "buchholtz_offset": 1,
+    "buchholtz": 1
+  },
+  {
+    "code": "3dma",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/3dma.png",
+    "name": "3DMAX",
+    "seed": 4,
+    "valveRanking": 18,
+    "buchholtz_offset": 0,
+    "buchholtz": 0
+  },
+  {
+    "code": "nexu",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/nexu.png",
+    "name": "Nexus Gaming",
+    "seed": 5,
+    "valveRanking": 93,
+    "buchholtz_offset": -4,
+    "buchholtz": -4
+  },
+  {
+    "code": "pera",
+    "logo": "https://img.majors.im/rmr/copenhagen2024_qual/pera.png",
+    "name": "Pera Esports",
+    "seed": 6,
+    "valveRanking": 45,
+    "buchholtz_offset": 1,
+    "buchholtz": 1
+  }
+]; // .map(team => ({...team, valveRanking: RegionalRankings_2023_12_AM[team.code]}));
 
 export const EUTB = [
   {
@@ -58,65 +114,3 @@ export const EUTB = [
   }
 ];
 
-//  Team Vitality, GamerLegion, Apeks, , Monte, Into The Breach, , , , , and ENCE;
-export const PrequalifiedTeamsEU = [
-  {
-    "code": "vita",
-    "name": "Team Vitality",
-  },
-  {
-    "code": "gl",
-    "name": "GamerLegion",
-  },
-  {
-    "code": "apek",
-    "name": "Apeks",
-  },
-  {
-    "code": "faze",
-    "name": "FaZe Clan",
-  },
-  {
-    "code": "mont",
-    "name": "Monte",
-  },
-  {
-    "code": "itb",
-    "name": "Into The Breach",
-  },
-  {
-    "code": "nip",
-    "name": "Ninjas in Pyjamas",
-  },
-  {
-    "code": "falc", // ence seat
-    "name": "Team Falcons",
-  },
-  {
-    "code": "guil",
-    "name": "Guild Eagles",
-  },
-  {
-    "code": "g2",
-    "name": "G2 Esports",
-  },
-  {
-    "code": "ence", // 9ine seat
-    "name": "ENCE",
-  },
-].map(team => ({
-  ...team,
-  logo: `https://img.majors.im/rmr/copenhagen2024_qual/${team.code}.png`,
-  valveRanking: RegionalRankings_2023_12_EU[team.code]
-}));
-
-export const PrequalifiedTeamsAM = [
-  {
-    "code": "furi",
-    "name": "Furia",
-  },
-].map(team => ({
-  ...team,
-  logo: `https://img.majors.im/rmr/copenhagen2024_qual/${team.code}.png`,
-  valveRanking: RegionalRankings_2023_12_AM[team.code]
-}));

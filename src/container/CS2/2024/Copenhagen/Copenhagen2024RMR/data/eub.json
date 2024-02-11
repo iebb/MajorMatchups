@@ -1,0 +1,98 @@
+[
+  {
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "mont",
+    "name": "Monte",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "c9",
+    "name": "Cloud9",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "apek",
+    "name": "Apeks",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "astr",
+    "name": "Astralis",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "prea",
+    "name": "Preasy Esport",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "gl",
+    "name": "GamerLegion",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "guil",
+    "name": "Guild Eagles",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "ence",
+    "name": "ENCE",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "ecst",
+    "name": "ECSTATIC",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "pera",
+    "name": "Pera Esports",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "og",
+    "name": "OG",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "nexu",
+    "name": "Nexus Gaming",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "hero",
+    "name": "Heroic",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]
