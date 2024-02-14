@@ -174,9 +174,9 @@ export default class Copenhagen2024RMR extends Regionals {
   title = "PGL Major Copenhagen 2024 RMR Simulator";
   _scores = Scores;
 
-  // fetch_scores = (callback) => {
-  //   fetch(fetchPrefix + '/cs_scores')
-  //     .then((resp) => resp.json())
-  //     .then(callback);
-  // };
+  fetch_scores = (callback) => {
+    fetch(fetchPrefix + '/cs_scores')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
 }
