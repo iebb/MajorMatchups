@@ -165,7 +165,7 @@ const Regions = [
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_rmr/${code}.png`;
 
 export default class Copenhagen2024RMR extends Regionals {
-  defaultTab = 1;
+  defaultTab = 2;
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PGL Major Copenhagen 2024 RMR Simulator";
