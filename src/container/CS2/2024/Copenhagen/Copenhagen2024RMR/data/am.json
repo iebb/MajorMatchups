@@ -54,8 +54,8 @@
     "description": "Seed #9"
   },
   {
-    "code": "timb",
-    "name": "timbermen",
+    "code": "elev",
+    "name": "Elevate",
     "seed": 10,
     "description": "Seed #10"
   },
@@ -84,14 +84,14 @@
     "description": "Seed #14"
   },
   {
-    "code": "rock",
-    "name": "Rocket",
+    "code": "liqu",
+    "name": "Team Liquid",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "liqu",
-    "name": "Team Liquid",
+    "code": "nrg",
+    "name": "NRG",
     "seed": 16,
     "description": "Seed #16"
   }
