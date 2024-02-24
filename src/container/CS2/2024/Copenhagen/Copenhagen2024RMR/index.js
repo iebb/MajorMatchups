@@ -71,7 +71,7 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUTB_Final,
     seats: [
-      { status: "challenger", until: 1, abbrev: "C", statusPositioned: true },
+      { status: "qualified", until: 1, abbrev: "Q", statusPositioned: true },
       { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
     ],
     tiebreakers: {
