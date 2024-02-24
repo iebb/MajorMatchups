@@ -50,7 +50,6 @@ export class Regionals extends React.Component {
     if (Regions[region]) {
       if (Regions[region].getSeeds !== undefined) {
         const {success, seeds, message} = Regions[region].getSeeds();
-        console.log("seeds:", seeds)
         this.setState({ message });
         if (success) {
           this.setState({ errorMessage: null })
@@ -72,10 +71,10 @@ export class Regionals extends React.Component {
     const { Regions, teamLogo } = this;
     const seeds = this.getSeed(region);
 
-    if (!seeds) return;
-
-    console.log("fs", this.fetchedScore)
-    console.log("fs", this.fetchedScore ? this.fetchedScore : this._scores)
+    if (!seeds) {
+      console.log("seed not found")
+      return;
+    }
 
     this.setState({
       ...pack(seeds, teamLogo),

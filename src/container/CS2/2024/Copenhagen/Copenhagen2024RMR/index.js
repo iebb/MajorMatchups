@@ -1,12 +1,10 @@
 /* eslint-disable global-require */
 
 import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
-import React from 'react';
 import {fetchPrefix} from "../../../../../libs/common/common";
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Regionals} from "../../../../Common/Regional";
-import {EUTB} from "../Copenhagen2024RMRProvisional/initial_data";
-import {EUA, EUB, AM} from './initial_data';
+import {AM, EUA, EUB, EUTB_Final} from './initial_data';
 import {Scores} from "./scores";
 
 const Regions = [
@@ -28,6 +26,7 @@ const Regions = [
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "",
+    defaultSuffix: "",
   },
   {
     name: "Europe-A",
@@ -46,6 +45,7 @@ const Regions = [
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "cph24.rmr.eua",
+    defaultSuffix: "",
   },
   {
     name: "Europe-B",
@@ -64,85 +64,12 @@ const Regions = [
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "cph24.rmr.eub",
+    defaultSuffix: "",
   },
   {
     name: "EU-Decider",
     icon: GlobeEuropeAfricaIcon,
-    getSeeds: () => {
-
-      const base = JSON.parse(JSON.stringify(EUTB));
-      let msg = [
-        <p>EU-Decider Teams are based on your choices in <a href="/24rmr_copenhagen#Europe-A" className="underline hover:text-nekoko-400">
-          Europe A</a> and <a href="/24rmr_copenhagen#Europe-B" className="underline hover:text-nekoko-400">
-          Europe B</a>.
-        </p>
-      ];
-
-      if (localStorage["cph24.rmr.eua"]) {
-        const teams = JSON.parse(localStorage["cph24.rmr.eua"]);
-        if (teams.length === 16) {
-          msg.push(<br />);
-          msg.push(<p>EU Qualifier A Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
-            delete localStorage['cph24.rmr.eua'];
-            document.location.reload();
-          }}>[clear]</a> </p>);
-          for(let i = 0; i < 3; i++) {
-            base[i * 2] =  {...teams[8 + i], group: 1};
-            msg.push(
-              <span className="inline-block w-[240px]">
-                {`#${8 + i + 1}: ${teams[8 + i].name}`}
-              </span>
-            );
-          }
-          msg.push(<br />);
-        }
-      }
-
-      if (localStorage["cph24.rmr.eub"]) {
-        const teams = JSON.parse(localStorage["cph24.rmr.eub"]);
-        if (teams.length === 16) {
-          msg.push(<br />);
-          msg.push(<p>EU Qualifier B Seeds: <a className="underline hover:text-nekoko-400" onClick={() => {
-            delete localStorage['cph24.rmr.eub'];
-            document.location.reload();
-          }}>[clear]</a> </p>);
-          for(let i = 0; i < 3; i++) {
-            base[i * 2 + 1] =  {...teams[8 + i], group: 2};
-            msg.push(
-              <span className="inline-block w-[240px]">
-                {`#${8 + i + 1}: ${teams[8 + i].name}`}
-              </span>
-            );
-          }
-          msg.push(<br />);
-        }
-      }
-
-
-      return {
-        success: true,
-        seeds: base.sort((teamA, teamB) => {
-          if (teamA.standing !== teamB.standing) {
-            return teamA.standing - teamB.standing;
-          }
-          if (teamA.standing === 10 && (teamA.buchholtz !== teamB.buchholtz)) {
-            return teamB.buchholtz - teamA.buchholtz;
-          }
-          if (teamA.group !== teamB.group) {
-            return teamA.group - teamB.group;
-          }
-        }).map((team, _seed) => ({
-          code: team.code,
-          logo: team.logo,
-          name: team.name,
-          seed: _seed + 1,
-          valveRanking: team.valveRanking,
-          buchholtz_offset: team.buchholtz,
-          buchholtz: team.buchholtz,
-        })),
-        message: <div className="text-left">{msg}</div>,
-      };
-    },
+    seeds: EUTB_Final,
     seats: [
       { status: "challenger", until: 1, abbrev: "C", statusPositioned: true },
       { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },

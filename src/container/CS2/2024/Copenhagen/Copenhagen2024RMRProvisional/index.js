@@ -135,7 +135,6 @@ const Regions = [
       let teams = getEUTeams(1);
 
       if (teams.length === 16) {
-        console.log(teams);
         msg.push(<br />);
         msg.push(<p><b>Seeds: </b></p>);
         for(const team of teams) {
