@@ -1,10 +1,10 @@
 /* eslint-disable global-require */
 
-import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
+import {GlobeAmericasIcon, GlobeAsiaAustraliaIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
 import {fetchPrefix} from "../../../../../libs/common/common";
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Regionals} from "../../../../Common/Regional";
-import {AM, EUA, EUB, EUTB_Final} from './initial_data';
+import {AP, AM, EUA, EUB, EUTB_Final} from './initial_data';
 import {Scores} from "./scores";
 
 const Regions = [
@@ -86,6 +86,24 @@ const Regions = [
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "cph24.rmr.eucq",
     defaultSuffix: "#",
+  },
+  {
+    name: "Asia-Pacific",
+    icon: GlobeAsiaAustraliaIcon,
+    seeds: AP,
+    seats: [
+      { status: "contenders", until: 2, abbrev: "Co", statusPositioned: true },
+      { status: "eliminated", until: 8, abbrev: "E", statusPositioned: true },
+    ],
+    tiebreakers: {},
+    rounds: 5,
+    winsToAdvance: 3,
+    losesToEliminate: 2,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.DoubleElimination2024,
+    resultTag: "cph24.rmr.ap",
+    defaultSuffix: "",
   },
 ].map((r, id) => ({...r, id}));
 

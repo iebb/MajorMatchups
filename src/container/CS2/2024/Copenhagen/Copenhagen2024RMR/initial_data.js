@@ -5,6 +5,7 @@ import {RegionalRankings_2023_12_AM, RegionalRankings_2023_12_EU} from "./region
 export const EUA = require("./data/eua.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_EU[team.code]}));
 export const EUB = require("./data/eub.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_EU[team.code]}));
 export const AM = require("./data/am.json").map(team => ({...team, valveRanking: RegionalRankings_2023_12_AM[team.code]}));
+export const AP = require("./data/ap.json").map(team => ({...team, valveRanking: 0, /*RegionalRankings_2023_12_AP[team.code] */ }));
 
 export const EUTB_Final = [
   {
