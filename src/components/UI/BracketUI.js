@@ -71,8 +71,12 @@ export function BracketUI({ preferences, state, shuffle }) {
 
   const renderTeams = (bracket, isFinal=false) => {
     if (bracket.teams.length === 0) return null;
+    const team0 = bracket.teams[0];
+    const borderColor = team0.statusFinalized ? (team0.border || "border-blue-500") : "border-blue-500";
     return (
-      <div key={bracket.pool} className={`${styles.noMatch} ${isFinal ? styles.finalWidth : styles.roundWidth} rounded-md border-2 border-blue-500 shadow-md`}>
+      <div key={bracket.pool} className={
+        `${styles.noMatch} ${isFinal ? styles.finalWidth : styles.roundWidth} rounded-md border-2 ${borderColor} shadow-md`
+      }>
         {bracket.teams.map((team, index) => (
 
           <div className={styles.teamNomatch} key={index}>
@@ -226,10 +230,17 @@ export function BracketUI({ preferences, state, shuffle }) {
 
 
                 for(const team of roundTeams) {
-                  pools[`${team.w}-${team.l}`] = {
-                    order: team.w * 100 - team.l,
-                    matches: [], teams: [], allTeams
-                  };
+                  if (team.statusFinalized) {
+                    pools[`${team.w}-${team.l}`] = {
+                      order: team.w * 100 - team.l,
+                      matches: [], teams: [], allTeams
+                    };
+                  } else {
+                    pools[`${team.w}-${team.l}`] = {
+                      order: team.w * 100 - team.l,
+                      matches: [], teams: [], allTeams
+                    };
+                  }
                 }
                 for(const match of matches) {
                   pools[match.pool] = {

@@ -13,8 +13,8 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: AM,
     seats: [
-      { status: "qualified", until: 5, abbrev: "Q", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 5, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     rounds: 4,
     winsToAdvance: 3,
@@ -30,9 +30,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
-      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", border: "border-green-500" },
+      { status: "decider", until: 11, abbrev: "D", border: "border-yellow-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -49,9 +49,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", border: "border-green-500" },
+      { status: "decider", until: 11, abbrev: "D", border: "border-yellow-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -68,8 +68,8 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUTB_Final,
     seats: [
-      { status: "qualified", until: 1, abbrev: "Q", statusPositioned: true },
-      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 1, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 6, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
       "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
@@ -89,8 +89,8 @@ const Regions = [
     icon: GlobeAsiaAustraliaIcon,
     seeds: AP,
     seats: [
-      { status: "contenders", until: 2, abbrev: "Co", statusPositioned: true },
-      { status: "eliminated", until: 8, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 2, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 8, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,

@@ -109,9 +109,9 @@ const Regions = [
     },
     seeds: AM,
     seats: [
-      { status: "legends", until: 1, abbrev: "L", statusPositioned: true },
-      { status: "challenger", until: 5, abbrev: "C", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "legends", until: 1, abbrev: "L" },
+      { status: "challenger", until: 5, abbrev: "C" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {
       "3": [{teams: 1, id: "1/2", name: "Legends Decider"}],
@@ -165,10 +165,10 @@ const Regions = [
     },
     seeds: EUA,
     seats: [
-      { status: "legends", until: 4, abbrev: "L", statusPositioned: true },
-      { status: "challenger", until: 8, abbrev: "C", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "legends", until: 4, abbrev: "L" },
+      { status: "challenger", until: 8, abbrev: "C" },
+      { status: "decider", until: 11, abbrev: "D" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -219,10 +219,10 @@ const Regions = [
       }
     },
     seats: [
-      { status: "legends", until: 3, abbrev: "L", statusPositioned: true },
-      { status: "challenger", until: 8, abbrev: "C", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "legends", until: 3, abbrev: "L" },
+      { status: "challenger", until: 8, abbrev: "C" },
+      { status: "decider", until: 11, abbrev: "D" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -312,8 +312,8 @@ const Regions = [
       };
     },
     seats: [
-      { status: "challenger", until: 1, abbrev: "C", statusPositioned: true },
-      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+      { status: "challenger", until: 1, abbrev: "C" },
+      { status: "eliminated", until: 6, abbrev: "E" },
     ],
     tiebreakers: {
       "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
