@@ -67,6 +67,13 @@ const Editions = [
     icon: FilmIcon,
     items: [
       {
+        title: '2024 Copenhagen',
+        subtitle: 'PGL Major Copenhagen 2024',
+        img: require("../images/logos/pgl24.png"),
+        description: '2024.03.17 - 2024.03.31',
+        path: '/24copenhagen',
+      },
+      {
         title: '2024 Copenhagen RMR',
         subtitle: 'Europe and Americas',
         img: require("../images/logos/pglrmr24.png"),
