@@ -13,12 +13,9 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: AM,
     seats: [
-      { status: "qualified", until: 5, abbrev: "Q", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 5, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
-    tiebreakers: {
-      "3": [{teams: 1, id: "1/2", name: "Legends Decider"}],
-    },
     rounds: 4,
     winsToAdvance: 3,
     losesToEliminate: 2,
@@ -33,9 +30,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
-      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", border: "border-green-500" },
+      { status: "decider", until: 11, abbrev: "D", border: "border-yellow-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -52,9 +49,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "qualified", until: 8, abbrev: "Q", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 8, abbrev: "Q", border: "border-green-500" },
+      { status: "decider", until: 11, abbrev: "D", border: "border-yellow-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -71,8 +68,8 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUTB_Final,
     seats: [
-      { status: "qualified", until: 1, abbrev: "Q", statusPositioned: true },
-      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 1, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 6, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
       "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
@@ -92,8 +89,8 @@ const Regions = [
     icon: GlobeAsiaAustraliaIcon,
     seeds: AP,
     seats: [
-      { status: "contenders", until: 2, abbrev: "Co", statusPositioned: true },
-      { status: "eliminated", until: 8, abbrev: "E", statusPositioned: true },
+      { status: "qualified", until: 2, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 8, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -110,7 +107,7 @@ const Regions = [
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_rmr/${code}.png`;
 
 export default class Copenhagen2024RMR extends Regionals {
-  defaultTab = 2;
+  defaultTab = 0;
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PGL Major Copenhagen 2024 RMR Simulator";

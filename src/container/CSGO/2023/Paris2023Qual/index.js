@@ -17,10 +17,10 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
-      { status: "rmr-b", until: 4, abbrev: "1", statusPositioned: true },
-      { status: "rmr-a", until: 8, abbrev: "2", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "rmr-b", until: 4, abbrev: "1" },
+      { status: "rmr-a", until: 8, abbrev: "2" },
+      { status: "decider", until: 11, abbrev: "D" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -35,10 +35,10 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "rmr-a", until: 4, abbrev: "1", statusPositioned: true },
-      { status: "rmr-b", until: 8, abbrev: "2", statusPositioned: true },
-      { status: "decider", until: 11, abbrev: "D", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "rmr-a", until: 4, abbrev: "1" },
+      { status: "rmr-b", until: 8, abbrev: "2" },
+      { status: "decider", until: 11, abbrev: "D" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {},
     rounds: 5,
@@ -53,9 +53,9 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUTB,
     seats: [
-      { status: "rmr-b", until: 1, abbrev: "R", statusPositioned: true },
-      { status: "rmr-a", until: 2, abbrev: "R", statusPositioned: true },
-      { status: "eliminated", until: 6, abbrev: "E", statusPositioned: true },
+      { status: "rmr-b", until: 1, abbrev: "R" },
+      { status: "rmr-a", until: 2, abbrev: "R" },
+      { status: "eliminated", until: 6, abbrev: "E" },
     ],
     tiebreakers: {
       "1": [{teams: 2, id: "2/3", offset: -0.1, name: "3rd Decider"}],
@@ -72,8 +72,8 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: NAM,
     seats: [
-      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "advance", until: 7, abbrev: "R" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {
       "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
@@ -90,8 +90,8 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: SAM,
     seats: [
-      { status: "advance", until: 7, abbrev: "R", statusPositioned: true },
-      { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+      { status: "advance", until: 7, abbrev: "R" },
+      { status: "eliminated", until: 16, abbrev: "E" },
     ],
     tiebreakers: {
       "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],

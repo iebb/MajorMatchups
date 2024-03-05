@@ -221,9 +221,22 @@ export function DoubleElimination(fromStage, toStage, winnerFn=getWinnerFromScor
 
     const teamsSorted = teams.sort(teamCompare).map((x, idx) => ({...x, standing: idx+1}));
     const roundTeams = teamsSorted.map((x, idx) => {
+      let statusFinalized = (
+        x.w === winsToAdvance || x.l === losesToEliminate
+      );
+      for(const tbRound of Object.keys(state.tiebreakers)) {
+        if (parseInt(tbRound, 10) > stage) {
+          for(const tb of state.tiebreakers[tbRound]) {
+            if (idx === tb.teams || idx === tb.teams - 1) {
+              statusFinalized = false;
+            }
+          }
+        }
+      }
       return ({
         ...x,
         standing: idx + 1,
+        statusFinalized,
         ordinalStanding: ordinal(idx+1),
         ...getStatus(idx+1, state.seats),
         elim: x.l === losesToEliminate,

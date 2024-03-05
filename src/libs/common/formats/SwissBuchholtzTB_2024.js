@@ -380,11 +380,26 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
         }
       }
 
+      let statusFinalized = (
+        x.w === winsToAdvance || x.l === losesToEliminate
+      );
+      for(const tbRound of Object.keys(state.tiebreakers)) {
+        if (parseInt(tbRound, 10) > stage) {
+          for(const tb of state.tiebreakers[tbRound]) {
+            if (idx === tb.teams || idx === tb.teams - 1) {
+              statusFinalized = false;
+            }
+          }
+        }
+      }
+
+
       return ({
         ...x,
         standing: stage > 0 ? idx + 1 : x.seed,
         ...getStatus(idx+1, state.seats),
         ordinalStanding: ordinal(idx+1),
+        statusFinalized,
         elim: x.l >= losesToEliminate,
         adv: x.w === winsToAdvance,
         currentRound: x.w + x.l === stage,

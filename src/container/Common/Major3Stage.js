@@ -1,12 +1,11 @@
-import {PaperAirplaneIcon, QuestionMarkCircleIcon, TrophyIcon, UserGroupIcon} from "@heroicons/react/24/outline";
+import { PaperAirplaneIcon, QuestionMarkCircleIcon, TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import Title from "../../components/BannerInsertion";
-import {BasicUI} from "../../components/BasicUI";
-import {NextMajorSlot} from "../../components/NextMajorSlot";
+import Title from '../../components/BannerInsertion';
+import { BasicUI } from '../../components/BasicUI';
 
-import {AdvanceElimSeats, packTeam, setWinner, shuffle} from "../../libs/common/common";
-import {FormatBinder} from "../../libs/common/formats/formats";
-import {getPickResults, setPickResults} from "../../libs/common/storage";
+import { AdvanceElimSeats, packTeam, setWinner, shuffle } from '../../libs/common/common';
+import { FormatBinder } from '../../libs/common/formats/formats';
+import { getPickResults, setPickResults } from '../../libs/common/storage';
 
 
 export const TournamentChallenger = 0;

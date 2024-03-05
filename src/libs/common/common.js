@@ -1,15 +1,15 @@
 import { setPickResults } from './storage';
 
 export const AdvanceElimSeats = [
-  { status: "advanced", until: 8, abbrev: "A", statusPositioned: true },
-  { status: "eliminated", until: 16, abbrev: "E", statusPositioned: true },
+  { status: "advanced", until: 8, abbrev: "A" },
+  { status: "eliminated", until: 16, abbrev: "E" },
 ];
 
 export const ChampionSeats = [
-  { status: "champion", until: 1, abbrev: "C", statusPositioned: true },
-  { status: "runner-up", until: 2, abbrev: "R", statusPositioned: true },
-  { status: "semifinalist", until: 4, abbrev: "SF", statusPositioned: false, statusDisplay: "SF" },
-  { status: "quarterfinalist", until: 8, abbrev: "QF", statusPositioned: false, statusDisplay: "QF" },
+  { status: "champion", until: 1, abbrev: "C" },
+  { status: "runner-up", until: 2, abbrev: "R" },
+  { status: "semifinalist", until: 4, abbrev: "SF", statusDisplay: "SF" },
+  { status: "quarterfinalist", until: 8, abbrev: "QF", statusDisplay: "QF" },
 ];
 
 export const splitCode = c => {
