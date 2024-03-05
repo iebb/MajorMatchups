@@ -5,6 +5,11 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
   const {state} = this;
   const stateMatches = state.matches;
   const stateTeams = state.teams;
+
+  const seeds = stateTeams[0].map(x => x.seed);
+  const minSeed = Math.min(...seeds);
+  const maxSeed = Math.max(...seeds);
+
   const stateRoundTeams = copy(state.roundTeams);
   const {
     pickResults, lockResults,
@@ -84,7 +89,7 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
         if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
       }
 
-      const invertedSeed = s => s > 8 ? 25 - s : s;
+      const invertedSeed = s => s >= minSeed + 8 ? 1000 - s : s;
       if (stage === 0) {
         return invertedSeed(x.seed) - invertedSeed(y.seed);
       }
@@ -178,8 +183,6 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
         }
 
         const suffix = defaultSuffix;
-
-        console.log(`${team1.code}-${team2.code}` + suffix, gamescores);
 
         if (`${team1.code}-${team2.code}` + suffix in gamescores) {
           const gs = gamescores[`${team1.code}-${team2.code}` + suffix];

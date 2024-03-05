@@ -44,6 +44,21 @@ export class Major3Stage extends React.Component {
     this.setState(FormatBinder[this.state.tournamentType].bind(this)(s, e));
   };
 
+  addTeamLogo = (t) => {
+    if (this.teamLogo) {
+      return t.map(x => ({
+        logo: this.teamLogo(x.code),
+        displayCode: x.code,
+        ...x,
+      }))
+    } else {
+      return t.map(x => ({
+        displayCode: x.code,
+        ...x,
+      }))
+    }
+  }
+
   advance = (_) => {
     let finalTeams;
     let { challengerResult } = this.state
@@ -67,7 +82,7 @@ export class Major3Stage extends React.Component {
     if (finalTeams) {
       this.setState({
         ...this.TournamentStages[1],
-        ...packTeam(finalTeams),
+        ...packTeam(this.addTeamLogo(finalTeams)),
         challengerResult,
         scores: this._scores[TournamentLegends],
         // pickResults: getPickResults('pickResults', 1, this.event),
@@ -100,7 +115,7 @@ export class Major3Stage extends React.Component {
       setPickResults('teams', 1, this.event, this.state.teams[0]);
       this.setState({
         ...this.TournamentStages[2],
-        ...packTeam(teamsAdvanced),
+        ...packTeam(this.addTeamLogo(teamsAdvanced)),
         legendResult,
         scores: this._scores[TournamentChampions],
         // pickResults: getPickResults('pickResults', 2, this.event),
@@ -115,7 +130,7 @@ export class Major3Stage extends React.Component {
     const stageConfig = this.TournamentStages[tStage];
     this.setState({
       ...stageConfig,
-      ...packTeam(stageConfig.teams),
+      ...packTeam(this.addTeamLogo(stageConfig.teams)),
       scores: this._scores[tStage],
       // pickResults: getPickResults('pickResults', tStage, this.event),
     }, () => {

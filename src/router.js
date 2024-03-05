@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect, Route, Switch, useHistory} from "react-router-dom";
+import Copenhagen2024Provisional from "./container/CS2/2024/Copenhagen/Copenhagen2024Provisional";
 
 import Copenhagen2024Qual from "./container/CS2/2024/Copenhagen/Copenhagen2024Qual";
 import Copenhagen2024RMR from "./container/CS2/2024/Copenhagen/Copenhagen2024RMR";
@@ -63,6 +64,10 @@ export default function Routes() {
         <Copenhagen2024RMR history={h} />
       </Route>
 
+      <Route path="/24copenhagen">
+        <Copenhagen2024Provisional history={h} />
+      </Route>
+
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />
       </Route>
@@ -71,7 +76,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/24rmr_copenhagen" />
+        <Redirect to="/24copenhagen" />
       </Route>
     </Switch>
   );
