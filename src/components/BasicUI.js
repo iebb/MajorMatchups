@@ -256,7 +256,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
             <Alert color="red" className="text-white">{errorMessage}</Alert>
           </div>
         ) : (
-          <>
+          <div className="ui">
             <UI
               state={state}
               shuffle={shuffle}
@@ -276,7 +276,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
                 </div>
               )
             }
-            </>
+            </div>
         )
       }
 

@@ -1,111 +1,49 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-multi-comp */
 
-import React, {useEffect, useState} from 'react';
+import {ThemeProvider} from "@material-tailwind/react";
+import React from 'react';
 
 import {BrowserRouter as Router} from 'react-router-dom';
-import GoogleAd from './components/GoogleAd';
+import {BottomAdLayer} from "./components/Ads/AdLayer";
+import {SiderAd} from "./components/Ads/SiderAd";
 import ComplexNavbar from './components/Navbar';
-import {fetchPrefix} from "./libs/common/common";
 import {SettingsCtx} from './libs/Context';
 import Routes from './router';
-import { ThemeProvider } from "@material-tailwind/react";
 
-const BaseAd = {
-  banner: "",
-  name: "",
-  comment: "",
-  link: "",
-};
 
 export const ResponsiveContainer = ({ children }) => {
-  const [ad, setAd] = useState(BaseAd);
-  const [adType, setAdType] = useState(localStorage.adtype || "none");
-
-  // const adType = "google";
 
   const Footer = () => (
     <div className="m-2">
       <p className="text-lg pt-2">
         by ieb (<a className="hyperlink" href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 &middot; Give <a className="hyperlink" href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
       </p>
-      {ad.comment ? <p>{ad.comment}</p> : ""}
     </div>
   )
+  const ad = window.config || {}
 
-  useEffect(() => {
-    try {
-      setAd({
-        ...BaseAd,
-        ...JSON.parse(localStorage.config)
-      });
-    } catch {
-    }
-
-    if (process.env.NODE_ENV !== "development") {
-      fetch(fetchPrefix + '/config')
-        .then((resp) => resp.json())
-        .then((resp) => {
-          setAdType(resp.adtype);
-          setAd(resp);
-          localStorage.config = JSON.stringify(resp);
-          localStorage.adtype = resp.adtype;
-        });
-    }
-  }, []);
   return (
     <SettingsCtx.Provider value={{
-      adType, ad, adProvider: ad.name || "",
+      adType: ad.adtype, ad, adProvider: ad.name || "",
     }}>
-      <ComplexNavbar />
+      <ComplexNavbar/>
+
       <div className="outer">
-        {children}
-        <div dangerouslySetInnerHTML={{ __html: `<script defer data-domain="majors.im" src="/js/script.js"></script>` }} />
-        {
-          /*(localStorage.disableAds !== "true") && */(adType === "google") && (
-            <GoogleAd
-              style={{ display: 'block' }}
-              googleAdId="ca-pub-3253159471656308"
-              format="autorelaxed"
-              slot="1398483557"
-            />
-          )
-        }
+        <SiderAd slot={1} />
+        <div className={`content-container ${ad.siders ? "with-sider" : "with-sider"}`}>
+          {children}
+        </div>
+        <SiderAd slot={2} />
+        <div dangerouslySetInnerHTML={{__html: `<script defer data-domain="majors.im" src="/js/script.js"></script>`}}/>
       </div>
-      {
-        (adType !== "custom") ? (
-          <Footer />
-        ) : (
-          <div>
-            <Footer />
-            <div className="dynamic-padding" />
-            <div className="bottom-desktop">
-              <div className="adv-container flex overflow-hidden min-w-full">
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-                <a href={ad.link} className="adv-img">
-                  <img className="adv-img-img" src={ad.banner} alt={ad.name}/>
-                </a>
-              </div>
-            </div>
-          </div>
-        )
-      }
+      <div>
+        <Footer />
+        <div className="dynamic-padding"/>
+      </div>
+      <BottomAdLayer />
     </SettingsCtx.Provider>
-  );
+);
 }
 
 

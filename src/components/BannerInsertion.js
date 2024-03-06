@@ -1,11 +1,14 @@
 import React, {useContext} from 'react';
 import {Helmet} from "react-helmet";
-import sponsorLogo from "../images/sponsor/rio_sb.svg";
 import {SettingsCtx} from "../libs/Context";
 
 function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classNames = "", extras=[] }) {
   const ctx = useContext(SettingsCtx);
   // const sponsorLess = true;
+
+  const sponsorLogo = ctx.ad?.branding;
+  const defaultSponsorLogo = "https://img.majors.im/sponsors/rio_sb.svg";
+  const defaultSponsorLink = "https://redirect.badasstemple.eu/br7lju";
 
   return (
     <div className={classNames + " title-outer-container"}>
@@ -18,10 +21,10 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
             <h1 className="title">{title}</h1>
           ) : (
 
-            ctx.adType === "custom" ? (
+            (sponsorLogo) ? (
               <div className="adv-logo-inline">
                 <div className="adv-logo-inline-left">
-                  <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju">
+                  <a className="hyperlink" href={ctx.ad.sponsorLink}>
                     <img src={sponsorLogo} alt={ctx.adProvider} />
                   </a>
                 </div>
@@ -33,8 +36,8 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
               <>
                 <h1 className="title">{title}</h1>
                 <p className="text-xl mt-2 text-nekoko-700">
-                  Sponsored by <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju">
-                  <img src={sponsorLogo} alt={ctx.adProvider}
+                  Sponsored by <a className="hyperlink" href={defaultSponsorLink}>
+                  <img src={defaultSponsorLogo} alt={ctx.adProvider}
                        style={{maxHeight: 20, marginLeft: 10, display: "inline-block"}}/>
                 </a>
                 </p>
