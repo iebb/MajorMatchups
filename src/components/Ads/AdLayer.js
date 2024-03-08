@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import GoogleAd from "./GoogleAd";
 
 export const BottomAdLayer = () => {
@@ -7,7 +7,7 @@ export const BottomAdLayer = () => {
 
   if (ad.adtype === "google") {
     return (
-      <div className="bottom-desktop">
+      <div className="bottom-desktop" style={{ maxHeight: 240 }}>
         <GoogleAd
           style={{display: 'block'}}
           googleAdId="ca-pub-3253159471656308"
