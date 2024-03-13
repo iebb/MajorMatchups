@@ -7,7 +7,7 @@ export const BottomAdLayer = () => {
 
   if (ad.adtype === "google") {
     return (
-      <div className="bottom-desktop" style={{ maxHeight: 240 }}>
+      <div className="bottom-desktop" style={{ maxHeight: 93 }}>
         <GoogleAd
           style={{display: 'block'}}
           googleAdId="ca-pub-3253159471656308"
