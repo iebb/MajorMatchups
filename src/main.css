@@ -612,3 +612,4 @@ img.ui {
 ins.adsbygoogle[data-ad-status="unfilled"] {
   display: none !important;
 }
+ins.adsbygoogle { background: transparent !important; }
