@@ -23,7 +23,7 @@ export const BottomAdLayer = () => {
     return (
       <div className="bottom-desktop">
         <a href={ad.link}>
-          <div className="adv-container overflow-hidden min-w-full"  style={{
+          <div className="majorsim-ac overflow-hidden min-w-full"  style={{
             backgroundImage: `url(${ad.banner})`
           }}>
           </div>
