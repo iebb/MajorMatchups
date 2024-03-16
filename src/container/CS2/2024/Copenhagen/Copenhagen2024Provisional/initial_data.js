@@ -96,8 +96,8 @@ export const initialDataChallenger = [
     region: "EU",
   },
   {
-    "code": "9pan",
-    "name": "9Pandas",
+    "code": "gl",
+    "name": "GamerLegion",
     seed: 14,
     region: "EU",
     description: "EU #13",
