@@ -214,16 +214,30 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
           undetermined = true;
         }
 
-        if (`${team1.code}-${team2.code}` + suffix in pickResults) {
-          if (picked !== pickResults[`${team1.code}-${team2.code}` + suffix]) {
+
+        const tc_suffix = `${team1.code}-${team2.code}` + suffix;
+        const tc_suffix2 = `${team2.code}-${team1.code}` + suffix;
+
+        if (tc_suffix in pickResults) {
+          if (picked !== pickResults[tc_suffix]) {
             undetermined = true;
           }
-          picked = pickResults[`${team1.code}-${team2.code}` + suffix]
+          picked = pickResults[tc_suffix]
         }
 
         let locked = false;
-        if (`${team1.code}-${team2.code}` + suffix in lockResults) {
+        if (tc_suffix in lockResults) {
           locked = true;
+        }
+
+        let metadata = {};
+        if (this.state.matches_metadata) {
+          if (this.state.matches_metadata[tc_suffix]) {
+            metadata = this.state.matches_metadata[tc_suffix];
+          }
+          if (this.state.matches_metadata[tc_suffix2]) {
+            metadata = this.state.matches_metadata[tc_suffix2];
+          }
         }
 
         const _match = {
@@ -242,7 +256,11 @@ export function SwissBuchholtzTB_2024(fromStage, toStage, winnerFn=getWinnerFrom
           toggle: () => this.setWinner({
             picked, team1, team2, suffix
           }, -picked),
+          ...metadata,
         };
+
+
+
         mat.push(_match);
         const nPoolTeams = copy(p.filter((x) => x.seed !== team1.seed && x.seed !== team2.seed));
         if (dfs(nPoolTeams, mat, mref, pool)) {

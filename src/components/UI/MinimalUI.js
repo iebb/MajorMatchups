@@ -1,11 +1,12 @@
+import {BeakerIcon, ClockIcon, PlayCircleIcon} from '@heroicons/react/20/solid';
+import {Chip, IconButton} from '@material-tailwind/react';
 import React from 'react';
+import {isSwissBuchholtzFormat, isSwissBuchholtzOrEloFormat} from '../../libs/common/formats/formats';
+import {dingbats} from '../../libs/plural';
+import {plus_minus} from '../../libs/plus_minus';
+import {BuchholtzPopup} from '../BuchholtzPopup';
+import {CountdownX} from "../Countdown";
 import styles from './bracket.module.css';
-import { plus_minus } from '../../libs/plus_minus';
-import { BuchholtzPopup } from '../BuchholtzPopup';
-import {Formats, isSwissBuchholtzFormat, isSwissBuchholtzOrEloFormat} from '../../libs/common/formats/formats';
-import { BeakerIcon, ClockIcon, PlayCircleIcon } from '@heroicons/react/20/solid';
-import { Chip, IconButton } from '@material-tailwind/react';
-import { dingbats } from '../../libs/plural';
 
 
 const conflictColors = (picked, result) => {
@@ -160,17 +161,49 @@ export function MinimalUI({ preferences, state, shuffle }) {
         <div
           className={`flex-[4]`}
         >
-          <div className={`flex-col text-sm text-center`}>
+          <div className={`flex-col text-xs text-center`}>
             {
               match.result === 0 && (
-                <>
-                  <p className="text-center inline-block">
-                    {
-                      match.score && match.score[0]?.length ?
-                        <PlayCircleIcon className="w-4 h-4 text-pink-500 inline-block" title="ongoing match" /> :
-                        <ClockIcon className="w-4 h-4 text-blue-500" title="future match" />
-                    }{match.id}</p>
-                </>
+                <div className="flex-row">
+                  {
+                    match.hltv && (
+                      <p className="text-center inline-block text-gray-400 flex-1">
+                        <a href={match.hltv} target="_blank">
+                          <img
+                            src={require("../../images/hltv.png")}
+                            className="w-3 h-3 inline-block rounded"
+                            alt="HLTV"
+                          /> HLTV
+                        </a>
+                      </p>
+                    )
+                  }
+                  {
+                    (match.timestamp) ? (
+                      <p className="text-center inline-block">
+                        <CountdownX
+                          date={match.timestamp * 1000}
+                        />
+                        <div>
+                          <div className="h-4 inline-block">
+                            {
+                              match.score && match.score[0]?.length ?
+                                <PlayCircleIcon className="w-3.5 h-3.5 text-pink-500 inline-block" title="ongoing match"/> :
+                                <ClockIcon className="w-3.5 h-3.5 text-blue-500 inline-block" title="future match"/>
+                            } {match.id}
+                          </div>
+                        </div>
+                      </p>
+                    ) : (
+                      <p className="text-center inline-block">
+                        {
+                          match.score && match.score[0]?.length ?
+                            <PlayCircleIcon className="w-4 h-4 text-pink-500" title="ongoing match"/> :
+                            <ClockIcon className="w-4 h-4 text-blue-500" title="future match"/>
+                        } {match.id}</p>
+                    )
+                  }
+                </div>
               )
             }
             {match.score[0].map((x, _idx) => (

@@ -131,26 +131,48 @@ export class Major3Stage extends React.Component {
       ...stageConfig,
       ...packTeam(this.addTeamLogo(stageConfig.teams)),
       scores: this.fetchedScore ? this.fetchedScore[tStage] : this._scores[tStage],
+      matches_metadata: this.fetchedMatch ? this.fetchedMatch[tStage] : null,
       // pickResults: getPickResults('pickResults', tStage, this.event),
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
 
-    console.log(this.fetch_scores, this.fetchedScore);
+    if (this.fetch_matches) {
 
-    if (this.fetch_scores) {
-      if (!this.fetchedScore) {
-        this.fetch_scores((resp) => {
-          this.fetchedScore = {...resp, ...this._scores};
-          console.log("fs", this.fetchedScore);
-          this.setState({
-            ...stageConfig,
-            ...packTeam(this.addTeamLogo(stageConfig.teams)),
-            scores: {...resp[tStage], ...this._scores},
-          }, () => this.calculateMatchups(0, this.state.rounds + 1));
-        });
+      this.fetch_matches((matches_metadata) => {
+        if (this.fetch_scores) {
+          if (!this.fetchedScore) {
+            this.fetch_scores((resp) => {
+              this.fetchedScore = {...resp, ...this._scores};
+              this.fetchedMatch = matches_metadata;
+              this.setState({
+                ...stageConfig,
+                ...packTeam(this.addTeamLogo(stageConfig.teams)),
+                scores: {...resp[tStage], ...this._scores},
+                matches_metadata: matches_metadata[tStage],
+              }, () => this.calculateMatchups(0, this.state.rounds + 1));
+            });
+            console.log(matches_metadata);
+          }
+        }
+      });
+
+    } else {
+
+      if (this.fetch_scores) {
+        if (!this.fetchedScore) {
+          this.fetch_scores((resp) => {
+            this.fetchedScore = {...resp, ...this._scores};
+            this.setState({
+              ...stageConfig,
+              ...packTeam(this.addTeamLogo(stageConfig.teams)),
+              scores: {...resp[tStage], ...this._scores},
+            }, () => this.calculateMatchups(0, this.state.rounds + 1));
+          });
+        }
       }
     }
+
   };
 
   recalculate = (conflictPicks = true) => {

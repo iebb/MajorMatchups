@@ -1,9 +1,9 @@
 import {getWinnerFromScoreCS2} from "../common";
+import {DoubleElimination} from './DoubleElimination';
 import {Elo2019} from "./Elo2019";
+import {Knockout} from './Knockout';
 import {SwissBuchholtzR1P} from "./SwissBuchholtzR1P";
-import { SwissBuchholtzTB } from './SwissBuchholtzTB';
-import { Knockout } from './Knockout';
-import { DoubleElimination } from './DoubleElimination';
+import {SwissBuchholtzTB} from './SwissBuchholtzTB';
 import {SwissBuchholtzTB_2024} from "./SwissBuchholtzTB_2024";
 
 export const Formats = {
