@@ -159,7 +159,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </p>
         </div>
         <div
-          className={`flex-[4]`}
+          className={`flex-[5]`}
         >
           <div className={`flex-col text-xs text-center`}>
             {
@@ -185,7 +185,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                           date={match.timestamp * 1000}
                         />
                         <div>
-                          <div className="h-4 inline-block">
+                          <div className="h-4 inline-block align-text-bottom">
                             {
                               match.score && match.score[0]?.length ?
                                 <PlayCircleIcon className="w-3.5 h-3.5 text-pink-500 inline-block" title="ongoing match"/> :
@@ -207,7 +207,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
               )
             }
             {match.score[0].map((x, _idx) => (
-              <div className="flex flex-row text-sm" key={_idx}>
+              <div className="flex flex-row text-xs" key={_idx}>
                 <div className={`flex-1 text-right ${x > match.score[1][_idx] && "font-bold text-green-500"}`}>
                   {x}
                 </div>
