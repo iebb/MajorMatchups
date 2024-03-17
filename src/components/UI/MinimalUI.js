@@ -182,7 +182,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                         {
                           match.score && match.score[0]?.length ?
                             null :
-                            (
+                            match.twitch && (
                               <div>
                                 <div className="h-4 inline-block align-middle">
                                   <a href={`https://twitch.tv/${match.twitch}`} target="_blank">
