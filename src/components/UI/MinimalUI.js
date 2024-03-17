@@ -171,18 +171,12 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       <p className="text-center inline-block">
                         <CountdownX
                           date={match.timestamp * 1000}
-                          live={<a href={`https://twitch.tv/${match.twitch}`} target="_blank" className="h-4 inline-block align-middle">
-                            <img
-                              src={"https://img.majors.im/twitch.ico"}
-                              className="w-3 h-3 inline-block rounded align-middle"
-                              alt="Twitch"
-                            /> LIVE
-                          </a>}
+                          live={"LIVE"}
                         />
                         {
                           match.score && match.score[0]?.length ?
                             null :
-                            match.twitch && (
+                            match.twitch ? (
                               <div>
                                 <div className="h-4 inline-block align-middle">
                                   <a href={`https://twitch.tv/${match.twitch}`} target="_blank">
@@ -193,6 +187,10 @@ export function MinimalUI({ preferences, state, shuffle }) {
                                     /> Twitch
                                   </a>
                                 </div>
+                              </div>
+                            ) : (
+                              <div>
+                                <ClockIcon className="w-4 h-4 text-blue-500" title="future match"/>
                               </div>
                             )
                         }
