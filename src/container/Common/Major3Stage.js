@@ -3,7 +3,7 @@ import React from 'react';
 import Title from '../../components/BannerInsertion';
 import { BasicUI } from '../../components/BasicUI';
 
-import { AdvanceElimSeats, packTeam, setWinner, shuffle } from '../../libs/common/common';
+import {AdvanceElimSeats, pack, packTeam, setWinner, shuffle} from '../../libs/common/common';
 import { FormatBinder } from '../../libs/common/formats/formats';
 import { getPickResults, setPickResults } from '../../libs/common/storage';
 
@@ -130,12 +130,27 @@ export class Major3Stage extends React.Component {
     this.setState({
       ...stageConfig,
       ...packTeam(this.addTeamLogo(stageConfig.teams)),
-      scores: this._scores[tStage],
+      scores: this.fetchedScore ? this.fetchedScore[tStage] : this._scores[tStage],
       // pickResults: getPickResults('pickResults', tStage, this.event),
     }, () => {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
 
+    console.log(this.fetch_scores, this.fetchedScore);
+
+    if (this.fetch_scores) {
+      if (!this.fetchedScore) {
+        this.fetch_scores((resp) => {
+          this.fetchedScore = {...resp, ...this._scores};
+          console.log("fs", this.fetchedScore);
+          this.setState({
+            ...stageConfig,
+            ...packTeam(this.addTeamLogo(stageConfig.teams)),
+            scores: {...resp[tStage], ...this._scores},
+          }, () => this.calculateMatchups(0, this.state.rounds + 1));
+        });
+      }
+    }
   };
 
   recalculate = (conflictPicks = true) => {

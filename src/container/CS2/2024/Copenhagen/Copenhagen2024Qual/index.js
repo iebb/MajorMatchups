@@ -210,8 +210,8 @@ export default class Copenhagen2024Qual extends Regionals {
   _scores = Scores;
 
   fetch_scores = (callback) => {
-    fetch(fetchPrefix + '/cs_scores')
-      .then((resp) => resp.json())
-      .then(callback);
+    // fetch(fetchPrefix + '/cs_scores')
+    //   .then((resp) => resp.json())
+    //   .then(callback);
   };
 }

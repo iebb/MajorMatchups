@@ -1,13 +1,9 @@
 /* eslint-disable global-require */
 
-import {AdvanceElimSeats, ChampionSeats} from "../../../../../libs/common/common";
+import {AdvanceElimSeats, ChampionSeats, fetchPrefix} from "../../../../../libs/common/common";
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Major3Stage} from "../../../../Common/Major3Stage";
-import {ChallengerResults, LegendResults} from "../../../../CSGO/2022/Rio/Rio2022/scores";
-import {
-  initialDataChallenger,
-  initialDataLegends
-} from "./initial_data";
+import {initialDataChallenger, initialDataLegends} from "./initial_data";
 import {Scores} from "./scores";
 
 const TournamentChallenger = 0;
@@ -58,7 +54,7 @@ const TournamentStages = [
 
 const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_rmr/${code}.png`;
 
-export default class Copenhagen2024Provisional extends Major3Stage {
+export default class Copenhagen2024 extends Major3Stage {
   TournamentStages = TournamentStages;
   event = "24copenhagen";
   title = "PGL Major Copenhagen 2024 Simulator";
@@ -72,4 +68,15 @@ export default class Copenhagen2024Provisional extends Major3Stage {
   //   legendResult: LegendResults,
   // }
 
+  fetch_scores = (callback) => {
+    fetch(fetchPrefix + '/cs_scores')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
+
+  fetch_matches = (callback) => {
+    fetch(fetchPrefix + '/cs_matches')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
 }
