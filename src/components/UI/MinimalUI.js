@@ -165,19 +165,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
             {
               match.result === 0 && (
                 <div className="flex-row">
-                  {
-                    match.hltv && (
-                      <p className="text-center inline-block text-gray-400 flex-1">
-                        <a href={match.hltv} target="_blank">
-                          <img
-                            src={"https://img.majors.im//hltv.png"}
-                            className="w-3 h-3 inline-block rounded"
-                            alt="HLTV"
-                          /> HLTV
-                        </a>
-                      </p>
-                    )
-                  }
+
                   {
                     (match.timestamp) ? (
                       <p className="text-center inline-block">
@@ -185,11 +173,11 @@ export function MinimalUI({ preferences, state, shuffle }) {
                           date={match.timestamp * 1000}
                         />
                         <div>
-                          <div className="h-4 inline-block align-text-bottom">
+                          <div className="h-4 inline-block align-middle">
                             {
                               match.score && match.score[0]?.length ?
-                                <PlayCircleIcon className="w-3.5 h-3.5 text-pink-500 inline-block" title="ongoing match"/> :
-                                <ClockIcon className="w-3.5 h-3.5 text-blue-500 inline-block" title="future match"/>
+                                <PlayCircleIcon className="w-3.5 h-3.5 text-pink-500 inline-block align-middle" title="ongoing match"/> :
+                                <ClockIcon className="w-3.5 h-3.5 text-blue-500 inline-block align-middle" title="future match"/>
                             } {match.id}
                           </div>
                         </div>
@@ -217,6 +205,19 @@ export function MinimalUI({ preferences, state, shuffle }) {
                 </div>
               </div>
             ))}
+            {
+              match.hltv && (
+                <p className="text-center inline-block text-gray-400 flex-1 align-middle">
+                  <a href={match.hltv} target="_blank">
+                    <img
+                      src={"https://img.majors.im//hltv.png"}
+                      className="w-3 h-3 inline-block rounded align-middle"
+                      alt="HLTV"
+                    />
+                  </a>
+                </p>
+              )
+            }
           </div>
         </div>
         <div
