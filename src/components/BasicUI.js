@@ -63,16 +63,16 @@ const UIEnums = {
       { name: "Display Matches Only", key: "matchOnly", default: false },
     ],
   },
-  vis: {
-    name: 'Visualization UI',
-    component: VisUI,
-    options: [
-      { name: "Show Elimiated Teams", key: "eliminatedOnVisualization", default: true },
-      { name: "Straight Corner Edges", key: "straightCorner", default: false },
-      { name: "Overlapping Corners", key: "tight", default: true },
-      { name: "Dashed Line for Undetermined", key: "dash", default: false },
-    ],
-  },
+  // vis: {
+  //   name: 'Visualization UI',
+  //   component: VisUI,
+  //   options: [
+  //     { name: "Show Elimiated Teams", key: "eliminatedOnVisualization", default: true },
+  //     { name: "Straight Corner Edges", key: "straightCorner", default: false },
+  //     { name: "Overlapping Corners", key: "tight", default: true },
+  //     { name: "Dashed Line for Undetermined", key: "dash", default: false },
+  //   ],
+  // },
 }
 
 export function BasicUI({ tabs, state, stage, shuffle, advance }) {
