@@ -191,7 +191,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
             label="Choose UI Type"
           >
             {
-              ['minimal', 'bracket', 'classic', 'vis'].map(
+              ['minimal', 'bracket', 'classic'].map(
                 ui => (
                   <Option
                     key={ui}
