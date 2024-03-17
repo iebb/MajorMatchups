@@ -170,7 +170,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       <p className="text-center inline-block text-gray-400 flex-1">
                         <a href={match.hltv} target="_blank">
                           <img
-                            src={require("../../images/hltv.png")}
+                            src={"https://img.majors.im//hltv.png"}
                             className="w-3 h-3 inline-block rounded"
                             alt="HLTV"
                           /> HLTV
