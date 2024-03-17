@@ -22,7 +22,7 @@ export const CountdownX = ({ date }) => {
         setTimer(`${hours}h ${minutes}m`);
       }
     } else {
-      setTimer(``);
+      setTimer(`LIVE`);
     }
   };
 
