@@ -5,5 +5,6 @@
 # /r6_scores               https://matches.im/api/scores?id=644c15a6f00fad11b00c0c69 200
 /r6_scores               https://matches.im/api/scores?id=6543bca6a42c43a2f90efda3 200
 /cs_scores               https://result-api.majors.im/scores.json 200
+/cs_matches               https://result-api.majors.im/matches.json 200
 # /major_scores_21         https://result-api.majors.im/event_21.json 200
 /*                       /index.html   200
