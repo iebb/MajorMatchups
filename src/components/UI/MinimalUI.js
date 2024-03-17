@@ -171,16 +171,31 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       <p className="text-center inline-block">
                         <CountdownX
                           date={match.timestamp * 1000}
+                          live={<a href={`https://twitch.tv/${match.twitch}`} target="_blank" className="h-4 inline-block align-middle">
+                            <img
+                              src={"https://img.majors.im/twitch.ico"}
+                              className="w-3 h-3 inline-block rounded align-middle"
+                              alt="Twitch"
+                            /> LIVE
+                          </a>}
                         />
-                        <div>
-                          <div className="h-4 inline-block align-middle">
-                            {
-                              match.score && match.score[0]?.length ?
-                                <PlayCircleIcon className="w-3.5 h-3.5 text-pink-500 inline-block align-middle" title="ongoing match"/> :
-                                <ClockIcon className="w-3.5 h-3.5 text-blue-500 inline-block align-middle" title="future match"/>
-                            } {match.id}
-                          </div>
-                        </div>
+                        {
+                          match.score && match.score[0]?.length ?
+                            null :
+                            (
+                              <div>
+                                <div className="h-4 inline-block align-middle">
+                                  <a href={`https://twitch.tv/${match.twitch}`} target="_blank">
+                                    <img
+                                      src={"https://img.majors.im/twitch.ico"}
+                                      className="w-3 h-3 inline-block rounded align-middle"
+                                      alt="Twitch"
+                                    /> Twitch
+                                  </a>
+                                </div>
+                              </div>
+                            )
+                        }
                       </p>
                     ) : (
                       <p className="text-center inline-block">
@@ -213,7 +228,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       src={"https://img.majors.im//hltv.png"}
                       className="w-3 h-3 inline-block rounded align-middle"
                       alt="HLTV"
-                    />
+                    /> HLTV
                   </a>
                 </p>
               )

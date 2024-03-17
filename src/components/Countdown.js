@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 
-export const CountdownX = ({ date }) => {
+export const CountdownX = ({ date, live="LIVE" }) => {
   const [timer, setTimer] = useState("");
 
 
@@ -22,7 +22,7 @@ export const CountdownX = ({ date }) => {
         setTimer(`${hours}h ${minutes}m`);
       }
     } else {
-      setTimer(`LIVE`);
+      setTimer(live);
     }
   };
 
