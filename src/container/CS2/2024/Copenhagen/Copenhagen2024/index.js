@@ -52,7 +52,7 @@ const TournamentStages = [
   },
 ];
 
-const teamLogo = (code) => `https://img.majors.im/rmr/copenhagen2024_rmr/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/cs2/cph2024/${code}_graffiti.png`;
 
 export default class Copenhagen2024 extends Major3Stage {
   TournamentStages = TournamentStages;

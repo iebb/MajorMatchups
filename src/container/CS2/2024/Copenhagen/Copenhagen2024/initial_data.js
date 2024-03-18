@@ -63,115 +63,119 @@ export const initialDataChallenger = [
   {
     "code": "c9",
     "name": "Cloud9",
-    seed: 9,
-    description: "EU #8",
-    region: "EU",
+    "seed": 9,
+    "description": "EU #8",
+    "region": "EU"
   },
   {
-    "code": "ef",
+    "code": "eter",
+    "lcode": "ef",
     "name": "Eternal Fire",
-    seed: 10,
-    description: "EU #9",
-    region: "EU",
+    "seed": 10,
+    "description": "EU #9",
+    "region": "EU"
   },
   {
     "code": "ence",
     "name": "ENCE",
-    seed: 11,
-    description: "EU #10",
-    region: "EU",
+    "seed": 11,
+    "description": "EU #10",
+    "region": "EU"
   },
   {
-    "code": "apek",
+    "code": "apex",
+    "lcode": "apek",
     "name": "Apeks",
-    seed: 12,
-    description: "EU #11",
-    region: "EU",
+    "seed": 12,
+    "description": "EU #11",
+    "region": "EU"
   },
   {
     "code": "hero",
     "name": "Heroic",
-    seed: 13,
-    description: "EU #12",
-    region: "EU",
+    "seed": 13,
+    "description": "EU #12",
+    "region": "EU"
   },
   {
     "code": "gl",
     "name": "GamerLegion",
-    seed: 14,
-    region: "EU",
-    description: "EU #13",
+    "seed": 14,
+    "region": "EU",
+    "description": "EU #13"
   },
   {
     "code": "saw",
     "name": "SAW",
-    seed: 15,
-    description: "EU #14",
-    region: "EU",
+    "seed": 15,
+    "description": "EU #14",
+    "region": "EU"
   },
   {
     "code": "furi",
     "name": "FURIA Esports",
-    seed: 16,
-    description: "AM #2",
-    region: "EU",
+    "seed": 16,
+    "description": "AM #2",
+    "region": "EU"
   },
-
-
   {
     "code": "ecst",
     "name": "ECSTATIC",
-    seed: 17,
-    description: "EU #15",
-    region: "EU",
+    "seed": 17,
+    "description": "EU #15",
+    "region": "EU"
   },
   {
-    "code": "mong",
+    "code": "mngz",
+    "lcode": "mong",
     "name": "The MongolZ",
-    seed: 18,
-    description: "AP #1",
-    region: "AP",
+    "seed": 18,
+    "description": "AP #1",
+    "region": "AP"
   },
   {
-    "code": "impe",
+    "code": "imp",
+    "lcode": "impe",
     "name": "Imperial Esports",
-    seed: 19,
-    description: "AM #3",
-    region: "AM",
+    "seed": 19,
+    "description": "AM #3",
+    "region": "AM"
   },
   {
     "code": "pain",
     "name": "paiN Gaming",
-    seed: 20,
-    description: "AM #4",
-    region: "AM",
+    "seed": 20,
+    "description": "AM #4",
+    "region": "AM"
   },
   {
-    "code": "lvg",
+    "code": "lynn",
+    "lcode": "lvg",
     "name": "Lynn Vision Gaming",
-    seed: 21,
-    description: "AP #2",
-    region: "AP",
+    "seed": 21,
+    "description": "AP #2",
+    "region": "AP"
   },
   {
     "code": "amka",
     "name": "AMKAL ESPORTS",
-    seed: 22,
-    description: "EU #16",
-    region: "EU",
+    "seed": 22,
+    "description": "EU #16",
+    "region": "EU"
   },
   {
     "code": "koi",
     "name": "KOI",
-    seed: 23,
-    description: "EU #17",
-    region: "EU",
+    "seed": 23,
+    "description": "EU #17",
+    "region": "EU"
   },
   {
-    "code": "lega",
+    "code": "lgcy",
+    "lcode": "lega",
     "name": "Legacy",
-    seed: 24,
-    description: "AM #5",
-    region: "AM",
-  },
+    "seed": 24,
+    "description": "AM #5",
+    "region": "AM"
+  }
 ];
