@@ -1,9 +1,10 @@
 /* eslint-disable global-require */
 
+import {PaperAirplaneIcon, TrophyIcon, UserGroupIcon} from '@heroicons/react/24/outline';
 import React from 'react';
-import {FormatBinder, Formats} from "../../../../../libs/common/formats/formats";
-import { initialDataChallenger, initialDataLegends } from './initial_data';
-import { ChallengerResults, LegendResults, Scores } from './scores';
+import Title from '../../../../../components/BannerInsertion';
+import {BasicUI} from '../../../../../components/BasicUI';
+import {NextMajorSlot} from '../../../../../components/NextMajorSlot';
 import {
   AdvanceElimSeats,
   ChampionSeats,
@@ -12,14 +13,10 @@ import {
   setWinner,
   shuffle
 } from '../../../../../libs/common/common';
-import { Knockout } from '../../../../../libs/common/formats/Knockout';
-import { BasicUI } from '../../../../../components/BasicUI';
-import { getPickResults, setPickResults } from '../../../../../libs/common/storage';
-import sponsorLogo from '../../../../../images/sponsor/rio_sb.svg';
-import { SwissBuchholtzTB } from '../../../../../libs/common/formats/SwissBuchholtzTB';
-import { NextMajorSlot } from '../../../../../components/NextMajorSlot';
-import { PaperAirplaneIcon, TrophyIcon, UserGroupIcon } from '@heroicons/react/24/outline';
-import Title from '../../../../../components/BannerInsertion';
+import {FormatBinder, Formats} from "../../../../../libs/common/formats/formats";
+import {getPickResults, setPickResults} from '../../../../../libs/common/storage';
+import {initialDataChallenger, initialDataLegends} from './initial_data';
+import {ChallengerResults, LegendResults, Scores} from './scores';
 
 const TournamentChallenger = 0;
 const TournamentLegends = 1;
@@ -251,7 +248,9 @@ export default class Rio2022Provisional extends React.PureComponent {
           />
           <NextMajorSlot state={this.state} />
           <p style={{ fontSize: 18, marginTop: 36 }}>
-            Sponsored by <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju"><img src={sponsorLogo} alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/></a>
+            Sponsored by <a className="hyperlink" href="https://redirect.badasstemple.eu/br7lju">
+            <img src="https://img.majors.im/images/sponsor/rio_sb.svg" alt="Sportsbet.io" style={{ maxHeight: 20, marginLeft: 10, display: "inline-block" }}/>
+          </a>
           </p>
       </div>
     );

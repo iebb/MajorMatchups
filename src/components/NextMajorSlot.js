@@ -47,9 +47,9 @@ export const NextMajorSlot = ({state}) => {
   const slots = losingTeamsinChallenger;
 
   const regions = {
-    EU: { name: "EU", icon: "https://majors.im/images/regions/eu1.png" },
-    AM: { name: "AM", icon: "https://majors.im/images/regions/am.png" },
-    AP: { name: "AP", icon: "https://majors.im/images/regions/asia.png" },
+    EU: { name: "EU", icon: "https://img.majors.im/images/regions/eu1.png" },
+    AM: { name: "AM", icon: "https://img.majors.im/images/regions/am.png" },
+    AP: { name: "AP", icon: "https://img.majors.im/images/regions/asia.png" },
   }
 
   const renderPart = (teams, title) => {

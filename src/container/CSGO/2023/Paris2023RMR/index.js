@@ -121,7 +121,7 @@ const Regions = [
 
 const teamLogo = (code) => {
   return code.indexOf("#") !== -1 ?
-    `https://majors.im/images/regions/${code.split("#")[0]}.png?r=2`
+    `https://img.majors.im/images/regions/${code.split("#")[0]}.png?r=2`
     :
     `https://img.majors.im/rmr/paris2023_rmr/${code}.png`;
 }
