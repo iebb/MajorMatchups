@@ -53,14 +53,14 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
             </p>
           )
         }
-        {/*{*/}
-        {/*  isMajor && (*/}
-        {/*    <p className="text-yellow-500 text-xl my-2">*/}
-        {/*      /!* eslint-disable-next-line *!/*/}
-        {/*      Wanna know how fucked up everyone's pickems are, and how much chance you have left? <a href="https://pick.majors.im/leaderboard" target="_blank">leaderboard</a>*/}
-        {/*    </p>*/}
-        {/*  )*/}
-        {/*}*/}
+        {
+          isMajor && (
+            <p className="text-yellow-500 text-xl my-2">
+              {/* eslint-disable-next-line */}
+              <a href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>: sign in and enter your auth code to contribute and compare!
+            </p>
+          )
+        }
         {
           subtitle && (
             <p className="text-light-green-500 text-xl my-2">
