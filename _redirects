@@ -1,10 +1,13 @@
 /js/script.js            https://analytics.nekoko.it/js/script.js 200
 /api/event               https://analytics.nekoko.it/api/event 200
-/api/*                   https://major-api.ieb.im/:splat  200
-/config                  https://ads.badasstemple.eu/api.php 200
-# /r6_scores               https://matches.im/api/scores?id=644c15a6f00fad11b00c0c69 200
+/api/config                  https://ads.badasstemple.eu/api.php 200
+
 /r6_scores               https://matches.im/api/scores?id=6543bca6a42c43a2f90efda3 200
 /cs_scores               https://result-api.majors.im/scores.json 200
-/cs_matches               https://result-api.majors.im/matches.json 200
-# /major_scores_21         https://result-api.majors.im/event_21.json 200
+/cs_matches              https://result-api.majors.im/matches.json 200
+
+/api/r6_scores               https://matches.im/api/scores?id=6543bca6a42c43a2f90efda3 200
+/api/cs_scores               https://result-api.majors.im/scores.json 200
+/api/cs_matches              https://result-api.majors.im/matches.json 200
+
 /*                       /index.html   200
