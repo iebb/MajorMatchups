@@ -134,10 +134,10 @@ export function MinimalUI({ preferences, state, shuffle }) {
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
       <div key={index} className={
-        `flex flex-row w-[180px] my-1 bg-nekoko-900 items-center justify-between rounded-md shadow-lg`
+        `flex flex-row w-[180px] my-1 bg-nekoko-900 justify-between rounded-md shadow-lg items-stretch`
       }>
         <div
-          className={`flex-[5] relative text-center h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
+          className={`flex-[5] relative text-center min-h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
           onClick={() => {
             match.setWinner(1);
           }}
@@ -159,9 +159,9 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </p>
         </div>
         <div
-          className={`flex-[5]`}
+          className={`flex-[5] flex items-center justify-center`}
         >
-          <div className={`flex-col text-xs text-center`}>
+          <div className={`align-middle text-xs text-center items-center`}>
             {
               match.result === 0 && (
                 <div className="flex-row">
@@ -234,7 +234,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
           </div>
         </div>
         <div
-          className={`flex-[5] relative text-center h-[58px] rounded-r-md ${colors(-match.picked, -match.result)}`}
+          className={`flex-[5] relative text-center min-h-[58px] rounded-r-md ${colors(-match.picked, -match.result)}`}
           onClick={() => {
             match.setWinner(-1);
           }}
