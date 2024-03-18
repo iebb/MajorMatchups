@@ -1,7 +1,7 @@
 import React from "react";
 
 export const SiderAd = ({ slot = 1 }) => {
-  const ad = window.config;
+  const ad = localStorage.ads || window.config;
 
 
   if (ad?.sider?.[slot]) {

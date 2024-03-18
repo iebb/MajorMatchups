@@ -21,7 +21,7 @@ export const ResponsiveContainer = ({ children }) => {
       </p>
     </div>
   )
-  const ad = window.config || {}
+  const ad = localStorage.ads || window.config || {}
 
   return (
     <SettingsCtx.Provider value={{

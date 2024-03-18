@@ -2,7 +2,7 @@ import React from "react";
 import GoogleAd from "./GoogleAd";
 
 export const BottomAdLayer = () => {
-  const ad = window.config;
+  const ad = localStorage.ads || window.config;
 
   //
   // if (ad.adtype === "google") {
