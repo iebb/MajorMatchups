@@ -30,7 +30,7 @@ export const initialDataLegends = [
     region: "EU",
   },
   {
-    "code": "col",
+    "code": "cplx",
     "name": "Complexity",
     seed: 5,
     description: "AM #1",
