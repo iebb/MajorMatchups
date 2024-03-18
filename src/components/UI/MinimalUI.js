@@ -163,37 +163,38 @@ export function MinimalUI({ preferences, state, shuffle }) {
         >
           <div className={`align-middle text-xs text-center items-center`}>
             {
+              match.hltv && (
+                <p className="text-center inline-block text-gray-400 flex-1 align-middle">
+                  <a href={match.hltv} target="_blank">
+                    <img
+                      src={"https://img.majors.im//hltv.png"}
+                      className="w-3 h-3 inline-block rounded align-middle"
+                      alt="HLTV"
+                    /> HLTV
+                  </a>
+                </p>
+              )
+            }
+            {
               match.result === 0 && (
                 <div className="flex-row">
 
                   {
                     (match.timestamp) ? (
                       <p className="text-center inline-block">
-                        <CountdownX
-                          date={match.timestamp * 1000}
-                          live={"LIVE"}
-                        />
-                        {
-                          match.score && match.score[0]?.length ?
-                            null :
-                            match.twitch ? (
-                              <div>
-                                <div className="h-4 inline-block align-middle">
-                                  <a href={`https://twitch.tv/${match.twitch}`} target="_blank">
-                                    <img
-                                      src={"https://img.majors.im/twitch.ico"}
-                                      className="w-3 h-3 inline-block rounded align-middle"
-                                      alt="Twitch"
-                                    /> Twitch
-                                  </a>
-                                </div>
-                              </div>
-                            ) : (
-                              <div>
-                                <ClockIcon className="w-4 h-4 text-blue-500" title="future match"/>
-                              </div>
-                            )
-                        }
+                        <div>
+                          <div className="h-4 inline-block align-middle overflow-hidden">
+                            <a href={`https://twitch.tv/${match.twitch}`} target="_blank" className="overflow-hidden">
+                              <img
+                                src={"https://img.majors.im/twitch.ico"}
+                                className="w-3 h-3 inline-block rounded align-middle"
+                                alt="Twitch"
+                              /> <CountdownX
+                              date={match.timestamp * 1000}
+                              live="LIVE" />
+                            </a>
+                          </div>
+                        </div>
                       </p>
                     ) : (
                       <p className="text-center inline-block">
@@ -218,19 +219,6 @@ export function MinimalUI({ preferences, state, shuffle }) {
                 </div>
               </div>
             ))}
-            {
-              match.hltv && (
-                <p className="text-center inline-block text-gray-400 flex-1 align-middle">
-                  <a href={match.hltv} target="_blank">
-                    <img
-                      src={"https://img.majors.im//hltv.png"}
-                      className="w-3 h-3 inline-block rounded align-middle"
-                      alt="HLTV"
-                    /> HLTV
-                  </a>
-                </p>
-              )
-            }
           </div>
         </div>
         <div
