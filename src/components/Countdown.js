@@ -15,11 +15,19 @@ export const CountdownX = ({ date, live="LIVE" }) => {
       const hours = (Math.floor(
         (total_seconds / 60 / 60)
       ));
+      const hours24 = (Math.floor(
+        (total_seconds / 60 / 60) % 24
+      ));
+      const days = (Math.floor(
+        (total_seconds / 60 / 60 / 24)
+      ));
 
       if (hours < 1) {
         setTimer(`${minutes}:${seconds}`);
+      } else if (hours < 48) {
+        setTimer(`${hours}:${minutes}:${seconds}`);
       } else {
-        setTimer(`${hours}h ${minutes}m`);
+        setTimer(`${days}d ${hours24}h`);
       }
     } else {
       setTimer(live);
