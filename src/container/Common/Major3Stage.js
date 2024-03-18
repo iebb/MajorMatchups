@@ -152,7 +152,6 @@ export class Major3Stage extends React.Component {
                 matches_metadata: matches_metadata[tStage],
               }, () => this.calculateMatchups(0, this.state.rounds + 1));
             });
-            console.log(matches_metadata);
           }
         }
       });
