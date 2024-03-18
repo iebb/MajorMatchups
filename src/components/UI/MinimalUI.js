@@ -184,7 +184,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
                                       src={"https://img.majors.im/twitch.ico"}
                                       className="w-3 h-3 inline-block rounded align-middle"
                                       alt="Twitch"
-                                    /> Twitch
+                                    /> ${match.twitch}
                                   </a>
                                 </div>
                               </div>
