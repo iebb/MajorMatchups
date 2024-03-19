@@ -36,7 +36,7 @@ export function BracketUI({ preferences, state, shuffle }) {
   const pickemTags = state.pickemTags;
   const pickEms = pickemTags && pickemTags.length ? getCookie(pickemTags[0]) : "";
   const picked = {};
-  const pickEmStyle = pickEms.includes("9:") ? 2 : 1;
+  const pickEmStyle = pickEms ? pickEms.includes("9:") ? 2 : 1 : 1;
   try {
     for (const pick of pickEms.split("|")) {
       const pickSplit = pick.split(":");

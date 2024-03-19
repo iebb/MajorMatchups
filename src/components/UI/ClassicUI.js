@@ -37,7 +37,7 @@ export const getMatchupDisplay = (state, stage) => {
   const altTimeline = stageMatches.filter((x) => x.result && x.picked !== x.result).length;
 
   const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
-  const pickEmStyle = pickEms.includes("9:") ? 2 : 1;
+  const pickEmStyle = pickEms ? pickEms.includes("9:") ? 2 : 1 : 1;
   const picked = {};
   try {
     for (const pick of pickEms.split("|")) {

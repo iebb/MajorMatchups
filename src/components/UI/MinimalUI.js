@@ -45,7 +45,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
   const format = state.tournamentType;
   const pickemTags = state.pickemTags;
   const pickEms = pickemTags && pickemTags.length ? getCookie(pickemTags[0]) : "";
-  const pickEmStyle = pickEms.includes("9:") ? 2 : 1;
+  const pickEmStyle = pickEms ? pickEms.includes("9:") ? 2 : 1 : 1;
   const picked = {};
   try {
     for (const pick of pickEms.split("|")) {
