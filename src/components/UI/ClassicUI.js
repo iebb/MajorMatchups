@@ -37,6 +37,7 @@ export const getMatchupDisplay = (state, stage) => {
   const altTimeline = stageMatches.filter((x) => x.result && x.picked !== x.result).length;
 
   const pickEms = statePickemTags && statePickemTags.length ? getCookie(statePickemTags[0]) : "";
+  const pickEmStyle = pickEms.includes("9:") ? 2 : 1;
   const picked = {};
   try {
     for (const pick of pickEms.split("|")) {
@@ -53,37 +54,73 @@ export const getMatchupDisplay = (state, stage) => {
       <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
     );
 
-    if (pick === 0) return (
-      <>
-        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Chip
-          color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
-          value="3-0"
-        />
-      </>
-    );
-    if (pick === 8) return (
-      <>
-        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Chip
-          color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
-          value="0-3"
-        />
-      </>
-    );
 
-    return (
-      <>
-        <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
-        <Chip
-          color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'}
-          style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
-          value="Adv"
-        />
-      </>
-    );
+    if (pickEmStyle === 2) {
+      if (pick <= 1) return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="3-0"
+          />
+        </>
+      );
+      if (pick >= 8) return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="0-3"
+          />
+        </>
+      );
+
+      return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={(team.l < 3 && (team.l > 0 || team.w < 3)) ? team.w === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="Adv"
+          />
+        </>
+      );
+    } else {
+      if (pick === 0) return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={team.l === 0 ? team.w === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="3-0"
+          />
+        </>
+      );
+      if (pick === 8) return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={team.w === 0 ? team.l === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="0-3"
+          />
+        </>
+      );
+
+      return (
+        <>
+          <img className="team-logo" src={team.logo} alt={team.name} title={team.name} />
+          <Chip
+            color={team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red'}
+            style={{ position: 'absolute', zIndex: 9, fontSize: 14, width: 36, bottom: 0, padding: 1, right: 0 }}
+            value="Adv"
+          />
+        </>
+      );
+    }
+
   }
 
 

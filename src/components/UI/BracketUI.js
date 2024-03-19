@@ -36,7 +36,7 @@ export function BracketUI({ preferences, state, shuffle }) {
   const pickemTags = state.pickemTags;
   const pickEms = pickemTags && pickemTags.length ? getCookie(pickemTags[0]) : "";
   const picked = {};
-  const pickEmStyle = pickEms.includes("9:") ? 2: 1;
+  const pickEmStyle = pickEms.includes("9:") ? 2 : 1;
   try {
     for (const pick of pickEms.split("|")) {
       const pickSplit = pick.split(":");
@@ -65,7 +65,7 @@ export function BracketUI({ preferences, state, shuffle }) {
         condition = team.w === 0 ? team.l === 3 ?  'green' : 'blue' : 'red';
         text = "0";
       } else {
-        condition = team.l > 0 ? team.w === 3 ? 'green' : 'blue' : 'red';
+        condition = ((team.l > 0 || team.w < 3) && team.l < 3) ? team.w === 3 ? 'green' : 'blue' : 'red';
         text = "A";
       }
 
