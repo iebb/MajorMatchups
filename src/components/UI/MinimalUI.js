@@ -83,7 +83,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
     if (bracket.teams.length === 0) return null;
     return (
       <div key={bracket.pool} className={
-        `flex flex-col ${isFinal ? "w-[250px]" : "w-[180px]"} bg-nekoko-900 text-xs rounded-md shadow-md`
+        `flex flex-col ${isFinal ? "w-[250px]" : "w-[200px]"} bg-nekoko-900 text-xs rounded-md shadow-md`
       }>
         {bracket.teams.map((team, index) => (
 
