@@ -57,7 +57,7 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
           isMajor && (
             <p className="text-yellow-500 text-xl my-2">
               {/* eslint-disable-next-line */}
-              <a href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>: sign in and enter your auth code to contribute and compare!
+              <a className="hyperlink" href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>: sign in and enter your auth code to contribute and compare!
             </p>
           )
         }
