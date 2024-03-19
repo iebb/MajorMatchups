@@ -35,7 +35,7 @@ export const ResponsiveContainer = ({ children }) => {
           {children}
         </div>
         <SiderAd slot={2} />
-        <div dangerouslySetInnerHTML={{__html: `<script defer data-domain="majors.im" src="/js/script.js"></script>`}}/>
+        <div dangerouslySetInnerHTML={{__html: `<script defer data-domain="majors.im" src="https://analytics.nekoko.it/js/script.js"></script>`}}/>
       </div>
       <div>
         <Footer />
