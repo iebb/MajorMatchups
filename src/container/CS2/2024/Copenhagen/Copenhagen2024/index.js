@@ -69,13 +69,13 @@ export default class Copenhagen2024 extends Major3Stage {
   // }
 
   fetch_scores = (callback) => {
-    fetch(fetchPrefix + '/api/cs_scores')
+    fetch('https://result-api.majors.im/scores.json')
       .then((resp) => resp.json())
       .then(callback);
   };
 
   fetch_matches = (callback) => {
-    fetch(fetchPrefix + '/api/cs_matches')
+    fetch('https://result-api.majors.im/matches.json')
       .then((resp) => resp.json())
       .then(callback);
   };
