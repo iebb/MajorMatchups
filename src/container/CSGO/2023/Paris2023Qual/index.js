@@ -1,14 +1,9 @@
 /* eslint-disable global-require */
 
-import React from 'react';
+import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
 import {Regionals} from "../../../Common/Regional";
-import { EUA, EUB, EUTB, NAM, SAM } from './initial_data';
-import { Scores } from './scores';
-import { SwissBuchholtzTB } from '../../../../libs/common/formats/SwissBuchholtzTB';
-import { pack, setWinner, shuffle } from '../../../../libs/common/common';
-import { BasicUI } from '../../../../components/BasicUI';
-import Title from '../../../../components/BannerInsertion';
-import { GlobeAmericasIcon, GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline';
+import {EUA, EUB, EUTB, NAM, SAM} from './initial_data';
+import {Scores} from './scores';
 
 const Regions = [
   {
@@ -113,7 +108,7 @@ export default class Paris2023Qual extends Regionals {
 
   teamLogo = teamLogo;
   title= "BLAST.tv Paris 2023 RMR Closed Qualifier Simulator"
-  Scores = Scores;
+  _scores = Scores;
 
   // fetch_scores = (callback) => {
   //   fetch(fetchPrefix + '/cs_scores')

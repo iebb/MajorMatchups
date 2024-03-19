@@ -133,7 +133,7 @@ export default class Paris2023RMR extends Regionals {
 
   teamLogo = teamLogo;
   title = "BLAST.tv Paris 2023 RMR Simulator";
-  Scores = Scores;
+  _scores = Scores;
 
   // fetch_scores = (callback) => {
   //   fetch(fetchPrefix + '/cs_scores')
