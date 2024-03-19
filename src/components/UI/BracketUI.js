@@ -36,6 +36,7 @@ export function BracketUI({ preferences, state, shuffle }) {
   const pickemTags = state.pickemTags;
   const pickEms = pickemTags && pickemTags.length ? getCookie(pickemTags[0]) : "";
   const picked = {};
+  const pickEmStyle = pickEms.includes("9:") ? 2: 1;
   try {
     for (const pick of pickEms.split("|")) {
       const pickSplit = pick.split(":");
@@ -50,14 +51,35 @@ export function BracketUI({ preferences, state, shuffle }) {
     const pick = picked[team.code];
 
     if (typeof pick === 'undefined' || !trackPickems) return null;
-    let condition = team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red';
+
+
+    let condition = '';
     let text = "A";
-    if (pick === 0) {
-      condition = team.l === 0 ? team.w === 3 ?  'green' : 'blue' : 'red';
-      text = "3";
-    } else if (pick === 8) {
-      condition = team.w === 0 ? team.l === 3 ?  'green' : 'blue' : 'red';
-      text = "0";
+
+    if (pickEmStyle === 2) {
+
+      if (pick <= 1) {
+        condition = team.l === 0 ? team.w === 3 ?  'green' : 'blue' : 'red';
+        text = "3";
+      } else if (pick >= 8) {
+        condition = team.w === 0 ? team.l === 3 ?  'green' : 'blue' : 'red';
+        text = "0";
+      } else {
+        condition = team.l > 0 ? team.w === 3 ? 'green' : 'blue' : 'red';
+        text = "A";
+      }
+
+    } else {
+      if (pick === 0) {
+        condition = team.l === 0 ? team.w === 3 ?  'green' : 'blue' : 'red';
+        text = "3";
+      } else if (pick === 8) {
+        condition = team.w === 0 ? team.l === 3 ?  'green' : 'blue' : 'red';
+        text = "0";
+      } else {
+        condition = team.l < 3 ? team.w === 3 ? 'green' : 'blue' : 'red';
+        text = "A";
+      }
     }
 
     return (

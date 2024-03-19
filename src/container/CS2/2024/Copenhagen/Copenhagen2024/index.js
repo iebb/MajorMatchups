@@ -23,7 +23,7 @@ const TournamentStages = [
     winsToAdvance: 3,
     losesToEliminate: 3,
     rounds: 5,
-    // pickemTags: ["picks_224"],
+    pickemTags: ["picks_233"],
   },
   {
     id: 1,
@@ -36,7 +36,7 @@ const TournamentStages = [
     winsToAdvance: 3,
     losesToEliminate: 3,
     rounds: 5,
-    pickemTags: [],
+    pickemTags: ["picks_234"],
   },
   {
     id: 2,
