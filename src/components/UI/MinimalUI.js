@@ -134,7 +134,7 @@ export function MinimalUI({ preferences, state, shuffle }) {
   const renderMatches = (round) => {
     return round.matches.map((match, index) => (
       <div key={index} className={
-        `flex flex-row w-[180px] my-1 bg-nekoko-900 justify-between rounded-md shadow-lg items-stretch`
+        `flex flex-row w-[200px] my-1 bg-nekoko-900 justify-between rounded-md shadow-lg items-stretch`
       }>
         <div
           className={`flex-[5] relative text-center min-h-[58px] rounded-l-md ${colors(match.picked, match.result)}`}
