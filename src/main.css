@@ -42,7 +42,7 @@ body {
 .outer {
   width: 100%;
   overflow: hidden;
-  margin: 30px auto;
+  margin: 10px auto;
   display: flex;
   min-height: 100%;
   flex-direction: row;
