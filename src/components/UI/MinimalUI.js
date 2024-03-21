@@ -192,7 +192,11 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       src={"https://img.majors.im//hltv.png"}
                       className="w-3 h-3 inline-block rounded align-middle"
                       alt="HLTV"
-                    /> HLTV
+                    /> {
+                    match.timestamp ?  <CountdownX
+                      date={match.timestamp * 1000}
+                      live="HLTV" /> : "HLTV"
+                  }
                   </a>
                 </p>
               )
@@ -205,15 +209,27 @@ export function MinimalUI({ preferences, state, shuffle }) {
                     (match.timestamp) ? (
                       <p className="text-center inline-block">
                         <div>
-                          <div className="h-4 inline-block align-middle overflow-hidden">
+                          <div className="h-4 flex overflow-hidden gap-x-1">
                             <a href={`https://twitch.tv/${match.twitch}`} target="_blank" className="overflow-hidden">
                               <img
                                 src={"https://img.majors.im/twitch.ico"}
                                 className="w-3 h-3 inline-block rounded align-middle"
                                 alt="Twitch"
-                              /> <CountdownX
-                              date={match.timestamp * 1000}
-                              live="LIVE" />
+                              />
+                            </a>
+                            <a href={`https://kick.com/${match.kick}`} target="_blank" className="overflow-hidden">
+                              <img
+                                src={"https://img.majors.im/kick.ico"}
+                                className="w-3 h-3 inline-block rounded align-middle"
+                                alt="Twitch"
+                              />
+                            </a>
+                            <a href={`https://youtube.com/@${match.youtube}`} target="_blank" className="overflow-hidden">
+                              <img
+                                src={"https://img.majors.im/yt.ico"}
+                                className="w-3 h-3 inline-block rounded align-middle"
+                                alt="Twitch"
+                              />
                             </a>
                           </div>
                         </div>
