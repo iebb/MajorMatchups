@@ -300,4 +300,4 @@ export const finalDataChampions = [
     "region": "EU",
     "description": "2L, -2B, #12"
   }
-].map(addLogo);
+];
