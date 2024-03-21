@@ -193,9 +193,9 @@ export function MinimalUI({ preferences, state, shuffle }) {
                       className="w-3 h-3 inline-block rounded align-middle"
                       alt="HLTV"
                     /> {
-                    match.timestamp ?  <CountdownX
+                    (match.timestamp && match.result === 0) ? <CountdownX
                       date={match.timestamp * 1000}
-                      live="HLTV" /> : "HLTV"
+                      live="LIVE" /> : "HLTV"
                   }
                   </a>
                 </p>
