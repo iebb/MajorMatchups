@@ -138,13 +138,14 @@ export class Major3Stage extends React.Component {
     });
 
 
-    const fetchScores = () => {
+    const fetchScores = (bypassCache = false) => {
+      console.log("fetching scores");
 
       if (this.fetch_matches) {
 
         this.fetch_matches((matches_metadata) => {
           if (this.fetch_scores) {
-            if (!this.fetchedScore) {
+            if (bypassCache || !this.fetchedScore) {
               this.fetch_scores((resp) => {
                 this.fetchedScore = {...resp, ...this._scores};
                 this.fetchedMatch = matches_metadata;
@@ -162,7 +163,7 @@ export class Major3Stage extends React.Component {
       } else {
 
         if (this.fetch_scores) {
-          if (!this.fetchedScore) {
+          if (bypassCache || !this.fetchedScore) {
             this.fetch_scores((resp) => {
               this.fetchedScore = {...resp, ...this._scores};
               this.setState({
@@ -176,7 +177,7 @@ export class Major3Stage extends React.Component {
       }
     }
 
-    fetchScores();
+    fetchScores(false);
 
     if (window.timer) {
       clearInterval(window.timer);
@@ -186,7 +187,7 @@ export class Major3Stage extends React.Component {
       if (window.timer) {
         clearInterval(window.timer);
       }
-      window.timer = setInterval(fetchScores, 15 * 1000);
+      window.timer = setInterval(() => fetchScores(true), 15 * 1000);
     }
 
   };
