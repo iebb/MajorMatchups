@@ -137,40 +137,46 @@ export class Major3Stage extends React.Component {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
 
-    if (this.fetch_matches) {
 
-      this.fetch_matches((matches_metadata) => {
+    const fetchScores = () => {
+
+      if (this.fetch_matches) {
+
+        this.fetch_matches((matches_metadata) => {
+          if (this.fetch_scores) {
+            if (!this.fetchedScore) {
+              this.fetch_scores((resp) => {
+                this.fetchedScore = {...resp, ...this._scores};
+                this.fetchedMatch = matches_metadata;
+                this.setState({
+                  ...stageConfig,
+                  ...packTeam(this.addTeamLogo(stageConfig.teams)),
+                  scores: {...resp[tStage], ...this._scores},
+                  matches_metadata: matches_metadata[tStage],
+                }, () => this.calculateMatchups(0, this.state.rounds + 1));
+              });
+            }
+          }
+        });
+
+      } else {
+
         if (this.fetch_scores) {
           if (!this.fetchedScore) {
             this.fetch_scores((resp) => {
               this.fetchedScore = {...resp, ...this._scores};
-              this.fetchedMatch = matches_metadata;
               this.setState({
                 ...stageConfig,
                 ...packTeam(this.addTeamLogo(stageConfig.teams)),
                 scores: {...resp[tStage], ...this._scores},
-                matches_metadata: matches_metadata[tStage],
               }, () => this.calculateMatchups(0, this.state.rounds + 1));
             });
           }
         }
-      });
-
-    } else {
-
-      if (this.fetch_scores) {
-        if (!this.fetchedScore) {
-          this.fetch_scores((resp) => {
-            this.fetchedScore = {...resp, ...this._scores};
-            this.setState({
-              ...stageConfig,
-              ...packTeam(this.addTeamLogo(stageConfig.teams)),
-              scores: {...resp[tStage], ...this._scores},
-            }, () => this.calculateMatchups(0, this.state.rounds + 1));
-          });
-        }
       }
     }
+
+    fetchScores();
 
     if (window.timer) {
       clearInterval(window.timer);
@@ -180,9 +186,7 @@ export class Major3Stage extends React.Component {
       if (window.timer) {
         clearInterval(window.timer);
       }
-      window.timer = setInterval(() => {
-        this.init(tStage)
-      }, 15 * 1000);
+      window.timer = setInterval(fetchScores, 15 * 1000);
     }
 
   };
