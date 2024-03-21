@@ -47,18 +47,17 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
         }
         {
           isMajor && (
-            <p className="text-yellow-300 text-xl mt-2">
-              {/* eslint-disable-next-line */}
-              Place and Track Pick'ems: <a className="hyperlink" href="https://pick.majors.im/" target="_blank">pick.majors.im</a>
-            </p>
-          )
-        }
-        {
-          isMajor && (
-            <p className="text-yellow-500 text-xl my-2">
-              {/* eslint-disable-next-line */}
-              <a className="hyperlink" href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>: sign in and enter your auth code to contribute and compare!
-            </p>
+            <>
+              <p className="text-yellow-300 text-xl mt-2">
+                {/* eslint-disable-next-line */}
+                Place and Track Pick'ems: <a className="hyperlink" href="https://pick.majors.im/"
+                                             target="_blank">pick.majors.im</a>
+              </p>
+              <p className="text-yellow-500 text-xl my-2">
+                {/* eslint-disable-next-line */}
+                Compare yourself against others in <a className="hyperlink" href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>
+              </p>
+            </>
           )
         }
         {
