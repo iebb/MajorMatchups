@@ -243,7 +243,6 @@ export const finalDataLegends = [
   }
 ];
 
-
 export const finalDataChampions = [
   {
     "code": "hero",

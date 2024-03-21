@@ -172,6 +172,19 @@ export class Major3Stage extends React.Component {
       }
     }
 
+    if (window.timer) {
+      clearInterval(window.timer);
+    }
+
+    window.autorefresh = () => {
+      if (window.timer) {
+        clearInterval(window.timer);
+      }
+      window.timer = setInterval(() => {
+        this.init(tStage)
+      }, 15 * 1000);
+    }
+
   };
 
   recalculate = (conflictPicks = true) => {
