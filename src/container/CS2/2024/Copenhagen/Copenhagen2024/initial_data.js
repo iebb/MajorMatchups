@@ -17,7 +17,7 @@ export const initialDataLegends = [
   },
   {
     "code": "vita",
-    "name": "Team Vitality",
+    "name": "Vitality",
     seed: 3,
     description: "AM #1",
     region: "AM",
@@ -31,14 +31,14 @@ export const initialDataLegends = [
   },
   {
     "code": "cplx",
-    "name": "Complexity",
+    "name": "Complexity", // Gaming
     seed: 5,
     description: "AM #1",
     region: "EU",
   },
   {
     "code": "vp",
-    "name": "Virtus.pro",
+    "name": "Virtus.Pro",
     seed: 6,
     description: "EU #5",
     region: "EU",
@@ -113,7 +113,7 @@ export const initialDataChallenger = [
   },
   {
     "code": "furi",
-    "name": "FURIA Esports",
+    "name": "FURIA",
     "seed": 16,
     "description": "AM #2",
     "region": "AM"
@@ -221,6 +221,7 @@ export const finalDataLegends = [
   {
     "code": "imp",
     "lcode": "impe",
+    "name": "Imperial Esports",
     "seed": 14,
     "description": "3-2/0",
     "region": "AM"
@@ -235,7 +236,7 @@ export const finalDataLegends = [
   },
   {
     "code": "furi",
-    "name": "FURIA Esports",
+    "name": "FURIA",
     "seed": 16,
     "description": "3-2/-9",
     "region": "AM",
@@ -253,7 +254,7 @@ export const finalDataChampions = [
   },
   {
     "code": "vita",
-    "name": "Team Vitality",
+    "name": "Vitality",
     "seed": 2,
     "region": "EU",
     "description": "0L, -2B, #7"
