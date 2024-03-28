@@ -245,59 +245,60 @@ export const finalDataLegends = [
 
 export const finalDataChampions = [
   {
-    "code": "hero",
-    "name": "Heroic",
+    "code": "spir",
+    "name": "Team Spirit",
     "seed": 1,
+    "description": "0L, 1B, #2",
     "region": "EU",
-    "description": "0L, 4B, #5"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 2,
+    "description": "0L, -1B, #4",
+    "region": "EU",
+  },
+  {
+    "code": "eter",
+    "lcode": "ef",
+    "name": "Eternal Fire",
+    "seed": 3,
+    "description": "1L, 5B, #11",
+    "region": "EU",
+  },
+  {
+    "code": "c9",
+    "name": "Cloud9",
+    "seed": 4,
+    "description": "1L, 3B, #10",
+    "region": "EU",
   },
   {
     "code": "vita",
     "name": "Vitality",
-    "seed": 2,
-    "region": "EU",
-    "description": "0L, -2B, #7"
-  },
-  {
-    "code": "liq",
-    "name": "Team Liquid",
-    "seed": 3,
-    "region": "AM",
-    "description": "1L, 0B, #15"
-  },
-  {
-    "code": "mont",
-    "name": "Monte",
-    "seed": 4,
-    "region": "EU",
-    "description": "1L, -2B, #14"
-  },
-  {
-    "code": "gl",
-    "name": "GamerLegion",
     "seed": 5,
-    "region": "EU",
-    "description": "1L, -4B, #16"
+    "description": "1L, -4B, #3",
+    "region": "AM",
   },
   {
-    "code": "apex",
-    "name": "Apeks",
+    "code": "navi",
+    "name": "Natus Vincere",
     "seed": 6,
+    "description": "2L, 2B, #7",
     "region": "EU",
-    "description": "2L, 3B, #11"
   },
   {
-    "code": "itb",
-    "name": "Into The Breach",
+    "code": "g2",
+    "name": "G2 Esports",
     "seed": 7,
+    "description": "2L, -3B, #8",
     "region": "EU",
-    "description": "2L, 1B, #6"
   },
   {
     "code": "faze",
     "name": "FaZe Clan",
     "seed": 8,
+    "description": "2L, -6B, #1",
     "region": "EU",
-    "description": "2L, -2B, #12"
   }
 ];

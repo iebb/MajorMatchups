@@ -112,16 +112,29 @@ export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
         undetermined = true;
       }
 
-      if (`${team1.code}-${team2.code}` in pickResults) {
-        if (picked !== pickResults[`${team1.code}-${team2.code}`]) {
+      const tc_suffix = `${team1.code}-${team2.code}`;
+      const tc_suffix2 = `${team2.code}-${team1.code}`;
+
+      if (tc_suffix in pickResults) {
+        if (picked !== pickResults[tc_suffix]) {
           undetermined = true;
         }
-        picked = pickResults[`${team1.code}-${team2.code}`]
+        picked = pickResults[tc_suffix]
       }
 
       let locked = false;
       if (`${team1.code}-${team2.code}` in lockResults) {
         locked = true;
+      }
+
+      let metadata = {};
+      if (this.state.matches_metadata) {
+        if (this.state.matches_metadata[tc_suffix]) {
+          metadata = this.state.matches_metadata[tc_suffix];
+        }
+        if (this.state.matches_metadata[tc_suffix2]) {
+          metadata = this.state.matches_metadata[tc_suffix2];
+        }
       }
 
       return {
@@ -139,6 +152,7 @@ export function Knockout(fromStage, toStage, winnerFn=getWinnerFromScoreCSGO) {
         toggle: () => this.setWinner({
           picked, team1, team2, suffix: "",
         }, -picked),
+        ...metadata,
       };
     }
 

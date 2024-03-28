@@ -215,6 +215,8 @@ export function SwissBuchholtzTB(fromStage, toStage, winnerFn=getWinnerFromScore
           locked = true;
         }
 
+
+
         const _match = {
           pool,
           id: -1,

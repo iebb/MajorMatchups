@@ -190,55 +190,6 @@ export class Major3Stage extends React.Component {
 
   };
 
-  recalculate = (conflictPicks = true) => {
-    this.setState({
-      scores: this._scores[this.state.tournament]
-    }, () => {
-      this.calculateMatchups(0, this.state.rounds + 1)
-    });
-
-    /*
-    if (conflictPicks) {
-      const pickResults = getPickResults('pickResults', this.state.tournament, this.event);
-      for(const s of Object.keys(this._scores[this.state.tournament])) {
-        try {
-          const ssp = s.split("-");
-          delete pickResults[ssp[1] + "-" + ssp[0]];
-        } catch {
-
-        }
-        delete pickResults[s];
-      }
-      setPickResults('pickResults', this.state.tournament, this.event, pickResults);
-      console.log("clearing", this.state.tournament);
-      if (this.state.tournament > 0) {
-        for(let i = 0; i < this.state.tournament; i++) {
-          console.log("clearing", i);
-          setPickResults('pickResults', i, this.event, {});
-        }
-      }
-
-
-
-      this.setState({
-        scores: this._scores[this.state.tournament],
-        pickResults
-      }, () => {
-        this.calculateMatchups(0, this.state.rounds + 1)
-      });
-
-    } else {
-      this.setState({
-        scores: this._scores[this.state.tournament]
-      }, () => {
-        this.calculateMatchups(0, this.state.rounds + 1)
-      });
-    }
-
-     */
-
-  }
-
   componentDidMount() {
     if (this.loadScores) {
       this.loadScores().then(() => {

@@ -3,7 +3,7 @@
 import {AdvanceElimSeats, ChampionSeats, fetchPrefix} from "../../../../../libs/common/common";
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Major3Stage} from "../../../../Common/Major3Stage";
-import {finalDataLegends, initialDataChallenger, initialDataLegends} from "./initial_data";
+import {finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends} from "./initial_data";
 import {Scores} from "./scores";
 
 const TournamentChallenger = 0;
@@ -41,11 +41,12 @@ const TournamentStages = [
   {
     id: 2,
     initialTeams: [],
-    teams: [], // finalDataChampions
+    teams: finalDataChampions,
     name: "Champions",
     tournament: TournamentChampions,
     tournamentType: Formats.Knockout,
     seats: ChampionSeats,
+    winsToAdvance: 3,
     losesToEliminate: 1,
     rounds: 3,
     pickemTags: [],
