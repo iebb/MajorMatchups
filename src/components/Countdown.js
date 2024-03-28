@@ -24,7 +24,7 @@ export const CountdownX = ({ date, live="LIVE" }) => {
 
       if (hours < 1) {
         setTimer(`${minutes}:${seconds}`);
-      } else if (hours < 48) {
+      } else if (hours < 24) {
         setTimer(`${hours}:${minutes}:${seconds}`);
       } else {
         setTimer(`${days}d ${hours24}h`);
