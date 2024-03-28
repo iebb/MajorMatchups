@@ -137,9 +137,7 @@ export class Major3Stage extends React.Component {
       this.calculateMatchups(0, this.state.rounds + 1)
     });
 
-
     const fetchScores = (bypassCache = false) => {
-      console.log("fetching scores");
 
       if (this.fetch_matches) {
 

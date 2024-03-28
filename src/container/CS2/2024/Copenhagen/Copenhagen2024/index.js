@@ -58,7 +58,7 @@ export default class Copenhagen2024 extends Major3Stage {
   TournamentStages = TournamentStages;
   event = "24copenhagen";
   title = "PGL Major Copenhagen 2024 Simulator";
-  currentStage = 1;
+  currentStage = 2;
   _scores = Scores;
   teamLogo = teamLogo;
 
