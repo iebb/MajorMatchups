@@ -44,7 +44,7 @@ const TournamentStages = [
     teams: finalDataChampions,
     name: "Champions",
     tournament: TournamentChampions,
-    tournamentType: Formats.Knockout,
+    tournamentType: Formats.Knockout2024,
     seats: ChampionSeats,
     winsToAdvance: 3,
     losesToEliminate: 1,

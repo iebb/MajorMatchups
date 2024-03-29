@@ -19,6 +19,7 @@ export const Formats = {
 
   SwissBuchholtz2024: 12024,
   DoubleElimination2024: 42024,
+  Knockout2024: 22024,
 
   Elo2019: 12019,
 }
@@ -38,5 +39,6 @@ export const FormatBinder = {
   [Formats.SingleElimination]: Knockout,
   [Formats.DoubleElimination]: DoubleElimination,
   [Formats.DoubleElimination2024]: function (f, t) { return DoubleElimination.bind(this)(f, t, getWinnerFromScoreCS2) },
+  [Formats.Knockout2024]: function (f, t) { return Knockout.bind(this)(f, t, getWinnerFromScoreCS2) },
   [Formats.Elo2019]: Elo2019,
 }
