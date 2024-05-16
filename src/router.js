@@ -21,6 +21,7 @@ import Paris2023RMR from "./container/CSGO/2023/Paris2023RMR";
 
 import R6ATL23 from "./container/RainbowSix/R6ATL23";
 import R6CPH23 from "./container/RainbowSix/R6CPH23";
+import R6MAN24 from './container/RainbowSix/R6MAN24';
 
 export default function Routes() {
   const h = useHistory();
@@ -73,6 +74,9 @@ export default function Routes() {
       </Route>
       <Route path="/r6_23majoratl">
         <R6ATL23 history={h} />
+      </Route>
+      <Route path="/r6_24majorman">
+        <R6MAN24 history={h} />
       </Route>
 
       <Route path="/">

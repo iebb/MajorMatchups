@@ -87,6 +87,13 @@ const Editions = [
         description: '2024.01.12 - 2024.01.22',
         path: '/24qual_copenhagen',
       },
+      {
+        title: '2024 R6 BLAST Major Manchester',
+        subtitle: '',
+        img: ("https://img.majors.im/images/logos/r6.png"),
+        description: '2024.05',
+        path: '/r6_24majorman',
+      },
     ]
   },
   {

@@ -1,14 +1,13 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable react/no-multi-comp */
 
-import {ThemeProvider} from "@material-tailwind/react";
+import { ThemeProvider } from '@material-tailwind/react';
 import React from 'react';
 
-import {BrowserRouter as Router} from 'react-router-dom';
-import {BottomAdLayer} from "./components/Ads/AdLayer";
-import {SiderAd} from "./components/Ads/SiderAd";
+import { BrowserRouter as Router } from 'react-router-dom';
+import { BottomAdLayer } from './components/Ads/AdLayer';
+import { SiderAd } from './components/Ads/SiderAd';
 import ComplexNavbar from './components/Navbar';
-import {SettingsCtx} from './libs/Context';
 import Routes from './router';
 
 
@@ -24,9 +23,7 @@ export const ResponsiveContainer = ({ children }) => {
   const ad = localStorage.ads || window.config || {}
 
   return (
-    <SettingsCtx.Provider value={{
-      adType: ad.adtype, ad, adProvider: ad.name || "",
-    }}>
+    <div>
       <ComplexNavbar/>
 
       <div className="outer">
@@ -42,7 +39,7 @@ export const ResponsiveContainer = ({ children }) => {
         <div className="dynamic-padding"/>
       </div>
       <BottomAdLayer />
-    </SettingsCtx.Provider>
+    </div>
 );
 }
 

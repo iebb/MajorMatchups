@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ClassicUI } from './UI/ClassicUI';
-import { VisUI } from './UI/VisUI';
 import { BracketUI } from './UI/BracketUI';
 import {
   Alert,

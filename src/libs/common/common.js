@@ -28,7 +28,7 @@ export const pack = (teams, teamLogo) => {
         buchholtzBreakdown: [],
         ...t,
         internalCode: t.code,
-        logo: t.logo ?? teamLogo(t.code),
+        logo: t.logo ??  t.icon ?? teamLogo(t.code),
         displayCode: splitCode(t.code),
       })),
       false,

@@ -1,12 +1,12 @@
-import React, {useContext} from 'react';
-import {Helmet} from "react-helmet";
-import {SettingsCtx} from "../libs/Context";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classNames = "", extras=[] }) {
-  const ctx = useContext(SettingsCtx);
-  // const sponsorLess = true;
 
-  const sponsorLogo = ctx.ad?.branding;
+  const ad = localStorage.ads || window.config || {};
+  const ctx = {adType: ad.adtype, ad, adProvider: ad.name || ""};
+
+  const sponsorLogo = ad?.branding;
   const defaultSponsorLogo = "https://img.majors.im/sponsors/rio_sb.svg";
   const defaultSponsorLink = "https://redirect.badasstemple.eu/br7lju";
 
