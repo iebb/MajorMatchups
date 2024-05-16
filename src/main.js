@@ -40,7 +40,7 @@ export const ResponsiveContainer = ({ children }) => {
       </div>
       <BottomAdLayer />
     </div>
-);
+  );
 }
 
 
@@ -116,13 +116,13 @@ const customTheme = {
 }
 const HomepageLayout = () => (
 
-  <Router>
-    <ThemeProvider value={customTheme}>
+  <ThemeProvider value={customTheme}>
     <ResponsiveContainer>
-      <Routes />
+      <Router>
+        <Routes />
+      </Router>
     </ResponsiveContainer>
-    </ThemeProvider>
-  </Router>
+  </ThemeProvider>
 );
 
 export default HomepageLayout;
