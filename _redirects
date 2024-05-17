@@ -5,6 +5,3 @@
 /api/cs_matches          https://result-api.majors.im/matches.json 200
 
 /*                       /index.html   200
-
-
-/api/r6_scores               https://matches.im/api/scores?id=6646270167684978293657c1 200
