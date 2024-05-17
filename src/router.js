@@ -80,7 +80,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/24copenhagen" />
+        <Redirect to="/r6_24majorman" />
       </Route>
     </Switch>
   );
