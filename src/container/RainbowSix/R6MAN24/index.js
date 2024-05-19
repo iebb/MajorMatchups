@@ -34,7 +34,7 @@ const TournamentStages = [
     winsToAdvance: 3,
     losesToEliminate: 3,
     nonDeciderToWin: 1,
-    advancerToWin: 1,
+    advancerToWin: 2,
     deciderToWin: 2,
     rounds: 5,
     scores: FinalResultsPlayoff,
