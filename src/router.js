@@ -4,6 +4,7 @@ import Copenhagen2024 from "./container/CS2/2024/Copenhagen/Copenhagen2024";
 
 import Copenhagen2024Qual from "./container/CS2/2024/Copenhagen/Copenhagen2024Qual";
 import Copenhagen2024RMR from "./container/CS2/2024/Copenhagen/Copenhagen2024RMR";
+import Shanghai2024Qual from "./container/CS2/2024/Shanghai/Shanghai2024Qual";
 
 import Berlin2019 from './container/CSGO/2019/Berlin2019';
 import Katowice2019 from './container/CSGO/2019/Katowice2019';
@@ -48,6 +49,7 @@ export default function Routes() {
       <Route path="/22rio">
         <Rio2022 history={h} />
       </Route>
+
       <Route path="/23qual_paris">
         <Paris2023Qual history={h} />
       </Route>
@@ -57,17 +59,21 @@ export default function Routes() {
       <Route path="/23paris">
         <Paris2023 history={h} />
       </Route>
+
       <Route path="/24qual_copenhagen">
         <Copenhagen2024Qual history={h} />
       </Route>
-
       <Route path="/24rmr_copenhagen">
         <Copenhagen2024RMR history={h} />
       </Route>
-
       <Route path="/24copenhagen">
         <Copenhagen2024 history={h} />
       </Route>
+
+      <Route path="/24qual_shanghai">
+        <Shanghai2024Qual history={h} />
+      </Route>
+
 
       <Route path="/r6_23majorcph">
         <R6CPH23 history={h} />
@@ -80,7 +86,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/r6_24majorman" />
+        <Redirect to="/24qual_shanghai" />
       </Route>
     </Switch>
   );

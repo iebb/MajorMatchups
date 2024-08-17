@@ -1,0 +1,98 @@
+[
+  {
+    "code": "ence",
+    "name": "ENCE",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "sang",
+    "name": "Sangal Esports",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "blee",
+    "name": "BLEED Esports",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "b8",
+    "name": "B8",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "game",
+    "name": "GamerLegion",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "dyna",
+    "name": "Dynamo Eclot",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "pari",
+    "name": "PARIVISION",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "mont",
+    "name": "Monte",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "koi",
+    "name": "KOI",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "1win",
+    "name": "1win",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "tsm",
+    "name": "TSM",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "sinn",
+    "name": "SINNERS Esports",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "rhyn",
+    "name": "Rhyno Esports",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "bc.g",
+    "name": "BC.Game Esports",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "ente",
+    "name": "ENTERPRISE esports",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "unit",
+    "name": "UNiTY esports",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

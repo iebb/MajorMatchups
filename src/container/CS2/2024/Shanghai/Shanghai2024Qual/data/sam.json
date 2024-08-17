@@ -1,0 +1,98 @@
+[
+  {
+    "code": "red",
+    "name": "RED Canids",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "flux",
+    "name": "Fluxo",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "oddi",
+    "name": "ODDIK",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "shar",
+    "name": "Sharks Esports",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "best",
+    "name": "BESTIA",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "insa",
+    "name": "inSanitY Sports",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "team",
+    "name": "Team Solid",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "boun",
+    "name": "Bounty Hunters Esports",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "case",
+    "name": "Case Esports",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "kr",
+    "name": "KR\u00dc Esports",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "galo",
+    "name": "Galorys",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "hype",
+    "name": "Hype Esports",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "viki",
+    "name": "Vikings KR",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "dust",
+    "name": "Dusty Roots",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "inte",
+    "name": "Intense Game",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "w7m",
+    "name": "w7m esports",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

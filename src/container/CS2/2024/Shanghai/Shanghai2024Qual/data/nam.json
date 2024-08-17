@@ -1,0 +1,98 @@
+[
+  {
+    "code": "lega",
+    "name": "Legacy",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "wild",
+    "name": "Wildcard",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "nrg",
+    "name": "NRG",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "noun",
+    "name": "Nouns Esports",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "part",
+    "name": "Party Astronauts",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "elev",
+    "name": "Elevate",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "e-xo",
+    "name": "E-Xolos LAZER",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "boss",
+    "name": "BOSS",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "lag",
+    "name": "LAG Gaming",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "myth",
+    "name": "Mythic",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "akim",
+    "name": "Akimbo Esports",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "fluf",
+    "name": "FLUFFY AIMERS",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "phoe",
+    "name": "Phoenix",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "limi",
+    "name": "Limitless",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "homy",
+    "name": "Homyno",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "take",
+    "name": "Take Flyte",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]
