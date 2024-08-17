@@ -93,9 +93,9 @@ export default class Shanghai2024Qual extends Regionals {
   Regions = Regions;
   teamLogo = teamLogo;
   title = "PW Major Shanghai 2024 RMR Closed Qualifier Simulator";
-  subtitle = <span>
-    Pick your winners here, and <a href="/24rmr_shanghai" className="text-yellow-400 underline">EU & Americas RMR</a> simulation is now available.
-  </span>;
+  // subtitle = <span>
+  //   Pick your winners here, and <a href="/24rmr_shanghai" className="text-yellow-400 underline">EU & Americas RMR</a> simulation is now available.
+  // </span>;
   _scores = Scores;
 
   fetch_scores = (callback) => {
