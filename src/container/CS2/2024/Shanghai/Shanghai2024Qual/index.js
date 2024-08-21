@@ -2,6 +2,7 @@
 
 import {GlobeAmericasIcon, GlobeEuropeAfricaIcon} from '@heroicons/react/24/outline';
 import React from 'react';
+import {fetchPrefix} from "../../../../../libs/common/common";
 import {Formats} from "../../../../../libs/common/formats/formats";
 import {Regionals} from "../../../../Common/Regional";
 import {EUA, EUB, EUTB_Final, NAM, SAM} from './initial_data';
@@ -99,8 +100,14 @@ export default class Shanghai2024Qual extends Regionals {
   _scores = Scores;
 
   fetch_scores = (callback) => {
-    // fetch(fetchPrefix + '/cs_scores')
-    //   .then((resp) => resp.json())
-    //   .then(callback);
+    fetch('https://result-api.majors.im/scores.json')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
+
+  fetch_matches = (callback) => {
+    fetch('https://result-api.majors.im/matches.json')
+      .then((resp) => resp.json())
+      .then(callback);
   };
 }
