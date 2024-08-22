@@ -36,14 +36,14 @@
     "description": "Seed #6"
   },
   {
-    "code": "team",
+    "code": "soli",
     "name": "Team Solid",
     "seed": 7,
     "description": "Seed #7"
   },
   {
-    "code": "boun",
-    "name": "Bounty Hunters Esports",
+    "code": "bh",
+    "name": "Bounty Hunters",
     "seed": 8,
     "description": "Seed #8"
   },
@@ -72,13 +72,13 @@
     "description": "Seed #12"
   },
   {
-    "code": "viki",
+    "code": "vkr",
     "name": "Vikings KR",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "dust",
+    "code": "dr",
     "name": "Dusty Roots",
     "seed": 14,
     "description": "Seed #14"
