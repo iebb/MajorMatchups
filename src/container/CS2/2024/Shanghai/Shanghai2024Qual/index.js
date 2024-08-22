@@ -104,10 +104,10 @@ export default class Shanghai2024Qual extends Regionals {
       .then((resp) => resp.json())
       .then(callback);
   };
-
-  fetch_matches = (callback) => {
-    fetch('https://result-api.majors.im/matches.json')
-      .then((resp) => resp.json())
-      .then(callback);
-  };
+  //
+  // fetch_matches = (callback) => {
+  //   fetch('https://result-api.majors.im/matches.json')
+  //     .then((resp) => resp.json())
+  //     .then(callback);
+  // };
 }

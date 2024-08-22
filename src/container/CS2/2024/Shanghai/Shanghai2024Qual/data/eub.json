@@ -6,7 +6,7 @@
     "description": "Seed #1"
   },
   {
-    "code": "john",
+    "code": "spee",
     "name": "Johnny Speeds",
     "seed": 2,
     "description": "Seed #2"
@@ -24,7 +24,7 @@
     "description": "Seed #4"
   },
   {
-    "code": "zero",
+    "code": "z10",
     "name": "Zero Tenacity",
     "seed": 5,
     "description": "Seed #5"
@@ -54,7 +54,7 @@
     "description": "Seed #9"
   },
   {
-    "code": "clou",
+    "code": "c9",
     "name": "Cloud9",
     "seed": 10,
     "description": "Seed #10"
