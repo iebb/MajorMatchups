@@ -178,29 +178,27 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
           </Button>
         </DialogFooter>
       </Dialog>
-      <div className="pb-4 gap-2 flex flex-row content-center place-content-center">
-        <div>
-          <Select
-            color="blue-gray"
-            value={UIType}
-            onChange={(value) => {
-              setUIType(value);
-              localStorage.ui = value;
-            }}
-            label="Choose UI Type"
-          >
-            {
-              ['minimal', 'bracket', 'classic'].map(
-                ui => (
-                  <Option
-                    key={ui}
-                    value={ui}
-                  >{UIEnums[ui].name}</Option>
-                )
+      <div className="pb-4 gap-2 flex flex-col sm:flex-row content-center place-content-center px-12 sm:px-0">
+        <Select
+          color="blue-gray"
+          value={UIType}
+          onChange={(value) => {
+            setUIType(value);
+            localStorage.ui = value;
+          }}
+          label="Choose UI Type"
+        >
+          {
+            ['minimal', 'bracket', 'classic'].map(
+              ui => (
+                <Option
+                  key={ui}
+                  value={ui}
+                >{UIEnums[ui].name}</Option>
               )
-            }
-          </Select>
-        </div>
+            )
+          }
+        </Select>
         <div>
           <Button
             onClick={() => handleOpen(true)}
@@ -228,7 +226,7 @@ export function BasicUI({ tabs, state, stage, shuffle, advance }) {
               id="tab"
               className="w-auto m-auto inline-block"
             >
-              <TabsHeader className="whitespace-nowrap">
+              <TabsHeader className="whitespace-nowrap flex-col md:flex-row">
                 {tabs.map(({ label, value, icon, onClick }) => (
                   <Tab key={value} value={value} onClick={onClick} className="w-auto">
                     <div className="flex items-center px-2">

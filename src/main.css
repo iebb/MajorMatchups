@@ -268,10 +268,17 @@ body {
   margin-bottom: 24px;
 }
 
+
 .main-container {
   max-width: 100vw;
   padding: 40px;
   user-select: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-container {
+    padding: 0;
+  }
 }
 
 .title {
