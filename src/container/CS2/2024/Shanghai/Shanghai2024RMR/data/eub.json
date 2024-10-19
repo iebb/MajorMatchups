@@ -1,0 +1,98 @@
+[
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "team",
+    "name": "Team Spirit",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "eter",
+    "name": "Eternal Fire",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "virt",
+    "name": "Virtus.pro",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "hero",
+    "name": "HEROIC",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "astr",
+    "name": "Astralis",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "big",
+    "name": "BIG",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "3dma",
+    "name": "3DMAX",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "ninj",
+    "name": "Ninjas in Pyjamas",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "b8",
+    "name": "B8",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "auro",
+    "name": "Aurora Gaming",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "pass",
+    "name": "Passion UA",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "pari",
+    "name": "PARIVISION",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "9pan",
+    "name": "9Pandas",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "sash",
+    "name": "Sashi Esport",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "tsm",
+    "name": "TSM",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "code": "furi",
+    "name": "FURIA Esports",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "team",
+    "name": "Team Liquid",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "comp",
+    "name": "Complexity Gaming",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "pain",
+    "name": "paiN Gaming",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "9z",
+    "name": "9z Team",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "m80",
+    "name": "M80",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "mibr",
+    "name": "MIBR",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "impe",
+    "name": "Imperial Esports",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "lega",
+    "name": "Legacy",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "wild",
+    "name": "Wildcard",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "best",
+    "name": "BESTIA",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "noun",
+    "name": "Nouns Esports",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "red",
+    "name": "RED Canids",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "boss",
+    "name": "BOSS",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "kr",
+    "name": "KR\u00dc Esports",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "case",
+    "name": "Case Esports",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]

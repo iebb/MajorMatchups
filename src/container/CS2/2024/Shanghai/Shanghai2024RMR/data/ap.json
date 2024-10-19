@@ -1,0 +1,50 @@
+[
+  {
+    "code": "the",
+    "name": "The MongolZ",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "flyq",
+    "name": "FlyQuest",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "rare",
+    "name": "Rare Atom",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "lynn",
+    "name": "Lynn Vision Gaming",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "dril",
+    "name": "DRILLAS",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "gr",
+    "name": "GR Gaming",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "talo",
+    "name": "TALON",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "alte",
+    "name": "Alter Ego",
+    "seed": 8,
+    "description": "Seed #8"
+  }
+]

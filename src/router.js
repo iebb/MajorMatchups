@@ -23,6 +23,7 @@ import Paris2023RMR from "./container/CSGO/2023/Paris2023RMR";
 import R6ATL23 from "./container/RainbowSix/R6ATL23";
 import R6CPH23 from "./container/RainbowSix/R6CPH23";
 import R6MAN24 from './container/RainbowSix/R6MAN24';
+import Shanghai2024RMR from './container/CS2/2024/Shanghai/Shanghai2024RMR';
 
 export default function Routes() {
   const h = useHistory();
@@ -73,6 +74,9 @@ export default function Routes() {
       <Route path="/24qual_shanghai">
         <Shanghai2024Qual history={h} />
       </Route>
+      <Route path="/24rmr_shanghai">
+        <Shanghai2024RMR history={h} />
+      </Route>
 
 
       <Route path="/r6_23majorcph">
@@ -86,7 +90,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/24qual_shanghai" />
+        <Redirect to="/24rmr_shanghai" />
       </Route>
     </Switch>
   );

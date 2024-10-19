@@ -1,0 +1,98 @@
+[
+  {
+    "code": "natu",
+    "name": "Natus Vincere",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "team",
+    "name": "Team Vitality",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "saw",
+    "name": "SAW",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "team_06",
+    "name": "Team Falcons_06",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "sang",
+    "name": "Sangal Esports",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "betb",
+    "name": "BetBoom Team",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "fnat",
+    "name": "Fnatic",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "game",
+    "name": "GamerLegion",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "nemi",
+    "name": "Nemiga Gaming",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "clou",
+    "name": "Cloud9",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "sinn",
+    "name": "SINNERS Esports",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "dyna",
+    "name": "Dynamo Eclot",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "rebe",
+    "name": "Rebels Gaming",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "unit",
+    "name": "UNiTY esports",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]
