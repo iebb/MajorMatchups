@@ -6,7 +6,7 @@
     "description": "Seed #1"
   },
   {
-    "code": "team",
+    "code": "vita",
     "name": "Team Vitality",
     "seed": 2,
     "description": "Seed #2"
@@ -30,8 +30,8 @@
     "description": "Seed #5"
   },
   {
-    "code": "team_06",
-    "name": "Team Falcons_06",
+    "code": "falc",
+    "name": "Team Falcons",
     "seed": 6,
     "description": "Seed #6"
   },

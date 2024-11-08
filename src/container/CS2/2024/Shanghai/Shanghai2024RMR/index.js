@@ -89,7 +89,7 @@ const Regions = [
   },
 ].map((r, id) => ({...r, id}));
 
-const teamLogo = (code) => `https://img.majors.im/rmr/shanghai2024_rmr/${code}.png`;
+const teamLogo = (code) => `https://img.majors.im/logos/2411_cs2_rmr_shanghai/${code}.png`;
 
 export default class Shanghai2024RMR extends Regionals {
   defaultTab = 0;

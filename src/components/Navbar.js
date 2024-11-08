@@ -67,6 +67,20 @@ const Editions = [
     icon: FilmIcon,
     items: [
       {
+        title: '2024 Shanghai RMR',
+        subtitle: 'Europe and Americas',
+        img: ("https://img.majors.im/images/logos/pglrmr24.png"),
+        description: '2024.11', //  '2024.02.14 - 2024.03.04',
+        path: '/24rmr_shanghai',
+      },
+      {
+        title: '2024 Shanghai RMR Closed Qualifier',
+        subtitle: 'Europe and Americas',
+        img: ("https://img.majors.im/images/logos/pglrmr24.png"),
+        description: '2024.09', // '2024.01.12 - 2024.01.22',
+        path: '/24qual_shanghai',
+      },
+      {
         title: '2024 Copenhagen',
         subtitle: 'PGL Major Copenhagen 2024',
         img: ("https://img.majors.im/images/logos/pgl24.png"),
@@ -92,7 +106,14 @@ const Editions = [
         subtitle: '',
         img: ("https://img.majors.im/images/logos/r6.png"),
         description: '2024.05',
-        path: '/r6_24majorman',
+        path: '/r6/24majorman',
+      },
+      {
+        title: '2024 R6 BLAST Major Montreal',
+        subtitle: '',
+        img: ("https://img.majors.im/images/logos/r6.png"),
+        description: '2024.11',
+        path: '/r6/24majormtl',
       },
     ]
   },
@@ -126,14 +147,14 @@ const Editions = [
         subtitle: '',
         img: ("https://img.majors.im/images/logos/r6.png"),
         description: '2023.04.24 - 2023.05.07',
-        path: '/r6_23majorcph',
+        path: '/r6/23majorcph',
       },
       {
         title: '2023 R6 BLAST Major Atlanta',
         subtitle: '',
         img: ("https://img.majors.im/images/logos/r6.png"),
         description: '2023.10.31 - 2023.11.12',
-        path: '/r6_23majoratl',
+        path: '/r6/23majoratl',
       },
     ]
   },

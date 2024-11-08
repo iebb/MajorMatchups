@@ -1,98 +1,101 @@
-[
+// prettier-ignore
+
+export const initialDataChallenger =  [
   {
-    "code": "furi",
-    "name": "FURIA Esports",
+    "code": "elev",
+    "name": "Elevate",
     "seed": 1,
     "description": "Seed #1"
   },
   {
-    "code": "liqu",
-    "name": "Team Liquid",
+    "code": "dplu",
+    "name": "Dplus",
     "seed": 2,
     "description": "Seed #2"
   },
   {
-    "code": "comp",
-    "name": "Complexity Gaming",
+    "code": "liqu",
+    "name": "Team Liquid",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "pain",
-    "name": "paiN Gaming",
+    "code": "faze",
+    "name": "FaZe Clan",
     "seed": 4,
     "description": "Seed #4"
   },
   {
-    "code": "9z",
-    "name": "9z Team",
+    "code": "soni",
+    "name": "Soniqs",
     "seed": 5,
     "description": "Seed #5"
   },
   {
-    "code": "m80",
-    "name": "M80",
+    "code": "dark",
+    "name": "DarkZero",
     "seed": 6,
     "description": "Seed #6"
   },
   {
-    "code": "mibr",
-    "name": "MIBR",
+    "code": "scar",
+    "name": "SCARZ",
     "seed": 7,
     "description": "Seed #7"
   },
   {
-    "code": "impe",
-    "name": "Imperial Esports",
+    "code": "w7m",
+    "name": "w7m esports",
     "seed": 8,
     "description": "Seed #8"
   },
   {
-    "code": "lega",
-    "name": "Legacy",
+    "code": "spac",
+    "name": "Spacestation Gaming",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "wild",
-    "name": "Wildcard",
+    "code": "bds",
+    "name": "Team BDS",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "best",
-    "name": "BESTIA",
+    "code": "secr",
+    "name": "Team Secret",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "noun",
-    "name": "Nouns Esports",
+    "code": "virt",
+    "name": "Virtus.pro",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "red",
-    "name": "RED Canids",
+    "code": "seed_13",
+    "name": "Slot #13",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "boss",
-    "name": "BOSS",
+    "code": "seed_14",
+    "name": "Slot #14",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "kr",
-    "name": "KR\u00dc Esports",
+    "code": "seed_15",
+    "name": "Slot #15",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "case",
-    "name": "Case Esports",
+    "code": "seed_16",
+    "name": "Slot #16",
     "seed": 16,
     "description": "Seed #16"
   }
-]
+];
+
