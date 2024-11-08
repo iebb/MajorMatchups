@@ -69,14 +69,14 @@ const Editions = [
       {
         title: '2024 Shanghai RMR',
         subtitle: 'Europe and Americas',
-        img: ("https://img.majors.im/images/logos/pglrmr24.png"),
+        img: ("https://img.majors.im/images/logos/pw24.png"),
         description: '2024.11', //  '2024.02.14 - 2024.03.04',
         path: '/24rmr_shanghai',
       },
       {
         title: '2024 Shanghai RMR Closed Qualifier',
         subtitle: 'Europe and Americas',
-        img: ("https://img.majors.im/images/logos/pglrmr24.png"),
+        img: ("https://img.majors.im/images/logos/pw24.png"),
         description: '2024.09', // '2024.01.12 - 2024.01.22',
         path: '/24qual_shanghai',
       },
