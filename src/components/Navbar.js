@@ -253,12 +253,12 @@ function NavListMenu({ edition }) {
   const renderItems = items.map(({title, description, path, subtitle, icon: ItemIcon, img}) => (
     <a href={path} key={title}>
       <MenuItem className="hover:bg-nekoko-700 hover:border-nekoko-800 active:bg-nekoko-500 active:border-nekoko-600">
-        <div className="h-[32px] w-[32px] inline-block mr-3 content-center">
+        <div className="max-h-[48px] w-[32px] inline-block mr-3 content-start">
           {
             ItemIcon ? (
               <ItemIcon className="w-[32px]" />
             ) : (
-              <img className="w-[32px]" src={img} alt={title} />
+              <img className="w-[32px] max-h-[48px]" src={img} alt={title} />
             )
           }
         </div>
