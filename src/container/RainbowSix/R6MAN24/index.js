@@ -95,18 +95,18 @@ export default class R6MAN24 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init();
 
-    return fetch('https://result-api.majors.im/api.php')
-      .then((resp) => resp.json())
-      .then((resp) => {
-        this.setState({
-          ...TournamentStages[TournamentChallenger],
-          // ...pack(initialDataChallenger, teamLogo),
-          ...pack(resp.teams, teamLogo),
-          scores: resp.results,
-        }, () => {
-          this.calculateMatchups(0, this.state.rounds + 1)
-        });
-      });
+    // return fetch('https://result-api.majors.im/api.php')
+    //   .then((resp) => resp.json())
+    //   .then((resp) => {
+    //     this.setState({
+    //       ...TournamentStages[TournamentChallenger],
+    //       // ...pack(initialDataChallenger, teamLogo),
+    //       ...pack(resp.teams, teamLogo),
+    //       scores: resp.results,
+    //     }, () => {
+    //       this.calculateMatchups(0, this.state.rounds + 1)
+    //     });
+    //   });
   }
 
 
