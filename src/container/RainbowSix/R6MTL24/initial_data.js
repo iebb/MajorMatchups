@@ -2,32 +2,32 @@
 
 export const initialDataChallenger =  [
   {
-    "code": "elev",
-    "name": "Elevate",
+    "code": "bds",
+    "name": "Team BDS",
     "seed": 1,
     "description": "Seed #1"
   },
   {
-    "code": "dplu",
-    "name": "Dplus",
+    "code": "faze",
+    "name": "FaZe Clan",
     "seed": 2,
     "description": "Seed #2"
   },
   {
-    "code": "liqu",
-    "name": "Team Liquid",
+    "code": "soni",
+    "name": "Soniqs",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "faze",
-    "name": "FaZe Clan",
+    "code": "secr",
+    "name": "Team Secret",
     "seed": 4,
     "description": "Seed #4"
   },
   {
-    "code": "soni",
-    "name": "Soniqs",
+    "code": "liqu",
+    "name": "Team Liquid",
     "seed": 5,
     "description": "Seed #5"
   },
@@ -44,56 +44,56 @@ export const initialDataChallenger =  [
     "description": "Seed #7"
   },
   {
-    "code": "w7m",
-    "name": "w7m esports",
+    "code": "dplu",
+    "name": "Dplus",
     "seed": 8,
     "description": "Seed #8"
   },
   {
-    "code": "spac",
-    "name": "Spacestation Gaming",
+    "code": "w7m",
+    "name": "w7m esports",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "bds",
-    "name": "Team BDS",
+    "code": "spac",
+    "name": "Spacestation Gaming",
     "seed": 10,
     "description": "Seed #10"
   },
   {
-    "code": "secr",
-    "name": "Team Secret",
+    "code": "virt",
+    "name": "Virtus.pro",
     "seed": 11,
     "description": "Seed #11"
   },
   {
-    "code": "virt",
-    "name": "Virtus.pro",
+    "code": "elev",
+    "name": "Elevate",
     "seed": 12,
     "description": "Seed #12"
   },
   {
-    "code": "seed_13",
-    "name": "Slot #13",
+    "code": "g2",
+    "name": "G2 Esports",
     "seed": 13,
     "description": "Seed #13"
   },
   {
-    "code": "seed_14",
-    "name": "Slot #14",
+    "code": "falc",
+    "name": "Team Falcons",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "seed_15",
-    "name": "Slot #15",
+    "code": "chie",
+    "name": "Chiefs Esports Club",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "seed_16",
-    "name": "Slot #16",
+    "code": "blac",
+    "name": "Black Dragons",
     "seed": 16,
     "description": "Seed #16"
   }
