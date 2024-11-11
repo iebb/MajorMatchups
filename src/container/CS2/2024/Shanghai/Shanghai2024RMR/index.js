@@ -99,8 +99,11 @@ export default class Shanghai2024RMR extends Regionals {
   _scores = Scores;
 
   fetch_scores = (callback) => {
-    fetch(fetchPrefix + '/cs_scores')
+    fetch('https://result-api.majors.im/scores/2411_cs2_rmr_shanghai/scores.json')
       .then((resp) => resp.json())
-      .then(callback);
+      .then((e) => {
+        console.log(e);
+        callback(e);
+      });
   };
 }

@@ -6,19 +6,19 @@
     "description": "Seed #1"
   },
   {
-    "code": "flyq",
+    "code": "fly",
     "name": "FlyQuest",
     "seed": 2,
     "description": "Seed #2"
   },
   {
-    "code": "rare",
+    "code": "ra",
     "name": "Rare Atom",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "lynn",
+    "code": "lvg",
     "name": "Lynn Vision Gaming",
     "seed": 4,
     "description": "Seed #4"
@@ -42,7 +42,7 @@
     "description": "Seed #7"
   },
   {
-    "code": "alte",
+    "code": "ae",
     "name": "Alter Ego",
     "seed": 8,
     "description": "Seed #8"
