@@ -66,13 +66,13 @@ export function DoubleElimination(fromStage, toStage, winnerFn=getWinnerFromScor
         } else {
           if (match.picked === 1) {
             teamsT.push({ ...match.team1, opponents: opponents1, w: match.team1.w + (
-                match.team1.l && stage > 2 && stage !== rounds ? 0.5 : 1
+                match.team1.l && stage > 2 ? 0.5 : 1
               ), _seed });
             teamsT.push({ ...match.team2, opponents: opponents2, l: match.team2.l + 1, _seed });
           } else if (match.picked === -1) {
             teamsT.push({ ...match.team1, opponents: opponents1, l: match.team1.l + 1, _seed });
             teamsT.push({ ...match.team2, opponents: opponents2, w: match.team2.w + (
-                match.team2.l && stage > 2 && stage !== rounds ? 0.5 : 1
+                match.team2.l && stage > 2 ? 0.5 : 1
               ), _seed });
           }
         }

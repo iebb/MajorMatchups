@@ -79,7 +79,7 @@ const Regions = [
     tiebreakers: {
     },
     rounds: 4,
-    winsToAdvance: 3,
+    winsToAdvance: 2,
     losesToEliminate: 2,
     nonDeciderToWin: 1,
     deciderToWin: 2,
