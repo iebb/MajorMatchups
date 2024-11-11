@@ -1,6 +1,6 @@
 [
   {
-    "code": "natu",
+    "code": "navi",
     "name": "Natus Vincere",
     "seed": 1,
     "description": "Seed #1"
@@ -54,7 +54,7 @@
     "description": "Seed #9"
   },
   {
-    "code": "game",
+    "code": "gl",
     "name": "GamerLegion",
     "seed": 10,
     "description": "Seed #10"
@@ -66,7 +66,7 @@
     "description": "Seed #11"
   },
   {
-    "code": "clou",
+    "code": "c9",
     "name": "Cloud9",
     "seed": 12,
     "description": "Seed #12"
@@ -78,7 +78,7 @@
     "description": "Seed #13"
   },
   {
-    "code": "dyna",
+    "code": "eclo",
     "name": "Dynamo Eclot",
     "seed": 14,
     "description": "Seed #14"

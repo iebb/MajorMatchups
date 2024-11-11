@@ -12,13 +12,13 @@
     "description": "Seed #2"
   },
   {
-    "code": "eter",
+    "code": "ef",
     "name": "Eternal Fire",
     "seed": 3,
     "description": "Seed #3"
   },
   {
-    "code": "virt",
+    "code": "vp",
     "name": "Virtus.pro",
     "seed": 4,
     "description": "Seed #4"
@@ -48,7 +48,7 @@
     "description": "Seed #8"
   },
   {
-    "code": "ninj",
+    "code": "nip",
     "name": "Ninjas in Pyjamas",
     "seed": 9,
     "description": "Seed #9"
