@@ -104,15 +104,15 @@ export function SwissBuchholtzTB_2024_R6_mod(fromStage, toStage, winnerFn=getWin
       if (stage > 1) {
         if (y.buchholtz - x.buchholtz) return y.buchholtz - x.buchholtz;
       }
-
-      const invertedSeed = s => s >= minSeed + 8 ? 1000 - s : s;
-      if (stage === 0) {
-        return invertedSeed(x.seed) - invertedSeed(y.seed);
-      }
-
-      if (stage === 1) {
-        return invertedSeedR1[x.seed] - invertedSeedR1[y.seed];
-      }
+      //
+      // const invertedSeed = s => s >= minSeed + 8 ? 1000 - s : s;
+      // if (stage === 0) {
+      //   return invertedSeed(x.seed) - invertedSeed(y.seed);
+      // }
+      //
+      // if (stage === 1) {
+      //   return invertedSeedR1[x.seed] - invertedSeedR1[y.seed];
+      // }
       return x.seed - y.seed;
     };
 
@@ -159,6 +159,23 @@ export function SwissBuchholtzTB_2024_R6_mod(fromStage, toStage, winnerFn=getWin
 
 
     teams = stateTeams[stage].sort(teamCompare);
+
+
+    if (stage === 0) {
+      teams = [
+        ...teams.slice(0, teams.length / 2),
+        ...(teams.slice(teams.length / 2).reverse())
+      ];
+    }
+
+    if (stage === 1) {
+      teams = [
+        ...teams.slice(0, teams.length / 4),
+        ...teams.slice(teams.length / 4, teams.length / 2).reverse(),
+        ...teams.slice(teams.length / 2, 3 * teams.length / 4),
+        ...teams.slice(3 * teams.length / 4).reverse(),
+      ];
+    }
 
     remaining = teams.filter((x) => x.w < winsToAdvance && x.l < losesToEliminate);
 
