@@ -50,14 +50,14 @@ export const initialDataChallenger =  [
     "description": "Seed #8"
   },
   {
-    "code": "w7m",
-    "name": "w7m esports",
+    "code": "blac",
+    "name": "Black Dragons",
     "seed": 9,
     "description": "Seed #9"
   },
   {
-    "code": "spac",
-    "name": "Spacestation Gaming",
+    "code": "chie",
+    "name": "Chiefs Esports Club",
     "seed": 10,
     "description": "Seed #10"
   },
@@ -86,14 +86,14 @@ export const initialDataChallenger =  [
     "description": "Seed #14"
   },
   {
-    "code": "chie",
-    "name": "Chiefs Esports Club",
+    "code": "spac",
+    "name": "Spacestation Gaming",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "blac",
-    "name": "Black Dragons",
+    "code": "w7m",
+    "name": "w7m esports",
     "seed": 16,
     "description": "Seed #16"
   }

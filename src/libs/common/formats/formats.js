@@ -5,6 +5,7 @@ import {Knockout} from './Knockout';
 import {SwissBuchholtzR1P} from "./SwissBuchholtzR1P";
 import {SwissBuchholtzTB} from './SwissBuchholtzTB';
 import {SwissBuchholtzTB_2024} from "./SwissBuchholtzTB_2024";
+import { SwissBuchholtzTB_2024_R6_mod } from './SwissBuchholtzTB_2024_R6_mod';
 
 export const Formats = {
 
@@ -22,6 +23,7 @@ export const Formats = {
   Knockout2024: 22024,
 
   Elo2019: 12019,
+  SwissBuchholtzTB_2024_R6_mod: 241111,
 }
 
 export const isSwissBuchholtzFormat = (f) => {
@@ -35,6 +37,7 @@ export const isSwissBuchholtzOrEloFormat = (f) => {
 export const FormatBinder = {
   [Formats.SwissBuchholtz]: SwissBuchholtzTB,
   [Formats.SwissBuchholtz2024]: SwissBuchholtzTB_2024,
+  [Formats.SwissBuchholtzTB_2024_R6_mod]: SwissBuchholtzTB_2024_R6_mod,
   [Formats.SwissBuchholtzR1P]: SwissBuchholtzR1P,
   [Formats.SingleElimination]: Knockout,
   [Formats.DoubleElimination]: DoubleElimination,
