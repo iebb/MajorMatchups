@@ -1,7 +1,7 @@
 /js/script.js            https://analytics.nekoko.it/js/script.js 200
 /api/event               https://analytics.nekoko.it/api/event 200
 /api/config              https://ads.badasstemple.eu/api.php 200
-/api/cs_scores           https://result-api.majors.im/scores.json 200
+/api/cs_scores           https://result-api.majors.im/scores/2411_cs2_rmr_shanghai/scores.json 200
 /api/cs_matches          https://result-api.majors.im/matches.json 200
 
 /*                       /index.html   200
