@@ -38,6 +38,7 @@ const Regions = [
     ],
     tiebreakers: {
       "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
     rounds: 6,
     winsToAdvance: 3,
@@ -58,6 +59,7 @@ const Regions = [
     ],
     tiebreakers: {
       "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
     rounds: 6,
     winsToAdvance: 3,
