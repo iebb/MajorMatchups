@@ -13,6 +13,7 @@ const Regions = [
     icon: GlobeAmericasIcon,
     seeds: AM,
     seats: [
+      { status: "legends", until: 4, abbrev: "Q", border: "border-blue-500" },
       { status: "qualified", until: 7, abbrev: "Q", border: "border-green-500" },
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
@@ -33,12 +34,12 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
+      { status: "legends", until: 4, abbrev: "Q", border: "border-blue-500" },
       { status: "qualified", until: 7, abbrev: "Q", border: "border-green-500" },
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
-      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}, {teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
     rounds: 6,
     winsToAdvance: 3,
@@ -58,8 +59,7 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
-      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
-      "5": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}, {teams: 4, id: "4/5", name: "4/5th Decider"}],
     },
     rounds: 6,
     winsToAdvance: 3,
