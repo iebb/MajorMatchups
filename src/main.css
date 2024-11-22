@@ -375,6 +375,13 @@ h3.title {
   color: #ffc40a;
 }
 
+.team.elimination-stage .b  {
+  border: 1px solid #ffc40a;
+}
+.team.elimination-stage .team-box-text {
+  color: #ffc40a;
+}
+
 .team.legends .b  {
   border: 1px solid #00ff00;
 }
@@ -386,6 +393,13 @@ h3.title {
   border: 1px solid #abff00;
 }
 .team.challengers .team-box-text {
+  color: #abff00;
+}
+
+.team.opening-stage .b  {
+  border: 1px solid #abff00;
+}
+.team.opening-stage .team-box-text {
   color: #abff00;
 }
 

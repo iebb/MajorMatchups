@@ -13,7 +13,8 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUB,
     seats: [
-      { status: "qualified", until: 7, abbrev: "Q", border: "border-green-500" },
+      { status: "elimination-stage", until: 4, abbrev: "L", border: "border-blue-500" },
+      { status: "opening-stage", until: 7, abbrev: "Q", border: "border-green-500" },
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
@@ -35,8 +36,8 @@ const Regions = [
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
     seats: [
-      { status: "legends", until: 4, abbrev: "Q", border: "border-blue-500" },
-      { status: "qualified", until: 7, abbrev: "Q", border: "border-green-500" },
+      { status: "elimination-stage", until: 4, abbrev: "L", border: "border-blue-500" },
+      { status: "opening-stage", until: 7, abbrev: "Q", border: "border-green-500" },
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
