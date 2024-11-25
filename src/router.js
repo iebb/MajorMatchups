@@ -25,6 +25,7 @@ import R6CPH23 from "./container/RainbowSix/R6CPH23";
 import R6MAN24 from './container/RainbowSix/R6MAN24';
 import Shanghai2024RMR from './container/CS2/2024/Shanghai/Shanghai2024RMR';
 import R6MTL24 from './container/RainbowSix/R6MTL24';
+import Shanghai2024Provisional from './container/CS2/2024/Shanghai/Shanghai2024Provisional';
 
 export default function Routes() {
   const h = useHistory();
@@ -78,6 +79,9 @@ export default function Routes() {
       <Route path="/24rmr_shanghai">
         <Shanghai2024RMR history={h} />
       </Route>
+      <Route path="/24shanghai">
+        <Shanghai2024Provisional history={h} />
+      </Route>
 
 
       <Route path="/r6/23majorcph">
@@ -94,7 +98,7 @@ export default function Routes() {
       </Route>
 
       <Route path="/">
-        <Redirect to="/24rmr_shanghai" />
+        <Redirect to="/24shanghai" />
       </Route>
     </Switch>
   );

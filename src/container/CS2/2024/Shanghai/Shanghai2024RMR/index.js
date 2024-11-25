@@ -9,29 +9,6 @@ import {Scores} from "./scores";
 
 const Regions = [
   {
-    name: "Europe-B",
-    icon: GlobeEuropeAfricaIcon,
-    seeds: EUB,
-    seats: [
-      { status: "elimination-stage", until: 4, abbrev: "L", border: "border-blue-500" },
-      { status: "opening-stage", until: 7, abbrev: "Q", border: "border-green-500" },
-      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
-    ],
-    tiebreakers: {
-      "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
-      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
-    },
-    buchholtzLockIns: [`3-1`],
-    rounds: 6,
-    winsToAdvance: 3,
-    losesToEliminate: 3,
-    nonDeciderToWin: 1,
-    deciderToWin: 2,
-    tournamentType: Formats.SwissBuchholtz2024,
-    resultTag: "sha24.rmr.eub",
-    defaultSuffix: "",
-  },
-  {
     name: "Europe-A",
     icon: GlobeEuropeAfricaIcon,
     seeds: EUA,
@@ -41,7 +18,7 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
-      "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "4": [{teams: 4, id: "4/5", name: "4/5th Decider (annulled)"}],
       "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
     },
     buchholtzLockIns: [`3-1`],
@@ -52,6 +29,29 @@ const Regions = [
     deciderToWin: 2,
     tournamentType: Formats.SwissBuchholtz2024,
     resultTag: "sha24.rmr.eua",
+    defaultSuffix: "",
+  },
+  {
+    name: "Europe-B",
+    icon: GlobeEuropeAfricaIcon,
+    seeds: EUB,
+    seats: [
+      { status: "elimination-stage", until: 4, abbrev: "L", border: "border-blue-500" },
+      { status: "opening-stage", until: 7, abbrev: "Q", border: "border-green-500" },
+      { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
+    ],
+    tiebreakers: {
+      // "4": [{teams: 4, id: "4/5", name: "4/5th Decider"}],
+      "5": [{teams: 7, id: "7/8", name: "7/8th Decider"}],
+    },
+    // buchholtzLockIns: [`3-1`],
+    rounds: 6,
+    winsToAdvance: 3,
+    losesToEliminate: 3,
+    nonDeciderToWin: 1,
+    deciderToWin: 2,
+    tournamentType: Formats.SwissBuchholtz2024,
+    resultTag: "sha24.rmr.eub",
     defaultSuffix: "",
   },
   {
@@ -105,12 +105,12 @@ export default class Shanghai2024RMR extends Regionals {
   title = "PW Major Shanghai 2024 RMR Simulator";
   _scores = Scores;
 
-  fetch_scores = (callback) => {
-    fetch('https://result-api.majors.im/scores/2411_cs2_rmr_shanghai/scores.json')
-      .then((resp) => resp.json())
-      .then((e) => {
-        console.log(e);
-        callback(e);
-      });
-  };
+  // fetch_scores = (callback) => {
+  //   fetch('https://result-api.majors.im/scores/2411_cs2_rmr_shanghai/scores.json')
+  //     .then((resp) => resp.json())
+  //     .then((e) => {
+  //       console.log(e);
+  //       callback(e);
+  //     });
+  // };
 }
