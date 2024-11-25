@@ -67,6 +67,13 @@ const Editions = [
     icon: FilmIcon,
     items: [
       {
+        title: '2024 Shanghai',
+        subtitle: 'Shanghai Major',
+        img: ("https://img.majors.im/images/logos/pw24.png"),
+        description: '2024.11.30 - 2014.12.15', //  '2024.02.14 - 2024.03.04',
+        path: '/24shanghai',
+      },
+      {
         title: '2024 Shanghai RMR',
         subtitle: 'Europe and Americas',
         img: ("https://img.majors.im/images/logos/pw24.png"),
