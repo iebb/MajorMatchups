@@ -98,12 +98,12 @@ export default class Shanghai2024Qual extends Regionals {
   //   Pick your winners here, and <a href="/24rmr_shanghai" className="text-yellow-400 underline">EU & Americas RMR</a> simulation is now available.
   // </span>;
   _scores = Scores;
-
-  fetch_scores = (callback) => {
-    fetch('https://result-api.majors.im/scores.json')
-      .then((resp) => resp.json())
-      .then(callback);
-  };
+  //
+  // fetch_scores = (callback) => {
+  //   fetch('https://result-api.majors.im/scores.json')
+  //     .then((resp) => resp.json())
+  //     .then(callback);
+  // };
   //
   // fetch_matches = (callback) => {
   //   fetch('https://result-api.majors.im/matches.json')
