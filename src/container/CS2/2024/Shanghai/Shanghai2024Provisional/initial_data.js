@@ -175,3 +175,118 @@ export const initialDataChallenger = [
     region: "AM",
   },
 ];
+
+export const finalDataLegends = [
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 1,
+    "description": "EU #1",
+    "region": "EU"
+  },
+  {
+    "code": "navi",
+    "name": "Natus Vincere",
+    "seed": 2,
+    "description": "EU #2",
+    "region": "EU"
+  },
+  {
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 3,
+    "description": "EU #3",
+    "region": "EU"
+  },
+  {
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 4,
+    "description": "EU #4",
+    "region": "EU"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 5,
+    "description": "EU #5",
+    "region": "EU"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 6,
+    "description": "EU #6",
+    "region": "EU"
+  },
+  {
+    "code": "hero",
+    "name": "HEROIC",
+    "seed": 7,
+    "description": "EU #7",
+    "region": "EU"
+  },
+  {
+    "code": "3dma",
+    "name": "3DMAX",
+    "seed": 8,
+    "description": "EU #8",
+    "region": "EU"
+  },
+  {
+    "code": "mong",
+    "name": "The MongolZ",
+    "seed": 9,
+    "description": "0L, 1B, #15",
+    "region": "AP"
+  },
+  {
+    "code": "liqu",
+    "name": "Team Liquid",
+    "seed": 10,
+    "description": "0L, -2B, #11",
+    "region": "AM"
+  },
+  {
+    "code": "gl",
+    "name": "GamerLegion",
+    "seed": 11,
+    "description": "1L, 6B, #17",
+    "region": "EU"
+  },
+  {
+    "code": "furi",
+    "name": "FURIA Esports",
+    "seed": 12,
+    "description": "1L, 1B, #9",
+    "region": "AM"
+  },
+  {
+    "code": "pain",
+    "name": "paiN Gaming",
+    "seed": 13,
+    "description": "1L, -4B, #16",
+    "region": "AM"
+  },
+  {
+    "code": "wild",
+    "name": "Wildcard",
+    "seed": 14,
+    "description": "2L, -1B, #22",
+    "region": "AM"
+  },
+  {
+    "code": "big",
+    "name": "BIG",
+    "seed": 15,
+    "description": "2L, -3B, #13",
+    "region": "EU"
+  },
+  {
+    "code": "mibr",
+    "name": "MIBR",
+    "seed": 16,
+    "description": "2L, -3B, #18",
+    "region": "AM"
+  }
+];

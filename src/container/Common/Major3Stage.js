@@ -73,6 +73,7 @@ export class Major3Stage extends React.Component {
         ...this.TournamentStages[1].initialTeams, // directly to legends
         ...teamsAdvanced
       ];
+      console.log(finalTeams);
       // setPickResults('pickResults', 0, this.event, this.state.pickResults);
     } else if (this.state.tournament === TournamentChampions) {
       finalTeams = getPickResults('teams', 1, this.event);

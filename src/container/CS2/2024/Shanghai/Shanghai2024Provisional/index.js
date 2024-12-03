@@ -5,9 +5,10 @@ import {Formats} from "../../../../../libs/common/formats/formats";
 import {Major3Stage} from "../../../../Common/Major3Stage";
 import {ChallengerResults, LegendResults} from "../../../../CSGO/2022/Rio/Rio2022/scores";
 import {
+  finalDataLegends,
   initialDataChallenger,
-  initialDataLegends
-} from "./initial_data";
+  initialDataLegends,
+} from './initial_data';
 import {Scores} from "./scores";
 
 const TournamentChallenger = 0;
@@ -32,7 +33,7 @@ const TournamentStages = [
   {
     id: 1,
     initialTeams: initialDataLegends,
-    teams: [], // finalDataLegends
+    teams: finalDataLegends,
     name: "Legends",
     tournament: TournamentLegends,
     tournamentType: Formats.SwissBuchholtz2024,
@@ -62,7 +63,7 @@ export default class Shanghai2024Provisional extends Major3Stage {
   TournamentStages = TournamentStages;
   event = "24shanghai";
   title = "PW Major Shanghai 2024 Simulator";
-  currentStage = 0;
+  currentStage = 1;
   _scores = Scores;
   teamLogo = teamLogo;
 
