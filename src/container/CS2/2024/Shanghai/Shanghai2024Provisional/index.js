@@ -5,6 +5,7 @@ import {Formats} from "../../../../../libs/common/formats/formats";
 import {Major3Stage} from "../../../../Common/Major3Stage";
 import {ChallengerResults, LegendResults} from "../../../../CSGO/2022/Rio/Rio2022/scores";
 import {
+  finalDataChampions,
   finalDataLegends,
   initialDataChallenger,
   initialDataLegends,
@@ -46,7 +47,7 @@ const TournamentStages = [
   {
     id: 2,
     initialTeams: [],
-    teams: [], // finalDataChampions
+    teams: finalDataChampions,
     name: "Champions",
     tournament: TournamentChampions,
     tournamentType: Formats.Knockout,

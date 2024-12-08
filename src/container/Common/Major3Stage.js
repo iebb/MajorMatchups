@@ -73,7 +73,7 @@ export class Major3Stage extends React.Component {
         ...this.TournamentStages[1].initialTeams, // directly to legends
         ...teamsAdvanced
       ];
-      console.log(finalTeams);
+      // console.log(finalTeams);
       // setPickResults('pickResults', 0, this.event, this.state.pickResults);
     } else if (this.state.tournament === TournamentChampions) {
       finalTeams = getPickResults('teams', 1, this.event);
@@ -101,7 +101,7 @@ export class Major3Stage extends React.Component {
         l: 0, w: 0, buchholtz: 0, seed: _idx + 1, opponents: [],
         buchholtzBreakdown: [],
       }))
-
+      //
       // console.log(teamsAdvanced.map(x => ({
       //   code: x.code,
       //   name: x.name,

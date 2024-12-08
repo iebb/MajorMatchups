@@ -290,3 +290,63 @@ export const finalDataLegends = [
     "region": "AM"
   }
 ];
+
+
+export const finalDataChampions = [
+  {
+    "code": "mong",
+    "name": "The MongolZ",
+    "seed": 1,
+    "region": "AP",
+    "description": "0L, 4B, #9"
+  },
+  {
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 2,
+    "region": "EU",
+    "description": "0L, -4B, #3"
+  },
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 3,
+    "region": "EU",
+    "description": "1L, -1B, #1"
+  },
+  {
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 4,
+    "region": "EU",
+    "description": "1L, -4B, #4"
+  },
+  {
+    "code": "liqu",
+    "name": "Team Liquid",
+    "seed": 5,
+    "region": "AM",
+    "description": "1L, -5B, #10"
+  },
+  {
+    "code": "hero",
+    "name": "HEROIC",
+    "seed": 6,
+    "region": "EU",
+    "description": "2L, 2B, #7"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 7,
+    "region": "EU",
+    "description": "2L, 0B, #6"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 8,
+    "region": "EU",
+    "description": "2L, -1B, #5"
+  }
+];
