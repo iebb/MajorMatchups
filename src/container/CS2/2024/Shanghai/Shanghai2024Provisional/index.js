@@ -63,7 +63,7 @@ export default class Shanghai2024Provisional extends Major3Stage {
   TournamentStages = TournamentStages;
   event = "24shanghai";
   title = "PW Major Shanghai 2024 Simulator";
-  currentStage = 1;
+  currentStage = 2;
   _scores = Scores;
   teamLogo = teamLogo;
 
