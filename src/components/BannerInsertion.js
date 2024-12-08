@@ -57,10 +57,6 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
               {/*  /!* eslint-disable-next-line *!/*/}
               {/*  Compare yourself against others in <a className="hyperlink" href="https://pick.majors.im/leaderboard" target="_blank">Pick'em leaderboard</a>*/}
               {/*</p>*/}
-              <p className="text-nekoko-200 text-xl my-2">
-                {/* eslint-disable-next-line */}
-                Buy Travel Data eSIM Plans with Telegram stars: <a className="hyperlink" href="https://t.me/DataEsimBot" target="_blank">@DataEsimBot</a>
-              </p>
             </>
           )
         }
