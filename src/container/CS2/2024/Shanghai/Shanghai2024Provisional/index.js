@@ -50,7 +50,7 @@ const TournamentStages = [
     teams: finalDataChampions,
     name: "Champions",
     tournament: TournamentChampions,
-    tournamentType: Formats.Knockout,
+    tournamentType: Formats.Knockout2024,
     seats: ChampionSeats,
     losesToEliminate: 1,
     rounds: 3,
@@ -68,11 +68,11 @@ export default class Shanghai2024Provisional extends Major3Stage {
   _scores = Scores;
   teamLogo = teamLogo;
 
-  fetch_scores = (callback) => {
-    fetch('https://result-api.majors.im/scores/2412_cs2_shanghai/merged_scores.json')
-      .then((resp) => resp.json())
-      .then(callback);
-  };
+  // fetch_scores = (callback) => {
+  //   fetch('https://result-api.majors.im/scores/2412_cs2_shanghai/merged_scores.json')
+  //     .then((resp) => resp.json())
+  //     .then(callback);
+  // };
 
   // state = {
   //   ...this.state,
