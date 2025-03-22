@@ -26,6 +26,7 @@ import R6MAN24 from './container/RainbowSix/R6MAN24';
 import Shanghai2024RMR from './container/CS2/2024/Shanghai/Shanghai2024RMR';
 import R6MTL24 from './container/RainbowSix/R6MTL24';
 import Shanghai2024Provisional from './container/CS2/2024/Shanghai/Shanghai2024Provisional';
+import FissureEp4 from './container/Misc/FissureEp4';
 
 export default function Routes() {
   const h = useHistory();
@@ -95,6 +96,10 @@ export default function Routes() {
       </Route>
       <Route path="/r6/24majormtl">
         <R6MTL24 history={h} />
+      </Route>
+
+      <Route path="/fissure_ep4">
+        <FissureEp4 history={h} />
       </Route>
 
       <Route path="/">
