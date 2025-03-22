@@ -11,7 +11,7 @@ export const initialDataChallenger =  [
     "seed": 2,
     "code": "t02",
     "name": "Tundra Esports",
-    "icon": "https://ui-avatars.com/api/?name=Tundra&background=random&length=3"
+    "icon": "https://i.ibb.co/6Rj6tpDk/Tundra-Esports.png"
   },
   {
     "seed": 3,
