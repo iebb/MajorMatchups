@@ -27,11 +27,18 @@ export const Formats = {
 }
 
 export const isSwissBuchholtzFormat = (f) => {
-  return f === Formats.SwissBuchholtz || f === Formats.SwissBuchholtzR1P || f === Formats.SwissBuchholtz2024;
+  return f === Formats.SwissBuchholtz ||
+    f === Formats.SwissBuchholtzR1P ||
+    f === Formats.SwissBuchholtz2024 ||
+    f === Formats.SwissBuchholtzTB_2024_R6_mod;
 }
 
 export const isSwissBuchholtzOrEloFormat = (f) => {
-  return f === Formats.SwissBuchholtz || f === Formats.SwissBuchholtzR1P || f === Formats.SwissBuchholtz2024 || f === Formats.Elo2019;
+  return f === Formats.SwissBuchholtz ||
+    f === Formats.SwissBuchholtzR1P ||
+    f === Formats.SwissBuchholtz2024 ||
+    f === Formats.SwissBuchholtzTB_2024_R6_mod ||
+    f === Formats.Elo2019;
 }
 
 export const FormatBinder = {
