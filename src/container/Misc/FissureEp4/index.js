@@ -94,13 +94,13 @@ export default class FissureEp4 extends React.PureComponent {
     this.shuffle = shuffle.bind(this);
     this.init();
 
-    return fetch('https://matches.im/api/scores?id=67ddcdcbb9682cd3e4ad170b')
+    return fetch(`https://matches.im/api/scores?id=67ddcdcbb9682cd3e4ad170b&w=${(+new Date())}`)
       .then((resp) => resp.json())
       .then((resp) => {
         this.setState({
           ...TournamentStages[TournamentChallenger],
           // ...pack(initialDataChallenger, teamLogo),
-          ...pack(resp.teams, teamLogo),
+          // ...pack(resp.teams, () => null),
           scores: resp,
         }, () => {
           this.calculateMatchups(0, this.state.rounds + 1)
