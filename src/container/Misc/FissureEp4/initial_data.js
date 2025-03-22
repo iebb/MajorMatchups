@@ -77,7 +77,7 @@ export const initialDataChallenger =  [
     "seed": 13,
     "code": "t13",
     "name": "1w Team",
-    "icon": "https://ui-avatars.com/api/?name=1w&background=random&length=3"
+    "icon": "https://i.ibb.co/GvLz5VqB/190px-1win-Team-2024-allmode.png"
   },
   {
     "seed": 14,
