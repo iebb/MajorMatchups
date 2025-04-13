@@ -7,13 +7,13 @@
   },
   {
     "code": "sang",
-    "name": "Sangal Esports",
+    "name": "Sangal",
     "seed": 2,
     "description": "Seed #2"
   },
   {
     "code": "blee",
-    "name": "BLEED Esports",
+    "name": "BLEED",
     "seed": 3,
     "description": "Seed #3"
   },
@@ -67,31 +67,31 @@
   },
   {
     "code": "sinn",
-    "name": "SINNERS Esports",
+    "name": "SINNERS",
     "seed": 12,
     "description": "Seed #12"
   },
   {
     "code": "rhyn",
-    "name": "Rhyno Esports",
+    "name": "Rhyno",
     "seed": 13,
     "description": "Seed #13"
   },
   {
     "code": "bc.g",
-    "name": "BC.Game Esports",
+    "name": "BC.Game",
     "seed": 14,
     "description": "Seed #14"
   },
   {
     "code": "ente",
-    "name": "ENTERPRISE esports",
+    "name": "ENTERPRISE",
     "seed": 15,
     "description": "Seed #15"
   },
   {
     "code": "unit",
-    "name": "UNiTY esports",
+    "name": "UNiTY",
     "seed": 16,
     "description": "Seed #16"
   }
