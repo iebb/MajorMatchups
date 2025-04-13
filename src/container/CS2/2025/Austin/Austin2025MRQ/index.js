@@ -16,8 +16,8 @@ const Regions = [
       { status: "eliminated", until: 16, abbrev: "E", border: "border-red-500" },
     ],
     tiebreakers: {
-      "5": [{teams: 7, id: "7/8", name: "Elimination Decider"}],
-      "6": [{teams: 6, id: "6/7", name: "Final Playoff"}],
+      "5": [{teams: 7, offset: -0.1, id: "7/8", name: "Elimination Decider"}],
+      "6": [{teams: 6, offset: 0.1, id: "6/7", name: "Final Playoff"}],
     },
     rounds: 7,
     winsToAdvance: 3,
