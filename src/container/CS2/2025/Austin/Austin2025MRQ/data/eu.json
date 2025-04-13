@@ -1,0 +1,98 @@
+[
+  {
+    "code": "astr",
+    "name": "Astralis",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "gl",
+    "name": "GamerLegion",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "saw",
+    "name": "SAW",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "bc.g",
+    "name": "BC.Game Esports",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "hero",
+    "name": "HEROIC",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "big",
+    "name": "BIG",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "500",
+    "name": "500",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "b8",
+    "name": "B8",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "og",
+    "name": "OG",
+    "seed": 9,
+    "description": "Seed #9"
+  },
+  {
+    "code": "nemi",
+    "name": "Nemiga Gaming",
+    "seed": 10,
+    "description": "Seed #10"
+  },
+  {
+    "code": "betb",
+    "name": "BetBoom Team",
+    "seed": 11,
+    "description": "Seed #11"
+  },
+  {
+    "code": "fnat",
+    "name": "Fnatic",
+    "seed": 12,
+    "description": "Seed #12"
+  },
+  {
+    "code": "pari",
+    "name": "PARIVISION",
+    "seed": 13,
+    "description": "Seed #13"
+  },
+  {
+    "code": "9pan",
+    "name": "9Pandas",
+    "seed": 14,
+    "description": "Seed #14"
+  },
+  {
+    "code": "ence",
+    "name": "ENCE",
+    "seed": 15,
+    "description": "Seed #15"
+  },
+  {
+    "code": "mzp",
+    "name": "Metizport",
+    "seed": 16,
+    "description": "Seed #16"
+  }
+]
