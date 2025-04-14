@@ -17,7 +17,7 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
       </Helmet>
       <div className="title-container">
         {
-          sponsorLess ? (
+          (sponsorLess || true) ? (
             <h1 className="title">{title}</h1>
           ) : (
 
@@ -66,14 +66,6 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
               {subtitle}
             </p>
           )
-        }
-        {
-          // (
-          //   <h3>
-          //     {/* eslint-disable-next-line */}
-          //     <a href="/23paris" target="_blank" style={{color: 'yellow'}}>Provisional Paris Major Matchups Here</a>
-          //   </h3>
-          // )
         }
       </div>
       <p>
