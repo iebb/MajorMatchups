@@ -77,7 +77,7 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
       </p>
       <p className="text-blue-500 text-xl my-2">
         {/* eslint-disable-next-line */}
-        Global Travel eSIM with +372 Phone Number: <a className="hyperlink" href="https://esim.gg/" target="_blank">esim.gg</a>
+        My new project - Global eSIM with +372 Phone Number: <a className="hyperlink" href="https://esim.gg/" target="_blank">esim.gg</a>
       </p>
     </div>
   );
