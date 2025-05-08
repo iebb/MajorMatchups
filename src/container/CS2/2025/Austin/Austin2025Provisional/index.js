@@ -2,22 +2,23 @@
 
 import { AdvanceElimSeats, ChampionSeats } from '../../../../../libs/common/common';
 import { Formats } from '../../../../../libs/common/formats/formats';
-import { Major3Stage } from '../../../../Common/Major3Stage';
-import { finalDataChampions, finalDataLegends, initialDataChallenger, initialDataLegends } from './initial_data';
+import { initialDataStage1, initialDataStage2, initialDataStage3 } from './initial_data';
 import { Scores } from './scores';
+import { Major4Stage } from '../../../../Common/Major4Stage';
 
-const TournamentChallenger = 0;
-const TournamentLegends = 1;
-const TournamentChampions = 2;
+const TournamentStage1 = 0;
+const TournamentStage2 = 1;
+const TournamentStage3 = 2;
+const TournamentChampions = 3;
 
 
 const TournamentStages = [
   {
     id: 0,
-    initialTeams: initialDataChallenger,
-    teams: initialDataChallenger,
-    name: "Challengers",
-    tournament: TournamentChallenger,
+    initialTeams: initialDataStage1,
+    teams: initialDataStage1,
+    name: "Stage 1",
+    tournament: TournamentStage1,
     tournamentType: Formats.SwissBuchholtz2024,
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
@@ -27,10 +28,10 @@ const TournamentStages = [
   },
   {
     id: 1,
-    initialTeams: initialDataLegends,
-    teams: finalDataLegends,
-    name: "Legends",
-    tournament: TournamentLegends,
+    initialTeams: initialDataStage2,
+    teams: [], // finalDataStage2,
+    name: "Stage 2",
+    tournament: TournamentStage2,
     tournamentType: Formats.SwissBuchholtz2024,
     seats: AdvanceElimSeats,
     winsToAdvance: 3,
@@ -40,8 +41,21 @@ const TournamentStages = [
   },
   {
     id: 2,
+    initialTeams: initialDataStage3,
+    teams: [], // finalDataStage3,
+    name: "Stage 3",
+    tournament: TournamentStage3,
+    tournamentType: Formats.SwissBuchholtz2024,
+    seats: AdvanceElimSeats,
+    winsToAdvance: 3,
+    losesToEliminate: 3,
+    rounds: 5,
+    pickemTags: [],
+  },
+  {
+    id: 3,
     initialTeams: [],
-    teams: finalDataChampions,
+    teams: [], // finalDataStage4,
     name: "Champions",
     tournament: TournamentChampions,
     tournamentType: Formats.Knockout2024,
@@ -52,13 +66,13 @@ const TournamentStages = [
   },
 ];
 
-const teamLogo = (code) => `https://img.majors.im/logos/2411_cs2_rmr_shanghai/${code}.png`; // 2412_cs2_shanghai
+const teamLogo = (code) => `https://img.majors.im/logos/2504_cs2_austin/${code}.png`; // 2412_cs2_shanghai
 
-export default class Shanghai2024Provisional extends Major3Stage {
+export default class Austin2025Provisional extends Major4Stage {
   TournamentStages = TournamentStages;
-  event = "24shanghai";
-  title = "PW Major Shanghai 2024 Simulator";
-  currentStage = 2;
+  event = "25austin";
+  title = "BLAST.tv Austin Major 2025 Simulator";
+  currentStage = 0;
   _scores = Scores;
   teamLogo = teamLogo;
 
@@ -70,7 +84,7 @@ export default class Shanghai2024Provisional extends Major3Stage {
 
   // state = {
   //   ...this.state,
-  //   challengerResult: ChallengerResults,
+  //   Stage1Result: Stage1Results,
   //   legendResult: LegendResults,
   // }
 

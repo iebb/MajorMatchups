@@ -28,6 +28,7 @@ import R6MTL24 from './container/RainbowSix/R6MTL24';
 import Shanghai2024Provisional from './container/CS2/2024/Shanghai/Shanghai2024Provisional';
 import FissureEp4 from './container/Misc/FissureEp4';
 import Austin2025MRQ from './container/CS2/2025/Austin/Austin2025MRQ';
+import Austin2025Provisional from './container/CS2/2025/Austin/Austin2025Provisional';
 
 export default function Routes() {
   const h = useHistory();
@@ -81,11 +82,16 @@ export default function Routes() {
       <Route path="/24rmr_shanghai">
         <Shanghai2024RMR history={h} />
       </Route>
+      <Route path="/24shanghai">
+        <Shanghai2024Provisional history={h} />
+      </Route>
+
+
       <Route path="/25mrq_austin">
         <Austin2025MRQ history={h} />
       </Route>
-      <Route path="/24shanghai">
-        <Shanghai2024Provisional history={h} />
+      <Route path="/25austin">
+        <Austin2025Provisional history={h} />
       </Route>
 
 
@@ -102,12 +108,12 @@ export default function Routes() {
         <R6MTL24 history={h} />
       </Route>
 
-      <Route path="/fissure_ep4">
-        <FissureEp4 history={h} />
-      </Route>
+      {/*<Route path="/fissure_ep4">*/}
+      {/*  <FissureEp4 history={h} />*/}
+      {/*</Route>*/}
 
       <Route path="/">
-        <Redirect to="/25mrq_austin" />
+        <Redirect to="/25austin" />
       </Route>
     </Switch>
   );
