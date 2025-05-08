@@ -113,17 +113,21 @@ export class Major4Stage extends React.Component {
       // setPickResults('pickResults', 1, this.event, this.state.pickResults);
 
       setPickResults('teams', 1, this.event, this.state.teams[0]);
-      this.setState({
-        ...this.TournamentStages[2],
-        ...packTeam(this.addTeamLogo(finalTeams)),
-        legendResult,
-        scores: this._scores[TournamentStage3],
-        // pickResults: getPickResults('pickResults', 2, this.event),
-      }, () => {
-        console.log(this.state);
-        this.calculateMatchups(0, this.state.rounds + 1)
-      });
+    } else if (this.state.tournament !== TournamentStage3) {
+      finalTeams = getPickResults('teams', 2, this.event);
     }
+
+    this.setState({
+      ...this.TournamentStages[2],
+      ...packTeam(this.addTeamLogo(finalTeams)),
+      legendResult,
+      scores: this._scores[TournamentStage3],
+      // pickResults: getPickResults('pickResults', 2, this.event),
+    }, () => {
+      console.log(this.state);
+      this.calculateMatchups(0, this.state.rounds + 1)
+    });
+
   };
 
   advance3 = (_) => {
@@ -146,7 +150,7 @@ export class Major4Stage extends React.Component {
 
       stage3Result = this.state.roundTeams[5];
       // setPickResults('pickResults', 1, this.event, this.state.pickResults);
-      setPickResults('teams', 1, this.event, this.state.teams[0]);
+      setPickResults('teams', 2, this.event, this.state.teams[0]);
       this.setState({
         ...this.TournamentStages[3],
         ...packTeam(this.addTeamLogo(teamsAdvanced)),
