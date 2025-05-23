@@ -80,20 +80,20 @@ export const initialDataStage1 = [
     "description": "Seed #13"
   },
   {
-    "code": "mzp",
-    "name": "Metizport",
+    "code": "lega",
+    "name": "Legacy",
     "seed": 14,
     "description": "Seed #14"
   },
   {
-    "code": "flux",
-    "name": "Fluxo",
+    "code": "mzp",
+    "name": "Metizport",
     "seed": 15,
     "description": "Seed #15"
   },
   {
-    "code": "best",
-    "name": "BESTIA",
+    "code": "flux",
+    "name": "Fluxo",
     "seed": 16,
     "description": "Seed #16"
   }
@@ -198,7 +198,7 @@ export const initialDataStage3 = [
     "name": "Team Liquid",
     "seed": 8,
     "description": "Seed #8"
-  },
+  }
 ];
 export const initialDataStage4 = [];
 
