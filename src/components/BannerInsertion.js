@@ -79,7 +79,7 @@ function Title({ title, subtitle ="", isMajor = false, sponsorLess=false, classN
         Global eSIM with +372 Phone Number: <a className="hyperlink" href="https://esim.gg/" target="_blank">esim.gg</a> - data package as low as €0.8/GB available in Europe, US and China.
       </p>
       <p className="text-blue-500 text-lg my-1">
-        <a className='hyperlink' href='https://app.infini.money/signup?ref=PF189KQ' target='_blank'>Infini Crypto Card</a> - spending USDC/USDT as low as 0.1% fee.
+        Apply for an <a className='hyperlink' href='https://app.infini.money/signup?ref=PF189KQ' target='_blank'>Infini Crypto Card</a> for $6.6 - spend USDC/USDT with 0.1% fee.
       </p>
     </div>
   );
