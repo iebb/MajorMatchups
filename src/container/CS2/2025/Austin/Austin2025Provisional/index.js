@@ -76,11 +76,11 @@ export default class Austin2025Provisional extends Major4Stage {
   _scores = Scores;
   teamLogo = teamLogo;
 
-  // fetch_scores = (callback) => {
-  //   fetch('https://result-api.majors.im/scores/2412_cs2_shanghai/merged_scores.json')
-  //     .then((resp) => resp.json())
-  //     .then(callback);
-  // };
+  fetch_scores = (callback) => {
+    fetch('https://result-api.majors.im/scores/2504_cs2_austin/merged_scores.json')
+      .then((resp) => resp.json())
+      .then(callback);
+  };
 
   // state = {
   //   ...this.state,
