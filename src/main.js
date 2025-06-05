@@ -16,7 +16,7 @@ export const ResponsiveContainer = ({ children }) => {
   const Footer = () => (
     <div className="m-2">
       <p className="text-lg pt-2">
-        by ieb (<a className="hyperlink" href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2024 &middot; Give <a className="hyperlink" href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
+        by ieb (<a className="hyperlink" href="https://twitter.com/CyberHono">@CyberHono</a>) © 2019-2025 &middot; Give <a className="hyperlink" href="https://steamcommunity.com/id/iebbbb/">Steam award</a>
       </p>
     </div>
   )
