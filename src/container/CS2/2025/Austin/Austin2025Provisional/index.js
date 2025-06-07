@@ -2,7 +2,7 @@
 
 import { AdvanceElimSeats, ChampionSeats } from '../../../../../libs/common/common';
 import { Formats } from '../../../../../libs/common/formats/formats';
-import { initialDataStage1, initialDataStage2, initialDataStage3 } from './initial_data';
+import { finalDataStage2, initialDataStage1, initialDataStage2, initialDataStage3 } from './initial_data';
 import { Scores } from './scores';
 import { Major4Stage } from '../../../../Common/Major4Stage';
 
@@ -29,7 +29,7 @@ const TournamentStages = [
   {
     id: 1,
     initialTeams: initialDataStage2,
-    teams: [], // finalDataStage2,
+    teams: finalDataStage2,
     name: "Stage 2",
     tournament: TournamentStage2,
     tournamentType: Formats.SwissBuchholtzBlast25,
@@ -72,7 +72,7 @@ export default class Austin2025Provisional extends Major4Stage {
   TournamentStages = TournamentStages;
   event = "25austin";
   title = "BLAST.tv Austin Major 2025 Simulator";
-  currentStage = 0;
+  currentStage = 1;
   _scores = Scores;
   teamLogo = teamLogo;
 

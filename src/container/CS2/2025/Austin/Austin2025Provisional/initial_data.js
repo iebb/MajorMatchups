@@ -203,6 +203,103 @@ export const initialDataStage3 = [
 export const initialDataStage4 = [];
 
 
-export const finalDataStage2 = [];
+export const finalDataStage2 = [
+  {
+    "code": "falc",
+    "name": "Team Falcons",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "3dma",
+    "name": "3DMAX",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "vp",
+    "name": "Virtus.pro",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "pain",
+    "name": "paiN Gaming",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "furi",
+    "name": "FURIA",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "mibr",
+    "name": "MIBR",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "m80",
+    "name": "M80",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "b8",
+    "name": "B8",
+    "seed": 9,
+    "description": "S1 1st"
+  },
+  {
+    "code": "hero",
+    "name": "HEROIC",
+    "seed": 10,
+    "description": "S1 2nd"
+  },
+  {
+    "code": "betb",
+    "name": "BetBoom Team",
+    "seed": 11,
+    "description": "S1 3rd"
+  },
+  {
+    "code": "og",
+    "name": "OG",
+    "seed": 12,
+    "description": "S1 4th"
+  },
+  {
+    "code": "nemi",
+    "name": "Nemiga Gaming",
+    "seed": 13,
+    "description": "S1 5th"
+  },
+  {
+    "code": "lvg",
+    "name": "Lynn Vision Gaming",
+    "seed": 14,
+    "description": "S1 6th"
+  },
+  {
+    "code": "lega",
+    "name": "Legacy",
+    "seed": 15,
+    "description": "S1 7th"
+  },
+  {
+    "code": "tylo",
+    "name": "TYLOO",
+    "seed": 16,
+    "description": "S1 8th"
+  },
+];
 export const finalDataStage3 = [];
 export const finalDataStage4 = [];
