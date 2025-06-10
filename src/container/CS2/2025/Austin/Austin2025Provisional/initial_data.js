@@ -301,5 +301,102 @@ export const finalDataStage2 = [
     "description": "S1 8th"
   },
 ];
-export const finalDataStage3 = [];
+export const finalDataStage3 = [
+  {
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 1,
+    "description": "Seed #1"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 2,
+    "description": "Seed #2"
+  },
+  {
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 3,
+    "description": "Seed #3"
+  },
+  {
+    "code": "g2",
+    "name": "G2 Esports",
+    "seed": 4,
+    "description": "Seed #4"
+  },
+  {
+    "code": "mong",
+    "name": "The MongolZ",
+    "seed": 5,
+    "description": "Seed #5"
+  },
+  {
+    "code": "auro",
+    "name": "Aurora Gaming",
+    "seed": 6,
+    "description": "Seed #6"
+  },
+  {
+    "code": "navi",
+    "name": "Natus Vincere",
+    "seed": 7,
+    "description": "Seed #7"
+  },
+  {
+    "code": "liqu",
+    "name": "Team Liquid",
+    "seed": 8,
+    "description": "Seed #8"
+  },
+  {
+    "code": "lega",
+    "name": "Legacy",
+    "seed": 9,
+    "description": "S2 1st"
+  },
+  {
+    "code": "vp",
+    "name": "Virtus.pro",
+    "seed": 10,
+    "description": "S2 #2nd"
+  },
+  {
+    "code": "pain",
+    "name": "paiN Gaming",
+    "seed": 11,
+    "description": "S2 3rd"
+  },
+  {
+    "code": "3dma",
+    "name": "3DMAX",
+    "seed": 12,
+    "description": "S2 4th"
+  },
+  {
+    "code": "furi",
+    "name": "FURIA",
+    "seed": 13,
+    "description": "S2 5th"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 14,
+    "description": "S2 6th"
+  },
+  {
+    "code": "nemi",
+    "name": "Nemiga Gaming",
+    "seed": 15,
+    "description": "S2 7th"
+  },
+  {
+    "code": "lvg",
+    "name": "Lynn Vision Gaming",
+    "seed": 16,
+    "description": "S2 8th"
+  },
+  ];
 export const finalDataStage4 = [];
