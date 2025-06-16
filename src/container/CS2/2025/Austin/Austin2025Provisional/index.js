@@ -4,7 +4,7 @@ import { AdvanceElimSeats, ChampionSeats } from '../../../../../libs/common/comm
 import { Formats } from '../../../../../libs/common/formats/formats';
 import {
   finalDataStage2,
-  finalDataStage3,
+  finalDataStage3, finalDataStage4,
   initialDataStage1,
   initialDataStage2,
   initialDataStage3,
@@ -61,7 +61,7 @@ const TournamentStages = [
   {
     id: 3,
     initialTeams: [],
-    teams: [], // finalDataStage4,
+    teams: finalDataStage4,
     name: "Champions",
     tournament: TournamentChampions,
     tournamentType: Formats.Knockout2024,
@@ -78,7 +78,7 @@ export default class Austin2025Provisional extends Major4Stage {
   TournamentStages = TournamentStages;
   event = "25austin";
   title = "BLAST.tv Austin Major 2025 Simulator";
-  currentStage = 2;
+  currentStage = 3;
   _scores = Scores;
   teamLogo = teamLogo;
 

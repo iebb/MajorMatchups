@@ -399,4 +399,54 @@ export const finalDataStage3 = [
     "description": "S2 8th"
   },
   ];
-export const finalDataStage4 = [];
+export const finalDataStage4 = [
+
+  {
+    "code": "spir",
+    "name": "Team Spirit",
+    "seed": 1,
+    "description": "S3 1st"
+  },
+  {
+    "code": "furi",
+    "name": "FURIA",
+    "seed": 2,
+    "description": "S3 2nd"
+  },
+  {
+    "code": "faze",
+    "name": "FaZe Clan",
+    "seed": 3,
+    "description": "S3 3rd"
+  },
+  {
+    "code": "navi",
+    "name": "Natus Vincere",
+    "seed": 4,
+    "description": "S3 4th"
+  },
+  {
+    "code": "vita",
+    "name": "Team Vitality",
+    "seed": 5,
+    "description": "S3 5th"
+  },
+  {
+    "code": "mong",
+    "name": "The MongolZ",
+    "seed": 6,
+    "description": "S3 6th"
+  },
+  {
+    "code": "pain",
+    "name": "paiN Gaming",
+    "seed": 7,
+    "description": "S3 7th"
+  },
+  {
+    "code": "mouz",
+    "name": "MOUZ",
+    "seed": 8,
+    "description": "S3 8th"
+  },
+];
